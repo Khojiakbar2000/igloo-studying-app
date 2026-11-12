@@ -5,3 +5,4 @@ web-build/
 *.log
 .claude/
 .img2game2d/
+.vercel
