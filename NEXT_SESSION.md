@@ -2,6 +2,10 @@
 
 ## Current state
 
+- GitHub repo: `https://github.com/Khojiakbar2000/igloo-studying-app`; active branches are `develop` and `master`. Push feature work to `develop`, then merge and push `master`.
+- Vercel project `igloo-studying-app` is connected to GitHub; production branch is `master`.
+- Live web app: `https://igloo-studying-app.vercel.app/`; focus scene: `https://igloo-studying-app.vercel.app/?preview=focus`.
+- Production build uses `npm run build:web` and outputs `dist/` via `vercel.json`.
 - `src/components/IglooChairJourney.tsx` plays a generated four-pose waddle and a separate seated pose in the onboarding focus room.
 - `assets/animations/igloo-penguin-walk/` holds the walk source strip and four extracted frames. `assets/characters/penguin/poses/seated.png` is the generated chair-sitting pose.
 - The focus room now renders Pip substantially larger than the old 48 px still.
