@@ -1,0 +1,1475 @@
+{
+  "artboard": {
+    "name": "PenguinHatchery",
+    "width": 400,
+    "height": 520
+  },
+  "imports": [
+    {
+      "spec": "assets/animations/penguin-egg-art-warm.scene.json",
+      "x": -60,
+      "y": -78,
+      "scale": 1.3
+    }
+  ],
+  "animations": [
+    {
+      "name": "eggIdle",
+      "fps": 60,
+      "duration": 210,
+      "loop": "loop",
+      "tracks": [
+        {
+          "target": "eggegg-body",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": -0.6
+            },
+            {
+              "frame": 105,
+              "value": 0.6,
+              "easing": "smooth"
+            },
+            {
+              "frame": 210,
+              "value": -0.6,
+              "easing": "smooth"
+            }
+          ]
+        },
+        {
+          "target": "eggegg-body",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 304
+            },
+            {
+              "frame": 105,
+              "value": 300,
+              "easing": "smooth"
+            },
+            {
+              "frame": 210,
+              "value": 304,
+              "easing": "smooth"
+            }
+          ]
+        },
+        {
+          "target": "eggcrack-one",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggcrack-two",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp0",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp4",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp5",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp6",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-top",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-left",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-right",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tapOne",
+      "fps": 60,
+      "duration": 42,
+      "loop": "oneshot",
+      "tracks": [
+        {
+          "target": "eggegg-body",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 7,
+              "value": -5,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 15,
+              "value": 6,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 23,
+              "value": -2.5,
+              "easing": "smooth"
+            },
+            {
+              "frame": 34,
+              "value": 0.8,
+              "easing": "smooth"
+            },
+            {
+              "frame": 42,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggegg-body",
+          "property": "scaleY",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 8,
+              "value": 0.9,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 16,
+              "value": 1.08,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 26,
+              "value": 0.98,
+              "easing": "smooth"
+            },
+            {
+              "frame": 42,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggegg-body",
+          "property": "scaleX",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 8,
+              "value": 1.08,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 16,
+              "value": 0.95,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 26,
+              "value": 1.02,
+              "easing": "smooth"
+            },
+            {
+              "frame": 42,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggcrack-one",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 13,
+              "value": 0
+            },
+            {
+              "frame": 20,
+              "value": 1,
+              "easing": "emphasized-decel"
+            },
+            {
+              "frame": 42,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-top",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 20,
+              "value": 1,
+              "easing": "emphasized-decel"
+            },
+            {
+              "frame": 42,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-left",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 42,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-right",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 42,
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "eggCrack1",
+      "fps": 60,
+      "duration": 210,
+      "loop": "loop",
+      "tracks": [
+        {
+          "target": "eggcrack-one",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 210,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggegg-body",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 304
+            },
+            {
+              "frame": 105,
+              "value": 301,
+              "easing": "smooth"
+            },
+            {
+              "frame": 210,
+              "value": 304,
+              "easing": "smooth"
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-top",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 210,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-left",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-right",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 210,
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tapTwo",
+      "fps": 60,
+      "duration": 54,
+      "loop": "oneshot",
+      "tracks": [
+        {
+          "target": "eggegg-body",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 6,
+              "value": 8,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 14,
+              "value": -9,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 23,
+              "value": 6,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 33,
+              "value": -3,
+              "easing": "smooth"
+            },
+            {
+              "frame": 46,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggegg-body",
+          "property": "scaleY",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 9,
+              "value": 0.84,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 18,
+              "value": 1.13,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 31,
+              "value": 0.96,
+              "easing": "smooth"
+            },
+            {
+              "frame": 48,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggcrack-two",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 15,
+              "value": 0
+            },
+            {
+              "frame": 23,
+              "value": 1,
+              "easing": "emphasized-decel"
+            },
+            {
+              "frame": 54,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggp0",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 25,
+              "value": 1,
+              "easing": "emphasized-decel"
+            },
+            {
+              "frame": 54,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggp0",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 26,
+              "value": -14,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 40,
+              "value": 5,
+              "easing": "smooth"
+            },
+            {
+              "frame": 54,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-top",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 54,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-left",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 24,
+              "value": 1,
+              "easing": "emphasized-decel"
+            },
+            {
+              "frame": 54,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-right",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 30,
+              "value": 1,
+              "easing": "emphasized-decel"
+            },
+            {
+              "frame": 54,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "eggCrack2",
+      "fps": 60,
+      "duration": 210,
+      "loop": "loop",
+      "tracks": [
+        {
+          "target": "eggcrack-one",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 210,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggcrack-two",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 210,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggp0",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 210,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggegg-body",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 304
+            },
+            {
+              "frame": 105,
+              "value": 301,
+              "easing": "smooth"
+            },
+            {
+              "frame": 210,
+              "value": 304,
+              "easing": "smooth"
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-top",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 210,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-left",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 210,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-right",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 210,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "eggHatch",
+      "fps": 60,
+      "duration": 180,
+      "loop": "oneshot",
+      "tracks": [
+        {
+          "target": "eggegg-body",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 7,
+              "value": -10,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 15,
+              "value": 12,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 23,
+              "value": -8,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 32,
+              "value": 5,
+              "easing": "smooth"
+            },
+            {
+              "frame": 43,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggegg-body",
+          "property": "scaleY",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 11,
+              "value": 0.82,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 24,
+              "value": 1.14,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 36,
+              "value": 0.96,
+              "easing": "smooth"
+            },
+            {
+              "frame": 54,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggcrack-one",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 180,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggcrack-two",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 180,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "eggp1",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 242
+            },
+            {
+              "frame": 37,
+              "value": 242
+            },
+            {
+              "frame": 54,
+              "value": 216,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 78,
+              "value": 174,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 110,
+              "value": 155,
+              "easing": "smooth"
+            },
+            {
+              "frame": 148,
+              "value": 150,
+              "easing": "smooth"
+            }
+          ]
+        },
+        {
+          "target": "eggp1",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 50,
+              "value": 0
+            },
+            {
+              "frame": 78,
+              "value": -14,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 106,
+              "value": -20,
+              "easing": "smooth"
+            },
+            {
+              "frame": 146,
+              "value": -24,
+              "easing": "smooth"
+            }
+          ]
+        },
+        {
+          "target": "eggp1",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 108,
+              "value": 1
+            },
+            {
+              "frame": 150,
+              "value": 0,
+              "easing": "emphasized-accel"
+            }
+          ]
+        },
+        {
+          "target": "eggegg-body",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 100,
+              "value": 1
+            },
+            {
+              "frame": 155,
+              "value": 0,
+              "easing": "emphasized-accel"
+            }
+          ]
+        },
+        {
+          "target": "eggp4",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 52,
+              "value": 0
+            },
+            {
+              "frame": 66,
+              "value": 1,
+              "easing": "emphasized-decel"
+            },
+            {
+              "frame": 180,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp4",
+          "property": "x",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 141
+            },
+            {
+              "frame": 62,
+              "value": 141
+            },
+            {
+              "frame": 92,
+              "value": 98,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 135,
+              "value": 75,
+              "easing": "smooth"
+            }
+          ]
+        },
+        {
+          "target": "eggp4",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 356
+            },
+            {
+              "frame": 62,
+              "value": 356
+            },
+            {
+              "frame": 97,
+              "value": 383,
+              "easing": "ease-out"
+            }
+          ]
+        },
+        {
+          "target": "eggp4",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 93,
+              "value": -25,
+              "easing": "ease-out"
+            }
+          ]
+        },
+        {
+          "target": "eggp5",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 52,
+              "value": 0
+            },
+            {
+              "frame": 66,
+              "value": 1,
+              "easing": "emphasized-decel"
+            },
+            {
+              "frame": 180,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp5",
+          "property": "x",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 259
+            },
+            {
+              "frame": 62,
+              "value": 259
+            },
+            {
+              "frame": 94,
+              "value": 305,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 135,
+              "value": 326,
+              "easing": "smooth"
+            }
+          ]
+        },
+        {
+          "target": "eggp5",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 353
+            },
+            {
+              "frame": 62,
+              "value": 353
+            },
+            {
+              "frame": 97,
+              "value": 381,
+              "easing": "ease-out"
+            }
+          ]
+        },
+        {
+          "target": "eggp5",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 93,
+              "value": 23,
+              "easing": "ease-out"
+            }
+          ]
+        },
+        {
+          "target": "eggp6",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 80,
+              "value": 0
+            },
+            {
+              "frame": 95,
+              "value": 1,
+              "easing": "emphasized-decel"
+            },
+            {
+              "frame": 132,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp6",
+          "property": "scaleX",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0.2
+            },
+            {
+              "frame": 92,
+              "value": 0.2
+            },
+            {
+              "frame": 110,
+              "value": 1,
+              "easing": "elastic-out"
+            },
+            {
+              "frame": 180,
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "target": "eggp6",
+          "property": "scaleY",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0.2
+            },
+            {
+              "frame": 92,
+              "value": 0.2
+            },
+            {
+              "frame": 110,
+              "value": 1,
+              "easing": "elastic-out"
+            },
+            {
+              "frame": 180,
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-top",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 180,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-left",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 180,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-right",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 180,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "eggEmpty",
+      "fps": 60,
+      "duration": 60,
+      "loop": "loop",
+      "tracks": [
+        {
+          "target": "eggegg-body",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp1",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggcrack-one",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggcrack-two",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp0",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp4",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp5",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "eggp6",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-top",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-left",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "egg-crack-glow-right",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 60,
+              "value": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stateMachine": {
+    "name": "PenguinHatchery",
+    "inputs": [
+      {
+        "name": "tapOne",
+        "type": "trigger"
+      },
+      {
+        "name": "tapTwo",
+        "type": "trigger"
+      },
+      {
+        "name": "hatch",
+        "type": "trigger"
+      }
+    ],
+    "layers": [
+      {
+        "name": "Hatching",
+        "states": [
+          {
+            "name": "waiting",
+            "animation": "eggIdle"
+          },
+          {
+            "name": "tapOne",
+            "animation": "tapOne"
+          },
+          {
+            "name": "cracked1",
+            "animation": "eggCrack1"
+          },
+          {
+            "name": "tapTwo",
+            "animation": "tapTwo"
+          },
+          {
+            "name": "cracked2",
+            "animation": "eggCrack2"
+          },
+          {
+            "name": "hatching",
+            "animation": "eggHatch"
+          },
+          {
+            "name": "empty",
+            "animation": "eggEmpty"
+          }
+        ],
+        "transitions": [
+          {
+            "from": "entry",
+            "to": "waiting"
+          },
+          {
+            "from": "waiting",
+            "to": "tapOne",
+            "condition": {
+              "input": "tapOne"
+            }
+          },
+          {
+            "from": "tapOne",
+            "to": "cracked1",
+            "exitTimeMs": 700
+          },
+          {
+            "from": "cracked1",
+            "to": "tapTwo",
+            "condition": {
+              "input": "tapTwo"
+            }
+          },
+          {
+            "from": "tapTwo",
+            "to": "cracked2",
+            "exitTimeMs": 900
+          },
+          {
+            "from": "cracked2",
+            "to": "hatching",
+            "condition": {
+              "input": "hatch"
+            }
+          },
+          {
+            "from": "hatching",
+            "to": "empty",
+            "exitTimeMs": 3000
+          }
+        ]
+      }
+    ]
+  }
+}

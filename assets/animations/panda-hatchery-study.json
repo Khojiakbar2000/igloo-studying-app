@@ -1,0 +1,44 @@
+{
+ "artboard": {
+  "name": "PandaHatchery",
+  "width": 400,
+  "height": 520
+ },
+ "shapes": [
+  {
+   "id": "__background",
+   "type": "rect",
+   "x": 200,
+   "y": 260,
+   "z": 99998,
+   "width": 400,
+   "height": 520,
+   "fill": {
+    "color": "#fcf3ec"
+   }
+  }
+ ],
+ "animations": [
+  {
+   "name": "eggIdle",
+   "fps": 60,
+   "duration": 210,
+   "loop": "loop",
+   "tracks": []
+  },
+  {
+   "name": "hatch",
+   "fps": 60,
+   "duration": 90,
+   "loop": "loop",
+   "tracks": []
+  },
+  {
+   "name": "empty",
+   "fps": 60,
+   "duration": 60,
+   "loop": "loop",
+   "tracks": []
+  }
+ ]
+}

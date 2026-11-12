@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="520" viewBox="0 0 400 520">
+  <defs>
+    <linearGradient id="shell" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.76" stop-color="#eef7fa"/>
+      <stop offset="1" stop-color="#deeaef"/>
+    </linearGradient>
+    <linearGradient id="shell-lower" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#deeaef"/>
+    </linearGradient>
+    <linearGradient id="flipper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6b8495"/>
+      <stop offset="1" stop-color="#355960"/>
+    </linearGradient>
+  </defs>
+  <ellipse id="egg-shadow" cx="200" cy="445" rx="93" ry="17" fill="#b7c7ce" opacity="0.42"/>
+  <g id="flipper-tease" opacity="0">
+    <path d="M145 362 C120 343 111 359 121 384 C130 407 150 408 163 389Z" fill="url(#flipper)" stroke="#3c5a66" stroke-width="3" stroke-linejoin="round"/>
+  </g>
+  <path id="egg-body" d="M200 157 C138 157 106 247 108 338 C110 410 145 452 200 452 C255 452 290 410 292 338 C294 247 262 157 200 157Z" fill="url(#shell)" stroke="#3c5a66" stroke-width="4" stroke-linejoin="round"/>
+  <g id="upper-shell">
+    <path d="M200 157 C138 157 106 247 108 328 L133 336 L150 326 L171 339 L192 327 L214 339 L234 326 L254 337 L291 327 C294 247 262 157 200 157Z" fill="url(#shell)"/>
+    <path d="M139 257 C149 225 162 204 178 194" fill="none" stroke="#c1d1d7" stroke-width="8" stroke-linecap="round" opacity="0.52"/>
+    <circle cx="160" cy="218" r="4" fill="#ffffff" opacity="0.9"/>
+  </g>
+  <path id="crack-one" d="M198 158 L190 181 L204 191 L193 211 L205 222" fill="none" stroke="#3c5a66" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+  <path id="crack-two" d="M194 211 L177 217 L182 232 L165 241 M204 191 L220 199 L216 213 L233 221" fill="none" stroke="#3c5a66" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+  <g id="shell-left" opacity="0">
+    <path d="M133 336 L150 326 L171 339 L167 371 L151 385 L139 360Z" fill="url(#shell-lower)" stroke="#3c5a66" stroke-width="3.2" stroke-linejoin="round"/>
+  </g>
+  <g id="shell-right" opacity="0">
+    <path d="M234 326 L254 337 L272 331 L267 360 L252 385 L235 370Z" fill="url(#shell-lower)" stroke="#3c5a66" stroke-width="3.2" stroke-linejoin="round"/>
+  </g>
+  <g id="sparkles" opacity="0">
+    <path d="M91 242 L96 254 L108 259 L96 264 L91 276 L86 264 L74 259 L86 254Z M309 236 L313 246 L323 250 L313 254 L309 264 L305 254 L295 250 L305 246Z M319 305 L322 312 L329 315 L322 318 L319 325 L316 318 L309 315 L316 312Z" fill="#ffffff" stroke="#b7c7ce" stroke-width="1.5" stroke-linejoin="round"/>
+  </g>
+</svg>

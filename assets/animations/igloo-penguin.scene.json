@@ -1,0 +1,489 @@
+{
+ "artboard": {
+  "name": "Character",
+  "width": 600,
+  "height": 660
+ },
+ "groups": [
+  {
+   "id": "root",
+   "x": 300,
+   "y": 594
+  },
+  {
+   "id": "headG",
+   "x": 0,
+   "y": -227.0399932861328,
+   "parent": "root"
+  },
+  {
+   "id": "flipperLG",
+   "x": -95.69999694824219,
+   "y": -188.75999450683594,
+   "parent": "root"
+  },
+  {
+   "id": "flipperRG",
+   "x": 98.33999633789062,
+   "y": -188.75999450683594,
+   "parent": "root"
+  }
+ ],
+ "shapes": [
+  {
+   "id": "lash0",
+   "type": "rect",
+   "x": -18.809999465942383,
+   "y": -76.8609619140625,
+   "z": 99993,
+   "parent": "headG",
+   "opacity": 0,
+   "width": 40.64445114135742,
+   "height": 6.098400115966797,
+   "cornerRadius": 2,
+   "fill": {
+    "color": "#6b4a3a"
+   }
+  },
+  {
+   "id": "lash1",
+   "type": "rect",
+   "x": 66.33000183105469,
+   "y": -98.64096069335938,
+   "z": 99989,
+   "parent": "headG",
+   "opacity": 0,
+   "width": 44.515350341796875,
+   "height": 6.098400115966797,
+   "cornerRadius": 2,
+   "fill": {
+    "color": "#6b4a3a"
+   }
+  },
+  {
+   "id": "lid0",
+   "type": "ellipse",
+   "x": -18.809999465942383,
+   "y": -80.5199966430664,
+   "z": 99985,
+   "parent": "headG",
+   "opacity": 0,
+   "width": 47.81700134277344,
+   "height": 60.98400115966797,
+   "fill": {
+    "color": "#f4ede1"
+   }
+  },
+  {
+   "id": "lid1",
+   "type": "ellipse",
+   "x": 66.33000183105469,
+   "y": -102.30000305175781,
+   "z": 99981,
+   "parent": "headG",
+   "opacity": 0,
+   "width": 52.37099838256836,
+   "height": 60.98400115966797,
+   "fill": {
+    "color": "#f4ede1"
+   }
+  }
+ ],
+ "animations": [
+  {
+   "name": "idle",
+   "fps": 60,
+   "duration": 240,
+   "loop": "loop",
+   "tracks": [
+    {
+     "target": "headG",
+     "property": "rotation",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 70,
+       "value": 3.1999999752116266,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 160,
+       "value": -2.600000086581152,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 240,
+       "value": 0,
+       "easing": "ease-in-out"
+      }
+     ]
+    },
+    {
+     "target": "root",
+     "property": "scaleY",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 1
+      },
+      {
+       "frame": 120,
+       "value": 1.0149999856948853,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 240,
+       "value": 1,
+       "easing": "ease-in-out"
+      }
+     ]
+    },
+    {
+     "target": "lid0",
+     "property": "opacity",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 96,
+       "value": 1,
+       "easing": "hold"
+      },
+      {
+       "frame": 104,
+       "value": 0,
+       "easing": "hold"
+      },
+      {
+       "frame": 196,
+       "value": 1,
+       "easing": "hold"
+      },
+      {
+       "frame": 204,
+       "value": 0,
+       "easing": "hold"
+      },
+      {
+       "frame": 240,
+       "value": 0
+      }
+     ]
+    },
+    {
+     "target": "lash0",
+     "property": "opacity",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 96,
+       "value": 1,
+       "easing": "hold"
+      },
+      {
+       "frame": 104,
+       "value": 0,
+       "easing": "hold"
+      },
+      {
+       "frame": 196,
+       "value": 1,
+       "easing": "hold"
+      },
+      {
+       "frame": 204,
+       "value": 0,
+       "easing": "hold"
+      },
+      {
+       "frame": 240,
+       "value": 0
+      }
+     ]
+    },
+    {
+     "target": "lid1",
+     "property": "opacity",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 96,
+       "value": 1,
+       "easing": "hold"
+      },
+      {
+       "frame": 104,
+       "value": 0,
+       "easing": "hold"
+      },
+      {
+       "frame": 196,
+       "value": 1,
+       "easing": "hold"
+      },
+      {
+       "frame": 204,
+       "value": 0,
+       "easing": "hold"
+      },
+      {
+       "frame": 240,
+       "value": 0
+      }
+     ]
+    },
+    {
+     "target": "lash1",
+     "property": "opacity",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 96,
+       "value": 1,
+       "easing": "hold"
+      },
+      {
+       "frame": 104,
+       "value": 0,
+       "easing": "hold"
+      },
+      {
+       "frame": 196,
+       "value": 1,
+       "easing": "hold"
+      },
+      {
+       "frame": 204,
+       "value": 0,
+       "easing": "hold"
+      },
+      {
+       "frame": 240,
+       "value": 0
+      }
+     ]
+    },
+    {
+     "target": "flipperLG",
+     "property": "rotation",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 60,
+       "value": 9.000000250447817,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 130,
+       "value": -3.999999969014533,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 200,
+       "value": 7.000000052497138,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 240,
+       "value": 0,
+       "easing": "ease-in-out"
+      }
+     ]
+    },
+    {
+     "target": "flipperRG",
+     "property": "rotation",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 60,
+       "value": 9.000000250447817,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 130,
+       "value": -3.999999969014533,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 200,
+       "value": 7.000000052497138,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 240,
+       "value": 0,
+       "easing": "ease-in-out"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "happy",
+   "fps": 60,
+   "duration": 90,
+   "loop": "oneShot",
+   "tracks": [
+    {
+     "target": "root",
+     "property": "y",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 594
+      },
+      {
+       "frame": 12,
+       "value": 564.2999877929688,
+       "easing": "ease-out"
+      },
+      {
+       "frame": 24,
+       "value": 594,
+       "easing": "ease-in"
+      },
+      {
+       "frame": 34,
+       "value": 574.2000122070312,
+       "easing": "ease-out"
+      },
+      {
+       "frame": 44,
+       "value": 594,
+       "easing": "ease-in"
+      },
+      {
+       "frame": 90,
+       "value": 594
+      }
+     ]
+    },
+    {
+     "target": "headG",
+     "property": "rotation",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 25,
+       "value": 4.99999985454646,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 65,
+       "value": 4.99999985454646
+      },
+      {
+       "frame": 90,
+       "value": 0,
+       "easing": "ease-in-out"
+      }
+     ]
+    },
+    {
+     "target": "flipperLG",
+     "property": "rotation",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 12,
+       "value": -24.000000667860846,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 28,
+       "value": 22.000000043023345,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 44,
+       "value": -24.000000667860846,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 60,
+       "value": 22.000000043023345,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 76,
+       "value": -12.000000333930423,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 90,
+       "value": 0,
+       "easing": "ease-in-out"
+      }
+     ]
+    },
+    {
+     "target": "flipperRG",
+     "property": "rotation",
+     "keyframes": [
+      {
+       "frame": 0,
+       "value": 0
+      },
+      {
+       "frame": 12,
+       "value": -24.000000667860846,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 28,
+       "value": 22.000000043023345,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 44,
+       "value": -24.000000667860846,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 60,
+       "value": 22.000000043023345,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 76,
+       "value": -12.000000333930423,
+       "easing": "ease-in-out"
+      },
+      {
+       "frame": 90,
+       "value": 0,
+       "easing": "ease-in-out"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

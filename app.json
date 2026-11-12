@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "IGLOO",
+    "slug": "igloo-pomodoro",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "web": { "bundler": "metro" },
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": { "supportsTablet": false, "bundleIdentifier": "co.igloo.pomodoro" },
+    "android": { "package": "co.igloo.pomodoro", "adaptiveIcon": { "backgroundColor": "#DBF0FA" } }
+  }
+}

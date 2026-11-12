@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1240" viewBox="0 0 1600 1240" role="img" aria-labelledby="title desc">
+  <title id="title">IGLOO interior perspective, navigation and occlusion plan</title>
+  <desc id="desc">A perspective overlay on the new interior master, a normalized world-coordinate room plan, navigation destinations, camera limits, rendering layers and chair depth slices.</desc>
+  <defs>
+    <linearGradient id="paper" x2="0" y2="1"><stop stop-color="#f7fafb"/><stop offset="1" stop-color="#edf3f5"/></linearGradient>
+    <linearGradient id="ice" x2="0" y2="1"><stop stop-color="#e5f0f8"/><stop offset="1" stop-color="#d3e0ec"/></linearGradient>
+    <clipPath id="masterCrop"><rect x="44" y="166" width="486" height="729" rx="20"/></clipPath>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#54798b"/></marker>
+    <marker id="arrowgold" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#ce9250"/></marker>
+    <style>
+      .title{font:700 34px system-ui,-apple-system,sans-serif;fill:#263f4d}.sub{font:400 16px system-ui,-apple-system,sans-serif;fill:#718794}
+      .head{font:700 16px system-ui,-apple-system,sans-serif;letter-spacing:1.2px;fill:#456170}.label{font:600 13px system-ui,-apple-system,sans-serif;fill:#3b5969}
+      .small{font:500 11px system-ui,-apple-system,sans-serif;fill:#647f8e}.tiny{font:700 10px system-ui,-apple-system,sans-serif;letter-spacing:.5px;fill:#66808d}
+      .panel{fill:#fff;stroke:#dce7eb;stroke-width:1.5}.nav{fill:none;stroke:#54798b;stroke-width:3;stroke-dasharray:7 6;marker-end:url(#arrow)}
+      .footprint{fill:#e9c394;fill-opacity:.72;stroke:#946647;stroke-width:2}.target{fill:#fff;stroke:#4e7789;stroke-width:3}
+      .call{fill:#f4e5d2;stroke:#d39a57;stroke-width:1.5}.anchor{fill:#3c7185;stroke:#fff;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1600" height="1240" fill="url(#paper)"/>
+  <text class="title" x="44" y="58">IGLOO · Room space &amp; depth plan</text>
+  <text class="sub" x="44" y="88">Refined master study · one foot-anchored world coordinate system · perspective art remains the visual source</text>
+
+  <!-- The composition panel uses the approved master itself as its visual reference. -->
+  <rect class="panel" x="32" y="120" width="510" height="800" rx="24"/>
+  <text class="head" x="54" y="151">MASTER COMPOSITION / SCREEN PROJECTION</text>
+  <g clip-path="url(#masterCrop)">
+    <image href="../assets/environments/igloo/igloo-interior-master.png" x="44" y="166" width="486" height="729" preserveAspectRatio="xMidYMid slice"/>
+    <path d="M158 481 Q270 461 369 477 Q435 500 464 566 L471 781 Q380 873 238 875 Q142 857 103 784 Q100 675 133 559Z" fill="#8ed4c0" fill-opacity=".17" stroke="#4d9988" stroke-width="3" stroke-dasharray="9 7"/>
+    <text x="214" y="730" style="font:800 12px system-ui;fill:#2f776c;letter-spacing:1px">OPEN WALKABLE FLOOR</text>
+    <!-- destination routes -->
+    <path d="M175 478 Q176 532 221 570 Q251 596 288 625" class="nav"/>
+    <path d="M220 592 Q180 603 144 573" class="nav"/>
+    <path d="M220 587 Q251 512 279 470" class="nav"/>
+    <path d="M250 611 Q345 565 376 520" class="nav"/>
+    <path d="M253 632 Q346 666 392 708" class="nav"/>
+    <!-- furniture projected footprints -->
+    <rect x="66" y="477" width="141" height="137" rx="12" class="footprint"/>
+    <rect x="328" y="394" width="84" height="119" rx="12" class="footprint"/>
+    <path d="M382 472 L527 495 L527 654 L387 625Z" class="footprint"/>
+    <path d="M276 507 L375 515 L388 633 L284 628Z" class="footprint"/>
+    <ellipse cx="180" cy="690" rx="99" ry="58" fill="#cb8a68" fill-opacity=".18" stroke="#bb8061" stroke-width="2" stroke-dasharray="6 5"/>
+    <!-- named destinations -->
+    <circle cx="175" cy="478" r="9" class="anchor"/><text class="tiny" x="186" y="474">ENTRY</text>
+    <circle cx="148" cy="557" r="8" class="anchor"/><text class="tiny" x="91" y="551">BED</text>
+    <circle cx="279" cy="470" r="8" class="anchor"/><text class="tiny" x="287" y="466">WINDOW</text>
+    <circle cx="376" cy="520" r="8" class="anchor"/><text class="tiny" x="385" y="516">SHELF</text>
+    <circle cx="348" cy="601" r="8" class="anchor"/><text class="tiny" x="354" y="620">DESK / CHAIR</text>
+    <circle cx="239" cy="661" r="8" class="anchor"/><text class="tiny" x="248" y="658">RUG</text>
+  </g>
+  <text class="small" x="54" y="908">Projected anchors are planning marks; they will be calibrated to production layers.</text>
+
+  <!-- Normalized world layout -->
+  <rect class="panel" x="566" y="120" width="1002" height="800" rx="24"/>
+  <text class="head" x="592" y="151">WORLD PLAN / NORMALIZED ROOM SPACE</text>
+  <text class="small" x="592" y="177">X: left → right · Z: far wall → camera · actor anchor: center of feet</text>
+  <path d="M700 259 Q1105 213 1459 260 L1503 433 Q1451 652 1380 729 Q1075 785 772 725 Q661 670 626 441Z" fill="url(#ice)" stroke="#9fb5c7" stroke-width="3"/>
+  <path d="M700 259 Q1105 213 1459 260" fill="none" stroke="#718fa3" stroke-width="7" opacity=".36"/>
+  <text class="tiny" x="1010" y="242">FAR CURVED WALL + ENCLOSED CEILING ABOVE</text>
+  <!-- entrance and window -->
+  <path d="M710 272 Q739 229 774 271 L774 314 L710 314Z" fill="#718da5" fill-opacity=".55" stroke="#6a879d" stroke-width="2"/>
+  <text class="small" x="687" y="337">arched entry</text>
+  <circle cx="1044" cy="270" r="22" fill="#f6dfaf" stroke="#8aabc0" stroke-width="6"/>
+  <text class="small" x="1006" y="309">window</text>
+  <!-- bed / shelf / desk / chair / rug footprints -->
+  <path d="M721 380 Q763 348 839 363 L864 475 Q813 499 732 471Z" class="footprint"/>
+  <text class="label" x="758" y="427">BED</text>
+  <path d="M1247 296 Q1305 284 1365 302 L1378 376 Q1324 391 1254 372Z" class="footprint"/>
+  <text class="label" x="1283" y="342">SHELF</text>
+  <path d="M1323 392 L1437 379 L1463 507 L1347 523Z" class="footprint"/>
+  <text class="label" x="1374" y="451">DESK</text>
+  <path d="M1158 409 Q1219 392 1267 425 L1275 499 Q1213 521 1160 488Z" class="footprint"/>
+  <text class="label" x="1185" y="458">CHAIR</text>
+  <ellipse cx="1000" cy="527" rx="122" ry="55" fill="#cb8a68" fill-opacity=".2" stroke="#bb8061" stroke-width="2" stroke-dasharray="7 5"/>
+  <text class="small" x="970" y="532">RUG</text>
+  <!-- accessible corridor and routes -->
+  <path d="M793 333 Q881 407 944 484 Q1021 546 1112 566 Q1187 569 1210 501" fill="none" stroke="#56a08d" stroke-width="74" stroke-opacity=".14" stroke-linecap="round"/>
+  <path d="M749 316 Q839 398 935 477 Q1010 540 1112 557" class="nav"/>
+  <path d="M935 477 Q871 456 807 442" class="nav"/>
+  <path d="M935 477 Q1001 390 1045 306" class="nav"/>
+  <path d="M968 495 Q1142 414 1288 352" class="nav"/>
+  <path d="M1080 548 Q1160 559 1208 480" class="nav"/>
+  <!-- destination nodes -->
+  <g><circle cx="749" cy="316" r="16" class="target"/><text class="label" x="744" y="321">A</text></g>
+  <g><circle cx="807" cy="442" r="16" class="target"/><text class="label" x="802" y="447">B</text></g>
+  <g><circle cx="1045" cy="306" r="16" class="target"/><text class="label" x="1040" y="311">C</text></g>
+  <g><circle cx="1288" cy="352" r="16" class="target"/><text class="label" x="1283" y="357">D</text></g>
+  <g><circle cx="1208" cy="480" r="16" class="target"/><text class="label" x="1203" y="485">E</text></g>
+  <g><circle cx="1000" cy="527" r="16" class="target"/><text class="label" x="995" y="532">F</text></g>
+  <!-- camera boundary -->
+  <path d="M677 288 Q1080 254 1429 293 L1469 437 Q1415 635 1356 695 Q1080 740 799 693 Q697 645 661 435Z" fill="none" stroke="#ce9250" stroke-width="2" stroke-dasharray="9 7"/>
+  <rect x="1250" y="609" width="270" height="62" rx="12" fill="#fffaf1" stroke="#e9d6ba"/>
+  <text class="label" x="1266" y="634">CAMERA LIMITS · initial plan</text>
+  <text class="small" x="1266" y="653">locked yaw · zoom 1.00–1.18 · pan ≤ 8% W / 6% H</text>
+  <text class="tiny" x="625" y="758">A ENTRY · B BED · C WINDOW · D BOOKSHELF · E DESK CHAIR · F RUG / REST</text>
+  <text class="tiny" x="625" y="780">Main lane stays clear; furniture footprints are wall-bound and tap targets sit beside them.</text>
+  <!-- world coordinates -->
+  <path d="M645 843 L814 843" stroke="#54798b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text class="small" x="645" y="865">X 0 → 100</text>
+  <path d="M645 792 L645 843" stroke="#ce9250" stroke-width="2.5" marker-end="url(#arrowgold)"/>
+  <text class="small" x="654" y="808">Z 0 far wall → 100 camera</text>
+
+  <!-- Layer stack and occlusion proof model -->
+  <rect class="panel" x="32" y="945" width="1536" height="255" rx="24"/>
+  <text class="head" x="58" y="980">RENDER ORDER / SPLIT-CHAIR OCCLUSION</text>
+  <text class="small" x="58" y="1004">A single sorting key per object is insufficient for chair overlap. Split only where its surfaces cross depth.</text>
+  <g transform="translate(60 1028)">
+    <rect x="0" y="0" width="310" height="58" rx="11" fill="#d8e6ef"/><text class="label" x="16" y="25">L0 · fixed cave + far wall + window</text><text class="small" x="16" y="45">static painted backdrop / no character occlusion</text>
+    <rect x="320" y="0" width="310" height="58" rx="11" fill="#efd4b6"/><text class="label" x="336" y="25">L1 · furniture back planes</text><text class="small" x="336" y="45">chair back / rear rails / deep furniture</text>
+    <rect x="640" y="0" width="290" height="58" rx="11" fill="#d9edf0"/><text class="label" x="656" y="25">L2 · walkable floor + penguin</text><text class="small" x="656" y="45">sort by foot-anchor Z; shadow under feet</text>
+    <rect x="940" y="0" width="300" height="58" rx="11" fill="#e3c19b"/><text class="label" x="956" y="25">L3 · chair seat / front legs</text><text class="small" x="956" y="45">foreground slices cover lower body as needed</text>
+    <rect x="1250" y="0" width="230" height="58" rx="11" fill="#c4d7e4"/><text class="label" x="1266" y="25">L4 · near wall edges</text><text class="small" x="1266" y="45">entrance lip / optional near arch</text>
+    <text class="tiny" x="0" y="92">DEPTH KEY</text>
+    <path d="M80 88 H1440" stroke="#92a8b8" stroke-width="3" marker-end="url(#arrow)"/>
+    <text class="small" x="80" y="116">far / z=0</text><text class="small" x="1360" y="116">near / z=100</text>
+    <circle cx="480" cy="88" r="7" fill="#98734f"/><text class="tiny" x="451" y="76">chair back z49</text>
+    <circle cx="725" cy="88" r="7" fill="#314c59"/><text class="tiny" x="681" y="76">penguin z44→64→73</text>
+    <circle cx="906" cy="88" r="7" fill="#98734f"/><text class="tiny" x="871" y="76">seat z62</text>
+    <circle cx="1050" cy="88" r="7" fill="#98734f"/><text class="tiny" x="1011" y="76">front legs z66</text>
+  </g>
+  <text class="small" x="58" y="1174">Scale target: penguin height ≈ 0.57× chair height at the master position; animate only from 0.90× far to 1.06× near, feet stay on the floor plane.</text>
+</svg>

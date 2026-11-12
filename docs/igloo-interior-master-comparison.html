@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IGLOO interior: Study 2 and refined master</title>
+  <style>
+    :root { color-scheme: light; --ink:#263f4d; --muted:#718794; --line:#dce7eb; --paper:#f4f8fa; --panel:#fff; }
+    * { box-sizing:border-box }
+    body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.55 system-ui,-apple-system,sans-serif; }
+    main { width:min(1240px,100%); margin:auto; padding:32px 24px 56px; }
+    h1 { margin:0; font-size:clamp(28px,4vw,44px); line-height:1.12; }
+    .intro { color:var(--muted); max-width:700px; margin:10px 0 26px; }
+    .compare { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start; }
+    figure { margin:0; padding:14px; border:1px solid var(--line); border-radius:22px; background:var(--panel); box-shadow:0 14px 44px #49647812; }
+    .tag { color:#6c8794; font-size:11px; font-weight:800; letter-spacing:1.4px; text-transform:uppercase; }
+    h2 { margin:4px 0 12px; font-size:21px; }
+    img { display:block; width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:14px; background:#dce8f0; }
+    figcaption { color:#566f7c; font-size:14px; padding:12px 2px 0; }
+    .changes { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px; }
+    .change { padding:16px; border-radius:16px; background:#fff; border:1px solid var(--line); }
+    .change b { display:block; margin-bottom:4px; color:#3b5969; }
+    .foot { color:var(--muted); font-size:12px; margin-top:18px; }
+    @media(max-width:760px) { .compare,.changes { grid-template-columns:1fr; } main { padding:22px 14px 36px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>From concept layout to inhabitable room</h1>
+    <p class="intro">Study 2 established the furniture arrangement. The refined master keeps that foundation and changes the room shell, camera, and floor composition to support a character moving through the space.</p>
+    <section class="compare" aria-label="Visual comparison">
+      <figure>
+        <div class="tag">Original direction · Study 2</div>
+        <h2>Hand-painted isometric concept</h2>
+        <img src="../assets/environments/igloo/interior-concepts/igloo-interior-handpainted-isometric.png" alt="Study 2 concept of a baby penguin inside a furnished igloo, viewed from the front">
+        <figcaption>Clear, appealing layout and a useful furniture reference. Its snowy rim and outside landscape read as a framed illustration; the room itself has limited open floor and a more front-facing cutaway.</figcaption>
+      </figure>
+      <figure>
+        <div class="tag">Refined master · architecture plate</div>
+        <h2>Oblique enclosed interior</h2>
+        <img src="../assets/environments/igloo/igloo-interior-master.png" alt="Refined empty igloo interior, with curved ceiling and open foreground floor">
+        <figcaption>The ceiling now encloses the view, the side walls recede toward the far wall, and furniture sits on the perimeter around a broad floor lane. The master omits the penguin so it can be layered and depth-sorted in the prototype.</figcaption>
+      </figure>
+    </section>
+    <section class="changes" aria-label="Design changes">
+      <div class="change"><b>Room depth</b>Oblique camera, visible side returns, and ceiling curvature replace the exterior-rim framing.</div>
+      <div class="change"><b>Navigation</b>Bed, shelf, desk, and chair are pushed toward the walls; the near-center floor remains open.</div>
+      <div class="change"><b>2.5D readiness</b>Chair is treated as separate back, seat, and front-leg depth slices so it can cover the penguin selectively.</div>
+    </section>
+    <p class="foot">Both images are 1024 × 1536. The refined painting is still a flattened concept master; see <a href="igloo-interior-navigation.svg">the editable room-space and depth plan</a> and <a href="../assets/environments/igloo/igloo-interior-master-source.md">the prompt/source record</a>.</p>
+  </main>
+</body>
+</html>
