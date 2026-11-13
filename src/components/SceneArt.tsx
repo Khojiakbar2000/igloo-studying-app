@@ -6,16 +6,15 @@ export function Egg({ size = 156, cracks = 0 }: { size?: number; cracks?: number
   return (
     <Svg width={size} height={size * 1.15} viewBox="0 0 160 184">
       <Ellipse cx="82" cy="166" rx="57" ry="12" fill="#7D8C8E" opacity=".2" />
-      <Path d="M80 15 C49 15 26 72 25 111 C23 146 46 166 80 166 C114 166 137 146 135 111 C134 72 111 15 80 15Z" fill="#F2C18F" stroke="#25242A" strokeWidth="3.5" />
-      <Path d="M50 60 C58 46 67 39 78 38" fill="none" stroke="#DDAE7D" strokeWidth="7" strokeLinecap="round" opacity=".7" />
-      {cracks > 0 && <Path d="M72 28 C79 22 91 26 93 36 C94 43 86 49 79 45Z" fill="#E99543" />}
-      {cracks > 1 && <>
-        <Path d="M37 72 C47 65 62 69 67 79 C70 88 58 95 47 91 C37 89 32 80 37 72Z" fill="#E99543" />
-        <Path d="M99 109 C107 104 117 109 117 117 C117 125 108 129 101 125 C95 121 94 114 99 109Z" fill="#E99543" />
-      </>}
-      {cracks > 0 && <Path d="M80 16 L73 31 L84 38 L76 50 L86 59" fill="none" stroke="#19191E" strokeWidth="3.6" strokeLinejoin="miter" />}
-      {cracks > 1 && <Path d="M76 50 L63 56 L66 66 L53 72 M84 38 L96 44 L92 54 L105 61" fill="none" stroke="#19191E" strokeWidth="3.2" strokeLinejoin="miter" />}
-      <Circle cx="114" cy="72" r="3" fill="#FFFFFF" opacity=".8" />
+      <Path d="M80 15 C49 15 26 72 25 111 C23 146 46 166 80 166 C114 166 137 146 135 111 C134 72 111 15 80 15Z" fill="#FFF8EA" stroke="#263843" strokeWidth="3.2" />
+      <Circle cx="42" cy="81" r="17" fill="#344A5A" />
+      <Circle cx="118" cy="81" r="17" fill="#344A5A" />
+      <Circle cx="51" cy="130" r="10.5" fill="#344A5A" />
+      <Circle cx="109" cy="130" r="10.5" fill="#344A5A" />
+      <Path d="M80 16 L77 23 L82 28" fill="none" stroke="#344551" strokeWidth="2.2" strokeLinejoin="round" />
+      {cracks > 0 && <Path d="M82 28 L73 35 L84 42 L76 51 L86 59" fill="none" stroke="#344551" strokeWidth="2.8" strokeLinejoin="round" />}
+      {cracks > 1 && <Path d="M76 51 L63 57 L66 67 L53 73 M84 42 L96 47 L92 56 L105 62" fill="none" stroke="#344551" strokeWidth="2.5" strokeLinejoin="round" />}
+      <Circle cx="52" cy="61" r="2.2" fill="#FFFFFF" opacity=".65" />
     </Svg>
   );
 }

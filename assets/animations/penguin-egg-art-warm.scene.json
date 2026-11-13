@@ -60,82 +60,10 @@
       }
     },
     {
-      "id": "eggp0",
-      "type": "polygon",
-      "x": 142,
-      "y": 375.5,
-      "subpaths": [
-        {
-          "closed": true,
-          "points": [
-            {
-              "x": 3,
-              "y": -13.5,
-              "cubic": {
-                "rotation": -142.76516601842533,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 31.400636936215164
-              }
-            },
-            {
-              "x": -21,
-              "y": 8.5,
-              "cubic": {
-                "rotation": 68.62937773065681,
-                "inRotation": -111.80140948635182,
-                "inDistance": 26.925824035672523,
-                "outDistance": 24.698178070456937
-              }
-            },
-            {
-              "x": 21,
-              "y": 13.5,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": 124.38034472384487,
-                "inDistance": 23.021728866442675,
-                "outDistance": 0
-              }
-            }
-          ]
-        }
-      ],
-      "opacity": 0,
-      "fill": {
-        "gradient": {
-          "type": "linear",
-          "stops": [
-            {
-              "color": "#6b8495",
-              "position": 0
-            },
-            {
-              "color": "#355960",
-              "position": 1
-            }
-          ],
-          "start": {
-            "x": -21,
-            "y": -13.5
-          },
-          "end": {
-            "x": 21,
-            "y": 13.5
-          }
-        }
-      },
-      "stroke": {
-        "color": "#3c5a66",
-        "thickness": 3,
-        "join": "round"
-      }
-    },
-    {
       "id": "eggegg-body",
       "type": "polygon",
-      "x": 200,
-      "y": 304.5,
+      "x": 0,
+      "y": 0,
       "subpaths": [
         {
           "closed": true,
@@ -188,15 +116,15 @@
           "type": "linear",
           "stops": [
             {
-              "color": "#f2c18f",
+              "color": "#FFF8E8",
               "position": 0
             },
             {
-              "color": "#f2c18f",
-              "position": 0.76
+              "color": "#F7F4EA",
+              "position": 0.52
             },
             {
-              "color": "#f2c18f",
+              "color": "#DCE8EB",
               "position": 1
             }
           ],
@@ -211,16 +139,17 @@
         }
       },
       "stroke": {
-        "color": "#17181d",
-        "thickness": 4,
+        "color": "#263843",
+        "thickness": 3.6,
         "join": "round"
-      }
+      },
+      "parent": "eggshell"
     },
     {
       "id": "eggp1",
       "type": "polygon",
-      "x": 199.5,
-      "y": 248,
+      "x": 0,
+      "y": 0,
       "subpaths": [
         {
           "closed": true,
@@ -333,342 +262,257 @@
           "type": "linear",
           "stops": [
             {
-              "color": "#f2c18f",
+              "color": "#FFF8E8",
               "position": 0
             },
             {
-              "color": "#f2c18f",
-              "position": 0.76
+              "color": "#F7F4EA",
+              "position": 0.52
             },
             {
-              "color": "#f2c18f",
+              "color": "#DCE8EB",
               "position": 1
             }
           ],
           "start": {
             "x": -91.5,
-            "y": -91
+            "y": -147.5
           },
           "end": {
             "x": 91.5,
-            "y": 91
+            "y": 147.5
           }
         }
-      }
+      },
+      "opacity": 1,
+      "parent": "eggcap"
     },
     {
-      "id": "egg-crack-glow-top",
+      "id": "egg-spot-left",
       "type": "ellipse",
-      "x": 200,
-      "y": 190,
-      "width": 34,
-      "height": 52,
-      "rotation": -8,
-      "opacity": 0,
+      "parent": "eggshell",
+      "x": -62,
+      "y": -25.5,
+      "width": 52,
+      "height": 62,
       "fill": {
         "gradient": {
           "type": "linear",
           "stops": [
             {
-              "color": "#f4a14b",
+              "color": "#3D5668",
               "position": 0
             },
             {
-              "color": "#df7a32",
+              "color": "#283946",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -26,
+            "y": -31
+          },
+          "end": {
+            "x": 26,
+            "y": 31
+          }
+        }
+      }
+    },
+    {
+      "id": "egg-spot-right",
+      "type": "ellipse",
+      "parent": "eggshell",
+      "x": 62,
+      "y": -25.5,
+      "width": 52,
+      "height": 62,
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#3D5668",
+              "position": 0
+            },
+            {
+              "color": "#283946",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -26,
+            "y": -31
+          },
+          "end": {
+            "x": 26,
+            "y": 31
+          }
+        }
+      }
+    },
+    {
+      "id": "egg-spot-lower-left",
+      "type": "ellipse",
+      "parent": "eggshell",
+      "x": -42,
+      "y": 68.5,
+      "width": 34,
+      "height": 40,
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#3D5668",
+              "position": 0
+            },
+            {
+              "color": "#283946",
               "position": 1
             }
           ],
           "start": {
             "x": -17,
-            "y": -26
+            "y": -20
           },
           "end": {
             "x": 17,
-            "y": 26
+            "y": 20
           }
         }
       }
     },
     {
-      "id": "egg-crack-glow-left",
+      "id": "egg-spot-lower-right",
       "type": "ellipse",
-      "x": 158,
-      "y": 226,
-      "width": 50,
-      "height": 31,
-      "rotation": -22,
-      "opacity": 0,
+      "parent": "eggshell",
+      "x": 42,
+      "y": 68.5,
+      "width": 34,
+      "height": 40,
       "fill": {
         "gradient": {
           "type": "linear",
           "stops": [
             {
-              "color": "#f4a14b",
+              "color": "#3D5668",
               "position": 0
             },
             {
-              "color": "#df7a32",
+              "color": "#283946",
               "position": 1
             }
           ],
           "start": {
-            "x": -25,
-            "y": -15.5
+            "x": -17,
+            "y": -20
           },
           "end": {
-            "x": 25,
-            "y": 15.5
+            "x": 17,
+            "y": 20
           }
         }
       }
     },
     {
-      "id": "egg-crack-glow-right",
-      "type": "ellipse",
-      "x": 238,
-      "y": 238,
-      "width": 39,
-      "height": 29,
-      "rotation": 18,
-      "opacity": 0,
-      "fill": {
-        "gradient": {
-          "type": "linear",
-          "stops": [
-            {
-              "color": "#f4a14b",
-              "position": 0
-            },
-            {
-              "color": "#df7a32",
-              "position": 1
-            }
-          ],
-          "start": {
-            "x": -19.5,
-            "y": -14.5
-          },
-          "end": {
-            "x": 19.5,
-            "y": 14.5
-          }
-        }
-      }
-    },
-    {
-      "id": "eggp2",
+      "id": "eggcrack-initial",
       "type": "polygon",
-      "x": 158.5,
-      "y": 225.5,
-      "subpaths": [
-        {
-          "closed": false,
-          "points": [
-            {
-              "x": -19.5,
-              "y": 31.5,
-              "cubic": {
-                "rotation": -72.64597536373867,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 33.52610922848042
-              }
-            },
-            {
-              "x": 19.5,
-              "y": -31.5,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": 147.99461679191648,
-                "inDistance": 18.867962264113206,
-                "outDistance": 0
-              }
-            }
-          ]
-        }
-      ],
-      "opacity": 0.52,
-      "stroke": {
-        "color": "#ddae7d",
-        "thickness": 8,
-        "cap": "round"
-      }
-    },
-    {
-      "id": "eggp3",
-      "type": "polygon",
-      "x": 160,
-      "y": 218,
-      "subpaths": [
-        {
-          "closed": true,
-          "points": [
-            {
-              "x": -4,
-              "y": 0,
-              "cubic": {
-                "rotation": 90,
-                "inRotation": -90,
-                "inDistance": 2.209138999323187,
-                "outDistance": 2.209138999323187
-              }
-            },
-            {
-              "x": 0,
-              "y": 4,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": 180,
-                "inDistance": 2.209138999323187,
-                "outDistance": 2.209138999323187
-              }
-            },
-            {
-              "x": 4,
-              "y": 0,
-              "cubic": {
-                "rotation": -90,
-                "inRotation": 90,
-                "inDistance": 2.209138999323187,
-                "outDistance": 2.209138999323187
-              }
-            },
-            {
-              "x": 0,
-              "y": -4,
-              "cubic": {
-                "rotation": 180,
-                "inRotation": 0,
-                "inDistance": 2.209138999323187,
-                "outDistance": 2.209138999323187
-              }
-            }
-          ]
-        }
-      ],
-      "opacity": 0.9,
-      "fill": {
-        "color": "#ffffff"
-      }
-    },
-    {
-      "id": "eggcrack-one",
-      "type": "polygon",
-      "x": 197.5,
-      "y": 190,
+      "parent": "eggshell",
+      "x": -2.5,
+      "y": -114.5,
       "subpaths": [
         {
           "closed": false,
           "points": [
             {
               "x": 0.5,
-              "y": -32,
-              "cubic": {
-                "rotation": 109.17900802581069,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 8.117197107923936
-              }
+              "y": -8
             },
             {
-              "x": -7.5,
-              "y": -9,
-              "cubic": {
-                "rotation": 35.53767779197452,
-                "inRotation": -70.82099197418931,
-                "inDistance": 8.117197107923936,
-                "outDistance": 5.7348835113617485
-              }
+              "x": -3,
+              "y": -2
             },
             {
-              "x": 6.5,
-              "y": 1,
-              "cubic": {
-                "rotation": 118.81079374297305,
-                "inRotation": -144.46232220802548,
-                "inDistance": 5.7348835113617485,
-                "outDistance": 7.608474807008872
-              }
+              "x": 2,
+              "y": 3
+            }
+          ]
+        }
+      ],
+      "opacity": 0.55,
+      "stroke": {
+        "color": "#657986",
+        "thickness": 1.3,
+        "cap": "round",
+        "join": "round"
+      }
+    },
+    {
+      "id": "eggcrack-one",
+      "type": "polygon",
+      "x": -2.5,
+      "y": -114.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 0.5,
+              "y": -22
             },
             {
-              "x": -4.5,
-              "y": 21,
-              "cubic": {
-                "rotation": 42.510447078000766,
-                "inRotation": -61.189206257026974,
-                "inDistance": 7.608474807008872,
-                "outDistance": 5.426273532033229
-              }
+              "x": -5.5,
+              "y": -10
             },
             {
-              "x": 7.5,
-              "y": 32,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": -137.48955292199926,
-                "inDistance": 5.426273532033229,
-                "outDistance": 0
-              }
+              "x": 5,
+              "y": -2
+            },
+            {
+              "x": -2,
+              "y": 12
+            },
+            {
+              "x": 6,
+              "y": 22
             }
           ]
         }
       ],
       "opacity": 0,
       "stroke": {
-        "color": "#17181d",
-        "thickness": 4.2,
+        "color": "#344551",
+        "thickness": 1.7,
         "cap": "round",
         "join": "round"
-      }
+      },
+      "parent": "eggshell"
     },
     {
       "id": "eggcrack-two",
       "type": "polygon",
-      "x": 199,
-      "y": 216,
+      "x": -2.5,
+      "y": -114.5,
       "subpaths": [
         {
           "closed": false,
           "points": [
             {
-              "x": -5,
-              "y": -5,
-              "cubic": {
-                "rotation": 160.5599651718238,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 6.0092521257733065
-              }
+              "x": -2,
+              "y": 0
             },
             {
-              "x": -22,
-              "y": 1,
-              "cubic": {
-                "rotation": 71.56505117707809,
-                "inRotation": -19.440034828176223,
-                "inDistance": 6.0092521257733065,
-                "outDistance": 5.270462766947296
-              }
+              "x": -14,
+              "y": 7
             },
             {
-              "x": -17,
-              "y": 16,
-              "cubic": {
-                "rotation": 152.10272896905235,
-                "inRotation": -108.43494882292191,
-                "inDistance": 5.270462766947296,
-                "outDistance": 6.411794687223773
-              }
+              "x": -10,
+              "y": 17
             },
             {
-              "x": -34,
-              "y": 25,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": -27.897271030947667,
-                "inDistance": 6.411794687223773,
-                "outDistance": 0
-              }
+              "x": -28,
+              "y": 24
             }
           ]
         },
@@ -676,531 +520,240 @@
           "closed": false,
           "points": [
             {
-              "x": 5,
-              "y": -25,
-              "cubic": {
-                "rotation": 26.56505117707787,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 5.962847939999443
-              }
-            },
-            {
-              "x": 21,
-              "y": -17,
-              "cubic": {
-                "rotation": 105.945395900923,
-                "inRotation": -153.43494882292214,
-                "inDistance": 5.962847939999443,
-                "outDistance": 4.8534065928536725
-              }
-            },
-            {
-              "x": 17,
-              "y": -3,
-              "cubic": {
-                "rotation": 25.20112364547503,
-                "inRotation": -74.05460409907701,
-                "inDistance": 4.8534065928536725,
-                "outDistance": 6.2627647426853
-              }
-            },
-            {
-              "x": 34,
-              "y": 5,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": -154.798876354525,
-                "inDistance": 6.2627647426853,
-                "outDistance": 0
-              }
-            }
-          ]
-        }
-      ],
-      "opacity": 0,
-      "stroke": {
-        "color": "#17181d",
-        "thickness": 4.2,
-        "cap": "round",
-        "join": "round"
-      }
-    },
-    {
-      "id": "eggp4",
-      "type": "polygon",
-      "x": 152,
-      "y": 355.5,
-      "subpaths": [
-        {
-          "closed": true,
-          "points": [
-            {
-              "x": -19,
-              "y": -19.5,
-              "cubic": {
-                "rotation": -30.46554491945978,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 6.5743609744386555
-              }
-            },
-            {
-              "x": -2,
-              "y": -29.5,
-              "cubic": {
-                "rotation": 31.759480084812687,
-                "inRotation": 149.53445508054023,
-                "inDistance": 6.5743609744386555,
-                "outDistance": 8.232726023485636
-              }
-            },
-            {
-              "x": 19,
-              "y": -16.5,
-              "cubic": {
-                "rotation": 97.12501634890184,
-                "inRotation": -148.24051991518732,
-                "inDistance": 8.232726023485636,
-                "outDistance": 10.74967699773142
-              }
+              "x": 2,
+              "y": -5
             },
             {
               "x": 15,
-              "y": 15.5,
-              "cubic": {
-                "rotation": 138.8140748342903,
-                "inRotation": -82.87498365109816,
-                "inDistance": 10.74967699773142,
-                "outDistance": 7.0867638751564535
-              }
+              "y": 1
             },
             {
-              "x": -1,
-              "y": 29.5,
-              "cubic": {
-                "rotation": -115.64100582430532,
-                "inRotation": -41.18592516570972,
-                "inDistance": 7.0867638751564535,
-                "outDistance": 9.243616415908013
-              }
+              "x": 11,
+              "y": 11
             },
             {
-              "x": -13,
-              "y": 4.5,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": 64.35899417569466,
-                "inDistance": 9.243616415908013,
-                "outDistance": 0
-              }
+              "x": 31,
+              "y": 18
             }
           ]
         }
       ],
       "opacity": 0,
-      "fill": {
-        "gradient": {
-          "type": "linear",
-          "stops": [
-            {
-              "color": "#f2c18f",
-              "position": 0
-            },
-            {
-              "color": "#f2c18f",
-              "position": 1
-            }
-          ],
-          "start": {
-            "x": -19,
-            "y": -29.5
-          },
-          "end": {
-            "x": 11.400000000000002,
-            "y": 29.5
-          }
-        }
-      },
       "stroke": {
-        "color": "#17181d",
-        "thickness": 3.2,
+        "color": "#344551",
+        "thickness": 1.6,
+        "cap": "round",
         "join": "round"
-      }
+      },
+      "parent": "eggshell"
     },
     {
-      "id": "eggp5",
+      "id": "eggcap-crack-one",
       "type": "polygon",
-      "x": 253,
-      "y": 355.5,
+      "x": -2,
+      "y": -58,
       "subpaths": [
         {
-          "closed": true,
+          "closed": false,
           "points": [
             {
-              "x": -19,
-              "y": -29.5,
-              "cubic": {
-                "rotation": 28.810793742973217,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 7.608474807008886
-              }
+              "x": 0.5,
+              "y": -13
             },
             {
-              "x": 1,
-              "y": -18.5,
-              "cubic": {
-                "rotation": -18.43494882292201,
-                "inRotation": -151.18920625702677,
-                "inDistance": 7.608474807008886,
-                "outDistance": 6.324555320336759
-              }
+              "x": -5,
+              "y": -5
             },
             {
-              "x": 19,
-              "y": -24.5,
-              "cubic": {
-                "rotation": 99.78240703180738,
-                "inRotation": 161.56505117707798,
-                "inDistance": 6.324555320336759,
-                "outDistance": 9.809292646374796
-              }
-            },
-            {
-              "x": 14,
-              "y": 4.5,
-              "cubic": {
-                "rotation": 120.96375653207359,
-                "inRotation": -80.21759296819263,
-                "inDistance": 9.809292646374796,
-                "outDistance": 9.718253158075486
-              }
+              "x": 4,
+              "y": 1
             },
             {
               "x": -1,
-              "y": 29.5,
-              "cubic": {
-                "rotation": -138.57633437499732,
-                "inRotation": -59.03624346792642,
-                "inDistance": 9.718253158075486,
-                "outDistance": 7.5571893658364155
-              }
-            },
-            {
-              "x": -18,
-              "y": 14.5,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": 41.4236656250027,
-                "inDistance": 7.5571893658364155,
-                "outDistance": 0
-              }
+              "y": 11
             }
           ]
         }
       ],
       "opacity": 0,
-      "fill": {
-        "gradient": {
-          "type": "linear",
-          "stops": [
-            {
-              "color": "#f2c18f",
-              "position": 0
-            },
-            {
-              "color": "#f2c18f",
-              "position": 1
-            }
-          ],
-          "start": {
-            "x": -19,
-            "y": -29.5
-          },
-          "end": {
-            "x": 11.400000000000002,
-            "y": 29.5
-          }
-        }
-      },
       "stroke": {
-        "color": "#17181d",
-        "thickness": 3.2,
+        "color": "#344551",
+        "thickness": 1.7,
+        "cap": "round",
         "join": "round"
-      }
+      },
+      "parent": "eggcap"
     },
     {
-      "id": "eggp6",
+      "id": "eggcap-crack-two",
       "type": "polygon",
-      "x": 201.5,
-      "y": 280.5,
+      "x": -2,
+      "y": -58,
       "subpaths": [
         {
-          "closed": true,
+          "closed": false,
           "points": [
             {
-              "x": -110.5,
-              "y": -38.5,
-              "cubic": {
-                "rotation": 67.38013505195953,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 4.333333333333335
-              }
+              "x": -2,
+              "y": 0
             },
             {
-              "x": -105.5,
-              "y": -26.5,
-              "cubic": {
-                "rotation": 22.61986494804031,
-                "inRotation": -112.61986494804049,
-                "inDistance": 4.333333333333335,
-                "outDistance": 4.3333333333333295
-              }
+              "x": -14,
+              "y": 7
             },
             {
-              "x": -93.5,
-              "y": -21.5,
-              "cubic": {
-                "rotation": 157.38013505195937,
-                "inRotation": -157.38013505195937,
-                "inDistance": 4.333333333333341,
-                "outDistance": 4.333333333333341
-              }
+              "x": -10,
+              "y": 17
             },
             {
-              "x": -105.5,
-              "y": -16.5,
-              "cubic": {
-                "rotation": 112.61986494804049,
-                "inRotation": -22.619864948040657,
-                "inDistance": 4.333333333333341,
-                "outDistance": 4.333333333333335
-              }
-            },
-            {
-              "x": -110.5,
-              "y": -4.5,
-              "cubic": {
-                "rotation": -112.61986494804049,
-                "inRotation": -67.38013505195953,
-                "inDistance": 4.333333333333335,
-                "outDistance": 4.333333333333335
-              }
-            },
-            {
-              "x": -115.5,
-              "y": -16.5,
-              "cubic": {
-                "rotation": -157.38013505195937,
-                "inRotation": 67.38013505195953,
-                "inDistance": 4.333333333333335,
-                "outDistance": 4.333333333333341
-              }
-            },
-            {
-              "x": -127.5,
-              "y": -21.5,
-              "cubic": {
-                "rotation": -22.619864948040657,
-                "inRotation": 22.619864948040657,
-                "inDistance": 4.333333333333341,
-                "outDistance": 4.333333333333341
-              }
-            },
-            {
-              "x": -115.5,
-              "y": -26.5,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": 157.38013505195968,
-                "inDistance": 4.3333333333333295,
-                "outDistance": 0
-              }
+              "x": -28,
+              "y": 24
             }
           ]
         },
         {
-          "closed": true,
+          "closed": false,
           "points": [
             {
-              "x": 107.5,
-              "y": -44.5,
-              "cubic": {
-                "rotation": 68.19859051364853,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 3.5901098714230044
-              }
+              "x": 2,
+              "y": -5
             },
             {
-              "x": 111.5,
-              "y": -34.5,
-              "cubic": {
-                "rotation": 21.801409486352068,
-                "inRotation": -111.80140948635147,
-                "inDistance": 3.5901098714230044,
-                "outDistance": 3.590109871422989
-              }
+              "x": 15,
+              "y": 1
             },
             {
-              "x": 121.5,
-              "y": -30.5,
-              "cubic": {
-                "rotation": 158.19859051364793,
-                "inRotation": -158.19859051364793,
-                "inDistance": 3.590109871422989,
-                "outDistance": 3.590109871422989
-              }
+              "x": 11,
+              "y": 11
             },
             {
-              "x": 111.5,
-              "y": -26.5,
-              "cubic": {
-                "rotation": 111.80140948635164,
-                "inRotation": -21.801409486352068,
-                "inDistance": 3.590109871422989,
-                "outDistance": 3.590109871422978
-              }
-            },
-            {
-              "x": 107.5,
-              "y": -16.5,
-              "cubic": {
-                "rotation": -111.80140948635164,
-                "inRotation": -68.19859051364837,
-                "inDistance": 3.590109871422978,
-                "outDistance": 3.590109871422978
-              }
-            },
-            {
-              "x": 103.5,
-              "y": -26.5,
-              "cubic": {
-                "rotation": -158.19859051364793,
-                "inRotation": 68.19859051364837,
-                "inDistance": 3.590109871422978,
-                "outDistance": 3.590109871422989
-              }
-            },
-            {
-              "x": 93.5,
-              "y": -30.5,
-              "cubic": {
-                "rotation": -21.801409486352068,
-                "inRotation": 21.801409486352068,
-                "inDistance": 3.590109871422989,
-                "outDistance": 3.590109871422989
-              }
-            },
-            {
-              "x": 103.5,
-              "y": -34.5,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": 158.19859051364793,
-                "inDistance": 3.590109871422989,
-                "outDistance": 0
-              }
-            }
-          ]
-        },
-        {
-          "closed": true,
-          "points": [
-            {
-              "x": 117.5,
-              "y": 24.5,
-              "cubic": {
-                "rotation": 66.80140948635164,
-                "inRotation": 0,
-                "inDistance": 0,
-                "outDistance": 2.538591035287952
-              }
-            },
-            {
-              "x": 120.5,
-              "y": 31.5,
-              "cubic": {
-                "rotation": 23.19859051364836,
-                "inRotation": -113.19859051364836,
-                "inDistance": 2.538591035287952,
-                "outDistance": 2.538591035287952
-              }
-            },
-            {
-              "x": 127.5,
-              "y": 34.5,
-              "cubic": {
-                "rotation": 156.80140948635167,
-                "inRotation": -156.80140948635167,
-                "inDistance": 2.538591035287952,
-                "outDistance": 2.538591035287952
-              }
-            },
-            {
-              "x": 120.5,
-              "y": 37.5,
-              "cubic": {
-                "rotation": 113.19859051364836,
-                "inRotation": -23.19859051364836,
-                "inDistance": 2.538591035287952,
-                "outDistance": 2.538591035287952
-              }
-            },
-            {
-              "x": 117.5,
-              "y": 44.5,
-              "cubic": {
-                "rotation": -113.19859051364836,
-                "inRotation": -66.80140948635164,
-                "inDistance": 2.538591035287952,
-                "outDistance": 2.538591035287952
-              }
-            },
-            {
-              "x": 114.5,
-              "y": 37.5,
-              "cubic": {
-                "rotation": -156.80140948635167,
-                "inRotation": 66.80140948635164,
-                "inDistance": 2.538591035287952,
-                "outDistance": 2.538591035287952
-              }
-            },
-            {
-              "x": 107.5,
-              "y": 34.5,
-              "cubic": {
-                "rotation": -23.19859051364836,
-                "inRotation": 23.19859051364836,
-                "inDistance": 2.538591035287952,
-                "outDistance": 2.538591035287952
-              }
-            },
-            {
-              "x": 114.5,
-              "y": 31.5,
-              "cubic": {
-                "rotation": 0,
-                "inRotation": 156.80140948635167,
-                "inDistance": 2.538591035287952,
-                "outDistance": 0
-              }
+              "x": 31,
+              "y": 18
             }
           ]
         }
       ],
       "opacity": 0,
-      "fill": {
-        "color": "#ffffff"
-      },
       "stroke": {
-        "color": "#b7c7ce",
-        "thickness": 1.5,
+        "color": "#344551",
+        "thickness": 1.6,
+        "cap": "round",
         "join": "round"
-      }
+      },
+      "parent": "eggcap"
+    },
+    {
+      "id": "eggcap-crack-one",
+      "type": "polygon",
+      "x": -2,
+      "y": -58,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 0.5,
+              "y": -22
+            },
+            {
+              "x": -5.5,
+              "y": -10
+            },
+            {
+              "x": 5,
+              "y": -2
+            },
+            {
+              "x": -2,
+              "y": 12
+            },
+            {
+              "x": 6,
+              "y": 22
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "stroke": {
+        "color": "#344551",
+        "thickness": 1.7,
+        "cap": "round",
+        "join": "round"
+      },
+      "parent": "eggcap"
+    },
+    {
+      "id": "eggcap-crack-two",
+      "type": "polygon",
+      "x": -2,
+      "y": -58,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -2,
+              "y": 0
+            },
+            {
+              "x": -14,
+              "y": 7
+            },
+            {
+              "x": -10,
+              "y": 17
+            },
+            {
+              "x": -28,
+              "y": 24
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 2,
+              "y": -5
+            },
+            {
+              "x": 15,
+              "y": 1
+            },
+            {
+              "x": 11,
+              "y": 11
+            },
+            {
+              "x": 31,
+              "y": 18
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "stroke": {
+        "color": "#344551",
+        "thickness": 1.6,
+        "cap": "round",
+        "join": "round"
+      },
+      "parent": "eggcap"
+    }
+  ],
+  "groups": [
+    {
+      "id": "eggshell",
+      "x": 200,
+      "y": 322.2,
+      "scaleY": 0.88
+    },
+    {
+      "id": "eggcap",
+      "parent": "eggshell",
+      "x": -0.5,
+      "y": -56.5
     }
   ]
 }

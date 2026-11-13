@@ -4,14 +4,6 @@
     "width": 400,
     "height": 520
   },
-  "imports": [
-    {
-      "spec": "assets/animations/penguin-egg-art-warm.scene.json",
-      "x": -60,
-      "y": -78,
-      "scale": 1.3
-    }
-  ],
   "animations": [
     {
       "name": "eggIdle",
@@ -20,7 +12,7 @@
       "loop": "loop",
       "tracks": [
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "rotation",
           "keyframes": [
             {
@@ -40,21 +32,21 @@
           ]
         },
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "y",
           "keyframes": [
             {
               "frame": 0,
-              "value": 304
+              "value": 340.21
             },
             {
               "frame": 105,
-              "value": 300,
+              "value": 335.01,
               "easing": "smooth"
             },
             {
               "frame": 210,
-              "value": 304,
+              "value": 340.21,
               "easing": "smooth"
             }
           ]
@@ -88,91 +80,7 @@
           ]
         },
         {
-          "target": "eggp0",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 210,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "eggp4",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 210,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "eggp5",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 210,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "eggp6",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 210,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-top",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 210,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-left",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 210,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-right",
+          "target": "eggcap",
           "property": "opacity",
           "keyframes": [
             {
@@ -194,7 +102,7 @@
       "loop": "oneshot",
       "tracks": [
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "rotation",
           "keyframes": [
             {
@@ -228,36 +136,36 @@
           ]
         },
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "scaleY",
           "keyframes": [
             {
               "frame": 0,
-              "value": 1
+              "value": 0.88
             },
             {
               "frame": 8,
-              "value": 0.9,
+              "value": 0.792,
               "easing": "ease-in"
             },
             {
               "frame": 16,
-              "value": 1.08,
+              "value": 0.9504,
               "easing": "ease-out"
             },
             {
               "frame": 26,
-              "value": 0.98,
+              "value": 0.8623999999999999,
               "easing": "smooth"
             },
             {
               "frame": 42,
-              "value": 1
+              "value": 0.88
             }
           ]
         },
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "scaleX",
           "keyframes": [
             {
@@ -309,40 +217,7 @@
           ]
         },
         {
-          "target": "egg-crack-glow-top",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 20,
-              "value": 1,
-              "easing": "emphasized-decel"
-            },
-            {
-              "frame": 42,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-left",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 42,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-right",
+          "target": "eggcap",
           "property": "opacity",
           "keyframes": [
             {
@@ -378,55 +253,27 @@
           ]
         },
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "y",
           "keyframes": [
             {
               "frame": 0,
-              "value": 304
+              "value": 340.21
             },
             {
               "frame": 105,
-              "value": 301,
+              "value": 336.31,
               "easing": "smooth"
             },
             {
               "frame": 210,
-              "value": 304,
+              "value": 340.21,
               "easing": "smooth"
             }
           ]
         },
         {
-          "target": "egg-crack-glow-top",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 1
-            },
-            {
-              "frame": 210,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-left",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 210,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-right",
+          "target": "eggcap",
           "property": "opacity",
           "keyframes": [
             {
@@ -448,7 +295,7 @@
       "loop": "oneshot",
       "tracks": [
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "rotation",
           "keyframes": [
             {
@@ -482,31 +329,31 @@
           ]
         },
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "scaleY",
           "keyframes": [
             {
               "frame": 0,
-              "value": 1
+              "value": 0.88
             },
             {
               "frame": 9,
-              "value": 0.84,
+              "value": 0.7392,
               "easing": "ease-in"
             },
             {
               "frame": 18,
-              "value": 1.13,
+              "value": 0.9944,
               "easing": "ease-out"
             },
             {
               "frame": 31,
-              "value": 0.96,
+              "value": 0.8448,
               "easing": "smooth"
             },
             {
               "frame": 48,
-              "value": 1
+              "value": 0.88
             }
           ]
         },
@@ -519,7 +366,7 @@
               "value": 0
             },
             {
-              "frame": 15,
+              "frame": 12,
               "value": 0
             },
             {
@@ -534,7 +381,7 @@
           ]
         },
         {
-          "target": "eggp0",
+          "target": "eggcap",
           "property": "opacity",
           "keyframes": [
             {
@@ -542,89 +389,8 @@
               "value": 0
             },
             {
-              "frame": 25,
-              "value": 1,
-              "easing": "emphasized-decel"
-            },
-            {
-              "frame": 54,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "eggp0",
-          "property": "rotation",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 26,
-              "value": -14,
-              "easing": "ease-out"
-            },
-            {
-              "frame": 40,
-              "value": 5,
-              "easing": "smooth"
-            },
-            {
               "frame": 54,
               "value": 0
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-top",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 1
-            },
-            {
-              "frame": 54,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-left",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 24,
-              "value": 1,
-              "easing": "emphasized-decel"
-            },
-            {
-              "frame": 54,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-right",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 30,
-              "value": 1,
-              "easing": "emphasized-decel"
-            },
-            {
-              "frame": 54,
-              "value": 1
             }
           ]
         }
@@ -642,11 +408,11 @@
           "keyframes": [
             {
               "frame": 0,
-              "value": 1
+              "value": 0.36
             },
             {
               "frame": 210,
-              "value": 1
+              "value": 0.36
             }
           ]
         },
@@ -665,78 +431,36 @@
           ]
         },
         {
-          "target": "eggp0",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 1
-            },
-            {
-              "frame": 210,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "y",
           "keyframes": [
             {
               "frame": 0,
-              "value": 304
+              "value": 340.21
             },
             {
               "frame": 105,
-              "value": 301,
+              "value": 336.31,
               "easing": "smooth"
             },
             {
               "frame": 210,
-              "value": 304,
+              "value": 340.21,
               "easing": "smooth"
             }
           ]
         },
         {
-          "target": "egg-crack-glow-top",
+          "target": "eggcap",
           "property": "opacity",
           "keyframes": [
             {
               "frame": 0,
-              "value": 1
+              "value": 0
             },
             {
               "frame": 210,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-left",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 1
-            },
-            {
-              "frame": 210,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-right",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 1
-            },
-            {
-              "frame": 210,
-              "value": 1
+              "value": 0
             }
           ]
         }
@@ -749,7 +473,7 @@
       "loop": "oneshot",
       "tracks": [
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "rotation",
           "keyframes": [
             {
@@ -783,31 +507,31 @@
           ]
         },
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "scaleY",
           "keyframes": [
             {
               "frame": 0,
-              "value": 1
+              "value": 0.88
             },
             {
               "frame": 11,
-              "value": 0.82,
+              "value": 0.7215999999999999,
               "easing": "ease-in"
             },
             {
               "frame": 24,
-              "value": 1.14,
+              "value": 1.0031999999999999,
               "easing": "ease-out"
             },
             {
               "frame": 36,
-              "value": 0.96,
+              "value": 0.8448,
               "easing": "smooth"
             },
             {
               "frame": 54,
-              "value": 1
+              "value": 0.88
             }
           ]
         },
@@ -820,8 +544,17 @@
               "value": 1
             },
             {
-              "frame": 180,
+              "frame": 25,
               "value": 1
+            },
+            {
+              "frame": 46,
+              "value": 0,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 180,
+              "value": 0
             }
           ]
         },
@@ -834,47 +567,56 @@
               "value": 1
             },
             {
-              "frame": 180,
+              "frame": 25,
               "value": 1
+            },
+            {
+              "frame": 46,
+              "value": 0,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 180,
+              "value": 0
             }
           ]
         },
         {
-          "target": "eggp1",
+          "target": "eggcap",
           "property": "y",
           "keyframes": [
             {
               "frame": 0,
-              "value": 242
+              "value": -73.45
             },
             {
-              "frame": 37,
-              "value": 242
+              "frame": 38,
+              "value": -73.45
             },
             {
-              "frame": 54,
-              "value": 216,
+              "frame": 58,
+              "value": -99.45,
               "easing": "ease-in"
             },
             {
-              "frame": 78,
-              "value": 174,
+              "frame": 82,
+              "value": -141.05,
               "easing": "ease-out"
             },
             {
-              "frame": 110,
-              "value": 155,
+              "frame": 112,
+              "value": -160.55,
               "easing": "smooth"
             },
             {
               "frame": 148,
-              "value": 150,
+              "value": -167.05,
               "easing": "smooth"
             }
           ]
         },
         {
-          "target": "eggp1",
+          "target": "eggcap",
           "property": "rotation",
           "keyframes": [
             {
@@ -903,12 +645,21 @@
           ]
         },
         {
-          "target": "eggp1",
+          "target": "eggcap",
           "property": "opacity",
           "keyframes": [
             {
               "frame": 0,
-              "value": 1
+              "value": 0
+            },
+            {
+              "frame": 25,
+              "value": 0
+            },
+            {
+              "frame": 44,
+              "value": 1,
+              "easing": "emphasized-decel"
             },
             {
               "frame": 108,
@@ -922,7 +673,7 @@
           ]
         },
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "opacity",
           "keyframes": [
             {
@@ -930,7 +681,7 @@
               "value": 1
             },
             {
-              "frame": 100,
+              "frame": 86,
               "value": 1
             },
             {
@@ -941,275 +692,81 @@
           ]
         },
         {
-          "target": "eggp4",
+          "target": "eggcap-crack-one",
           "property": "opacity",
           "keyframes": [
             {
               "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 34,
               "value": 0
             },
             {
               "frame": 52,
-              "value": 0
-            },
-            {
-              "frame": 66,
               "value": 1,
               "easing": "emphasized-decel"
             },
             {
-              "frame": 180,
-              "value": 0
+              "frame": 108,
+              "value": 1
+            },
+            {
+              "frame": 150,
+              "value": 0,
+              "easing": "emphasized-accel"
             }
           ]
         },
         {
-          "target": "eggp4",
-          "property": "x",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 141
-            },
-            {
-              "frame": 62,
-              "value": 141
-            },
-            {
-              "frame": 92,
-              "value": 98,
-              "easing": "ease-out"
-            },
-            {
-              "frame": 135,
-              "value": 75,
-              "easing": "smooth"
-            }
-          ]
-        },
-        {
-          "target": "eggp4",
-          "property": "y",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 356
-            },
-            {
-              "frame": 62,
-              "value": 356
-            },
-            {
-              "frame": 97,
-              "value": 383,
-              "easing": "ease-out"
-            }
-          ]
-        },
-        {
-          "target": "eggp4",
-          "property": "rotation",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 93,
-              "value": -25,
-              "easing": "ease-out"
-            }
-          ]
-        },
-        {
-          "target": "eggp5",
+          "target": "eggcap-crack-two",
           "property": "opacity",
           "keyframes": [
             {
               "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 34,
               "value": 0
             },
             {
               "frame": 52,
-              "value": 0
-            },
-            {
-              "frame": 66,
               "value": 1,
               "easing": "emphasized-decel"
             },
             {
-              "frame": 180,
-              "value": 0
+              "frame": 108,
+              "value": 1
+            },
+            {
+              "frame": 150,
+              "value": 0,
+              "easing": "emphasized-accel"
             }
           ]
         },
         {
-          "target": "eggp5",
-          "property": "x",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 259
-            },
-            {
-              "frame": 62,
-              "value": 259
-            },
-            {
-              "frame": 94,
-              "value": 305,
-              "easing": "ease-out"
-            },
-            {
-              "frame": 135,
-              "value": 326,
-              "easing": "smooth"
-            }
-          ]
-        },
-        {
-          "target": "eggp5",
-          "property": "y",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 353
-            },
-            {
-              "frame": 62,
-              "value": 353
-            },
-            {
-              "frame": 97,
-              "value": 381,
-              "easing": "ease-out"
-            }
-          ]
-        },
-        {
-          "target": "eggp5",
-          "property": "rotation",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 93,
-              "value": 23,
-              "easing": "ease-out"
-            }
-          ]
-        },
-        {
-          "target": "eggp6",
+          "target": "eggcrack-initial",
           "property": "opacity",
           "keyframes": [
             {
               "frame": 0,
+              "value": 0.55
+            },
+            {
+              "frame": 25,
+              "value": 0.55
+            },
+            {
+              "frame": 46,
+              "value": 0,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 180,
               "value": 0
-            },
-            {
-              "frame": 80,
-              "value": 0
-            },
-            {
-              "frame": 95,
-              "value": 1,
-              "easing": "emphasized-decel"
-            },
-            {
-              "frame": 132,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "eggp6",
-          "property": "scaleX",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0.2
-            },
-            {
-              "frame": 92,
-              "value": 0.2
-            },
-            {
-              "frame": 110,
-              "value": 1,
-              "easing": "elastic-out"
-            },
-            {
-              "frame": 180,
-              "value": 0.2
-            }
-          ]
-        },
-        {
-          "target": "eggp6",
-          "property": "scaleY",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0.2
-            },
-            {
-              "frame": 92,
-              "value": 0.2
-            },
-            {
-              "frame": 110,
-              "value": 1,
-              "easing": "elastic-out"
-            },
-            {
-              "frame": 180,
-              "value": 0.2
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-top",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 1
-            },
-            {
-              "frame": 180,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-left",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 1
-            },
-            {
-              "frame": 180,
-              "value": 1
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-right",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 1
-            },
-            {
-              "frame": 180,
-              "value": 1
             }
           ]
         }
@@ -1222,7 +779,7 @@
       "loop": "loop",
       "tracks": [
         {
-          "target": "eggegg-body",
+          "target": "eggshell",
           "property": "opacity",
           "keyframes": [
             {
@@ -1236,7 +793,7 @@
           ]
         },
         {
-          "target": "eggp1",
+          "target": "eggcap",
           "property": "opacity",
           "keyframes": [
             {
@@ -1265,104 +822,6 @@
         },
         {
           "target": "eggcrack-two",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 60,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "eggp0",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 60,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "eggp4",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 60,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "eggp5",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 60,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "eggp6",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 60,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-top",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 60,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-left",
-          "property": "opacity",
-          "keyframes": [
-            {
-              "frame": 0,
-              "value": 0
-            },
-            {
-              "frame": 60,
-              "value": 0
-            }
-          ]
-        },
-        {
-          "target": "egg-crack-glow-right",
           "property": "opacity",
           "keyframes": [
             {
@@ -1471,5 +930,760 @@
         ]
       }
     ]
-  }
+  },
+  "groups": [
+    {
+      "id": "eggshell",
+      "x": 200,
+      "y": 340.86,
+      "scaleY": 0.88
+    },
+    {
+      "id": "eggcap",
+      "parent": "eggshell",
+      "x": -0.65,
+      "y": -73.45
+    }
+  ],
+  "shapes": [
+    {
+      "id": "eggegg-shadow",
+      "type": "polygon",
+      "x": 200,
+      "y": 500.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -120.9,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 12.205492971260526,
+                "outDistance": 12.205492971260526
+              }
+            },
+            {
+              "x": 0,
+              "y": 22.1,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 66.77122625454292,
+                "outDistance": 66.77122625454292
+              }
+            },
+            {
+              "x": 120.9,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 12.205492971260526,
+                "outDistance": 12.205492971260526
+              }
+            },
+            {
+              "x": 0,
+              "y": -22.1,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 66.77122625454292,
+                "outDistance": 66.77122625454292
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.42,
+      "fill": {
+        "color": "#7d8c8e"
+      }
+    },
+    {
+      "id": "eggegg-body",
+      "type": "polygon",
+      "x": 0,
+      "y": 0,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 0,
+              "y": -191.75,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 80.60000000000001,
+                "outDistance": 80.60000000000001
+              }
+            },
+            {
+              "x": -119.60000000000001,
+              "y": 43.550000000000004,
+              "cubic": {
+                "rotation": 88.40885972880542,
+                "inRotation": -91.25904520717528,
+                "inDistance": 118.32856797916556,
+                "outDistance": 93.63610414791935
+              }
+            },
+            {
+              "x": 0,
+              "y": 191.75,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 71.5,
+                "outDistance": 71.5
+              }
+            },
+            {
+              "x": 119.60000000000001,
+              "y": 43.550000000000004,
+              "cubic": {
+                "rotation": -88.74095479282474,
+                "inRotation": 91.5911402711946,
+                "inDistance": 93.63610414791935,
+                "outDistance": 118.32856797916556
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#FFF8E8",
+              "position": 0
+            },
+            {
+              "color": "#F7F4EA",
+              "position": 0.52
+            },
+            {
+              "color": "#DCE8EB",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -119.60000000000001,
+            "y": -191.75
+          },
+          "end": {
+            "x": 119.60000000000001,
+            "y": 191.75
+          }
+        }
+      },
+      "stroke": {
+        "color": "#263843",
+        "thickness": 4.680000000000001,
+        "join": "round"
+      },
+      "parent": "eggshell"
+    },
+    {
+      "id": "eggp1",
+      "type": "polygon",
+      "x": 0,
+      "y": 0,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 0.65,
+              "y": -118.3,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 80.60000000000001,
+                "outDistance": 80.60000000000001
+              }
+            },
+            {
+              "x": -118.95,
+              "y": 104,
+              "cubic": {
+                "rotation": 17.744671625057062,
+                "inRotation": -91.41442321140217,
+                "inDistance": 105.33209387456417,
+                "outDistance": 11.374484115285796
+              }
+            },
+            {
+              "x": -86.45,
+              "y": 114.4,
+              "cubic": {
+                "rotation": -30.46554491945978,
+                "inRotation": -162.25532837494296,
+                "inDistance": 11.374484115285796,
+                "outDistance": 8.546669266770252
+              }
+            },
+            {
+              "x": -64.35000000000001,
+              "y": 101.4,
+              "cubic": {
+                "rotation": 31.759480084812687,
+                "inRotation": 149.53445508054023,
+                "inDistance": 8.546669266770252,
+                "outDistance": 10.702543830531328
+              }
+            },
+            {
+              "x": -37.050000000000004,
+              "y": 118.3,
+              "cubic": {
+                "rotation": -29.744881296942225,
+                "inRotation": -148.24051991518732,
+                "inDistance": 10.702543830531328,
+                "outDistance": 10.480935072788114
+              }
+            },
+            {
+              "x": -9.75,
+              "y": 102.7,
+              "cubic": {
+                "rotation": 28.610459665965188,
+                "inRotation": 150.2551187030578,
+                "inDistance": 10.480935072788114,
+                "outDistance": 10.859302207989455
+              }
+            },
+            {
+              "x": 18.85,
+              "y": 118.3,
+              "cubic": {
+                "rotation": -33.02386755579658,
+                "inRotation": -151.38954033403482,
+                "inDistance": 10.859302207989455,
+                "outDistance": 10.336612382959665
+              }
+            },
+            {
+              "x": 44.85,
+              "y": 101.4,
+              "cubic": {
+                "rotation": 28.810793742973217,
+                "inRotation": 146.97613244420342,
+                "inDistance": 10.336612382959665,
+                "outDistance": 9.891017249111552
+              }
+            },
+            {
+              "x": 70.85000000000001,
+              "y": 115.7,
+              "cubic": {
+                "rotation": -15.124007308310508,
+                "inRotation": -151.18920625702677,
+                "inDistance": 9.891017249111552,
+                "outDistance": 16.608598843838532
+              }
+            },
+            {
+              "x": 118.95,
+              "y": 102.7,
+              "cubic": {
+                "rotation": -87.85241457170149,
+                "inRotation": 164.8759926916895,
+                "inDistance": 16.608598843838532,
+                "outDistance": 104.07309931005227
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#FFF8E8",
+              "position": 0
+            },
+            {
+              "color": "#F7F4EA",
+              "position": 0.52
+            },
+            {
+              "color": "#DCE8EB",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -118.95,
+            "y": -191.75
+          },
+          "end": {
+            "x": 118.95,
+            "y": 191.75
+          }
+        }
+      },
+      "opacity": 1,
+      "parent": "eggcap"
+    },
+    {
+      "id": "egg-spot-left",
+      "type": "ellipse",
+      "parent": "eggshell",
+      "x": -80.60000000000001,
+      "y": -33.15,
+      "width": 67.60000000000001,
+      "height": 80.60000000000001,
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#3D5668",
+              "position": 0
+            },
+            {
+              "color": "#283946",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -33.800000000000004,
+            "y": -40.300000000000004
+          },
+          "end": {
+            "x": 33.800000000000004,
+            "y": 40.300000000000004
+          }
+        }
+      }
+    },
+    {
+      "id": "egg-spot-right",
+      "type": "ellipse",
+      "parent": "eggshell",
+      "x": 80.60000000000001,
+      "y": -33.15,
+      "width": 67.60000000000001,
+      "height": 80.60000000000001,
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#3D5668",
+              "position": 0
+            },
+            {
+              "color": "#283946",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -33.800000000000004,
+            "y": -40.300000000000004
+          },
+          "end": {
+            "x": 33.800000000000004,
+            "y": 40.300000000000004
+          }
+        }
+      }
+    },
+    {
+      "id": "egg-spot-lower-left",
+      "type": "ellipse",
+      "parent": "eggshell",
+      "x": -54.6,
+      "y": 89.05,
+      "width": 44.2,
+      "height": 52,
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#3D5668",
+              "position": 0
+            },
+            {
+              "color": "#283946",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -22.1,
+            "y": -26
+          },
+          "end": {
+            "x": 22.1,
+            "y": 26
+          }
+        }
+      }
+    },
+    {
+      "id": "egg-spot-lower-right",
+      "type": "ellipse",
+      "parent": "eggshell",
+      "x": 54.6,
+      "y": 89.05,
+      "width": 44.2,
+      "height": 52,
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#3D5668",
+              "position": 0
+            },
+            {
+              "color": "#283946",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -22.1,
+            "y": -26
+          },
+          "end": {
+            "x": 22.1,
+            "y": 26
+          }
+        }
+      }
+    },
+    {
+      "id": "eggcrack-initial",
+      "type": "polygon",
+      "parent": "eggshell",
+      "x": -3.25,
+      "y": -148.85,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 0.65,
+              "y": -10.4
+            },
+            {
+              "x": -3.9000000000000004,
+              "y": -2.6
+            },
+            {
+              "x": 2.6,
+              "y": 3.9000000000000004
+            }
+          ]
+        }
+      ],
+      "opacity": 0.55,
+      "stroke": {
+        "color": "#657986",
+        "thickness": 1.6900000000000002,
+        "cap": "round",
+        "join": "round"
+      }
+    },
+    {
+      "id": "eggcrack-one",
+      "type": "polygon",
+      "x": -3.25,
+      "y": -148.85,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 0.65,
+              "y": -28.6
+            },
+            {
+              "x": -7.15,
+              "y": -13
+            },
+            {
+              "x": 6.5,
+              "y": -2.6
+            },
+            {
+              "x": -2.6,
+              "y": 15.600000000000001
+            },
+            {
+              "x": 7.800000000000001,
+              "y": 28.6
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "stroke": {
+        "color": "#344551",
+        "thickness": 2.21,
+        "cap": "round",
+        "join": "round"
+      },
+      "parent": "eggshell"
+    },
+    {
+      "id": "eggcrack-two",
+      "type": "polygon",
+      "x": -3.25,
+      "y": -148.85,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -2.6,
+              "y": 0
+            },
+            {
+              "x": -18.2,
+              "y": 9.1
+            },
+            {
+              "x": -13,
+              "y": 22.1
+            },
+            {
+              "x": -36.4,
+              "y": 31.200000000000003
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 2.6,
+              "y": -6.5
+            },
+            {
+              "x": 19.5,
+              "y": 1.3
+            },
+            {
+              "x": 14.3,
+              "y": 14.3
+            },
+            {
+              "x": 40.300000000000004,
+              "y": 23.400000000000002
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "stroke": {
+        "color": "#344551",
+        "thickness": 2.08,
+        "cap": "round",
+        "join": "round"
+      },
+      "parent": "eggshell"
+    },
+    {
+      "id": "eggcap-crack-one",
+      "type": "polygon",
+      "x": -2.6,
+      "y": -75.4,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 0.65,
+              "y": -16.900000000000002
+            },
+            {
+              "x": -6.5,
+              "y": -6.5
+            },
+            {
+              "x": 5.2,
+              "y": 1.3
+            },
+            {
+              "x": -1.3,
+              "y": 14.3
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "stroke": {
+        "color": "#344551",
+        "thickness": 2.21,
+        "cap": "round",
+        "join": "round"
+      },
+      "parent": "eggcap"
+    },
+    {
+      "id": "eggcap-crack-two",
+      "type": "polygon",
+      "x": -2.6,
+      "y": -75.4,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -2.6,
+              "y": 0
+            },
+            {
+              "x": -18.2,
+              "y": 9.1
+            },
+            {
+              "x": -13,
+              "y": 22.1
+            },
+            {
+              "x": -36.4,
+              "y": 31.200000000000003
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 2.6,
+              "y": -6.5
+            },
+            {
+              "x": 19.5,
+              "y": 1.3
+            },
+            {
+              "x": 14.3,
+              "y": 14.3
+            },
+            {
+              "x": 40.300000000000004,
+              "y": 23.400000000000002
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "stroke": {
+        "color": "#344551",
+        "thickness": 2.08,
+        "cap": "round",
+        "join": "round"
+      },
+      "parent": "eggcap"
+    },
+    {
+      "id": "eggcap-crack-one",
+      "type": "polygon",
+      "x": -2.6,
+      "y": -75.4,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 0.65,
+              "y": -28.6
+            },
+            {
+              "x": -7.15,
+              "y": -13
+            },
+            {
+              "x": 6.5,
+              "y": -2.6
+            },
+            {
+              "x": -2.6,
+              "y": 15.600000000000001
+            },
+            {
+              "x": 7.800000000000001,
+              "y": 28.6
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "stroke": {
+        "color": "#344551",
+        "thickness": 2.21,
+        "cap": "round",
+        "join": "round"
+      },
+      "parent": "eggcap"
+    },
+    {
+      "id": "eggcap-crack-two",
+      "type": "polygon",
+      "x": -2.6,
+      "y": -75.4,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -2.6,
+              "y": 0
+            },
+            {
+              "x": -18.2,
+              "y": 9.1
+            },
+            {
+              "x": -13,
+              "y": 22.1
+            },
+            {
+              "x": -36.4,
+              "y": 31.200000000000003
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 2.6,
+              "y": -6.5
+            },
+            {
+              "x": 19.5,
+              "y": 1.3
+            },
+            {
+              "x": 14.3,
+              "y": 14.3
+            },
+            {
+              "x": 40.300000000000004,
+              "y": 23.400000000000002
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "stroke": {
+        "color": "#344551",
+        "thickness": 2.08,
+        "cap": "round",
+        "join": "round"
+      },
+      "parent": "eggcap"
+    }
+  ]
 }
