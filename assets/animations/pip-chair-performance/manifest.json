@@ -1,0 +1,104 @@
+{
+  "action": "chair-notice-walk-hop-sit",
+  "character": "Pip",
+  "frameCount": 14,
+  "canvas": {
+    "width": 480,
+    "height": 560
+  },
+  "fps": 12,
+  "loop": false,
+  "keyframeIndices": [
+    2,
+    5,
+    8,
+    11
+  ],
+  "sourceAnchors": {
+    "start": "standing walk frame 01",
+    "end": "ImageGen chair-specific seated pose"
+  },
+  "frames": [
+    {
+      "index": 0,
+      "file": "frames/pip-chair_00.png"
+    },
+    {
+      "index": 1,
+      "file": "frames/pip-chair_01.png"
+    },
+    {
+      "index": 2,
+      "file": "frames/pip-chair_02.png"
+    },
+    {
+      "index": 3,
+      "file": "frames/pip-chair_03.png"
+    },
+    {
+      "index": 4,
+      "file": "frames/pip-chair_04.png"
+    },
+    {
+      "index": 5,
+      "file": "frames/pip-chair_05.png"
+    },
+    {
+      "index": 6,
+      "file": "frames/pip-chair_06.png"
+    },
+    {
+      "index": 7,
+      "file": "frames/pip-chair_07.png"
+    },
+    {
+      "index": 8,
+      "file": "frames/pip-chair_08.png"
+    },
+    {
+      "index": 9,
+      "file": "frames/pip-chair_09.png"
+    },
+    {
+      "index": 10,
+      "file": "frames/pip-chair_10.png"
+    },
+    {
+      "index": 11,
+      "file": "frames/pip-chair-contact-v2.png"
+    },
+    {
+      "index": 12,
+      "file": "frames/pip-chair-settle-v2.png"
+    },
+    {
+      "index": 13,
+      "file": "frames/pip-chair-rest-v2.png"
+    }
+  ],
+  "timingMs": [
+    180,
+    120,
+    340,
+    150,
+    150,
+    150,
+    170,
+    260,
+    100,
+    120,
+    120,
+    260,
+    360,
+    200
+  ],
+  "beats": {
+    "00-02": "notices the chair; eyes lead, then head and body",
+    "03-06": "two waddling steps with alternating foot contacts and scarf follow-through",
+    "07": "brakes and anticipates the hop",
+    "08-09": "push-off and compact airborne arc",
+    "10-11": "weighted seat landing and squash",
+    "12-13": "settling and pleased reaction"
+  },
+  "notes": "Frames 11-13 are separate ImageGen chair-contact, settle, and seated-hold illustrations. Each is preserved as a raw source in source/chair-sit-v2 and normalized with contain-fit to the 480x560 canvas. Character root scale remains constant for the full action."
+}
