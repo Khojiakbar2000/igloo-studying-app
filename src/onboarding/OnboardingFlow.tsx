@@ -214,14 +214,14 @@ export function OnboardingFlow({ previewStage, onComplete }: { previewStage: Pre
 
   const tapsRemaining = Math.max(0, 3 - eggTap);
   const titleByStep: Record<Step, string> = {
-    intro: 'There’s someone\nwaiting for you…', egg: 'Wait… did that egg\njust move?', hatching: 'A little one is\non the way.', celebration: '',
+    intro: 'There’s someone\nwaiting for you…', egg: 'Someone special\nis on the way.', hatching: 'The shell is\nopening…', celebration: '',
     userName: 'A new little friend!', penguinName: 'I don’t have a\nname yet…', personality: 'Curiosity is a kind of magic.', activity: 'What will we\nfocus on first?',
     discovery: 'Look what we\ncould build!', tutorial: 'Can you help me?', progress: 'One session at a\ntime, we’ll build it.',
     duration: 'How long should\nwe start with?', commitment: 'We can begin gently.', firstFocus: 'Ready when\nyou are.', focusRunning: 'I’m right here.', completion: 'You did\namazing!'
   };
   const detailByStep: Record<Step, string> = {
-    intro: 'A tiny friend is waiting in the snow.', egg: eggTap === 0 ? 'Tap the egg to hatch!' : tapsRemaining === 1 ? 'A tiny crack appeared. One more tap!' : 'It’s wobbling! Two more taps to meet your friend.',
-    hatching: 'A tiny friend is finding their feet.', celebration: 'Every focused minute helps make their world warmer.', userName: 'I’m so glad you came. What should I call you? (You can skip.)',
+    intro: 'A tiny friend is waiting in the snow.', egg: eggTap === 0 ? 'Tap below and see who’s waiting inside.' : eggTap === 1 ? 'A little crack appeared. Tap once more to widen it.' : 'It’s wobbling! One last tap and we’ll meet.',
+    hatching: 'A tiny penguin is almost here.', celebration: 'Your little study buddy is ready to meet you.', userName: 'I’m so glad you came. What should I call you? (You can skip.)',
     penguinName: data.penguinName ? `${data.penguinName}? I love it!` : data.userName ? `Nice to meet you, ${data.userName}! Will you give me a name?` : 'Will you give me a name?',
     personality: personalityDiscovered ? 'It rolls! I want to see where it goes.' : 'I found a strange snowball. Want to see what it does?',
     activity: data.activity === 'Studying' ? 'Your penguin will keep you company.' : `I’d love to focus on ${data.activity.toLowerCase()} with you.`, discovery: 'Our very own igloo, one snowy block at a time.',
@@ -244,7 +244,7 @@ export function OnboardingFlow({ previewStage, onComplete }: { previewStage: Pre
 
   const renderScene = () => {
     if (['intro', 'egg', 'hatching'].includes(activeStep)) return renderShell();
-    if (activeStep === 'celebration') return <View style={styles.characterScene}>{renderPenguin(248, 'excited', 'celebrate')}<Text style={styles.achievementTitle}>You hatched a baby penguin!</Text></View>;
+    if (activeStep === 'celebration') return <View style={styles.characterScene}>{renderPenguin(248, 'excited', 'celebrate')}<Text style={styles.achievementTitle}>You hatched a penguin!</Text></View>;
     if (activeStep === 'userName') return <View style={styles.characterScene}>{renderPenguin(176)}<View style={styles.inputWrap}><TextInput value={data.userName} onChangeText={(value) => setValue('userName', value.slice(0, 24))} placeholder="Your name or nickname" placeholderTextColor="#93A8B2" autoCapitalize="words" returnKeyType="done" maxLength={24} style={styles.textInput} accessibilityLabel="Your name or nickname" /></View></View>;
     if (activeStep === 'penguinName') return <View style={styles.characterScene}>{renderPenguin(164)}<View style={styles.nameGrid}>{['Pipo', 'Mochi', 'Pebble', 'Bobo'].map((name) => <Choice key={name} label={name} selected={data.penguinName === name} onPress={() => choosePenguinName(name)} />)}</View>{customName && <TextInput value={data.penguinName} onChangeText={(value) => setValue('penguinName', value.slice(0, 18))} placeholder="A name you love" placeholderTextColor="#93A8B2" autoCapitalize="words" maxLength={18} style={[styles.textInput, { width: '100%' }]} accessibilityLabel="Custom penguin name" />}<Pressable onPress={() => { setCustomName((value) => !value); setValue('penguinName', ''); }}><Text style={styles.linkText}>{customName ? 'Choose a suggestion' : 'Choose my own'}</Text></Pressable></View>;
     if (activeStep === 'personality') return <View style={styles.personalityScene}><View style={styles.personalityMascot}>{renderPenguin(174, personalityDiscovered ? 'playful' : 'curious', personalityDiscovered ? 'reach' : 'discover')}</View><Text style={styles.objectPrompt}>{personalityDiscovered ? 'A tiny rolling experiment!' : 'A snowball with a little blue sparkle.'}</Text><Pressable accessibilityRole="button" accessibilityLabel={personalityDiscovered ? 'Snowball rolled. Tap again to see it roll' : 'Tap the unusual snowball'} onPress={discoverPersonality} style={({ pressed }) => [styles.snowball, pressed && styles.choicePressed]}><Snowball /></Pressable></View>;
