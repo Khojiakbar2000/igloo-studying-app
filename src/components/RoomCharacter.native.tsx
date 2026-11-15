@@ -37,6 +37,7 @@ try {
 }
 
 export function RoomCharacter({
+  idleEyes,
   walking = false,
   performanceFrame = null,
   celebrate = false,
@@ -44,6 +45,7 @@ export function RoomCharacter({
   reducedMotion = false,
   style,
 }: {
+  idleEyes?: React.ReactNode;
   walking?: boolean;
   performanceFrame?: number | null;
   celebrate?: boolean;
@@ -148,6 +150,7 @@ export function RoomCharacter({
           />
         )}
       </Animated.View>
+      {idleEyes}
     </View>
   );
 }

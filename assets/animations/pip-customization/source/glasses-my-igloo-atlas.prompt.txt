@@ -1,0 +1,2 @@
+ImageGen prompt (reference: pip-chair-performance/frames/pip-chair-rest-v2.png):
+Create a transparent 4x4 atlas of small round warm-brown reading glasses aligned to the eyes on a 480x560 full-character canvas. Keep identical size and position for every cell, clear lens openings, hand-painted Synfig-compatible texture, no character, grid, labels or background.

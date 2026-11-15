@@ -1,0 +1,89 @@
+{
+  "status": "visual-concept-only",
+  "canvas": { "width": 1024, "height": 1536 },
+  "reference": "../my-igloo-clean-plate.png",
+  "liveRoomReplaced": false,
+  "progressionImplemented": false,
+  "runtimeLayersExtracted": false,
+  "alignmentStatus": "Approximate concept zones. Production cutouts and furniture contacts require alignment review before integration.",
+  "characterPolicy": {
+    "design": "Reuse Pip's existing approved artwork, customization assets, cels and timing.",
+    "previewPose": "pip-approved-pose.png is an unchanged copy of pip-chair-rest-v2.png.",
+    "existingSeatedCenterNormalized": [0.57, 0.56],
+    "existingCharacterContainerNormalized": [0.46, 0.43],
+    "existingCharacterScale": 0.93,
+    "stageRule": "Little Igloo keeps the live placement and interaction paths. Expanded-stage furniture must be aligned to the approved character before any runtime integration. Concept zone boxes do not replace live coordinates."
+  },
+  "perspectiveAndLighting": {
+    "camera": "Same slightly elevated three-quarter view and portrait framing as the current personal igloo.",
+    "primaryLight": "Warm amber desk lantern in the lower-right study nook.",
+    "ambientLight": "Cool blue and lavender snow-wall bounce, with peach floor reflections.",
+    "futureLights": "Firelight is a separate warm secondary source; skylight and window effects remain separate from the shell.",
+    "propRule": "Each furniture variant shares a floor-contact anchor, perspective, scale envelope, separate contact shadow and any necessary foreground occluder."
+  },
+  "proposedLayers": [
+    { "id": "outside_scenery", "order": 0, "contents": ["snow landscape", "night sky", "aurora"], "export": "separate backplates" },
+    { "id": "room_shell", "order": 10, "contents": ["snow walls", "ceiling", "alcoves", "doorway"], "export": "clean shell with transparent window openings; furniture excluded" },
+    { "id": "floor", "order": 20, "contents": ["snow floor", "ambient baked bounce"], "export": "clean floor without rugs, movable objects or furniture shadows" },
+    { "id": "window_assemblies", "order": 25, "contents": ["round window", "panoramic window", "skylight"], "export": "independent frame, glass, opening parts and trim per assembly" },
+    { "id": "rugs_and_shadows", "order": 30, "contents": ["braided rug", "small living rug", "prop contact shadows"], "export": "independent transparent assets" },
+    { "id": "rear_furniture", "order": 40, "contents": ["loveseat", "bookshelves", "bed", "fireplace surround", "kitchen counter"], "export": "separate props with bottom-contact pivots and safe overlap margins" },
+    { "id": "study_furniture_back", "order": 45, "contents": ["desk rear", "chair back", "chair seat"], "export": "align against the approved sitting performance; do not repaint Pip" },
+    { "id": "pip", "order": "existing actor renderer", "contents": ["approved Pip animation and accessories"], "export": "reuse unchanged; no new rig or animation system" },
+    { "id": "study_foreground", "order": 60, "contents": ["desk front edge", "chair front", "interactive prop occluders"], "export": "separate occlusion masks where needed" },
+    { "id": "decorations", "order": 65, "contents": ["cushions", "books", "prints", "lantern", "mug", "tea tray"], "export": "individual anchored props that follow their parent furniture" },
+    { "id": "environment_effects", "order": 70, "contents": ["snow", "frost", "condensation", "fire flicker", "stars", "aurora", "light pulses"], "export": "independent lightweight effects using the existing workflow" },
+    { "id": "foreground_snow_edge", "order": 80, "contents": ["near-right snow wall and doorway edges"], "export": "optional transparent foreground occlusion plate" }
+  ],
+  "futureInteractionPlan": {
+    "food": "Optional tea, snack and serving-tray interactions, anchored to desk or kitchen surfaces.",
+    "maintenance": "No hunger meters, compulsory feeding, decay, care debt or punishment.",
+    "furniture": "Swap sofas, beds, desks, shelves, rugs and decorations independently, with shared contact anchors.",
+    "openFloor": "Keep the central route between entrance, chair, bed and rear living bay free of new furniture."
+  },
+  "stages": [
+    {
+      "id": "little", "label": "Little Igloo", "image": "little-igloo.png",
+      "summary": "The exact current home: a bed, familiar round window, bookshelf, braided rug and Pip's study nook.",
+      "expansion": "Existing room; unchanged initial version.",
+      "zones": [
+        { "id": "study", "label": "Existing study nook", "box": [0.45, 0.48, 0.54, 0.32] },
+        { "id": "bed", "label": "Bed", "box": [0.02, 0.41, 0.30, 0.21] },
+        { "id": "window", "label": "Round window", "box": [0.40, 0.31, 0.14, 0.11] },
+        { "id": "storage", "label": "Bookshelf", "box": [0.59, 0.30, 0.20, 0.20] },
+        { "id": "rug", "label": "Swappable rug", "box": [0.01, 0.65, 0.49, 0.20] }
+      ]
+    },
+    {
+      "id": "cozy", "label": "Cozy Igloo", "image": "cozy-igloo.png",
+      "summary": "A modest rear living bay adds a loveseat, fireplace and low storage while the study nook remains familiar.",
+      "expansion": "One shallow rear bay and more clear central floor, with a reserved roof socket for a later skylight.",
+      "zones": [
+        { "id": "study", "label": "Preserved study-nook zone", "box": [0.45, 0.48, 0.54, 0.32] },
+        { "id": "bed", "label": "Bed variants", "box": [0.02, 0.42, 0.29, 0.21] },
+        { "id": "living", "label": "Loveseat variants", "box": [0.14, 0.34, 0.24, 0.12] },
+        { "id": "fireplace", "label": "Fireplace and separate firelight", "box": [0.51, 0.29, 0.14, 0.16] },
+        { "id": "storage", "label": "Bookshelves and decoration slots", "box": [0.63, 0.31, 0.18, 0.17] },
+        { "id": "window", "label": "Independent window assembly", "box": [0.39, 0.27, 0.13, 0.10] },
+        { "id": "skylight", "label": "Reserved skylight socket", "box": [0.40, 0.08, 0.20, 0.05] },
+        { "id": "rug", "label": "Swappable rug", "box": [0.03, 0.65, 0.47, 0.19] }
+      ]
+    },
+    {
+      "id": "dream", "label": "Dream Igloo", "image": "dream-igloo.png",
+      "summary": "A stargazing skylight, snowy panorama and compact kitchen complete a roomy home with space still left to personalise.",
+      "expansion": "A wider rear living bay and a small kitchen alcove, rather than a larger furniture scale.",
+      "zones": [
+        { "id": "study", "label": "Study desk, chair and optional tea tray", "box": [0.45, 0.47, 0.54, 0.33] },
+        { "id": "bed", "label": "Bed variants", "box": [0.02, 0.42, 0.30, 0.21] },
+        { "id": "living", "label": "Customisable loveseat", "box": [0.12, 0.36, 0.23, 0.09] },
+        { "id": "fireplace", "label": "Fireplace and firelight", "box": [0.22, 0.26, 0.14, 0.16] },
+        { "id": "kitchen", "label": "Kitchen and optional food interactions", "box": [0.70, 0.28, 0.15, 0.14] },
+        { "id": "storage", "label": "Bookshelf and decorations", "box": [0.80, 0.34, 0.13, 0.13] },
+        { "id": "window", "label": "Panoramic snow window", "box": [0.33, 0.265, 0.34, 0.115] },
+        { "id": "skylight", "label": "Stargazing skylight", "box": [0.25, 0.055, 0.50, 0.145] },
+        { "id": "rug", "label": "Rugs and clear walking floor", "box": [0.03, 0.65, 0.47, 0.19] }
+      ]
+    }
+  ]
+}

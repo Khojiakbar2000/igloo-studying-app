@@ -1,0 +1,115 @@
+{
+  "sourceSheet": "source/headphones-sheet.png",
+  "baseline": "assets/animations/study-together-headphones/source/baseline.png",
+  "frameCount": 16,
+  "cellGrid": [
+    4,
+    4
+  ],
+  "canvas": [
+    430,
+    541
+  ],
+  "commonScale": 1.5616438356164384,
+  "bottomBaseline": 541,
+  "fps": 12,
+  "loop": true,
+  "generatedCellBounds": [
+    {
+      "left": 52,
+      "top": 13,
+      "width": 212,
+      "height": 290
+    },
+    {
+      "left": 52,
+      "top": 16,
+      "width": 211,
+      "height": 288
+    },
+    {
+      "left": 52,
+      "top": 22,
+      "width": 212,
+      "height": 282
+    },
+    {
+      "left": 51,
+      "top": 28,
+      "width": 211,
+      "height": 276
+    },
+    {
+      "left": 50,
+      "top": 26,
+      "width": 214,
+      "height": 277
+    },
+    {
+      "left": 51,
+      "top": 21,
+      "width": 212,
+      "height": 282
+    },
+    {
+      "left": 52,
+      "top": 14,
+      "width": 212,
+      "height": 289
+    },
+    {
+      "left": 51,
+      "top": 12,
+      "width": 212,
+      "height": 291
+    },
+    {
+      "left": 53,
+      "top": 12,
+      "width": 211,
+      "height": 292
+    },
+    {
+      "left": 52,
+      "top": 12,
+      "width": 211,
+      "height": 292
+    },
+    {
+      "left": 52,
+      "top": 12,
+      "width": 212,
+      "height": 292
+    },
+    {
+      "left": 52,
+      "top": 12,
+      "width": 211,
+      "height": 292
+    },
+    {
+      "left": 52,
+      "top": 12,
+      "width": 212,
+      "height": 292
+    },
+    {
+      "left": 52,
+      "top": 15,
+      "width": 211,
+      "height": 289
+    },
+    {
+      "left": 52,
+      "top": 14,
+      "width": 212,
+      "height": 290
+    },
+    {
+      "left": 52,
+      "top": 16,
+      "width": 211,
+      "height": 288
+    }
+  ]
+}

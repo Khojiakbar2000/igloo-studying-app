@@ -1,0 +1,6 @@
+{
+  "detected_style": "unknown",
+  "confidence": 0.0,
+  "scores": {},
+  "error": "Pillow/NumPy required for style detection"
+}

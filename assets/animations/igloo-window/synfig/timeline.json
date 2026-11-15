@@ -1,0 +1,27 @@
+{
+  "fps": 12,
+  "cels": [
+    { "id": "notice", "pose": 0, "exposure": 5 },
+    { "id": "eye_line", "pose": 1, "exposure": 4 },
+    { "id": "curious_tilt", "pose": 2, "exposure": 3 },
+    { "id": "anticipation", "pose": 3, "exposure": 3 },
+    { "id": "waddle_a", "pose": 4, "exposure": 2 },
+    { "id": "waddle_b", "pose": 5, "exposure": 2 },
+    { "id": "waddle_a_follow", "pose": 4, "exposure": 2 },
+    { "id": "waddle_b_follow", "pose": 5, "exposure": 2 },
+    { "id": "arrival", "pose": 6, "exposure": 5 },
+    { "id": "reach_latch", "pose": 7, "exposure": 4 },
+    { "id": "resist_latch", "pose": 8, "exposure": 3 },
+    { "id": "gust_surprise", "pose": 9, "exposure": 3 },
+    { "id": "scarf_in_wind", "pose": 10, "exposure": 4 },
+    { "id": "shiver_compress", "pose": 11, "exposure": 3 },
+    { "id": "wide_eyes_brace", "pose": 12, "exposure": 3 },
+    { "id": "shiver_follow", "pose": 11, "exposure": 2 },
+    { "id": "close_push", "pose": 13, "exposure": 4 },
+    { "id": "close_strain", "pose": 13, "exposure": 11 },
+    { "id": "relief", "pose": 14, "exposure": 6 },
+    { "id": "return_step_a", "pose": 4, "exposure": 2 },
+    { "id": "return_step_b", "pose": 5, "exposure": 3 },
+    { "id": "settle", "pose": 15, "exposure": 5 }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "sourceSheet": "source/typing-sheet-with-feet.png",
+  "baseline": "assets/characters/study-together/layered/typing-body.png",
+  "frameCount": 16,
+  "cellGrid": [
+    4,
+    4
+  ],
+  "canvas": [
+    430,
+    541
+  ],
+  "commonScale": 1.628787878787879,
+  "bottomBaseline": 541,
+  "fps": 12,
+  "loop": true,
+  "generatedCellBounds": [
+    {
+      "left": 0,
+      "top": 0,
+      "width": 259,
+      "height": 308
+    },
+    {
+      "left": 51,
+      "top": 25,
+      "width": 201,
+      "height": 283
+    },
+    {
+      "left": 49,
+      "top": 24,
+      "width": 199,
+      "height": 285
+    },
+    {
+      "left": 43,
+      "top": 0,
+      "width": 264,
+      "height": 308
+    },
+    {
+      "left": 59,
+      "top": 24,
+      "width": 200,
+      "height": 284
+    },
+    {
+      "left": 52,
+      "top": 24,
+      "width": 201,
+      "height": 284
+    },
+    {
+      "left": 49,
+      "top": 24,
+      "width": 201,
+      "height": 284
+    },
+    {
+      "left": 44,
+      "top": 24,
+      "width": 201,
+      "height": 284
+    },
+    {
+      "left": 59,
+      "top": 25,
+      "width": 200,
+      "height": 283
+    },
+    {
+      "left": 52,
+      "top": 25,
+      "width": 200,
+      "height": 283
+    },
+    {
+      "left": 49,
+      "top": 25,
+      "width": 199,
+      "height": 283
+    },
+    {
+      "left": 44,
+      "top": 25,
+      "width": 201,
+      "height": 283
+    },
+    {
+      "left": 0,
+      "top": 24,
+      "width": 261,
+      "height": 295
+    },
+    {
+      "left": 52,
+      "top": 24,
+      "width": 201,
+      "height": 295
+    },
+    {
+      "left": 49,
+      "top": 24,
+      "width": 200,
+      "height": 295
+    },
+    {
+      "left": 44,
+      "top": 24,
+      "width": 263,
+      "height": 295
+    }
+  ]
+}

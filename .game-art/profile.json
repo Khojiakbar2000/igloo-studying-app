@@ -1,0 +1,52 @@
+{
+  "name": "IGLOO",
+  "pipelineVersion": 1,
+  "artDirection": {
+    "status": "locked",
+    "visualReference": "assets/environments/igloo/concepts/study-together-round-table-with-penguins.png",
+    "canonicalSceneLayers": "assets/environments/igloo/study-together-layers/",
+    "canonicalCharacterLayers": "assets/characters/study-together/layered/",
+    "preserve": [
+      "cozy purple-blue igloo interior, snowy window, bookshelves, and warm lighting",
+      "honey-colored round table, existing chairs, furniture perspective, and illustration texture",
+      "Pip's established anatomy, face, scarf, proportions, orange feet, and visual style"
+    ],
+    "neverBakeCharactersIntoRoomBackground": true
+  },
+  "sceneContract": {
+    "path": "src/scenes/studyTogetherArtContract.ts",
+    "coordinateSystem": "1024x1536 room artboard; all positions use top-left origin and uniform contain scaling",
+    "characterScale": "fixed per seat from the shared contract; preserve source aspect ratio",
+    "pilotSeat": "back-left",
+    "pilotSource": "assets/characters/study-together/layered/typing-body.png",
+    "laptopAndContactTargets": "recorded in the scene contract in artboard coordinates"
+  },
+  "workflow": [
+    {
+      "stage": "image-generation",
+      "tool": "built-in ImageGen",
+      "gate": "Only generate a requested independent asset from approved character and room references; never regenerate accepted room art."
+    },
+    {
+      "stage": "asset-preparation",
+      "skill": "generate2d-assets-clean-align",
+      "gate": "Keep transparent character and furniture layers on the shared artboard; record source and preserve scale, anchor, and aspect ratio."
+    },
+    {
+      "stage": "scene-composition",
+      "contract": "src/scenes/studyTogetherArtContract.ts",
+      "gate": "Fit and visually approve the back-left typing penguin with its laptop before reusing the same contract for other seats."
+    },
+    {
+      "stage": "animation",
+      "synfig": "assets/animations/synfig-shiver/ and existing Synfig sources/exports",
+      "rive": "existing Rive character assets and rive-animation skill",
+      "gate": "Animate only after the static character composition is approved; keep animation pivots on the scene contract anchors."
+    },
+    {
+      "stage": "visual-qa",
+      "gate": "Capture and inspect the actual rendered Study Together screen at room scale; verify four-seat visibility, fit, perspective, layering, and hand-to-device contact before approval."
+    }
+  ],
+  "dependencyPolicy": "Reuse installed skills and project tools; review dependency and file effects before adding any new package or script bundle."
+}

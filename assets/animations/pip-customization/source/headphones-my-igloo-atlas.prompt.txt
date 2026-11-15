@@ -1,0 +1,4 @@
+ImageGen prompt (reference: pip-chair-performance/frames/pip-chair-rest-v2.png):
+Create a transparent 4x4 atlas of cozy cream and pale-pink headphones on a 480x560 full-character canvas. Keep identical size and position in every cell, soft illustrated texture, no character, background, grid or text.
+
+The generated front-facing pair is kept as a source asset only. Runtime headphones use the aligned wraparound layer rather than this mismatched front view.

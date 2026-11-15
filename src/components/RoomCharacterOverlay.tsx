@@ -7,14 +7,16 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { PipHomeIdle } from './PipHomeIdle';
 import { RoomCharacter } from './RoomCharacter';
 import { playPipChairPerformance } from '../character/pipChairPerformance';
+import type { PenguinCustomization } from '../character/penguinCustomization';
 
 type RoomMode = 'personal' | 'study-together';
 type SceneSize = { width: number; height: number };
 const CHARACTER_SCALE = 0.93;
 
-export function RoomCharacterOverlay({ mode }: { mode: RoomMode }) {
+export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, customization, homeIdle = false, ambientMotion = false }: { mode: RoomMode; hidden?: boolean; onSettledChange?: (settled: boolean) => void; customization?: PenguinCustomization; homeIdle?: boolean; ambientMotion?: boolean }) {
   const reducedMotion = useReducedMotion();
   const [size, setSize] = useState<SceneSize>({ width: 0, height: 0 });
   const [performanceFrame, setPerformanceFrame] = useState<number | null>(null);
@@ -34,6 +36,7 @@ export function RoomCharacterOverlay({ mode }: { mode: RoomMode }) {
 
   useEffect(() => {
     if (mode !== 'personal' || size.width === 0 || size.height === 0) return;
+    onSettledChange?.(false);
     // Floor anchors are keyed to each drawing so foot contacts and travel stay together.
     const path = [
       [0.24, 0.47], [0.24, 0.47], [0.24, 0.47],
@@ -49,6 +52,7 @@ export function RoomCharacterOverlay({ mode }: { mode: RoomMode }) {
       y.value = chairY;
       scale.value = CHARACTER_SCALE;
       setPerformanceFrame(null);
+      onSettledChange?.(true);
       return;
     }
 
@@ -67,13 +71,14 @@ export function RoomCharacterOverlay({ mode }: { mode: RoomMode }) {
       () => {
         // Hold the drawn seated key pose to avoid a scale/shape pop into the limited idle rig.
         setPerformanceFrame(13);
+        onSettledChange?.(true);
       },
     );
     return () => {
       cancelPerformance.current?.();
       cancelPerformance.current = null;
     };
-  }, [mode, reducedMotion, performanceReady, size, x, y, scale]);
+  }, [mode, reducedMotion, performanceReady, size, x, y, scale, onSettledChange]);
 
   const walkingStyle = useAnimatedStyle(() => ({
     transform: [
@@ -84,16 +89,18 @@ export function RoomCharacterOverlay({ mode }: { mode: RoomMode }) {
   const characterScaleStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
 
   return (
-    <View pointerEvents="none" onLayout={onLayout} style={[StyleSheet.absoluteFill, styles.overlay]}>
+    <View pointerEvents="none" onLayout={onLayout} style={[StyleSheet.absoluteFill, styles.overlay, hidden && styles.hidden]}>
       {mode === 'personal' && size.width > 0 && (
         <Animated.View style={[styles.walker, { width: characterWidth, height: characterHeight }, walkingStyle]}>
           <Animated.View style={[StyleSheet.absoluteFill, characterScaleStyle]}>
-            <RoomCharacter
+            <PipHomeIdle enabled={homeIdle && performanceFrame === 13 && !hidden} motion={ambientMotion}>{eyes => <RoomCharacter
               walking={false}
               performanceFrame={reducedMotion ? null : performanceFrame}
               reducedMotion={reducedMotion}
               onPerformanceReady={markPerformanceReady}
-            />
+              customization={customization}
+              idleEyes={eyes}
+            />}</PipHomeIdle>
           </Animated.View>
         </Animated.View>
       )}
@@ -108,10 +115,10 @@ function StudySeatCharacters({ size, reducedMotion }: { size: SceneSize; reduced
   const startX = size.width * 0.12;
   const startY = size.height * 0.4;
   return <>
-    <SeatPenguin left="6%" top="34%" width="25%" height="17%" fromX={startX - size.width * 0.185} fromY={startY - size.height * 0.425} delayMs={0} reducedMotion={reducedMotion} />
-    <SeatPenguin left="69%" top="34%" width="25%" height="17%" fromX={startX - size.width * 0.815} fromY={startY - size.height * 0.425} delayMs={220} reducedMotion={reducedMotion} />
-    <SeatPenguin left="2%" top="53%" width="34%" height="21%" fromX={startX - size.width * 0.19} fromY={startY - size.height * 0.635} delayMs={440} reducedMotion={reducedMotion} />
-    <SeatPenguin left="64%" top="53%" width="34%" height="21%" fromX={startX - size.width * 0.81} fromY={startY - size.height * 0.635} delayMs={660} reducedMotion={reducedMotion} />
+    <SeatPenguin left="8%" top="36%" width="26%" height="19%" fromX={startX - size.width * 0.21} fromY={startY - size.height * 0.455} delayMs={0} reducedMotion={reducedMotion} />
+    <SeatPenguin left="66%" top="36%" width="26%" height="19%" fromX={startX - size.width * 0.79} fromY={startY - size.height * 0.455} delayMs={220} reducedMotion={reducedMotion} />
+    <SeatPenguin left="5%" top="54%" width="31%" height="20%" fromX={startX - size.width * 0.205} fromY={startY - size.height * 0.64} delayMs={440} reducedMotion={reducedMotion} />
+    <SeatPenguin left="64%" top="54%" width="31%" height="20%" fromX={startX - size.width * 0.795} fromY={startY - size.height * 0.64} delayMs={660} reducedMotion={reducedMotion} />
   </>;
 }
 
@@ -136,6 +143,7 @@ function SeatPenguin({
 }) {
   const [visible, setVisible] = useState(reducedMotion || delayMs === 0);
   const [arrived, setArrived] = useState(reducedMotion);
+  const [settleFrame, setSettleFrame] = useState<number | null>(null);
   const x = useSharedValue(reducedMotion ? 0 : fromX);
   const y = useSharedValue(reducedMotion ? 0 : fromY);
   const approachStyle = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }, { translateY: y.value }] }));
@@ -149,10 +157,19 @@ function SeatPenguin({
     setVisible(delayMs === 0);
     setArrived(false);
     const entrance = delayMs > 0 ? setTimeout(() => setVisible(true), delayMs) : undefined;
-    const arrive = setTimeout(() => setArrived(true), delayMs + 820);
+    const arrive = setTimeout(() => {
+      setArrived(true);
+      setSettleFrame(11);
+    }, delayMs + 820);
+    const settle = setTimeout(() => setSettleFrame(12), delayMs + 960);
+    const rest = setTimeout(() => setSettleFrame(13), delayMs + 1_100);
+    const idle = setTimeout(() => setSettleFrame(null), delayMs + 1_420);
     return () => {
       if (entrance) clearTimeout(entrance);
       clearTimeout(arrive);
+      clearTimeout(settle);
+      clearTimeout(rest);
+      clearTimeout(idle);
     };
   }, [delayMs, reducedMotion]);
 
@@ -173,7 +190,7 @@ function SeatPenguin({
   return visible ? (
     <View style={[styles.seat, { left, top, width, height }]}>
       <Animated.View style={[StyleSheet.absoluteFill, approachStyle]}>
-        <RoomCharacter walking={!arrived && !reducedMotion} reducedMotion={reducedMotion} />
+        <RoomCharacter walking={!arrived && !reducedMotion} performanceFrame={settleFrame} reducedMotion={reducedMotion} />
       </Animated.View>
     </View>
   ) : null;
@@ -181,6 +198,7 @@ function SeatPenguin({
 
 const styles = StyleSheet.create({
   overlay: { zIndex: 1 },
+  hidden: { opacity: 0 },
   walker: { position: 'absolute', left: 0, top: 0, zIndex: 4 },
   seat: { position: 'absolute', zIndex: 2, alignItems: 'center', justifyContent: 'center' },
 });

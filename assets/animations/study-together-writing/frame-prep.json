@@ -1,0 +1,115 @@
+{
+  "sourceSheet": "source/writing-sheet.png",
+  "baseline": "assets/animations/study-together-writing/source/baseline.png",
+  "frameCount": 16,
+  "cellGrid": [
+    4,
+    4
+  ],
+  "canvas": [
+    430,
+    541
+  ],
+  "commonScale": 1.5510204081632653,
+  "bottomBaseline": 541,
+  "fps": 12,
+  "loop": true,
+  "generatedCellBounds": [
+    {
+      "left": 54,
+      "top": 11,
+      "width": 216,
+      "height": 293
+    },
+    {
+      "left": 49,
+      "top": 13,
+      "width": 219,
+      "height": 291
+    },
+    {
+      "left": 44,
+      "top": 18,
+      "width": 219,
+      "height": 286
+    },
+    {
+      "left": 42,
+      "top": 21,
+      "width": 219,
+      "height": 283
+    },
+    {
+      "left": 51,
+      "top": 20,
+      "width": 222,
+      "height": 283
+    },
+    {
+      "left": 48,
+      "top": 18,
+      "width": 220,
+      "height": 285
+    },
+    {
+      "left": 44,
+      "top": 17,
+      "width": 221,
+      "height": 286
+    },
+    {
+      "left": 42,
+      "top": 17,
+      "width": 220,
+      "height": 286
+    },
+    {
+      "left": 51,
+      "top": 14,
+      "width": 222,
+      "height": 289
+    },
+    {
+      "left": 48,
+      "top": 14,
+      "width": 222,
+      "height": 288
+    },
+    {
+      "left": 44,
+      "top": 11,
+      "width": 221,
+      "height": 292
+    },
+    {
+      "left": 43,
+      "top": 12,
+      "width": 220,
+      "height": 290
+    },
+    {
+      "left": 52,
+      "top": 9,
+      "width": 221,
+      "height": 294
+    },
+    {
+      "left": 50,
+      "top": 10,
+      "width": 220,
+      "height": 293
+    },
+    {
+      "left": 46,
+      "top": 11,
+      "width": 220,
+      "height": 292
+    },
+    {
+      "left": 45,
+      "top": 11,
+      "width": 218,
+      "height": 291
+    }
+  ]
+}

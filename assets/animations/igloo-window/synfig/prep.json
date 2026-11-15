@@ -1,0 +1,11 @@
+{
+  "source": "source/pip-window-interaction-16.png",
+  "baseline": "assets/characters/penguin/igloo-penguin-front-gaze.png",
+  "frames": 16,
+  "canvas": [
+    500,
+    500
+  ],
+  "groundY": 460,
+  "scale": 1.18
+}

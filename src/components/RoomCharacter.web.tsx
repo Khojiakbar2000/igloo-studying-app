@@ -10,6 +10,8 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
+import type { PenguinCustomization } from '../character/penguinCustomization';
+import { PipAccessoryLayer } from './PipAccessoryLayer';
 
 const seatedRive = require('../../assets/animations/igloo-penguin-seated.riv');
 const seatedImage = require('../../assets/characters/penguin/poses/seated.png');
@@ -35,19 +37,32 @@ const walkFrames = [
   require('../../assets/animations/igloo-penguin-walk/frame-03.png'),
   require('../../assets/animations/igloo-penguin-walk/frame-04.png'),
 ];
+const customPerformanceFrames = {
+  berry: [
+    require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-00.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-01.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-02.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-03.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-04.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-05.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-06.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-07.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-08.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-09.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-10.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-11.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-12.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/berry/frame-13.png'),
+  ],
+  lilac: [
+    require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-00.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-01.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-02.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-03.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-04.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-05.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-06.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-07.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-08.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-09.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-10.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-11.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-12.png'), require('../../assets/animations/pip-customization/my-igloo/scarves/lilac/frame-13.png'),
+  ],
+};
+const allPerformanceFrames = [...performanceFrames, ...customPerformanceFrames.berry, ...customPerformanceFrames.lilac];
 
 export function RoomCharacter({
+  idleEyes,
   walking = false,
   performanceFrame = null,
   celebrate = false,
   onPerformanceReady,
+  customization,
   reducedMotion = false,
   style,
 }: {
+  idleEyes?: React.ReactNode;
   walking?: boolean;
   performanceFrame?: number | null;
   celebrate?: boolean;
   onPerformanceReady?: () => void;
+  customization?: PenguinCustomization;
   reducedMotion?: boolean;
   style?: StyleProp<ViewStyle>;
 }) {
@@ -119,7 +134,7 @@ export function RoomCharacter({
   }, [rive]);
 
   useEffect(() => {
-    if (onPerformanceReady && preloadedFrameCount === performanceFrames.length) onPerformanceReady();
+    if (onPerformanceReady && preloadedFrameCount === allPerformanceFrames.length) onPerformanceReady();
   }, [onPerformanceReady, preloadedFrameCount]);
 
   const markPreloaded = (index: number) => {
@@ -143,17 +158,22 @@ export function RoomCharacter({
   return (
     <View accessibilityLabel={performanceDescription} style={[styles.character, style]}>
       {onPerformanceReady && <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={styles.preload}>
-        {performanceFrames.map((frame, index) => <Image key={index} source={frame} resizeMode="contain" style={styles.preloadImage} onLoad={() => markPreloaded(index)} onError={() => markPreloaded(index)} />)}
+        {allPerformanceFrames.map((frame, index) => <Image key={index} source={frame} resizeMode="contain" style={styles.preloadImage} onLoad={() => markPreloaded(index)} onError={() => markPreloaded(index)} />)}
       </View>}
       <Animated.View style={[StyleSheet.absoluteFill, idleStyle]}>
-        {performanceFrame !== null && !reducedMotion
-          ? <Image source={performanceFrames[performanceFrame]} resizeMode="contain" style={styles.fill as StyleProp<ImageStyle>} />
+      {performanceFrame !== null && !reducedMotion
+          ? <Image source={customization?.scarf && customization.scarf !== 'teal' ? customPerformanceFrames[customization.scarf][performanceFrame] : performanceFrames[performanceFrame]} resizeMode="contain" style={styles.fill as StyleProp<ImageStyle>} />
+          : reducedMotion && customization
+          ? <Image source={customization.scarf === 'teal' ? performanceFrames[13] : customPerformanceFrames[customization.scarf][13]} resizeMode="contain" style={styles.fill as StyleProp<ImageStyle>} />
           : walking && !reducedMotion
           ? <Image source={walkFrames[walkFrame]} resizeMode="contain" style={styles.fill as StyleProp<ImageStyle>} />
           : reducedMotion || !riveReady
             ? <Image source={seatedImage} resizeMode="contain" style={styles.fill as StyleProp<ImageStyle>} />
             : source && <RiveComponent style={{ display: 'block', width: '100%', height: '100%' }} />}
       </Animated.View>
+      {idleEyes}
+      {(performanceFrame === 13 || reducedMotion) && customization?.glasses && <PipAccessoryLayer kind="glasses" style="my-igloo" />}
+      {(performanceFrame === 13 || reducedMotion) && customization?.headphones && <PipAccessoryLayer kind="headphones" style="my-igloo" />}
     </View>
   );
 }

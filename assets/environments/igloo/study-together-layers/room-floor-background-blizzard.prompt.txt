@@ -1,0 +1,7 @@
+Use case: precise-object-edit
+Asset type: full background plate for the existing Study Together room, 1024x1536 portrait
+Input image: The existing room-floor-background-clean.png is the exact edit target. It contains no sofa or penguins.
+Primary request: Change the small arched window on the back wall into a much larger, wide rounded panoramic picture window that occupies most of the back wall. Preserve the room's original camera angle, portrait framing, soft 3D knitted-wool cartoon illustration style, sculpted yarn / ice-wall texture, hanging amber lantern, shelves at the far left and right edges, braided floor rug and existing floor layout.
+Outside: A severe but beautiful polar blizzard in deep cold blue and icy white, layered snow-covered pine trees, distant jagged icy mountains, heavy snowfall, and a few wind-swept snow veils.
+Interior: Preserve the warm honey-amber lantern glow and rosy warmth on nearby ice textures. Give the window sculpted frosty ice trim, subtle edge crystals, lightly fogged corners, and a clear center view.
+Constraints: No penguins, people, sofa, added furniture, text, logos, watermark, extra windows, or split panes. Maintain the clean open lower area and rug. Do not make the whole interior cold.
