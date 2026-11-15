@@ -1,0 +1,14 @@
+{
+  "action": "seated-typing-loop",
+  "character": "Pip",
+  "source": "assets/characters/study-together/layered/typing-body.png",
+  "generator": "ImageGen, reference-guided from approved Study Together character art",
+  "authoring": "Synfig stepped full-character cels",
+  "playback": "Expo cels at 12 fps, using timeline.json exposures",
+  "frameCount": 16,
+  "canvas": { "width": 430, "height": 541 },
+  "loop": true,
+  "coordinateSpace": "fixed body canvas; bottom aligned; uniform common scale",
+  "topology": { "flippers": 2, "feet": "separate approved scene layer", "extraLimbs": false },
+  "status": "pilot for back-left Study Together seat; review before reuse"
+}

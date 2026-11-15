@@ -1,0 +1,13 @@
+{
+  "character": "Pip",
+  "sourceSheet": "synfig/source/pip-window-interaction-16.png",
+  "celFolder": "synfig/cels",
+  "synfigProject": "synfig/pip-window-storm.sif",
+  "timeline": "synfig/timeline.json",
+  "fps": 12,
+  "canvas": [500, 500],
+  "uniqueCels": 16,
+  "timedCelExposures": 22,
+  "renderedFrames": 81,
+  "durationSeconds": 6.75
+}

@@ -1,0 +1,115 @@
+{
+  "sourceSheet": "source/typing-sheet.png",
+  "baseline": "assets/animations/pip-sofa-study/source/baseline.png",
+  "frameCount": 16,
+  "cellGrid": [
+    4,
+    4
+  ],
+  "canvas": [
+    430,
+    541
+  ],
+  "commonScale": 1.4982578397212543,
+  "bottomBaseline": 541,
+  "fps": 12,
+  "loop": true,
+  "generatedCellBounds": [
+    {
+      "left": 0,
+      "top": 0,
+      "width": 287,
+      "height": 305
+    },
+    {
+      "left": 33,
+      "top": 9,
+      "width": 253,
+      "height": 295
+    },
+    {
+      "left": 33,
+      "top": 8,
+      "width": 254,
+      "height": 296
+    },
+    {
+      "left": 33,
+      "top": 0,
+      "width": 280,
+      "height": 303
+    },
+    {
+      "left": 33,
+      "top": 8,
+      "width": 254,
+      "height": 295
+    },
+    {
+      "left": 33,
+      "top": 10,
+      "width": 253,
+      "height": 293
+    },
+    {
+      "left": 33,
+      "top": 10,
+      "width": 254,
+      "height": 293
+    },
+    {
+      "left": 33,
+      "top": 8,
+      "width": 253,
+      "height": 295
+    },
+    {
+      "left": 33,
+      "top": 8,
+      "width": 254,
+      "height": 296
+    },
+    {
+      "left": 33,
+      "top": 8,
+      "width": 253,
+      "height": 296
+    },
+    {
+      "left": 33,
+      "top": 8,
+      "width": 254,
+      "height": 296
+    },
+    {
+      "left": 33,
+      "top": 9,
+      "width": 253,
+      "height": 296
+    },
+    {
+      "left": 0,
+      "top": 8,
+      "width": 287,
+      "height": 305
+    },
+    {
+      "left": 33,
+      "top": 10,
+      "width": 253,
+      "height": 294
+    },
+    {
+      "left": 33,
+      "top": 11,
+      "width": 254,
+      "height": 292
+    },
+    {
+      "left": 33,
+      "top": 8,
+      "width": 280,
+      "height": 305
+    }
+  ]
+}

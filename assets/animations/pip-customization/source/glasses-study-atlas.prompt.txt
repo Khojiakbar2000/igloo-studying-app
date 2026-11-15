@@ -1,0 +1,4 @@
+ImageGen prompt (reference: pip-sofa-study/source/baseline.png):
+Create a transparent-background 4x4 accessory-only atlas of small round warm-brown glasses, each pair centered on the same 430x541 full-character canvas over Pip's eye line. Keep the lenses clear, frame thin, 3/4 facing right, with identical dimensions and position across all cells. No character, background, labels, or grid lines. Match the polished plush IGLOO cartoon style.
+
+The atlas is retained as source art. The runtime Study Together glasses are drawn as a fixed-canvas SVG layer so the clear lenses preserve Pip's eye expression.

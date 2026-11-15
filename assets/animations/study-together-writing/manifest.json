@@ -1,0 +1,18 @@
+{
+  "activity": "writing",
+  "source": "ImageGen composite + cel sheet",
+  "animation": "Synfig",
+  "frameCount": 42,
+  "canvas": [
+    430,
+    541
+  ],
+  "fps": 12,
+  "loop": true,
+  "completeCharacterAndStudyMaterial": true,
+  "includes": [
+    "two flippers",
+    "two orange feet",
+    "study material integrated"
+  ]
+}

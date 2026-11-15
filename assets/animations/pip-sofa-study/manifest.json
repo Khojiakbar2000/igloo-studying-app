@@ -1,0 +1,16 @@
+{
+  "action": "seated-study-typing-loop",
+  "character": "Pip",
+  "asset": "complete Pip + MacBook cutout",
+  "source": "source/baseline.png",
+  "generator": "ImageGen, reference-guided from approved Pip and MacBook assets",
+  "authoring": "Synfig imported-cel timeline",
+  "playback": "single preloaded React Native Image renderer, Expo playback clock",
+  "loop": true,
+  "fps": 12,
+  "sourceCels": 16,
+  "exportedFrames": 42,
+  "canvas": { "width": 430, "height": 541 },
+  "coordinateSpace": "fixed transparent character canvas, common scale, bottom aligned",
+  "topology": { "flippers": 2, "legs": 2, "feet": 2, "laptop": "integrated into character asset" }
+}

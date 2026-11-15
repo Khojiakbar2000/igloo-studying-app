@@ -1,0 +1,115 @@
+{
+  "sourceSheet": "source/reading-sheet.png",
+  "baseline": "assets/animations/study-together-reading/source/baseline.png",
+  "frameCount": 16,
+  "cellGrid": [
+    4,
+    4
+  ],
+  "canvas": [
+    430,
+    541
+  ],
+  "commonScale": 1.5724137931034483,
+  "bottomBaseline": 541,
+  "fps": 12,
+  "loop": true,
+  "generatedCellBounds": [
+    {
+      "left": 51,
+      "top": 15,
+      "width": 221,
+      "height": 285
+    },
+    {
+      "left": 48,
+      "top": 15,
+      "width": 219,
+      "height": 285
+    },
+    {
+      "left": 42,
+      "top": 15,
+      "width": 220,
+      "height": 285
+    },
+    {
+      "left": 37,
+      "top": 16,
+      "width": 221,
+      "height": 284
+    },
+    {
+      "left": 51,
+      "top": 14,
+      "width": 223,
+      "height": 284
+    },
+    {
+      "left": 46,
+      "top": 14,
+      "width": 221,
+      "height": 285
+    },
+    {
+      "left": 42,
+      "top": 11,
+      "width": 220,
+      "height": 288
+    },
+    {
+      "left": 38,
+      "top": 11,
+      "width": 220,
+      "height": 288
+    },
+    {
+      "left": 51,
+      "top": 9,
+      "width": 223,
+      "height": 289
+    },
+    {
+      "left": 48,
+      "top": 9,
+      "width": 218,
+      "height": 289
+    },
+    {
+      "left": 42,
+      "top": 8,
+      "width": 221,
+      "height": 290
+    },
+    {
+      "left": 38,
+      "top": 9,
+      "width": 220,
+      "height": 289
+    },
+    {
+      "left": 51,
+      "top": 9,
+      "width": 223,
+      "height": 289
+    },
+    {
+      "left": 48,
+      "top": 9,
+      "width": 219,
+      "height": 289
+    },
+    {
+      "left": 43,
+      "top": 10,
+      "width": 220,
+      "height": 289
+    },
+    {
+      "left": 38,
+      "top": 10,
+      "width": 220,
+      "height": 289
+    }
+  ]
+}

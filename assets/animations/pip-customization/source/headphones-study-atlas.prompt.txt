@@ -1,0 +1,4 @@
+ImageGen prompt (reference: pip-sofa-study/source/baseline.png):
+Create an accessory-only transparent 4x4 atlas of cozy cream and pale-pink over-ear headphones, three-quarter view, centered on each 430x541 character canvas, with the same position and scale in every cell. Match the plush 3D cartoon style. No character, no background, no grid lines or text.
+
+The generated atlas is retained as source art. Its front-facing pair did not fit the character's head anatomy as a direct overlay, so runtime headphones use an aligned vector layer that wraps around Pip's head.

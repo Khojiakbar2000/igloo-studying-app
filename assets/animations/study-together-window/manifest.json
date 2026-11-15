@@ -1,0 +1,15 @@
+{
+  "asset": "window-blizzard.json",
+  "source": "LottieFiles Creator",
+  "composition": { "width": 1024, "height": 1536, "fps": 24, "durationSeconds": 6 },
+  "elements": {
+    "snowflakes": 14,
+    "windGustStreaks": 2,
+    "rendering": "transparent vector overlay, confined to the panoramic window"
+  },
+  "performance": {
+    "loop": true,
+    "respectsReducedMotion": true,
+    "noRasterParticleSheets": true
+  }
+}
