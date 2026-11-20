@@ -1,0 +1,9 @@
+{
+  "App.tsx": true,
+  "src/home/winter/WinterEnvironment.tsx": true,
+  "src/home/winter/WinterLottie.tsx": true,
+  "src/home/winter/WinterLottie.types.ts": true,
+  "src/home/winter/WinterLottie.web.tsx": true,
+  "src/home/winter/WinterWorld.tsx": true,
+  "src/home/winter/construction.ts": true
+}

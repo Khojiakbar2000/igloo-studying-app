@@ -1,6 +1,8 @@
-import type { ImageSourcePropType } from 'react-native';
+import { GIFT_ART } from '../gifts/art';
+import { REWARDS } from '../gifts/catalog';
 export const HOME_FOUNDATION = require('../../assets/home-customization/foundation.jpg');
-export const HOME_ART: Record<string, ImageSourcePropType> = {
+export const HOME_ART: Record<string, number> = {
+ ...Object.fromEntries(REWARDS.filter(item => item.slot).map(item => [item.id, GIFT_ART[item.art]])),
  'bed-blue': require('../../assets/home-customization/items/bed-blue.png'),
  'bed-moss': require('../../assets/home-customization/items/bed-moss.png'),
  'bed-berry': require('../../assets/home-customization/items/bed-berry.png'),

@@ -1,0 +1,3 @@
+file '../previews/wave.mp4'
+file '../previews/dance.mp4'
+file '../previews/celebrate.mp4'

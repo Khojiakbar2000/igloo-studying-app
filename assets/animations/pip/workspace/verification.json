@@ -1,0 +1,191 @@
+{
+  "sameStartPoses": true,
+  "animations": [
+    {
+      "name": "wave",
+      "duration": 3,
+      "fps": 30,
+      "width": 720,
+      "height": 720,
+      "images": 5,
+      "identity": [
+        {
+          "layer": "rightFoot",
+          "samePixels": true,
+          "anchor": [
+            58,
+            20
+          ]
+        },
+        {
+          "layer": "leftFoot",
+          "samePixels": true,
+          "anchor": [
+            58,
+            20
+          ]
+        },
+        {
+          "layer": "rightArm",
+          "samePixels": true,
+          "anchor": [
+            26,
+            28
+          ]
+        },
+        {
+          "layer": "leftArm",
+          "samePixels": true,
+          "anchor": [
+            80,
+            28
+          ]
+        },
+        {
+          "layer": "body",
+          "samePixels": true,
+          "anchor": [
+            172.5,
+            235.5
+          ]
+        }
+      ],
+      "compatibleStartEnd": true,
+      "creatorLayers": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        4
+      ],
+      "unsupportedFeatures": [],
+      "jsonBytes": 378702,
+      "videoBytes": 132306
+    },
+    {
+      "name": "dance",
+      "duration": 6,
+      "fps": 30,
+      "width": 720,
+      "height": 720,
+      "images": 5,
+      "identity": [
+        {
+          "layer": "rightFoot",
+          "samePixels": true,
+          "anchor": [
+            58,
+            20
+          ]
+        },
+        {
+          "layer": "leftFoot",
+          "samePixels": true,
+          "anchor": [
+            58,
+            20
+          ]
+        },
+        {
+          "layer": "rightArm",
+          "samePixels": true,
+          "anchor": [
+            26,
+            28
+          ]
+        },
+        {
+          "layer": "leftArm",
+          "samePixels": true,
+          "anchor": [
+            80,
+            28
+          ]
+        },
+        {
+          "layer": "body",
+          "samePixels": true,
+          "anchor": [
+            172.5,
+            235.5
+          ]
+        }
+      ],
+      "compatibleStartEnd": true,
+      "creatorLayers": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        4
+      ],
+      "unsupportedFeatures": [],
+      "jsonBytes": 383249,
+      "videoBytes": 367216
+    },
+    {
+      "name": "celebrate",
+      "duration": 3,
+      "fps": 30,
+      "width": 720,
+      "height": 720,
+      "images": 5,
+      "identity": [
+        {
+          "layer": "rightFoot",
+          "samePixels": true,
+          "anchor": [
+            58,
+            20
+          ]
+        },
+        {
+          "layer": "leftFoot",
+          "samePixels": true,
+          "anchor": [
+            58,
+            20
+          ]
+        },
+        {
+          "layer": "rightArm",
+          "samePixels": true,
+          "anchor": [
+            26,
+            28
+          ]
+        },
+        {
+          "layer": "leftArm",
+          "samePixels": true,
+          "anchor": [
+            80,
+            28
+          ]
+        },
+        {
+          "layer": "body",
+          "samePixels": true,
+          "anchor": [
+            172.5,
+            235.5
+          ]
+        }
+      ],
+      "compatibleStartEnd": true,
+      "creatorLayers": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        4
+      ],
+      "unsupportedFeatures": [],
+      "jsonBytes": 381360,
+      "videoBytes": 157461
+    }
+  ]
+}

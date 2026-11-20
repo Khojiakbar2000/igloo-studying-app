@@ -1,0 +1,14 @@
+{
+  "action": "yawn",
+  "canvas": {
+    "width": 430,
+    "height": 541
+  },
+  "frameCount": 4,
+  "sourceSheet": "source/pose-sheet.png",
+  "scale": 0.6869009584664537,
+  "anchorX": 305.625,
+  "anchorY": 626.75,
+  "baselineY": 527,
+  "durationMs": 2200
+}

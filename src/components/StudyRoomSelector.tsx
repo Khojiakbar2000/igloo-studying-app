@@ -1,88 +1,260 @@
+import { useFurniture } from '../furniture/Furniture';
+import { boxStyle, roomBox } from '../furniture/catalog';
+import { IGLOO_FURNITURE } from '../study-together/iglooLayout';
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Image, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
 import { STUDY_ROOMS, studyRoom, type StudyRoomId } from '../scenes/studyRooms';
-import { STUDY_WINDOW_SCENES, type StudyWindowScene } from '../scenes/studyWindowScenes';
-import { StudyWindowSelector } from './StudyWindowSelector';
+import { STUDY_WINDOW_SCENES, WINDOW_ART, type StudyWindowScene } from '../scenes/studyWindowScenes';
+import LottiePlayer from './StudyTogetherLottiePlayer';
+import Slider from '@react-native-community/slider';
+import { LIGHTING_LABELS, LIGHTING_PRESETS, LIGHT_SOURCES, type LightSource, type LightingPreset, type RoomLighting } from '../home/lighting';
 
-type Props = { selected: StudyRoomId; pending: StudyRoomId | null; error: string | null; onChange: (id: StudyRoomId) => void; windowScene: StudyWindowScene; onWindowChange: (id: StudyWindowScene) => void };
+const closedArt = require('../../assets/environments/study-together/scenery-console-closed.png');
+const lidArt = require('../../assets/environments/study-together/scenery-console-lid.png');
+const glassArt = require('../../assets/environments/study-together/scenery-console-glass.png');
+const baseArt = require('../../assets/environments/study-together/scenery-console-base.png');
+const ignition = require('../../assets/animations/study-together-rooms/console-ignition.json');
+const blizzardThumbnail = studyRoom('igloo').thumbnail;
+type Mode = 'rooms' | 'window' | 'lighting';
 
-export function StudyRoomSelector({ selected, pending, error, onChange, windowScene, onWindowChange }: Props) {
-  const [windows, setWindows] = useState(true);
-  const rail = useRef<ScrollView>(null);
-  const rotation = useRef(new Animated.Value(0)).current;
-  const turns = useRef(0);
+type Props = {
+  expanded?: boolean;
+  windowRequest?: number;
+  onExpandedChange?: (open: boolean) => void;
+  selected: StudyRoomId;
+  pending: StudyRoomId | null;
+  error: string | null;
+  onChange: (id: StudyRoomId) => void;
+  windowScene: StudyWindowScene;
+  onWindowChange: (id: StudyWindowScene) => void;
+  lighting: RoomLighting;
+  onLightingPreset: (preset: LightingPreset) => void;
+  onLightingBrightness: (value: number) => void;
+  onToggleLight: (source: LightSource) => void;
+};
+
+export function StudyRoomSelector({ selected, pending, error, onChange, windowScene, onWindowChange, lighting, onLightingPreset, onLightingBrightness, onToggleLight, expanded, onExpandedChange, windowRequest = 0 }: Props) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = expanded ?? internalOpen;
+  const setOpen = onExpandedChange ?? setInternalOpen;
+  const [mode, setMode] = useState<Mode>('window');
+  const [pulse, setPulse] = useState(0);
+  const [showPresets, setShowPresets] = useState(false);
+  const travel = useRef(new Animated.Value(0)).current;
   const reducedMotion = useReducedMotion();
-  const showWindows = windows;
-  const currentWindow = STUDY_WINDOW_SCENES.find((scene) => scene.id === windowScene)!;
-  const cycle = () => {
-    turns.current += 60;
-    Animated.timing(rotation, { toValue: turns.current, duration: reducedMotion ? 0 : 160, useNativeDriver: true }).start();
-    if (showWindows) {
-      const index = selected === 'igloo' || pending === 'igloo' ? STUDY_WINDOW_SCENES.findIndex((scene) => scene.id === windowScene) : -1;
-      onWindowChange(STUDY_WINDOW_SCENES[(index + 1) % STUDY_WINDOW_SCENES.length].id);
-    } else {
-      const index = STUDY_ROOMS.findIndex((room) => room.id === (pending ?? selected));
-      onChange(STUDY_ROOMS[(index + 1) % STUDY_ROOMS.length].id);
-    }
-  };
+  const choices = mode === 'rooms'
+    ? STUDY_ROOMS.map(room => ({
+      id: room.id, label: room.label, thumbnail: room.thumbnail,
+      active: selected === room.id,
+      choose: () => onChange(room.id),
+    }))
+    : STUDY_WINDOW_SCENES.map(scene => ({
+      id: scene.id,
+      label: scene.id === 'zombies' ? 'Zombies' : scene.id === 'spaceship' ? 'Cosmic Ship' : scene.label,
+      thumbnail: scene.id === 'blizzard' ? blizzardThumbnail : WINDOW_ART[scene.id],
+      active: selected === 'igloo' && windowScene === scene.id,
+      choose: () => onWindowChange(scene.id),
+    }));
+  const tunedId = mode === 'rooms' ? pending ?? selected : windowScene;
+  const tunedIndex = Math.max(0, choices.findIndex(choice => choice.id === tunedId));
+  const tuned = choices[tunedIndex];
+
   useEffect(() => {
-    rail.current?.scrollTo({ x: Math.max(0, STUDY_ROOMS.findIndex((room) => room.id === selected) * 89 - 89), animated: false });
-  }, [selected, showWindows]);
-  return <View style={styles.panel} accessibilityLabel="Interactive scenery machine">
-    <View pointerEvents="none" style={StyleSheet.absoluteFill}><Image accessible={false} source={require('../../assets/environments/study-together/scenery-machine.png')} resizeMode="stretch" fadeDuration={0} style={styles.machineArt} /></View>
-    <View style={styles.header}>
-      <View style={styles.modes}>
-        <Pressable accessibilityRole="button" accessibilityLabel="Show room choices" accessibilityState={{ selected: !windows }} onPress={() => setWindows(false)} style={({ pressed }) => [styles.mode, !windows && styles.modeActive, pressed && styles.pressed]}><Text style={[styles.modeText, !windows && styles.modeTextActive]}>Rooms</Text></Pressable>
-        <Pressable accessibilityRole="button" accessibilityLabel="Show window scenarios" accessibilityState={{ selected: windows }} onPress={() => setWindows(true)} style={({ pressed }) => [styles.mode, windows && styles.modeActive, pressed && styles.pressed]}><Text style={[styles.modeText, windows && styles.modeTextActive]}>Window</Text></Pressable>
-      </View>
-      <View style={styles.display}>
-        <View style={styles.displayHeader}><View style={[styles.led, { backgroundColor: pending || (windows && selected !== 'igloo') ? '#E5B85E' : '#A0D5AC' }]} /><Text style={styles.displayTitle}>{windows ? 'IGLOO WINDOW' : '10 STUDY SPOTS'}</Text></View>
-        <Text accessibilityLiveRegion="polite" numberOfLines={1} style={styles.displayText}>{pending ? 'Opening…' : windows ? selected === 'igloo' ? currentWindow.label : 'Choose a view' : studyRoom(selected).label}</Text>
-      </View>
-      <Pressable accessibilityRole="button" accessibilityLabel={windows ? 'Turn dial to next window scenario' : 'Turn dial to next study room'} accessibilityHint={windows ? 'Opens the next panoramic window preset in Snowy Igloo' : 'Opens the next illustrated study room'} onPress={cycle} style={({ pressed }) => [styles.dial, pressed && styles.pressed]}>
-        <Animated.View style={[styles.dialFace, { transform: [{ rotate: rotation.interpolate({ inputRange: [0, 360], outputRange: ['0deg', '360deg'] }) }] }]}><View style={styles.dialNeedle} /></Animated.View>
+    const animation = Animated.timing(travel, {
+      toValue: open ? 1 : 0,
+      duration: reducedMotion ? 0 : 240,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: Platform.OS !== 'web',
+    });
+    animation.start();
+    return () => animation.stop();
+  }, [open, reducedMotion, travel]);
+
+  const signal = () => setPulse(value => value + 1);
+  const toggle = () => {
+    setOpen(!open);
+    setShowPresets(false);
+    if (!open) signal();
+  };
+  const consoleBounds = selected === 'igloo' ? IGLOO_FURNITURE.console : roomBox(59, 81, 31, 12);
+  const openConsole = useFurniture('scenery', toggle, { state: open ? 'Open' : 'Closed', bounds: consoleBounds });
+  useEffect(() => {
+    if (windowRequest > 0) {
+      setMode('window');
+      setShowPresets(false);
+      signal();
+    }
+  }, [windowRequest]);
+  const changeMode = (next: Mode) => {
+    if (mode === next) return;
+    setMode(next);
+    setShowPresets(false);
+    signal();
+  };
+  const tune = (index: number) => {
+    choices[(index + choices.length) % choices.length].choose();
+    setShowPresets(false);
+    signal();
+  };
+
+  return <>
+    <Animated.View
+      pointerEvents={open ? 'none' : 'auto'}
+      accessibilityElementsHidden={open}
+      aria-hidden={open}
+      importantForAccessibility={open ? 'no-hide-descendants' : 'auto'}
+      style={[styles.rest, selected === 'igloo' && [styles.iglooRest, boxStyle(consoleBounds)],
+        { opacity: travel.interpolate({ inputRange: [0, 0.45, 1], outputRange: [1, 0, 0] }) }]}
+    >
+      <Pressable accessibilityRole="button" accessibilityLabel="Open scenery console" accessibilityState={{ expanded: false }}
+        disabled={open} onPress={openConsole} style={({ pressed }) => [styles.fill, pressed && styles.pressed]}>
+        <Image source={closedArt} resizeMode="contain" fadeDuration={0} style={styles.fill} />
       </Pressable>
-    </View>
-    <View style={styles.controls}>
-    {showWindows ? <StudyWindowSelector embedded active={selected === 'igloo'} selected={windowScene} onChange={onWindowChange} /> : <ScrollView ref={rail} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.rail}>
-      {STUDY_ROOMS.map((room) => <Pressable key={room.id} accessibilityRole="button" accessibilityLabel={`Choose ${room.label}`} accessibilityState={{ selected: selected === room.id, busy: pending === room.id }} onPress={() => onChange(room.id)} style={({ pressed }) => [styles.card, selected === room.id && styles.selected, pressed && { opacity: 0.75 }]}>
-        <Image source={room.thumbnail} resizeMode="cover" fadeDuration={0} style={styles.thumbnail} />
-        <Text numberOfLines={2} style={[styles.name, selected === room.id && styles.selectedText]}>{pending === room.id ? 'Opening…' : room.label}</Text>
-        {selected === room.id && <View style={styles.check}><Text style={styles.checkText}>✓</Text></View>}
-      </Pressable>)}
-    </ScrollView>}
-    </View>
-    {error && <Text accessibilityRole="alert" style={styles.error}>{error}</Text>}
-  </View>;
+    </Animated.View>
+
+    <Animated.View
+      pointerEvents={open ? 'auto' : 'none'}
+      accessibilityElementsHidden={!open}
+      aria-hidden={!open}
+      importantForAccessibility={!open ? 'no-hide-descendants' : 'auto'}
+      style={[styles.machine, { opacity: travel, transform: [
+        { translateY: travel.interpolate({ inputRange: [0, 1], outputRange: [15, 0] }) },
+        { scaleX: travel.interpolate({ inputRange: [0, 1], outputRange: [0.72, 1] }) },
+        { scaleY: travel.interpolate({ inputRange: [0, 1], outputRange: [0.77, 1] }) },
+      ] }]}
+    >
+      <Animated.View pointerEvents="none" style={[styles.lid, {
+        transform: [
+          { translateY: travel.interpolate({ inputRange: [0, 1], outputRange: [9, 0] }) },
+          { scaleY: travel.interpolate({ inputRange: [0, 1], outputRange: [0.35, 1] }) },
+        ],
+      }]}>
+        <Image source={lidArt} resizeMode="stretch" fadeDuration={0} style={styles.fill} />
+      </Animated.View>
+      <Image source={glassArt} resizeMode="stretch" fadeDuration={0} style={styles.glassArt} />
+      <View pointerEvents="none" style={styles.faceplate} />
+      <Image source={baseArt} resizeMode="stretch" fadeDuration={0} style={styles.base} />
+      {open && <>
+        <View style={styles.controls}>
+          <View style={styles.rocker}>
+            {(['rooms', 'window', 'lighting'] as const).map(item => <Pressable
+              key={item} accessibilityRole="button" accessibilityState={{ selected: mode === item }}
+              onPress={() => changeMode(item)} style={styles.modeTarget}>
+              {({ pressed }) => <View style={[styles.brass, styles.modeKey, mode === item && styles.modeActive, pressed && styles.pressed]}>
+                <View style={[styles.indicator, mode === item && styles.indicatorOn]} />
+                <Text style={styles.brassText}>{item === 'rooms' ? 'Rooms' : item === 'window' ? 'Window' : 'Light'}</Text>
+              </View>}
+            </Pressable>)}
+          </View>
+          <Pressable accessibilityRole="button" accessibilityLabel="Fold shut scenery console" onPress={toggle} style={styles.latchTarget}>
+            {({ pressed }) => <View style={[styles.brass, styles.latch, pressed && styles.pressed]}>
+              <Text style={styles.brassText}>Fold shut</Text>
+            </View>}
+          </Pressable>
+        </View>
+
+        <View style={styles.instrument}>
+          {mode === 'lighting' ? <ScrollView style={styles.lightScreen} contentContainerStyle={styles.lightContent} nestedScrollEnabled showsVerticalScrollIndicator>
+            <Text style={styles.lightHeading}>ROOM ATMOSPHERE</Text>
+            <View style={styles.lightPresets}>{LIGHTING_PRESETS.map(preset => <Pressable key={preset} accessibilityRole="button" accessibilityState={{ selected: lighting.preset === preset }} onPress={() => onLightingPreset(preset)} style={[styles.lightPreset, lighting.preset === preset && styles.lightPresetActive]}><Text numberOfLines={1} style={styles.lightPresetText}>{LIGHTING_LABELS[preset]}</Text></Pressable>)}</View>
+            <Text style={styles.lightHeading}>BRIGHTNESS · {Math.round(lighting.brightness * 100)}%</Text>
+            <Slider accessibilityLabel="Room brightness" minimumValue={.2} maximumValue={1} value={lighting.brightness} onValueChange={onLightingBrightness} minimumTrackTintColor="#F8D38C" maximumTrackTintColor="#76523A" thumbTintColor="#FFE7AC" style={styles.brightnessSlider} />
+            <Text style={styles.lightHeading}>ROOM LIGHTS</Text>
+            <View style={styles.lightPresets}>{LIGHT_SOURCES.map((source: LightSource) => <Pressable key={source} accessibilityRole="switch" accessibilityLabel={`Toggle ${source}`} accessibilityState={{ checked: lighting.sources[source] }} onPress={() => onToggleLight(source)} style={[styles.lightPreset, lighting.sources[source] && styles.lightPresetActive]}><Text style={styles.lightPresetText}>{source === 'lamp' ? 'Study lamp' : source === 'lantern' ? 'Lantern' : source === 'fairy' ? 'Fairy lights' : 'Fireplace'}</Text></Pressable>)}</View>
+          </ScrollView> : <>
+          <View style={styles.screen}>
+            {showPresets ? <ScrollView style={styles.screenContent} nestedScrollEnabled showsVerticalScrollIndicator>
+              {choices.map((choice, index) => <Pressable key={choice.id}
+                accessibilityRole="button" accessibilityState={{ selected: choice.active }}
+                onPress={() => tune(index)}
+                style={({ pressed }) => [styles.preset, choice.active && styles.presetActive, pressed && styles.pressed]}>
+                <Text style={styles.presetText}>{choice.label}</Text>
+              </Pressable>)}
+            </ScrollView> : <View style={styles.screenContent}>
+              <Image accessible={false} source={tuned.thumbnail} resizeMode="cover" fadeDuration={0} style={styles.preview} />
+            </View>}
+            <View style={styles.tuner}>
+              <TuningButton direction={-1} onPress={() => tune(tunedIndex - 1)} />
+              <Pressable accessibilityRole="button" accessibilityLabel={showPresets ? 'Return to scenery preview' : `Choose scenery, current preset: ${tuned.label}`}
+                accessibilityState={{ expanded: showPresets, busy: pending !== null }}
+                onPress={() => setShowPresets(value => !value)}
+                style={({ pressed }) => [styles.nameplate, pressed && styles.nameplatePressed]}>
+                <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75} style={styles.name}>{showPresets ? 'Back to preview' : tuned.label}</Text>
+                <Text style={styles.chevron}>{showPresets ? '⌃' : '⌄'}</Text>
+              </Pressable>
+              <TuningButton direction={1} onPress={() => tune(tunedIndex + 1)} />
+            </View>
+          </View>
+          </>}
+        </View>
+        {error && <Text accessibilityRole="alert" style={styles.error}>{error}</Text>}
+      </>}
+      {open && pulse > 0 && !reducedMotion && <View pointerEvents="none" style={styles.flare}>
+        <LottiePlayer key={pulse} source={ignition} autoPlay style={StyleSheet.absoluteFill} />
+      </View>}
+    </Animated.View>
+  </>;
+}
+
+function TuningButton({ direction, onPress }: { direction: -1 | 1; onPress: () => void }) {
+  return <Pressable accessibilityRole="button" accessibilityLabel={direction === -1 ? 'Previous scenery' : 'Next scenery'}
+    onPress={onPress} style={styles.tuningTarget}>
+    {({ pressed }) => <View style={[styles.brass, styles.tuningKey, pressed && styles.pressed]}>
+      <Text style={styles.tuningGlyph}>{direction === -1 ? '‹' : '›'}</Text>
+    </View>}
+  </Pressable>;
 }
 
 const styles = StyleSheet.create({
-  panel: { position: 'absolute', zIndex: 10, left: '3%', right: '3%', bottom: '0.8%', paddingTop: 8, paddingBottom: 14, paddingHorizontal: 18 },
-  machineArt: { position: 'absolute', left: 0, top: 0, width: '100%', height: '100%' },
-  header: { flexDirection: 'row', alignItems: 'center', marginBottom: 4, gap: 7, height: 44 },
-  modes: { flexDirection: 'row', gap: 3 },
-  mode: { minWidth: 44, minHeight: 44, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center', borderRadius: 8, borderWidth: 1, borderBottomWidth: 3, borderColor: '#8B7856', backgroundColor: '#294D49' },
-  modeActive: { backgroundColor: '#E8C48A', borderColor: '#AC8652' },
-  modeText: { color: '#E5D7B9', fontSize: 9, fontWeight: '800' },
-  modeTextActive: { color: '#493A2A' },
-  display: { flex: 1, minWidth: 0, paddingHorizontal: 6, paddingVertical: 5, backgroundColor: '#122E2D', borderRadius: 6, borderWidth: 1, borderColor: '#8B805B' },
-  displayHeader: { flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 3 },
-  displayTitle: { color: '#A7BEA4', fontSize: 6, letterSpacing: 0.5, fontWeight: '700' },
-  displayText: { color: '#E3EFCB', fontSize: 9, fontWeight: '700' },
-  led: { width: 4, height: 4, borderRadius: 3 },
-  dial: { width: 44, height: 44, padding: 4, backgroundColor: '#B88E55', borderRadius: 24, borderWidth: 2, borderColor: '#E9CE94', borderBottomColor: '#8D673F' },
-  dialFace: { flex: 1, borderRadius: 20, backgroundColor: '#2F5149', borderWidth: 2, borderColor: '#687D5E', alignItems: 'center' },
-  dialNeedle: { width: 3, height: 10, marginTop: 2, backgroundColor: '#F0D492', borderRadius: 2 },
-  controls: { minHeight: 94, justifyContent: 'center' },
-  pressed: { opacity: 0.9, transform: [{ translateY: 1 }] },
-  rail: { gap: 7, paddingBottom: 1 },
-  card: { width: 82, padding: 3, borderRadius: 10, borderWidth: 2, borderColor: '#E1CDB2', backgroundColor: '#FFF7E9' },
-  selected: { borderColor: '#456F72', backgroundColor: '#456F72' },
-  thumbnail: { width: 72, height: 46, borderRadius: 5 },
-  name: { color: '#614C38', fontSize: 9, lineHeight: 12, fontWeight: '700', height: 26, paddingTop: 3, textAlign: 'center' },
-  selectedText: { color: '#F5FCF8' },
-  check: { position: 'absolute', top: 5, right: 5, width: 15, height: 15, backgroundColor: '#456F72', borderRadius: 9, alignItems: 'center', justifyContent: 'center' },
-  checkText: { color: '#F5FCF8', fontSize: 10, fontWeight: '800' },
-  error: { color: '#944C3D', fontSize: 10, marginTop: 6 },
+  fill: { ...StyleSheet.absoluteFillObject, width: '100%', height: '100%' },
+  rest: { position: 'absolute', zIndex: 10, right: '10%', bottom: '7%', width: '31%', aspectRatio: 718 / 430, minHeight: 44 },
+  iglooRest: { right: undefined, bottom: undefined, minHeight: 0 },
+  machine: { position: 'absolute', zIndex: 11, left: '1%', right: '1%', bottom: '1%', height: '35%' },
+  lid: { position: 'absolute', left: 0, width: '100%', top: 0, height: '21%' },
+  glassArt: { position: 'absolute', left: 0, width: '100%', top: '21%', height: '65%' },
+  base: { position: 'absolute', left: 0, width: '100%', bottom: 0, height: '14%' },
+  faceplate: { position: 'absolute', left: '9%', right: '9%', top: '21%', bottom: '13%', borderRadius: 14,
+    backgroundColor: '#53301f', borderColor: '#c68a46', borderWidth: 2 },
+  controls: { position: 'absolute', top: 0, left: '13%', right: '13%', height: '24%',
+    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', zIndex: 2 },
+  rocker: { flexDirection: 'row', gap: 1 },
+  modeTarget: { minWidth: 50, minHeight: 44, justifyContent: 'center' },
+  latchTarget: { minWidth: 57, minHeight: 44, justifyContent: 'center' },
+  brass: { backgroundColor: '#d7a563', borderColor: '#f4ce91', borderBottomColor: '#81502c',
+    borderWidth: 1, borderBottomWidth: 3, alignItems: 'center', justifyContent: 'center' },
+  modeKey: { height: 23, borderRadius: 5, flexDirection: 'row', gap: 4 },
+  modeActive: { backgroundColor: '#ffe1a1' },
+  indicator: { width: 5, height: 5, borderRadius: 3, backgroundColor: '#99613b' },
+  indicatorOn: { backgroundColor: '#b7551c', borderWidth: 1, borderColor: '#f18426' },
+  brassText: { color: '#442610', fontSize: 10, fontWeight: '900' },
+  latch: { height: 23, borderRadius: 5, paddingHorizontal: 4, backgroundColor: '#c69456' },
+  instrument: { position: 'absolute', left: '13%', right: '13%', top: '23%', bottom: '15%' },
+  tuningTarget: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
+  tuningKey: { width: 27, height: 27, borderRadius: 14 },
+  tuningGlyph: { color: '#5b3218', fontSize: 23, lineHeight: 23, fontWeight: '800' },
+  screen: { flex: 1, minWidth: 0, alignSelf: 'stretch', borderRadius: 8, overflow: 'hidden', backgroundColor: '#3c241c',
+    borderColor: '#dbaf71', borderWidth: 2 },
+  screenContent: { flex: 1, minHeight: 0, backgroundColor: '#3c241c' },
+  preview: { width: '100%', height: '100%' },
+  tuner: { flexDirection: 'row', backgroundColor: '#b57d48', borderTopColor: '#a87139', borderTopWidth: 1 },
+  nameplate: { flex: 1, minHeight: 44, flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
+    paddingHorizontal: 5, gap: 5, backgroundColor: '#f2d49a' },
+  nameplatePressed: { backgroundColor: '#d5a969' },
+  name: { color: '#4e2b16', fontSize: 11, fontWeight: '900', flexShrink: 1 },
+  chevron: { color: '#75441f', fontSize: 13 },
+  preset: { minHeight: 44, justifyContent: 'center', paddingHorizontal: 8, borderBottomWidth: 1, borderBottomColor: '#916443' },
+  presetActive: { backgroundColor: '#754929' },
+  presetText: { color: '#ffe8bd', fontSize: 11, fontWeight: '700' },
+  pressed: { opacity: 0.86, transform: [{ translateY: 2 }] },
+  flare: { position: 'absolute', width: 32, height: 32, left: '50%', bottom: '9%', transform: [{ translateX: -16 }, { translateY: 16 }] },
+  error: { position: 'absolute', bottom: 1, left: '13%', right: '13%', color: '#ffe3a7', fontSize: 9, textAlign: 'center' },
+  lightScreen: { flex: 1, borderRadius: 8, backgroundColor: '#543a2c', borderColor: '#dbaf71', borderWidth: 2 },
+  lightContent: { padding: 8, gap: 5 },
+  lightHeading: { color: '#ffdfa4', fontSize: 9, fontWeight: '900', letterSpacing: .4, marginTop: 2 },
+  lightPresets: { flexDirection: 'row', flexWrap: 'wrap', gap: 4 },
+  lightPreset: { minHeight: 32, minWidth: '30%', maxWidth: '49%', justifyContent: 'center', paddingHorizontal: 7, paddingVertical: 4, borderRadius: 8, backgroundColor: '#79553b', borderWidth: 1, borderColor: '#b88753' },
+  lightPresetActive: { backgroundColor: '#d7a563', borderColor: '#ffe3aa' },
+  lightPresetText: { color: '#ffedcc', fontSize: 9, fontWeight: '800', textAlign: 'center' },
+  brightnessSlider: { height: 27, marginHorizontal: 4 },
 });

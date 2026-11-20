@@ -1,0 +1,89 @@
+{
+  "artboard": [
+    720,
+    720
+  ],
+  "controller": [
+    360,
+    610
+  ],
+  "rig": {
+    "body": {
+      "file": "body",
+      "position": [
+        0,
+        -280
+      ],
+      "anchor": [
+        152,
+        250
+      ]
+    },
+    "leftArm": {
+      "file": "flipper-left",
+      "position": [
+        -96,
+        -210
+      ],
+      "anchor": [
+        63.75,
+        16
+      ]
+    },
+    "rightArm": {
+      "file": "flipper-right",
+      "position": [
+        110,
+        -210
+      ],
+      "anchor": [
+        21.5,
+        16
+      ]
+    },
+    "leftFoot": {
+      "file": "foot-left",
+      "position": [
+        -45,
+        -32
+      ],
+      "anchor": [
+        24.5,
+        9
+      ]
+    },
+    "rightFoot": {
+      "file": "foot-right",
+      "position": [
+        55,
+        -32
+      ],
+      "anchor": [
+        24,
+        9
+      ]
+    }
+  },
+  "dimensions": {
+    "body": {
+      "width": 304,
+      "height": 500
+    },
+    "flipper-left": {
+      "width": 85,
+      "height": 96
+    },
+    "flipper-right": {
+      "width": 86,
+      "height": 96
+    },
+    "foot-left": {
+      "width": 49,
+      "height": 45
+    },
+    "foot-right": {
+      "width": 48,
+      "height": 45
+    }
+  }
+}

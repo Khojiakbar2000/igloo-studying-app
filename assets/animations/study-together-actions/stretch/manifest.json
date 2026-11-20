@@ -1,0 +1,14 @@
+{
+  "action": "stretch",
+  "canvas": {
+    "width": 430,
+    "height": 541
+  },
+  "frameCount": 4,
+  "sourceSheet": "source/pose-sheet.png",
+  "scale": 0.6847133757961783,
+  "anchorX": 291.125,
+  "anchorY": 640.5,
+  "baselineY": 527,
+  "durationMs": 2200
+}

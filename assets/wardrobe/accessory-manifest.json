@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "character": "pip-storybook-seated",
+  "assets": [
+    { "id": "crown", "file": "items/crown-body-layer-v2.png", "slot": "head", "frame": "body", "canvas": [304, 500], "anchor": [152, 250], "layer": "front", "order": 60, "alphaBoundsMax": [304, 500] },
+    { "id": "glasses", "file": "items/glasses-body-layer-v2.png", "slot": "face", "frame": "body", "canvas": [304, 500], "anchor": [152, 250], "layer": "front", "order": 50, "alphaBoundsMax": [220, 90], "transparentLensCenters": [[111, 184], [203, 184]], "transparentLensRadius": 26 },
+    { "id": "knight-helmet", "file": "items/knight-helmet-body-layer-v2.png", "slot": "head", "frame": "body", "canvas": [304, 500], "anchor": [152, 250], "layer": "front", "order": 60, "alphaBoundsMax": [220, 170] },
+    { "id": "knight-chest", "file": "items/knight-chest-body-layer-v2.png", "slot": "body", "frame": "body", "canvas": [304, 500], "anchor": [152, 250], "layer": "front", "order": 10, "alphaBoundsMax": [180, 120] },
+    { "id": "knight-left-flipper", "file": "items/knight-left-arm-layer-v2.png", "slot": "leftFlipper", "frame": "leftArm", "canvas": [85, 96], "anchor": [63.75, 16], "layer": "front", "order": 20, "alphaBoundsMax": [50, 56] },
+    { "id": "knight-right-flipper", "file": "items/knight-right-arm-layer-v2.png", "slot": "rightFlipper", "frame": "rightArm", "canvas": [86, 96], "anchor": [21.5, 16], "layer": "front", "order": 20, "alphaBoundsMax": [50, 56] },
+    { "id": "knight-left-boot", "file": "items/knight-left-foot-layer-v2.png", "slot": "leftFoot", "frame": "leftFoot", "canvas": [49, 45], "anchor": [24.5, 9], "layer": "front", "order": 20, "alphaBoundsMax": [50, 45] },
+    { "id": "knight-right-boot", "file": "items/knight-right-foot-layer-v2.png", "slot": "rightFoot", "frame": "rightFoot", "canvas": [48, 45], "anchor": [24, 9], "layer": "front", "order": 20, "alphaBoundsMax": [50, 45] }
+  ]
+}

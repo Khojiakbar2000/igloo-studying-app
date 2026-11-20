@@ -1,0 +1,84 @@
+{
+  "reference": "assets/animations/pip-sofa-study/source/baseline.png",
+  "source": "assets/experiments/pip-lottie-dance",
+  "characterHashes": {
+    "body": "5bae916635e13051069107b6ccae00675540ba771444d9e513bcae74e27e5152",
+    "flipper-left": "30f0c097275d483e360cc057301de3922a9d2c322641551da14e5749417ec721",
+    "flipper-right": "80388081dc61606d47b1a02ad5c9a5ff816eac26413f1b4271548ea6a49d2a45",
+    "foot-left": "a8e319dd594707a99f1933a409a6a24b7e7bdb4e3e0ae844e38b4582b9630813",
+    "foot-right": "54a843d71fe21d5ce1cac4d9d659461ed67fadff3a2ec8213930e7f9e32b20e2"
+  },
+  "pivots": [
+    {
+      "layer": "rightFoot",
+      "asset": "image_0",
+      "anchor": [
+        58,
+        20
+      ],
+      "position": [
+        102.99998,
+        -50.00004
+      ]
+    },
+    {
+      "layer": "leftFoot",
+      "asset": "image_1",
+      "anchor": [
+        58,
+        20
+      ],
+      "position": [
+        -20.000008,
+        -50.00004
+      ]
+    },
+    {
+      "layer": "rightArm",
+      "asset": "image_2",
+      "anchor": [
+        26,
+        28
+      ],
+      "position": [
+        129.99997,
+        -219.99998
+      ]
+    },
+    {
+      "layer": "leftArm",
+      "asset": "image_3",
+      "anchor": [
+        80,
+        28
+      ],
+      "position": [
+        -80.00003,
+        -220.99997
+      ]
+    },
+    {
+      "layer": "body",
+      "asset": "image_4",
+      "anchor": [
+        172.5,
+        235.5
+      ],
+      "position": [
+        -0.000015258789,
+        -275.00003
+      ]
+    }
+  ],
+  "framing": {
+    "width": 720,
+    "height": 720,
+    "fps": 30,
+    "background": "#f0f2f0"
+  },
+  "animations": {
+    "wave": 3,
+    "dance": 6,
+    "celebrate": 3
+  }
+}

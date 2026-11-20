@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import Svg, { Defs, Ellipse, LinearGradient, Path, Stop } from 'react-native-svg';
 
 /** Fixed-canvas accessory cel; it is rendered beside the same indexed Synfig drawing. */
@@ -7,7 +7,7 @@ export function PipAccessoryLayer({ kind, style = 'study' }: { kind: 'glasses' |
   const myIgloo = style === 'my-igloo';
   const viewBox = myIgloo ? '0 0 480 560' : '0 0 430 541';
   if (kind === 'glasses') {
-    if (myIgloo) return <Image pointerEvents="none" source={require('../../assets/animations/pip-customization/my-igloo/glasses/aligned.png')} resizeMode="stretch" style={StyleSheet.absoluteFill} />;
+    if (myIgloo) return <View pointerEvents="none" style={StyleSheet.absoluteFill}><Image source={require('../../assets/animations/pip-customization/my-igloo/glasses/aligned.png')} resizeMode="stretch" style={StyleSheet.absoluteFill} /></View>;
     return <Svg pointerEvents="none" viewBox={viewBox} style={StyleSheet.absoluteFill}>
       <Defs>
         <LinearGradient id="frame" x1="0" y1="0" x2="0" y2="1"><Stop offset="0" stopColor="#825535" /><Stop offset="0.45" stopColor="#4D3025" /><Stop offset="1" stopColor="#2B201C" /></LinearGradient>

@@ -1,0 +1,32 @@
+{
+  "source": "Approved storybook Pip body; scarf pixels separated using a local color-region mask.",
+  "dimensions": {
+    "width": 304,
+    "height": 500
+  },
+  "variants": [
+    {
+      "id": "teal",
+      "label": "Original Teal",
+      "file": "scarves/scarf-teal.png",
+      "sizeBytes": 53567
+    },
+    {
+      "id": "red",
+      "label": "Cozy Red",
+      "file": "scarves/scarf-red.png",
+      "sizeBytes": 45206
+    },
+    {
+      "id": "lavender",
+      "label": "Soft Lavender",
+      "file": "scarves/scarf-lavender.png",
+      "sizeBytes": 44958
+    }
+  ],
+  "body": {
+    "file": "character/body-no-scarf.png",
+    "sizeBytes": 239029
+  },
+  "method": "Scarf variants preserve the same extracted knitting texture, silhouette, alpha and outline. Red and lavender are hue recolors of the existing approved scarf; no character pixels are regenerated."
+}

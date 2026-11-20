@@ -1,0 +1,200 @@
+{
+  "initial": {
+    "ready": true,
+    "state": {
+      "action": "pip-cold",
+      "scarf": "teal",
+      "frame": 50.49600000000009,
+      "playerId": "__lottie_element_1",
+      "hasScarfLayer": true,
+      "layers": 14,
+      "preloadedColors": 3
+    },
+    "status": "Playing Shivering. Scarf swaps update the image in place; the frame counter continues.",
+    "debug": {
+      "scarfIndices": [
+        6,
+        8
+      ],
+      "matchesApplied": true,
+      "appliedHead": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATAAAAH0CAYAAAC6gnFRAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAgAElEQVR4nOzdd2ybeZon+Jm9uTvM3h5mB7gDdoELe7OHw2Gup6vKSTnnnHOyZFu2bMmyFa2ccxYpURQpURIpUlTO0dlytiTn7KrqLr"
+    },
+    "errors": []
+  },
+  "actionsTested": [
+    "pip-cold",
+    "blink",
+    "wave",
+    "hopeful-wave",
+    "scarf-tuck",
+    "curious-look",
+    "celebrate"
+  ],
+  "variants": [
+    {
+      "action": "pip-cold",
+      "color": "teal",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "pip-cold",
+      "color": "red",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "pip-cold",
+      "color": "lavender",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "blink",
+      "color": "teal",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "blink",
+      "color": "red",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "blink",
+      "color": "lavender",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "wave",
+      "color": "teal",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "wave",
+      "color": "red",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "wave",
+      "color": "lavender",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "hopeful-wave",
+      "color": "teal",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "hopeful-wave",
+      "color": "red",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "hopeful-wave",
+      "color": "lavender",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "scarf-tuck",
+      "color": "teal",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "scarf-tuck",
+      "color": "red",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "scarf-tuck",
+      "color": "lavender",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "curious-look",
+      "color": "teal",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "curious-look",
+      "color": "red",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "curious-look",
+      "color": "lavender",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "celebrate",
+      "color": "teal",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "celebrate",
+      "color": "red",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    },
+    {
+      "action": "celebrate",
+      "color": "lavender",
+      "frameContinued": true,
+      "samePlayer": true,
+      "imageRefsUpdated": true
+    }
+  ],
+  "allPassed": true,
+  "wave": {
+    "state": {
+      "action": "celebrate",
+      "scarf": "lavender",
+      "frame": 61.497,
+      "playerId": "__lottie_element_189",
+      "hasScarfLayer": true,
+      "layers": 12,
+      "preloadedColors": 3
+    },
+    "status": "Lavender scarf applied. Playback continued at frame 59; the Lottie player was not remounted."
+  },
+  "screenshots": [
+    "previews/wave-teal.png",
+    "previews/wave-red.png",
+    "previews/wave-lavender.png"
+  ]
+}

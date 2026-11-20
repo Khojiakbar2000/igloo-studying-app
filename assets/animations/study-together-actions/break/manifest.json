@@ -1,0 +1,14 @@
+{
+  "action": "break",
+  "canvas": {
+    "width": 430,
+    "height": 541
+  },
+  "frameCount": 4,
+  "sourceSheet": "source/pose-sheet.png",
+  "scale": 0.6991869918699187,
+  "anchorX": 307.375,
+  "anchorY": 612.25,
+  "baselineY": 527,
+  "durationMs": 1600
+}

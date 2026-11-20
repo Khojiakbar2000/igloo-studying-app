@@ -1,0 +1,22 @@
+{
+  "body": {
+    "width": 304,
+    "height": 500
+  },
+  "flipper-left": {
+    "width": 85,
+    "height": 96
+  },
+  "flipper-right": {
+    "width": 86,
+    "height": 96
+  },
+  "foot-left": {
+    "width": 49,
+    "height": 45
+  },
+  "foot-right": {
+    "width": 48,
+    "height": 45
+  }
+}

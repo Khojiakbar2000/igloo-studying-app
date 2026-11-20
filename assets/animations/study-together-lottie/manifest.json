@@ -1,0 +1,213 @@
+{
+  "runtime": "lottie-react-native",
+  "sourceCels": "Existing approved Synfig exports; preserved as source backups",
+  "actionArtwork": "ImageGen complete-character 4x4 sheets, one column per study activity",
+  "artboard": {
+    "width": 430,
+    "height": 541
+  },
+  "animations": [
+    {
+      "actor": "typing",
+      "fps": 30,
+      "segments": {
+        "study": [
+          0,
+          107
+        ],
+        "actions": {
+          "drink": [
+            107,
+            171
+          ],
+          "bored": [
+            171,
+            223
+          ],
+          "stretch": [
+            223,
+            279
+          ],
+          "wave": [
+            279,
+            339
+          ],
+          "break": [
+            339,
+            403
+          ],
+          "yawn": [
+            403,
+            463
+          ],
+          "celebrate": [
+            463,
+            523
+          ]
+        },
+        "wake": [
+          523,
+          559
+        ],
+        "reactions": {
+          "excited": [
+            559,
+            586
+          ],
+          "blink": [
+            586,
+            596
+          ],
+          "look": [
+            596,
+            627
+          ],
+          "smile": [
+            627,
+            656
+          ]
+        }
+      },
+      "compositionFrames": 656,
+      "assets": 46
+    },
+    {
+      "actor": "reading",
+      "fps": 30,
+      "segments": {
+        "study": [
+          0,
+          126
+        ],
+        "actions": {
+          "drink": [
+            126,
+            190
+          ],
+          "bored": [
+            190,
+            242
+          ],
+          "stretch": [
+            242,
+            298
+          ],
+          "wave": [
+            298,
+            358
+          ],
+          "break": [
+            358,
+            422
+          ],
+          "yawn": [
+            422,
+            482
+          ],
+          "celebrate": [
+            482,
+            542
+          ]
+        },
+        "wake": [
+          542,
+          578
+        ]
+      },
+      "compositionFrames": 578,
+      "assets": 44
+    },
+    {
+      "actor": "writing",
+      "fps": 30,
+      "segments": {
+        "study": [
+          0,
+          107
+        ],
+        "actions": {
+          "drink": [
+            107,
+            171
+          ],
+          "bored": [
+            171,
+            223
+          ],
+          "stretch": [
+            223,
+            279
+          ],
+          "wave": [
+            279,
+            339
+          ],
+          "break": [
+            339,
+            403
+          ],
+          "yawn": [
+            403,
+            463
+          ],
+          "celebrate": [
+            463,
+            523
+          ]
+        },
+        "wake": [
+          523,
+          559
+        ]
+      },
+      "compositionFrames": 559,
+      "assets": 44
+    },
+    {
+      "actor": "headphones",
+      "fps": 30,
+      "segments": {
+        "study": [
+          0,
+          142
+        ],
+        "actions": {
+          "drink": [
+            142,
+            206
+          ],
+          "bored": [
+            206,
+            258
+          ],
+          "stretch": [
+            258,
+            314
+          ],
+          "wave": [
+            314,
+            374
+          ],
+          "break": [
+            374,
+            438
+          ],
+          "yawn": [
+            438,
+            498
+          ],
+          "celebrate": [
+            498,
+            558
+          ]
+        },
+        "wake": [
+          558,
+          594
+        ]
+      },
+      "compositionFrames": 594,
+      "assets": 44
+    }
+  ]
+}

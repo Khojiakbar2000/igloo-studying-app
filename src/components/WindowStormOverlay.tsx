@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import LottieView from 'lottie-react-native';
+import { StyleSheet, View } from 'react-native';
+import LottiePlayer from './StudyTogetherLottiePlayer';
 import { useReducedMotion } from 'react-native-reanimated';
 
 const storm = require('../../assets/animations/study-together-window/window-blizzard.json');
@@ -8,13 +8,8 @@ const storm = require('../../assets/animations/study-together-window/window-bliz
 export function WindowStormOverlay() {
   const reducedMotion = useReducedMotion();
   if (reducedMotion) return null;
-  return <LottieView
-    pointerEvents="none"
-    source={storm}
-    autoPlay
-    loop
-    resizeMode="contain"
-    style={StyleSheet.absoluteFill}
-  />;
+  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <LottiePlayer source={storm} autoPlay loop style={StyleSheet.absoluteFill} />
+  </View>;
 }
 

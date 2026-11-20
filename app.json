@@ -7,7 +7,12 @@
     "web": { "bundler": "metro" },
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-    "ios": { "supportsTablet": false, "bundleIdentifier": "co.igloo.pomodoro" },
-    "android": { "package": "co.igloo.pomodoro", "adaptiveIcon": { "backgroundColor": "#DBF0FA" } }
+    "plugins": [["expo-audio", { "microphonePermission": false, "recordAudioAndroid": false }], "expo-notifications"],
+    "ios": { "supportsTablet": false, "bundleIdentifier": "co.igloo.pomodoro", "infoPlist": { "UIBackgroundModes": ["audio"] } },
+    "android": {
+      "package": "co.igloo.pomodoro",
+      "adaptiveIcon": { "backgroundColor": "#DBF0FA" },
+      "blockedPermissions": ["android.permission.RECORD_AUDIO"]
+    }
   }
 }
