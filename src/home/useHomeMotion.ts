@@ -3,7 +3,7 @@ import { AccessibilityInfo, AppState, Platform } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
 
 /** Pause the ambient clocks offscreen, in the background, or when motion is reduced. */
-export function useHomeMotion(enabled = true) {
+export function useHomeMotionState(enabled = true) {
  const systemReduced = useReducedMotion();
  const [reduced,setReduced]=useState(systemReduced);
  const [foreground,setForeground]=useState(AppState.currentState !== 'background' && AppState.currentState !== 'inactive');
@@ -16,5 +16,10 @@ export function useHomeMotion(enabled = true) {
   if(Platform.OS==='web'&&typeof document!=='undefined')document.addEventListener('visibilitychange',visibility);
   return()=>{motion.remove();app.remove();if(Platform.OS==='web'&&typeof document!=='undefined')document.removeEventListener('visibilitychange',visibility);};
  },[]);
- return enabled && !reduced && foreground && visible;
+ const active = enabled && foreground && visible;
+ return { motion: active && !reduced, reduced, active };
+}
+
+export function useHomeMotion(enabled = true) {
+ return useHomeMotionState(enabled).motion;
 }

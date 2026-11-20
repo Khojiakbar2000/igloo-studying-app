@@ -1,0 +1,6609 @@
+{
+  "artboard": {
+    "name": "Pip",
+    "width": 1176,
+    "height": 1337
+  },
+  "backgroundColor": "#EEF3F7",
+  "groups": [
+    {
+      "id": "PipRoot",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "BodyRig",
+      "parent": "PipRoot",
+      "x": 560,
+      "y": 980
+    },
+    {
+      "id": "ScarfBack",
+      "parent": "BodyRig",
+      "x": -355,
+      "y": -145
+    },
+    {
+      "id": "FootLeft",
+      "parent": "BodyRig",
+      "x": -45,
+      "y": 255
+    },
+    {
+      "id": "FootRight",
+      "parent": "BodyRig",
+      "x": 235,
+      "y": 255
+    },
+    {
+      "id": "BodyArt",
+      "parent": "BodyRig",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "Belly",
+      "parent": "BodyRig",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "FlipperLeft",
+      "parent": "BodyRig",
+      "x": -171,
+      "y": -123
+    },
+    {
+      "id": "FlipperRight",
+      "parent": "BodyRig",
+      "x": 161,
+      "y": -130
+    },
+    {
+      "id": "HeadPivot",
+      "parent": "BodyRig",
+      "x": -52,
+      "y": -296
+    },
+    {
+      "id": "HeadShell",
+      "parent": "HeadPivot",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "FeatherTufts",
+      "parent": "HeadPivot",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "Face",
+      "parent": "HeadPivot",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "Eyes",
+      "parent": "HeadPivot",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "EyeNear",
+      "parent": "Eyes",
+      "x": -15,
+      "y": -162
+    },
+    {
+      "id": "EyeFar",
+      "parent": "Eyes",
+      "x": 208,
+      "y": -145
+    },
+    {
+      "id": "Eyelids",
+      "parent": "HeadPivot",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "Beak",
+      "parent": "HeadPivot",
+      "x": 172,
+      "y": -84
+    },
+    {
+      "id": "Scarf",
+      "parent": "BodyRig",
+      "x": -110,
+      "y": -246
+    },
+    {
+      "id": "ScarfBand",
+      "parent": "Scarf",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "ScarfTail",
+      "parent": "Scarf",
+      "x": 5,
+      "y": 140
+    },
+    {
+      "id": "Laptop",
+      "parent": "PipRoot",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "Keyboard",
+      "parent": "Laptop",
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "shapes": [
+    {
+      "id": "ScarfBack_01",
+      "type": "polygon",
+      "x": -23.5,
+      "y": 16,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 21.5,
+              "y": -171,
+              "cubic": {
+                "rotation": 143.901716032892,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 59.40538696111658
+              }
+            },
+            {
+              "x": -64.5,
+              "y": 8,
+              "cubic": {
+                "rotation": 97.76516601842535,
+                "inRotation": -83.58121326976122,
+                "inDistance": 80.50465825031493,
+                "outDistance": 66.61080993352356
+              }
+            },
+            {
+              "x": -134.5,
+              "y": 151,
+              "cubic": {
+                "rotation": 64.79887635452492,
+                "inRotation": -44.060809054264425,
+                "inDistance": 43.139309220245984,
+                "outDistance": 37.57658845611187
+              }
+            },
+            {
+              "x": -49.5,
+              "y": 171,
+              "cubic": {
+                "rotation": -38.95590783775889,
+                "inRotation": 141.581944655178,
+                "inDistance": 37.013511046643494,
+                "outDistance": 60.4400529450463
+              }
+            },
+            {
+              "x": 50.5,
+              "y": -13,
+              "cubic": {
+                "rotation": -76.53479190518829,
+                "inRotation": 102.93805631718645,
+                "inDistance": 75.92759709091287,
+                "outDistance": 73.00684899377592
+              }
+            },
+            {
+              "x": 134.5,
+              "y": -142,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 149.93141717813754,
+                "inDistance": 43.9089968002003,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#8bb6b3",
+              "position": 0
+            },
+            {
+              "color": "#689495",
+              "position": 0.45
+            },
+            {
+              "color": "#41696f",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -134.5,
+            "y": -171
+          },
+          "end": {
+            "x": 94.14999999999999,
+            "y": 171
+          }
+        }
+      },
+      "stroke": {
+        "color": "#293848",
+        "thickness": 13,
+        "join": "round"
+      },
+      "parent": "ScarfBack"
+    },
+    {
+      "id": "ScarfBack_02",
+      "type": "polygon",
+      "x": -73,
+      "y": 27,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 53,
+              "y": -144,
+              "cubic": {
+                "rotation": 117.2767633831137,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 72.00694410957877
+              }
+            },
+            {
+              "x": 7,
+              "y": 41,
+              "cubic": {
+                "rotation": 106.92751306414705,
+                "inRotation": -72.09555249375181,
+                "inDistance": 68.30812543175226,
+                "outDistance": 48.08326112068523
+              }
+            },
+            {
+              "x": -53,
+              "y": 144,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -42.13759477388826,
+                "inDistance": 28.31960451701259,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.34,
+      "stroke": {
+        "color": "#c2d6cc",
+        "thickness": 10,
+        "cap": "round"
+      },
+      "parent": "ScarfBack"
+    },
+    {
+      "id": "ScarfBack_03",
+      "type": "polygon",
+      "x": -34.5,
+      "y": 36.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 54.5,
+              "y": -132.5,
+              "cubic": {
+                "rotation": 114.50740523012973,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 74.73285756613352
+              }
+            },
+            {
+              "x": -0.5,
+              "y": 45.5,
+              "cubic": {
+                "rotation": 110.409882833804,
+                "inRotation": -68.96248897457819,
+                "inDistance": 55.71355310873648,
+                "outDistance": 45.880278987817846
+              }
+            },
+            {
+              "x": -54.5,
+              "y": 132.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -39.472459848343824,
+                "inDistance": 22.022715545545243,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.5,
+      "stroke": {
+        "color": "#375b65",
+        "thickness": 8,
+        "cap": "round"
+      },
+      "parent": "ScarfBack"
+    },
+    {
+      "id": "FootLeft_01",
+      "type": "polygon",
+      "x": 0.09709686015776242,
+      "y": 7.70365296723412,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -94.27086384364884,
+              "y": -40.69196788813565,
+              "cubic": {
+                "rotation": -58.19442890773479,
+                "inRotation": 119.56859202882744,
+                "inDistance": 16.401219466856805,
+                "outDistance": 31.24099870362656
+              }
+            },
+            {
+              "x": 20.61628849239446,
+              "y": -63.90709718165431,
+              "cubic": {
+                "rotation": 20.73979529168831,
+                "inRotation": -159.07357416474647,
+                "inDistance": 43.41658669218493,
+                "outDistance": 35.355339059327356
+              }
+            },
+            {
+              "x": 103.3117273584918,
+              "y": 14.34547076818103,
+              "cubic": {
+                "rotation": 70.11134196037213,
+                "inRotation": -112.93141717813756,
+                "inDistance": 31.04834939252023,
+                "outDistance": 19.416487838947617
+              }
+            },
+            {
+              "x": 75.50393962362216,
+              "y": 53.59756550581801,
+              "cubic": {
+                "rotation": 175.4946389272535,
+                "inRotation": -10.602562202499591,
+                "inDistance": 22.022715545545374,
+                "outDistance": 43.74801582802222
+              }
+            },
+            {
+              "x": -55.33456218920401,
+              "y": 63.90709718165408,
+              "cubic": {
+                "rotation": -179.25383773744468,
+                "inRotation": -4.505361072746782,
+                "inDistance": 43.74801582802235,
+                "outDistance": 26.305892875931857
+              }
+            },
+            {
+              "x": -103.31172735849191,
+              "y": 17.12898667771333,
+              "cubic": {
+                "rotation": -92.55966796899443,
+                "inRotation": 90.74616226255509,
+                "inDistance": 26.30589287593197,
+                "outDistance": 21.095023109728842
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#ffc04e",
+              "position": 0
+            },
+            {
+              "color": "#f59625",
+              "position": 0.55
+            },
+            {
+              "color": "#d76d17",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -103.31172735849185,
+            "y": -63.907097181654194
+          },
+          "end": {
+            "x": -61.987036415095105,
+            "y": 63.907097181654194
+          }
+        }
+      },
+      "stroke": {
+        "color": "#462f2a",
+        "thickness": 12,
+        "join": "round"
+      },
+      "parent": "FootLeft"
+    },
+    {
+      "id": "FootLeft_02",
+      "type": "polygon",
+      "x": -25.43844619706806,
+      "y": -10.362044645596598,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -49.79711074139425,
+              "y": -17.209241542653672,
+              "cubic": {
+                "rotation": 59.75097634278784,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 23.769728648009686
+              }
+            },
+            {
+              "x": -37.052076743922726,
+              "y": 37.54990480207425,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -77.44395478041646,
+                "inDistance": 17.088007490635164,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -14.966442510436991,
+              "y": -35.23213117181626,
+              "cubic": {
+                "rotation": 59.833654177917396,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 29.154759474226346
+              }
+            },
+            {
+              "x": 1.273975373057283,
+              "y": 37.212667309299604,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -83.3791260113685,
+                "inDistance": 23.769728648009533,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 23.081263404622973,
+              "y": -37.549904802074025,
+              "cubic": {
+                "rotation": 49.38075692880735,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 29.681644159311602
+              }
+            },
+            {
+              "x": 49.79711074139425,
+              "y": 30.393185362256418,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -84.60750224624896,
+                "inDistance": 21.587033144923026,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.62,
+      "stroke": {
+        "color": "#ce6d1d",
+        "thickness": 8,
+        "cap": "round"
+      },
+      "parent": "FootLeft"
+    },
+    {
+      "id": "FootLeft_03",
+      "type": "polygon",
+      "x": -33.566683319825756,
+      "y": -36.45694718527761,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -49.435788705587925,
+              "y": 3.9182642912985557,
+              "cubic": {
+                "rotation": -36.17859010995894,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 31.764760348537074
+              }
+            },
+            {
+              "x": 49.435788705587925,
+              "y": -3.9182642912985557,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -156.73626830562262,
+                "inDistance": 32.756678708318354,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.65,
+      "stroke": {
+        "color": "#ffe3a1",
+        "thickness": 7,
+        "cap": "round"
+      },
+      "parent": "FootLeft"
+    },
+    {
+      "id": "FootRight_01",
+      "type": "polygon",
+      "x": -1.3688323975961794,
+      "y": 15.35734704194283,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -78.8136799838876,
+              "y": -66.2804867822872,
+              "cubic": {
+                "rotation": -40.16913932790739,
+                "inRotation": 133.56859202882777,
+                "inDistance": 16.40121946685681,
+                "outDistance": 34.65544690232675
+              }
+            },
+            {
+              "x": 37.28255912170562,
+              "y": -61.11683831081746,
+              "cubic": {
+                "rotation": 35.35775354279151,
+                "inRotation": -144.94539590092307,
+                "inDistance": 41.18252056394798,
+                "outDistance": 36.71511950137174
+              }
+            },
+            {
+              "x": 100.89320964257138,
+              "y": 32.04262250939291,
+              "cubic": {
+                "rotation": 81.96375653207353,
+                "inRotation": -98.47029410006591,
+                "inDistance": 32.015621187164236,
+                "outDistance": 20.615528128088243
+              }
+            },
+            {
+              "x": 63.10738359587924,
+              "y": 66.2804867822872,
+              "cubic": {
+                "rotation": -171.74542503406482,
+                "inRotation": 1.030259271889425,
+                "inDistance": 23.086792761230484,
+                "outDistance": 42.36612902884677
+              }
+            },
+            {
+              "x": -62.67425479955318,
+              "y": 48.03276247045369,
+              "cubic": {
+                "rotation": -165.5730309785192,
+                "inRotation": 8.254574965935197,
+                "inDistance": 42.36612902884677,
+                "outDistance": 27.294688127912313
+              }
+            },
+            {
+              "x": -100.89320964257149,
+              "y": -9.27615036784141,
+              "cubic": {
+                "rotation": -79.236358309274,
+                "inRotation": 100.23639479905897,
+                "inDistance": 27.073972741361658,
+                "outDistance": 24.08318915758467
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#ffc04e",
+              "position": 0
+            },
+            {
+              "color": "#f59625",
+              "position": 0.55
+            },
+            {
+              "color": "#d76d17",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -100.89320964257143,
+            "y": -66.2804867822872
+          },
+          "end": {
+            "x": -60.53592578554286,
+            "y": 66.2804867822872
+          }
+        }
+      },
+      "stroke": {
+        "color": "#462f2a",
+        "thickness": 12,
+        "join": "round"
+      },
+      "parent": "FootRight"
+    },
+    {
+      "id": "FootRight_02",
+      "type": "polygon",
+      "x": -21.416062999863243,
+      "y": -9.480318973609883,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -41.701282971132855,
+              "y": -31.60513326497062,
+              "cubic": {
+                "rotation": 73.3801350519598,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 25.999999999999975
+              }
+            },
+            {
+              "x": -43.209438216886156,
+              "y": 30.577866564200576,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -64.55996517182342,
+                "inDistance": 18.02775637731992,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -3.545102820027296,
+              "y": -40.66636476385497,
+              "cubic": {
+                "rotation": 74.19859051364831,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 32.31098884280711
+              }
+            },
+            {
+              "x": -4.632141224058728,
+              "y": 36.64352042237556,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -69.37912601136799,
+                "inDistance": 23.769728648009202,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 32.93862191879589,
+              "y": -33.81524593684708,
+              "cubic": {
+                "rotation": 65.34933204294735,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 31.384709652950605
+              }
+            },
+            {
+              "x": 43.209438216886156,
+              "y": 40.666364763854745,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -70.6075022462491,
+                "inDistance": 21.58703314492274,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.62,
+      "stroke": {
+        "color": "#ce6d1d",
+        "thickness": 8,
+        "cap": "round"
+      },
+      "parent": "FootRight"
+    },
+    {
+      "id": "FootRight_03",
+      "type": "polygon",
+      "x": -18.547536237305053,
+      "y": -39.41750130927471,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -49.90977032629485,
+              "y": -8.262253081121344,
+              "cubic": {
+                "rotation": -20.565051177077827,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 31.30495168499706
+              }
+            },
+            {
+              "x": 49.90977032629485,
+              "y": 8.262253081121344,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -145.11341823308908,
+                "inDistance": 33.120990323358534,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.65,
+      "stroke": {
+        "color": "#ffe3a1",
+        "thickness": 7,
+        "cap": "round"
+      },
+      "parent": "FootRight"
+    },
+    {
+      "id": "BodyArt_01",
+      "type": "polygon",
+      "x": -49.5,
+      "y": -2.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -281.5,
+              "y": -258.5,
+              "cubic": {
+                "rotation": -30.579226872489016,
+                "inRotation": 147.17145820858747,
+                "inDistance": 73.78346698278686,
+                "outDistance": 76.66159403508382
+              }
+            },
+            {
+              "x": -34.5,
+              "y": -267.5,
+              "cubic": {
+                "rotation": 13.473158112731145,
+                "inRotation": -165.65066795705286,
+                "inDistance": 88.76936408468859,
+                "outDistance": 98.71676655968834
+              }
+            },
+            {
+              "x": 238.5,
+              "y": -229.5,
+              "cubic": {
+                "rotation": 16.905158098635653,
+                "inRotation": -163.17859010995917,
+                "inDistance": 89.84430978086482,
+                "outDistance": 106.60675400742676
+              }
+            },
+            {
+              "x": 404.5,
+              "y": 2.5,
+              "cubic": {
+                "rotation": 88.94881925045625,
+                "inRotation": -91.04162667600997,
+                "inDistance": 110.01818031580054,
+                "outDistance": 109.01834707974618
+              }
+            },
+            {
+              "x": 260.5,
+              "y": 243.5,
+              "cubic": {
+                "rotation": 159.7174409110834,
+                "inRotation": -20.62353138332523,
+                "inDistance": 99.36800289831733,
+                "outDistance": 98.08159868191383
+              }
+            },
+            {
+              "x": -37.5,
+              "y": 267.5,
+              "cubic": {
+                "rotation": 172.68098062440959,
+                "inRotation": -7.275004957889255,
+                "inDistance": 94.76286192385707,
+                "outDistance": 109.89540481748999
+              }
+            },
+            {
+              "x": -333.5,
+              "y": 200.5,
+              "cubic": {
+                "rotation": -139.59054318560604,
+                "inRotation": 40.462227492093355,
+                "inDistance": 89.37561188601731,
+                "outDistance": 97.18538984847466
+              }
+            },
+            {
+              "x": -404.5,
+              "y": -61.5,
+              "cubic": {
+                "rotation": -73.44292862436336,
+                "inRotation": 106.64503821467596,
+                "inDistance": 101.24228365658294,
+                "outDistance": 77.20103626247513
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#74778f",
+              "position": 0
+            },
+            {
+              "color": "#4a4e6a",
+              "position": 0.28
+            },
+            {
+              "color": "#30344f",
+              "position": 0.68
+            },
+            {
+              "color": "#22263d",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -291.24,
+            "y": -240.75
+          },
+          "end": {
+            "x": 275.06,
+            "y": 235.39999999999998
+          }
+        }
+      },
+      "stroke": {
+        "color": "#252940",
+        "thickness": 17,
+        "join": "round"
+      },
+      "parent": "BodyArt"
+    },
+    {
+      "id": "BodyArt_02",
+      "type": "polygon",
+      "x": -350.5,
+      "y": -11.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 11.5,
+              "y": -196.5,
+              "cubic": {
+                "rotation": 125.31121343963319,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 88.23264701911646
+              }
+            },
+            {
+              "x": -46.5,
+              "y": 62.5,
+              "cubic": {
+                "rotation": 77.84505830277779,
+                "inRotation": -102.09475707701212,
+                "inDistance": 85.9069263796581,
+                "outDistance": 66.49060083951716
+              }
+            },
+            {
+              "x": 46.5,
+              "y": 196.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -150.39554925399509,
+                "inDistance": 50.60632371551998,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.22,
+      "stroke": {
+        "color": "#9a9ab0",
+        "thickness": 13,
+        "cap": "round"
+      },
+      "parent": "BodyArt"
+    },
+    {
+      "id": "BodyArt_03",
+      "type": "polygon",
+      "x": -323,
+      "y": -67,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 15,
+              "y": -105,
+              "cubic": {
+                "rotation": 114.77514056883193,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 71.58910531638176
+              }
+            },
+            {
+              "x": -15,
+              "y": 105,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -99.90418321297389,
+                "inDistance": 63.953107821277925,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.18,
+      "stroke": {
+        "color": "#c4c0c1",
+        "thickness": 8,
+        "cap": "round"
+      },
+      "parent": "BodyArt"
+    },
+    {
+      "id": "BodyArt_04",
+      "type": "polygon",
+      "x": 265.5,
+      "y": -3.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -11.5,
+              "y": -118.5,
+              "cubic": {
+                "rotation": 51.115503566285405,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 79.6492310069595
+              }
+            },
+            {
+              "x": 11.5,
+              "y": 118.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -64.11297373367331,
+                "inDistance": 75.58438992278764,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.24,
+      "stroke": {
+        "color": "#9494a9",
+        "thickness": 12,
+        "cap": "round"
+      },
+      "parent": "BodyArt"
+    },
+    {
+      "id": "Belly_01",
+      "type": "polygon",
+      "x": -14,
+      "y": 8,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -203,
+              "y": -206,
+              "cubic": {
+                "rotation": -22.750976342787638,
+                "inRotation": 143.8067926944353,
+                "inDistance": 50.80354318352216,
+                "outDistance": 67.23094525588645
+              }
+            },
+            {
+              "x": 0,
+              "y": -198,
+              "cubic": {
+                "rotation": 18.199165053045398,
+                "inRotation": -160.2920211570213,
+                "inDistance": 71.16881339463234,
+                "outDistance": 76.84399781375251
+              }
+            },
+            {
+              "x": 217,
+              "y": -152,
+              "cubic": {
+                "rotation": 35.059426966886974,
+                "inRotation": -144.1623470457217,
+                "inDistance": 66.61080993352354,
+                "outDistance": 69.63476143421474
+              }
+            },
+            {
+              "x": 252,
+              "y": 104,
+              "cubic": {
+                "rotation": 108.97040780848654,
+                "inRotation": -71.17528998175993,
+                "inDistance": 92.97311439335567,
+                "outDistance": 101.5135458941318
+              }
+            },
+            {
+              "x": 57,
+              "y": 206,
+              "cubic": {
+                "rotation": -170.5376777919744,
+                "inRotation": 8.69550287742477,
+                "inDistance": 85.98837130682264,
+                "outDistance": 72.99315036357862
+              }
+            },
+            {
+              "x": -157,
+              "y": 182,
+              "cubic": {
+                "rotation": -154.13364320590549,
+                "inRotation": 26.175289981759935,
+                "inDistance": 65.74191965557439,
+                "outDistance": 73.348483283569
+              }
+            },
+            {
+              "x": -252,
+              "y": -12,
+              "cubic": {
+                "rotation": -87.39743779750019,
+                "inRotation": 93.14495746469804,
+                "inDistance": 91.13725912051558,
+                "outDistance": 88.09086218218096
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#fff2df",
+              "position": 0
+            },
+            {
+              "color": "#f7dfc9",
+              "position": 0.68
+            },
+            {
+              "color": "#e8c5ae",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -201.60000000000002,
+            "y": -185.4
+          },
+          "end": {
+            "x": 161.27999999999997,
+            "y": 206
+          }
+        }
+      },
+      "stroke": {
+        "color": "#37364a",
+        "thickness": 9
+      },
+      "parent": "Belly"
+    },
+    {
+      "id": "Belly_02",
+      "type": "polygon",
+      "x": -153.5,
+      "y": -167.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -48.5,
+              "y": 12.5,
+              "cubic": {
+                "rotation": -39.8055710922652,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 31.240998703626623
+              }
+            },
+            {
+              "x": 48.5,
+              "y": -12.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -173.48019824834304,
+                "inDistance": 35.22782990761707,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.52,
+      "stroke": {
+        "color": "#fff9ed",
+        "thickness": 14,
+        "cap": "round"
+      },
+      "parent": "Belly"
+    },
+    {
+      "id": "FlipperLeft_01",
+      "type": "polygon",
+      "x": -69.36557972992978,
+      "y": 7.251255159280163,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -70.91389459273648,
+              "y": -106.70812562963226,
+              "cubic": {
+                "rotation": 149.43494882292217,
+                "inRotation": -29.942295489871714,
+                "inDistance": 41.14608122288198,
+                "outDistance": 49.19349550499526
+              }
+            },
+            {
+              "x": -156.63511119852555,
+              "y": 43.63771908721833,
+              "cubic": {
+                "rotation": 95.68878656036682,
+                "inRotation": -84.36246188706909,
+                "inDistance": 53.75872022286241,
+                "outDistance": 41.593268686170916
+              }
+            },
+            {
+              "x": -94.96076364537095,
+              "y": 108.4935195517312,
+              "cubic": {
+                "rotation": -6.161079488226445,
+                "inRotation": 174.63607246839717,
+                "inDistance": 42.011903075199996,
+                "outDistance": 53.03772242470449
+              }
+            },
+            {
+              "x": 98.8110421417336,
+              "y": 26.777625858982105,
+              "cubic": {
+                "rotation": -21.102728969052414,
+                "inRotation": 159.52311860631204,
+                "inDistance": 74.04052944165113,
+                "outDistance": 40.804411526206316
+              }
+            },
+            {
+              "x": 156.63511119852552,
+              "y": -49.44164360560512,
+              "cubic": {
+                "rotation": -104.00797980144148,
+                "inRotation": 75.99202019855872,
+                "inDistance": 34.52535300326419,
+                "outDistance": 34.52535300326422
+              }
+            },
+            {
+              "x": 69.30312423359192,
+              "y": -108.4935195517312,
+              "cubic": {
+                "rotation": -168.9315118405078,
+                "inRotation": 11.376251248826135,
+                "inDistance": 41.484937025383005,
+                "outDistance": 53.85164807134504
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#8b8ca0",
+              "position": 0
+            },
+            {
+              "color": "#595d78",
+              "position": 0.45
+            },
+            {
+              "color": "#333750",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -100.24647116705634,
+            "y": -108.4935195517312
+          },
+          "end": {
+            "x": 112.77728006293837,
+            "y": 108.4935195517312
+          }
+        }
+      },
+      "stroke": {
+        "color": "#252940",
+        "thickness": 14,
+        "join": "round"
+      },
+      "parent": "FlipperLeft"
+    },
+    {
+      "id": "FlipperLeft_02",
+      "type": "polygon",
+      "x": -146.86850773856546,
+      "y": -28.82518750410702,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -34.060341145025376,
+              "y": 50.4989421778763,
+              "cubic": {
+                "rotation": -73.90476880809526,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 43.65775990588617
+              }
+            },
+            {
+              "x": 34.060341145025376,
+              "y": -50.4989421778763,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 145.62087398863173,
+                "inDistance": 33.615472627943184,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.26,
+      "stroke": {
+        "color": "#aaa4ae",
+        "thickness": 9,
+        "cap": "round"
+      },
+      "parent": "FlipperLeft"
+    },
+    {
+      "id": "FlipperLeft_03",
+      "type": "polygon",
+      "x": -87.55197547368107,
+      "y": 16.647870454083204,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -69.49825645720023,
+              "y": 45.458688381972024,
+              "cubic": {
+                "rotation": -20.886791123944075,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 58.52349955359809
+              }
+            },
+            {
+              "x": 69.49825645720017,
+              "y": -45.45868838197191,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 136.7927964950322,
+                "inDistance": 49.040799340956944,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.42,
+      "stroke": {
+        "color": "#292e48",
+        "thickness": 9,
+        "cap": "round"
+      },
+      "parent": "FlipperLeft"
+    },
+    {
+      "id": "FlipperRight_01",
+      "type": "polygon",
+      "x": 32.164986408033656,
+      "y": -13.66696951452252,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -94.3535471832771,
+              "y": -90.14816863355225,
+              "cubic": {
+                "rotation": -21.161566442019243,
+                "inRotation": 157.81888891452283,
+                "inDistance": 41.593268686170745,
+                "outDistance": 63.50590523722981
+              }
+            },
+            {
+              "x": 85.9829820121837,
+              "y": -40.24089223286387,
+              "cubic": {
+                "rotation": 47.27368900609373,
+                "inRotation": -133.2154839917482,
+                "inDistance": 63.031738037277584,
+                "outDistance": 59.46427498927407
+              }
+            },
+            {
+              "x": 107.70147197751112,
+              "y": 90.14816863355225,
+              "cubic": {
+                "rotation": 133.15722658736894,
+                "inRotation": -47.35237935989234,
+                "inDistance": 44.20407221060064,
+                "outDistance": 35.60898762952983
+              }
+            },
+            {
+              "x": -5.254633405714344,
+              "y": 73.23905107367705,
+              "cubic": {
+                "rotation": -146.0735741647463,
+                "inRotation": 33.85566121971641,
+                "inDistance": 55.9464029227975,
+                "outDistance": 43.41658669218476
+              }
+            },
+            {
+              "x": -107.701471977511,
+              "y": 5.050743669516919,
+              "cubic": {
+                "rotation": -138.39292518739254,
+                "inRotation": 42.74680538727468,
+                "inDistance": 39.20459156782535,
+                "outDistance": 43.600458713183194
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#8b8ca0",
+              "position": 0
+            },
+            {
+              "color": "#595d78",
+              "position": 0.45
+            },
+            {
+              "color": "#333750",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -68.92894206560707,
+            "y": -90.14816863355225
+          },
+          "end": {
+            "x": 77.54505982380796,
+            "y": 90.14816863355225
+          }
+        }
+      },
+      "stroke": {
+        "color": "#252940",
+        "thickness": 14,
+        "join": "round"
+      },
+      "parent": "FlipperRight"
+    },
+    {
+      "id": "FlipperRight_02",
+      "type": "polygon",
+      "x": 108.504162692759,
+      "y": -1.0472241132163163,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -14.66316421261422,
+              "y": -38.926104547898376,
+              "cubic": {
+                "rotation": 50.000000000000185,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 35.355339059327434
+              }
+            },
+            {
+              "x": 14.66316421261422,
+              "y": 38.926104547898376,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -82.13759477388825,
+                "inDistance": 20.024984394500773,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.25,
+      "stroke": {
+        "color": "#aaa4ae",
+        "thickness": 9,
+        "cap": "round"
+      },
+      "parent": "FlipperRight"
+    },
+    {
+      "id": "HeadShell_01",
+      "type": "polygon",
+      "x": -15,
+      "y": -245.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -364,
+              "y": 59.5,
+              "cubic": {
+                "rotation": -101.4024942343891,
+                "inRotation": 91.25904520717528,
+                "inDistance": 91.02197536858888,
+                "outDistance": 121.396046064112
+              }
+            },
+            {
+              "x": -310,
+              "y": -262.5,
+              "cubic": {
+                "rotation": -52.88313931672973,
+                "inRotation": 127.30394827798344,
+                "inDistance": 105.6030302595527,
+                "outDistance": 92.80086206496144
+              }
+            },
+            {
+              "x": -53,
+              "y": -363.5,
+              "cubic": {
+                "rotation": -29.39605285494326,
+                "inRotation": -175.6839724801344,
+                "inDistance": 106.3014581273465,
+                "outDistance": 81.49233092751734
+              }
+            },
+            {
+              "x": 160,
+              "y": -306.5,
+              "cubic": {
+                "rotation": 16.80869162620686,
+                "inRotation": -124.26110289909455,
+                "inDistance": 83.48652585896721,
+                "outDistance": 100.28459502834919
+              }
+            },
+            {
+              "x": 364,
+              "y": -82.5,
+              "cubic": {
+                "rotation": 74.87599269168945,
+                "inRotation": -105.25511870305778,
+                "inDistance": 114.01754250991378,
+                "outDistance": 114.9826073804208
+              }
+            },
+            {
+              "x": 319,
+              "y": 241.5,
+              "cubic": {
+                "rotation": 120.1243179983612,
+                "inRotation": -60.113473059575966,
+                "inDistance": 100.34440691936945,
+                "outDistance": 93.64827814754524
+              }
+            },
+            {
+              "x": 66,
+              "y": 363.5,
+              "cubic": {
+                "rotation": -178.2773379283772,
+                "inRotation": 2.027322700500196,
+                "inDistance": 113.07077429645557,
+                "outDistance": 133.06013678032951
+              }
+            },
+            {
+              "x": -281,
+              "y": 283.5,
+              "cubic": {
+                "rotation": -142.38604315126727,
+                "inRotation": 37.69424046668917,
+                "inDistance": 111.21151019566275,
+                "outDistance": 77.00649323271382
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#74778f",
+              "position": 0
+            },
+            {
+              "color": "#4a4e6a",
+              "position": 0.28
+            },
+            {
+              "color": "#30344f",
+              "position": 0.68
+            },
+            {
+              "color": "#22263d",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -262.08,
+            "y": -327.15000000000003
+          },
+          "end": {
+            "x": 247.51999999999998,
+            "y": 319.87999999999994
+          }
+        }
+      },
+      "stroke": {
+        "color": "#252940",
+        "thickness": 19,
+        "join": "round"
+      },
+      "parent": "HeadShell"
+    },
+    {
+      "id": "HeadShell_02",
+      "type": "polygon",
+      "x": -231,
+      "y": -444,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -92,
+              "y": 115,
+              "cubic": {
+                "rotation": -81.94089609712904,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 114.12712210513327
+              }
+            },
+            {
+              "x": 92,
+              "y": -115,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 161.74810416292146,
+                "inDistance": 98.97979591815694,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.28,
+      "stroke": {
+        "color": "#aaa6b6",
+        "thickness": 15,
+        "cap": "round"
+      },
+      "parent": "HeadShell"
+    },
+    {
+      "id": "HeadShell_03",
+      "type": "polygon",
+      "x": -250.5,
+      "y": -455.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -48.5,
+              "y": 60.5,
+              "cubic": {
+                "rotation": -69.67686317033706,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 57.58472019555187
+              }
+            },
+            {
+              "x": 48.5,
+              "y": -60.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 147.2647737278924,
+                "inDistance": 49.92995093127972,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.26,
+      "stroke": {
+        "color": "#e5dce1",
+        "thickness": 9,
+        "cap": "round"
+      },
+      "parent": "HeadShell"
+    },
+    {
+      "id": "HeadShell_04",
+      "type": "polygon",
+      "x": -289,
+      "y": -314.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -32,
+              "y": 4.5,
+              "cubic": {
+                "rotation": -58.73626830562257,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 32.7566787083184
+              }
+            },
+            {
+              "x": 33,
+              "y": -27.5,
+              "cubic": {
+                "rotation": 19.98310652189998,
+                "inRotation": -159.14554196042167,
+                "inDistance": 22.472205054244228,
+                "outDistance": 23.40939982143925
+              }
+            },
+            {
+              "x": 35,
+              "y": 20.5,
+              "cubic": {
+                "rotation": 140.19442890773482,
+                "inRotation": -41.82016988013577,
+                "inDistance": 25.495097567963924,
+                "outDistance": 23.430749027719965
+              }
+            },
+            {
+              "x": -35,
+              "y": 27.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 30.465544919459884,
+                "inDistance": 19.723082923316017,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.5,
+      "fill": {
+        "color": "#c4bec4"
+      },
+      "parent": "HeadShell"
+    },
+    {
+      "id": "HeadShell_05",
+      "type": "polygon",
+      "x": 11.5,
+      "y": 69.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -248.5,
+              "y": 10.5,
+              "cubic": {
+                "rotation": 24.22774531795417,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 109.65856099730655
+              }
+            },
+            {
+              "x": 248.5,
+              "y": -10.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 139.60009566626326,
+                "inDistance": 123.43419299367578,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.65,
+      "stroke": {
+        "color": "#1f2439",
+        "thickness": 14
+      },
+      "parent": "HeadShell"
+    },
+    {
+      "id": "FeatherTufts_01",
+      "type": "polygon",
+      "x": -107.5,
+      "y": -552,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 2.5,
+              "y": 37,
+              "cubic": {
+                "rotation": -164.6237487511738,
+                "inRotation": 11.633633998940436,
+                "inDistance": 34.713109915419565,
+                "outDistance": 41.484937025383076
+              }
+            },
+            {
+              "x": -50.5,
+              "y": -37,
+              "cubic": {
+                "rotation": -72.40757543781841,
+                "inRotation": 106.38954033403479,
+                "inDistance": 35.440090293338706,
+                "outDistance": 43.01162633521314
+              }
+            },
+            {
+              "x": 50.5,
+              "y": -6,
+              "cubic": {
+                "rotation": 79.50852298766841,
+                "inRotation": -123.27488798483492,
+                "inDistance": 76.55063683601855,
+                "outDistance": 27.459060435491963
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#8b8ca0",
+              "position": 0
+            },
+            {
+              "color": "#595d78",
+              "position": 0.45
+            },
+            {
+              "color": "#333750",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -32.32,
+            "y": -37
+          },
+          "end": {
+            "x": 36.36,
+            "y": 37
+          }
+        }
+      },
+      "stroke": {
+        "color": "#252940",
+        "thickness": 13,
+        "join": "round"
+      },
+      "parent": "FeatherTufts"
+    },
+    {
+      "id": "FeatherTufts_02",
+      "type": "polygon",
+      "x": 11,
+      "y": -583,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -89,
+              "y": 54,
+              "cubic": {
+                "rotation": -91.00508600525419,
+                "inRotation": 42.70938995736147,
+                "inDistance": 17.69180601295413,
+                "outDistance": 57.008771254956905
+              }
+            },
+            {
+              "x": 4,
+              "y": -83,
+              "cubic": {
+                "rotation": -9.019322431381685,
+                "inRotation": 170.18069936124212,
+                "inDistance": 52.77309920783504,
+                "outDistance": 63.78871373526825
+              }
+            },
+            {
+              "x": 89,
+              "y": 31,
+              "cubic": {
+                "rotation": 105.94539590092285,
+                "inRotation": -74.1676133795778,
+                "inDistance": 69.6419413859206,
+                "outDistance": 43.68065933568311
+              }
+            },
+            {
+              "x": -32,
+              "y": 83,
+              "cubic": {
+                "rotation": -167.47119229084848,
+                "inRotation": 13.799485396019369,
+                "inDistance": 58.69412236331676,
+                "outDistance": 27.658633371878665
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#8b8ca0",
+              "position": 0
+            },
+            {
+              "color": "#595d78",
+              "position": 0.45
+            },
+            {
+              "color": "#333750",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -56.96,
+            "y": -83
+          },
+          "end": {
+            "x": 64.08,
+            "y": 83
+          }
+        }
+      },
+      "stroke": {
+        "color": "#252940",
+        "thickness": 13,
+        "join": "round"
+      },
+      "parent": "FeatherTufts"
+    },
+    {
+      "id": "FeatherTufts_03",
+      "type": "polygon",
+      "x": 35,
+      "y": -510,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -138,
+              "y": -29,
+              "cubic": {
+                "rotation": -29.744881296942225,
+                "inRotation": 73.85566121971651,
+                "inDistance": 39.56008088970497,
+                "outDistance": 72.56031973468694
+              }
+            },
+            {
+              "x": 107,
+              "y": -48,
+              "cubic": {
+                "rotation": 23.19859051364819,
+                "inRotation": -156.63088683651793,
+                "inDistance": 88.23831367382311,
+                "outDistance": 53.31041174104736
+              }
+            },
+            {
+              "x": 138,
+              "y": 47,
+              "cubic": {
+                "rotation": 133.56790381583534,
+                "inRotation": -47.91083782616775,
+                "inDistance": 41.773197148410844,
+                "outDistance": 56.586217403180434
+              }
+            },
+            {
+              "x": -44,
+              "y": 48,
+              "cubic": {
+                "rotation": -162.6459753637387,
+                "inRotation": 17.52556837372287,
+                "inDistance": 59.77457653551382,
+                "outDistance": 50.28916384272063
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#8b8ca0",
+              "position": 0
+            },
+            {
+              "color": "#595d78",
+              "position": 0.45
+            },
+            {
+              "color": "#333750",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -88.32000000000001,
+            "y": -48
+          },
+          "end": {
+            "x": 99.36,
+            "y": 48
+          }
+        }
+      },
+      "stroke": {
+        "color": "#252940",
+        "thickness": 13,
+        "join": "round"
+      },
+      "parent": "FeatherTufts"
+    },
+    {
+      "id": "FeatherTufts_04",
+      "type": "polygon",
+      "x": -1,
+      "y": -582,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -129,
+              "y": -11,
+              "cubic": {
+                "rotation": 14.53445508054012,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 27.892651361962706
+              }
+            },
+            {
+              "x": -71,
+              "y": 37,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -119.47588900324575,
+                "inDistance": 26.419689627245813,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -24,
+              "y": -55,
+              "cubic": {
+                "rotation": 46.39718102729638,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 29
+              }
+            },
+            {
+              "x": 7,
+              "y": 23,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -88.02506598911802,
+                "inDistance": 29.017236257093817,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": 46,
+              "y": 27,
+              "cubic": {
+                "rotation": 6.340191745909909,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 27.16615541441225
+              }
+            },
+            {
+              "x": 129,
+              "y": 55,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -150.01836063115067,
+                "inDistance": 30.016662039607265,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.35,
+      "stroke": {
+        "color": "#c2b8c1",
+        "thickness": 8,
+        "cap": "round"
+      },
+      "parent": "FeatherTufts"
+    },
+    {
+      "id": "Face_01",
+      "type": "polygon",
+      "x": 12,
+      "y": -148,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -273,
+              "y": -137,
+              "cubic": {
+                "rotation": -45,
+                "inRotation": 133.60281897270363,
+                "inDistance": 58,
+                "outDistance": 69.29646455628166
+              }
+            },
+            {
+              "x": -46,
+              "y": -210,
+              "cubic": {
+                "rotation": 4.939215542126198,
+                "inRotation": -175.4519575908746,
+                "inDistance": 88.2779700718135,
+                "outDistance": 81.30190649671138
+              }
+            },
+            {
+              "x": 108,
+              "y": -137,
+              "cubic": {
+                "rotation": 52.52382043863863,
+                "inRotation": -127.8749836510982,
+                "inDistance": 45.60701700396552,
+                "outDistance": 37.8021163428716
+              }
+            },
+            {
+              "x": 206,
+              "y": -179,
+              "cubic": {
+                "rotation": -25.14478563067895,
+                "inRotation": 155.22485943116808,
+                "inDistance": 42.95346318982906,
+                "outDistance": 54.12947441089744
+              }
+            },
+            {
+              "x": 319,
+              "y": -87,
+              "cubic": {
+                "rotation": 70.49755149333778,
+                "inRotation": -109.33480853782643,
+                "inDistance": 60.40695324215582,
+                "outDistance": 50.921508225896055
+              }
+            },
+            {
+              "x": 265,
+              "y": 121,
+              "cubic": {
+                "rotation": 125.43331401028559,
+                "inRotation": -54.090276920822326,
+                "inDistance": 71.61005515987263,
+                "outDistance": 63.8200595424354
+              }
+            },
+            {
+              "x": 110,
+              "y": 202,
+              "cubic": {
+                "rotation": -173.3455749539934,
+                "inRotation": 6.546290783294036,
+                "inDistance": 61.40032573203501,
+                "outDistance": 60.40695324215582
+              }
+            },
+            {
+              "x": -11,
+              "y": 163,
+              "cubic": {
+                "rotation": 134.30972280213493,
+                "inRotation": 6.340191745909909,
+                "inDistance": 27.16615541441225,
+                "outDistance": 58.69412236331676
+              }
+            },
+            {
+              "x": -180,
+              "y": 210,
+              "cubic": {
+                "rotation": -164.80475147318015,
+                "inRotation": 15.101098161385437,
+                "inDistance": 65.25335240430181,
+                "outDistance": 83.93449827097318
+              }
+            },
+            {
+              "x": -319,
+              "y": 40,
+              "cubic": {
+                "rotation": -96.17017509502962,
+                "inRotation": 83.73650938566546,
+                "inDistance": 82.49242389456138,
+                "outDistance": 74.43117626371358
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#fff6e9",
+              "position": 0
+            },
+            {
+              "color": "#ffe4d0",
+              "position": 0.56
+            },
+            {
+              "color": "#f3c9b1",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -242.44,
+            "y": -210
+          },
+          "end": {
+            "x": 191.40000000000003,
+            "y": 210
+          }
+        }
+      },
+      "stroke": {
+        "color": "#3d3440",
+        "thickness": 8
+      },
+      "parent": "Face"
+    },
+    {
+      "id": "Face_02",
+      "type": "polygon",
+      "x": -185.5,
+      "y": -270.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -82.5,
+              "y": 53.5,
+              "cubic": {
+                "rotation": -63.083445383048655,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 72.89718787443039
+              }
+            },
+            {
+              "x": 82.5,
+              "y": -53.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 172.763077974032,
+                "inDistance": 63.505905237229705,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.56,
+      "stroke": {
+        "color": "#fffaf1",
+        "thickness": 13,
+        "cap": "round"
+      },
+      "parent": "Face"
+    },
+    {
+      "id": "Face_03",
+      "type": "polygon",
+      "x": -175,
+      "y": -8,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -68,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 20.98682049357012,
+                "outDistance": 20.98682049357012
+              }
+            },
+            {
+              "x": 0,
+              "y": 38,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 37.555362988493926,
+                "outDistance": 37.555362988493926
+              }
+            },
+            {
+              "x": 68,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 20.98682049357012,
+                "outDistance": 20.98682049357012
+              }
+            },
+            {
+              "x": 0,
+              "y": -38,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 37.555362988493926,
+                "outDistance": 37.555362988493926
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.26,
+      "fill": {
+        "color": "#f29c94"
+      },
+      "parent": "Face"
+    },
+    {
+      "id": "Face_04",
+      "type": "polygon",
+      "x": 243,
+      "y": -32,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -49,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 16.568542494923804,
+                "outDistance": 16.568542494923804
+              }
+            },
+            {
+              "x": 0,
+              "y": 30,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 27.061952741708865,
+                "outDistance": 27.061952741708865
+              }
+            },
+            {
+              "x": 49,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 16.568542494923804,
+                "outDistance": 16.568542494923804
+              }
+            },
+            {
+              "x": 0,
+              "y": -30,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 27.061952741708865,
+                "outDistance": 27.061952741708865
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.25,
+      "fill": {
+        "color": "#f29c94"
+      },
+      "parent": "Face"
+    },
+    {
+      "id": "EyeNear_01",
+      "type": "polygon",
+      "x": 0,
+      "y": 0,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -74,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 50.2579122346022,
+                "outDistance": 50.257912234602145
+              }
+            },
+            {
+              "x": 0,
+              "y": 91,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 40.86907148747872,
+                "outDistance": 40.869071487478664
+              }
+            },
+            {
+              "x": 74,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 50.257912234602145,
+                "outDistance": 50.2579122346022
+              }
+            },
+            {
+              "x": 0,
+              "y": -91,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 40.869071487478664,
+                "outDistance": 40.86907148747872
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#fff6e9"
+      },
+      "stroke": {
+        "color": "#41322d",
+        "thickness": 11
+      },
+      "parent": "EyeNear"
+    },
+    {
+      "id": "EyeNear_02",
+      "type": "polygon",
+      "x": 19,
+      "y": 28,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -48,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 33.68936973967834,
+                "outDistance": 33.68936973967834
+              }
+            },
+            {
+              "x": 0,
+              "y": 61,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 26.509667991878075,
+                "outDistance": 26.509667991878132
+              }
+            },
+            {
+              "x": 48,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 33.68936973967834,
+                "outDistance": 33.68936973967834
+              }
+            },
+            {
+              "x": 0,
+              "y": -61,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 26.509667991878132,
+                "outDistance": 26.509667991878075
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "radial",
+          "stops": [
+            {
+              "color": "#845531",
+              "position": 0
+            },
+            {
+              "color": "#54331f",
+              "position": 0.62
+            },
+            {
+              "color": "#241b1a",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -14.400000000000002,
+            "y": -28.06
+          },
+          "end": {
+            "x": 80.75999999999999,
+            "y": -28.06
+          }
+        }
+      },
+      "stroke": {
+        "color": "#36251f",
+        "thickness": 6
+      },
+      "parent": "EyeNear"
+    },
+    {
+      "id": "EyeNear_03",
+      "type": "polygon",
+      "x": 36,
+      "y": 3,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -15,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 10.49341024678506,
+                "outDistance": 10.49341024678506
+              }
+            },
+            {
+              "x": 0,
+              "y": 19,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 8.284271247461902,
+                "outDistance": 8.284271247461902
+              }
+            },
+            {
+              "x": 15,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 10.49341024678506,
+                "outDistance": 10.49341024678506
+              }
+            },
+            {
+              "x": 0,
+              "y": -19,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 8.284271247461902,
+                "outDistance": 8.284271247461902
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#fffdf8"
+      },
+      "parent": "EyeNear"
+    },
+    {
+      "id": "EyeNear_04",
+      "type": "polygon",
+      "x": -8,
+      "y": 49,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -6,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 4.418277998646317,
+                "outDistance": 4.418277998646317
+              }
+            },
+            {
+              "x": 0,
+              "y": 8,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 3.313708498984738,
+                "outDistance": 3.313708498984738
+              }
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 4.418277998646317,
+                "outDistance": 4.418277998646317
+              }
+            },
+            {
+              "x": 0,
+              "y": -8,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 3.313708498984738,
+                "outDistance": 3.313708498984738
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.72,
+      "fill": {
+        "color": "#dba56b"
+      },
+      "parent": "EyeNear"
+    },
+    {
+      "id": "EyeFar_01",
+      "type": "polygon",
+      "x": 0,
+      "y": 0,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -48,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 38.659932488155505,
+                "outDistance": 38.659932488155505
+              }
+            },
+            {
+              "x": 0,
+              "y": 70,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 26.509667991878132,
+                "outDistance": 26.509667991878132
+              }
+            },
+            {
+              "x": 48,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 38.659932488155505,
+                "outDistance": 38.659932488155505
+              }
+            },
+            {
+              "x": 0,
+              "y": -70,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 26.509667991878132,
+                "outDistance": 26.509667991878132
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#fff6e9"
+      },
+      "stroke": {
+        "color": "#41322d",
+        "thickness": 10
+      },
+      "parent": "EyeFar"
+    },
+    {
+      "id": "EyeFar_02",
+      "type": "polygon",
+      "x": 8,
+      "y": 19,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -31,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 25.957383242047285,
+                "outDistance": 25.957383242047285
+              }
+            },
+            {
+              "x": 0,
+              "y": 47,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 17.120827244754537,
+                "outDistance": 17.120827244754537
+              }
+            },
+            {
+              "x": 31,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 25.957383242047285,
+                "outDistance": 25.957383242047285
+              }
+            },
+            {
+              "x": 0,
+              "y": -47,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 17.120827244754537,
+                "outDistance": 17.120827244754537
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "radial",
+          "stops": [
+            {
+              "color": "#845531",
+              "position": 0
+            },
+            {
+              "color": "#54331f",
+              "position": 0.62
+            },
+            {
+              "color": "#241b1a",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -9.3,
+            "y": -21.619999999999997
+          },
+          "end": {
+            "x": 64.02000000000001,
+            "y": -21.619999999999997
+          }
+        }
+      },
+      "stroke": {
+        "color": "#36251f",
+        "thickness": 5
+      },
+      "parent": "EyeFar"
+    },
+    {
+      "id": "EyeFar_03",
+      "type": "polygon",
+      "x": 19,
+      "y": -1,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -10,
+              "y": 0,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 7.179701747800323,
+                "outDistance": 7.179701747800323
+              }
+            },
+            {
+              "x": 0,
+              "y": 13,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 5.522847498307897,
+                "outDistance": 5.522847498307897
+              }
+            },
+            {
+              "x": 10,
+              "y": 0,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 7.179701747800323,
+                "outDistance": 7.179701747800323
+              }
+            },
+            {
+              "x": 0,
+              "y": -13,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": 0,
+                "inDistance": 5.522847498307897,
+                "outDistance": 5.522847498307897
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#fffdf8"
+      },
+      "parent": "EyeFar"
+    },
+    {
+      "id": "Eyelids_01",
+      "type": "polygon",
+      "x": -14.5,
+      "y": -163,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -72.5,
+              "y": 1,
+              "cubic": {
+                "rotation": -68.83874018317172,
+                "inRotation": 49.39870535499554,
+                "inDistance": 46.09772228646443,
+                "outDistance": 66.48308055437865
+              }
+            },
+            {
+              "x": 72.5,
+              "y": -1,
+              "cubic": {
+                "rotation": 126.2538377374448,
+                "inRotation": -112.10944834375168,
+                "inDistance": 69.07966415668217,
+                "outDistance": 37.20215047547654
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "fill": {
+        "color": "#f8e5d2"
+      },
+      "stroke": {
+        "color": "#3c3035",
+        "thickness": 9
+      },
+      "parent": "Eyelids"
+    },
+    {
+      "id": "Eyelids_02",
+      "type": "polygon",
+      "x": 210,
+      "y": -152.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -46,
+              "y": -0.5,
+              "cubic": {
+                "rotation": -73.88658176691072,
+                "inRotation": 43.53119928561417,
+                "inDistance": 27.58622844826744,
+                "outDistance": 46.84015371452148
+              }
+            },
+            {
+              "x": 46,
+              "y": 0.5,
+              "cubic": {
+                "rotation": 138.01278750418336,
+                "inRotation": -105.78075330951539,
+                "inDistance": 47.801673610868484,
+                "outDistance": 26.907248094147423
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0,
+      "fill": {
+        "color": "#f8e5d2"
+      },
+      "stroke": {
+        "color": "#3c3035",
+        "thickness": 8
+      },
+      "parent": "Eyelids"
+    },
+    {
+      "id": "Beak_01",
+      "type": "polygon",
+      "x": -6.5,
+      "y": -8,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -73.5,
+              "y": -6,
+              "cubic": {
+                "rotation": -61.11341823308929,
+                "inRotation": 67.89055165624833,
+                "inDistance": 34.539832078341085,
+                "outDistance": 33.12099032335839
+              }
+            },
+            {
+              "x": 22.5,
+              "y": -40,
+              "cubic": {
+                "rotation": 12.724355685422369,
+                "inRotation": -167.79953127261922,
+                "inDistance": 37.85498646149539,
+                "outDistance": 31.780497164141405
+              }
+            },
+            {
+              "x": 73.5,
+              "y": 9,
+              "cubic": {
+                "rotation": 101.88865803962798,
+                "inRotation": -79.21570213243741,
+                "inDistance": 21.377558326431952,
+                "outDistance": 19.4164878389476
+              }
+            },
+            {
+              "x": 10.5,
+              "y": 40,
+              "cubic": {
+                "rotation": 174.95754893082912,
+                "inRotation": -6.1155035662854065,
+                "inDistance": 28.160255680657446,
+                "outDistance": 34.132096331752024
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#ffc354",
+              "position": 0
+            },
+            {
+              "color": "#f59522",
+              "position": 0.5
+            },
+            {
+              "color": "#cf6417",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -73.5,
+            "y": -40
+          },
+          "end": {
+            "x": 41.160000000000004,
+            "y": 40
+          }
+        }
+      },
+      "stroke": {
+        "color": "#542e24",
+        "thickness": 10,
+        "join": "round"
+      },
+      "parent": "Beak"
+    },
+    {
+      "id": "Beak_02",
+      "type": "polygon",
+      "x": -6.5,
+      "y": 25.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -61.5,
+              "y": -29.5,
+              "cubic": {
+                "rotation": 23.19859051364819,
+                "inRotation": 74.47588900324574,
+                "inDistance": 37.36308338453881,
+                "outDistance": 30.463092423455635
+              }
+            },
+            {
+              "x": 61.5,
+              "y": -28.5,
+              "cubic": {
+                "rotation": 93.3664606634298,
+                "inRotation": 156.03751102542182,
+                "inDistance": 39.395431207184416,
+                "outDistance": 34.058772731852805
+              }
+            },
+            {
+              "x": 3.5,
+              "y": 29.5,
+              "cubic": {
+                "rotation": 180,
+                "inRotation": -1.7899106082460694,
+                "inDistance": 32.01562118716424,
+                "outDistance": 30
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#a94628"
+      },
+      "stroke": {
+        "color": "#542e24",
+        "thickness": 8,
+        "join": "round"
+      },
+      "parent": "Beak"
+    },
+    {
+      "id": "Beak_03",
+      "type": "polygon",
+      "x": -2,
+      "y": 34.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -32,
+              "y": -6.5,
+              "cubic": {
+                "rotation": -30.06858282186245,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 21.95449840010015
+              }
+            },
+            {
+              "x": 32,
+              "y": -3.5,
+              "cubic": {
+                "rotation": 126.86989764584402,
+                "inRotation": -140.9061411137705,
+                "inDistance": 20.615528128088304,
+                "outDistance": 20
+              }
+            },
+            {
+              "x": -24,
+              "y": 6.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 26.56505117707799,
+                "inDistance": 20.12461179749811,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#f18b79"
+      },
+      "parent": "Beak"
+    },
+    {
+      "id": "Beak_04",
+      "type": "polygon",
+      "x": -19.5,
+      "y": -30,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -39.5,
+              "y": 5,
+              "cubic": {
+                "rotation": -38.99099404250548,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 27.018512172212596
+              }
+            },
+            {
+              "x": 39.5,
+              "y": -5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -156.80140948635182,
+                "inDistance": 22.847319317591726,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.67,
+      "stroke": {
+        "color": "#ffe08a",
+        "thickness": 8,
+        "cap": "round"
+      },
+      "parent": "Beak"
+    },
+    {
+      "id": "ScarfBand_01",
+      "type": "polygon",
+      "x": -0.5,
+      "y": -3,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -292.5,
+              "y": -60,
+              "cubic": {
+                "rotation": -36.02737338510361,
+                "inRotation": 133.87669728592456,
+                "inDistance": 36.06937759374287,
+                "outDistance": 68.00735254367721
+              }
+            },
+            {
+              "x": -59.5,
+              "y": -83,
+              "cubic": {
+                "rotation": 13.749048983419309,
+                "inRotation": -166.4520610119995,
+                "inDistance": 85.37564055396598,
+                "outDistance": 96.77293009927931
+              }
+            },
+            {
+              "x": 191.5,
+              "y": -71,
+              "cubic": {
+                "rotation": 5.440332031005506,
+                "inRotation": -173.418055344822,
+                "inDistance": 78.5175139698144,
+                "outDistance": 63.28506932918695
+              }
+            },
+            {
+              "x": 292.5,
+              "y": 2,
+              "cubic": {
+                "rotation": 88.45184230102204,
+                "inRotation": -92.93567344642118,
+                "inDistance": 39.05124837953328,
+                "outDistance": 37.0135110466435
+              }
+            },
+            {
+              "x": 201.5,
+              "y": 71,
+              "cubic": {
+                "rotation": 175.03025927188972,
+                "inRotation": -5.013113755035807,
+                "inDistance": 57.21887800367986,
+                "outDistance": 92.34717104492158
+              }
+            },
+            {
+              "x": -38.5,
+              "y": 83,
+              "cubic": {
+                "rotation": 168.25436657471207,
+                "inRotation": -12.050784883409554,
+                "inDistance": 91.00549433962766,
+                "outDistance": 103.16006979447037
+              }
+            },
+            {
+              "x": -282.5,
+              "y": 42,
+              "cubic": {
+                "rotation": -149.03624346792648,
+                "inRotation": 30.379126011368346,
+                "inDistance": 67.23094525588644,
+                "outDistance": 34.9857113690718
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#8bb6b3",
+              "position": 0
+            },
+            {
+              "color": "#689495",
+              "position": 0.45
+            },
+            {
+              "color": "#41696f",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -292.5,
+            "y": -83
+          },
+          "end": {
+            "x": 204.75,
+            "y": 83
+          }
+        }
+      },
+      "stroke": {
+        "color": "#293848",
+        "thickness": 13,
+        "join": "round"
+      },
+      "parent": "ScarfBand"
+    },
+    {
+      "id": "ScarfBand_02",
+      "type": "polygon",
+      "x": -13,
+      "y": -32,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -263,
+              "y": -9,
+              "cubic": {
+                "rotation": -19.53665493812839,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 98.68130522039117
+              }
+            },
+            {
+              "x": -22,
+              "y": -12,
+              "cubic": {
+                "rotation": 12.80426606528675,
+                "inRotation": -167.16439051359856,
+                "inDistance": 81.02468759581859,
+                "outDistance": 90.24411338142781
+              }
+            },
+            {
+              "x": 263,
+              "y": 12,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -157.32865637801916,
+                "inDistance": 85.61541917201596,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.68,
+      "stroke": {
+        "color": "#b7d2c8",
+        "thickness": 13,
+        "cap": "round"
+      },
+      "parent": "ScarfBand"
+    },
+    {
+      "id": "ScarfBand_03",
+      "type": "polygon",
+      "x": -14,
+      "y": 17.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -277,
+              "y": -17.5,
+              "cubic": {
+                "rotation": 23.428692808745403,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 98.0866963456309
+              }
+            },
+            {
+              "x": -27,
+              "y": 17.5,
+              "cubic": {
+                "rotation": -13.366930696316846,
+                "inRotation": 167.0534904843631,
+                "inDistance": 89.26925562588724,
+                "outDistance": 103.8123306741545
+              }
+            },
+            {
+              "x": 277,
+              "y": -12.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 165.06858282186246,
+                "inDistance": 108.66922287382016,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.65,
+      "stroke": {
+        "color": "#3c656d",
+        "thickness": 14,
+        "cap": "round"
+      },
+      "parent": "ScarfBand"
+    },
+    {
+      "id": "ScarfBand_04",
+      "type": "polygon",
+      "x": -15.5,
+      "y": 41.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -265.5,
+              "y": -16.5,
+              "cubic": {
+                "rotation": 27.149681697783162,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 87.6584280032445
+              }
+            },
+            {
+              "x": -30.5,
+              "y": 16.5,
+              "cubic": {
+                "rotation": -12.470461721668892,
+                "inRotation": 167.33493623495764,
+                "inDistance": 91.21951545584969,
+                "outDistance": 106.51291001564083
+              }
+            },
+            {
+              "x": 265.5,
+              "y": -10.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 165.06858282186246,
+                "inDistance": 93.14504817756014,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.72,
+      "stroke": {
+        "color": "#9fc1ba",
+        "thickness": 9,
+        "cap": "round"
+      },
+      "parent": "ScarfBand"
+    },
+    {
+      "id": "ScarfBand_05",
+      "type": "polygon",
+      "x": -14,
+      "y": 13,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -269,
+              "y": -38,
+              "cubic": {
+                "rotation": -48.81407483429035,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 31.89043743820395
+              }
+            },
+            {
+              "x": -205,
+              "y": -36,
+              "cubic": {
+                "rotation": 51.95295746817391,
+                "inRotation": -130.03025927188972,
+                "inDistance": 32.64965543462902,
+                "outDistance": 29.20616373302047
+              }
+            },
+            {
+              "x": -147,
+              "y": 4,
+              "cubic": {
+                "rotation": -10.784297867562598,
+                "inRotation": 164.74488129694225,
+                "inDistance": 22.80350850198276,
+                "outDistance": 21.377558326431952
+              }
+            },
+            {
+              "x": -87,
+              "y": -33,
+              "cubic": {
+                "rotation": -4.969740728110304,
+                "inRotation": 175.03025927188972,
+                "inDistance": 23.086792761230395,
+                "outDistance": 23.086792761230395
+              }
+            },
+            {
+              "x": -34,
+              "y": 12,
+              "cubic": {
+                "rotation": 54.6887865603668,
+                "inRotation": -122.61924307119284,
+                "inDistance": 29.68164415931166,
+                "outDistance": 29.410882339705484
+              }
+            },
+            {
+              "x": 25,
+              "y": 8,
+              "cubic": {
+                "rotation": -46.39718102729638,
+                "inRotation": 132.27368900609375,
+                "inDistance": 29.73213749463701,
+                "outDistance": 29
+              }
+            },
+            {
+              "x": 84,
+              "y": -26,
+              "cubic": {
+                "rotation": 18.43494882292201,
+                "inRotation": -161.56505117707798,
+                "inDistance": 22.135943621178658,
+                "outDistance": 25.298221281347036
+              }
+            },
+            {
+              "x": 136,
+              "y": 25,
+              "cubic": {
+                "rotation": 40.10090754621224,
+                "inRotation": -138.36646066342982,
+                "inDistance": 24.08318915758459,
+                "outDistance": 24.839484696748443
+              }
+            },
+            {
+              "x": 194,
+              "y": 9,
+              "cubic": {
+                "rotation": -48.36646066342981,
+                "inRotation": 129.28940686250039,
+                "inDistance": 28.425340807103794,
+                "outDistance": 24.08318915758459
+              }
+            },
+            {
+              "x": 250,
+              "y": -3,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -148.2405199151872,
+                "inDistance": 24.698178070456937,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -266,
+              "y": 3,
+              "cubic": {
+                "rotation": 45,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 31.112698372208094
+              }
+            },
+            {
+              "x": -198,
+              "y": 11,
+              "cubic": {
+                "rotation": -43.602818972703616,
+                "inRotation": 137.72631099390628,
+                "inDistance": 29.73213749463701,
+                "outDistance": 29
+              }
+            },
+            {
+              "x": -138,
+              "y": -27,
+              "cubic": {
+                "rotation": 10.304846468766033,
+                "inRotation": -167.19573393471325,
+                "inDistance": 22.561028345356952,
+                "outDistance": 22.360679774997894
+              }
+            },
+            {
+              "x": -82,
+              "y": 27,
+              "cubic": {
+                "rotation": 43.53119928561417,
+                "inRotation": -136.46880071438582,
+                "inDistance": 27.58622844826744,
+                "outDistance": 27.58622844826744
+              }
+            },
+            {
+              "x": -21,
+              "y": 14,
+              "cubic": {
+                "rotation": -45,
+                "inRotation": 133.5311992856142,
+                "inDistance": 27.58622844826744,
+                "outDistance": 28.284271247461902
+              }
+            },
+            {
+              "x": 41,
+              "y": -15,
+              "cubic": {
+                "rotation": 19.179008025810724,
+                "inRotation": -161.56505117707798,
+                "inDistance": 22.135943621178658,
+                "outDistance": 24.351591323771842
+              }
+            },
+            {
+              "x": 95,
+              "y": 38,
+              "cubic": {
+                "rotation": 33.02386755579665,
+                "inRotation": -146.97613244420336,
+                "inDistance": 23.853720883753127,
+                "outDistance": 23.853720883753127
+              }
+            },
+            {
+              "x": 153,
+              "y": 18,
+              "cubic": {
+                "rotation": -45,
+                "inRotation": 133.45184230102205,
+                "inDistance": 26.1725046566048,
+                "outDistance": 28.284271247461902
+              }
+            },
+            {
+              "x": 214,
+              "y": 5,
+              "cubic": {
+                "rotation": 33.02386755579665,
+                "inRotation": -146.97613244420336,
+                "inDistance": 23.853720883753127,
+                "outDistance": 23.853720883753127
+              }
+            },
+            {
+              "x": 269,
+              "y": 22,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 157.16634582208246,
+                "inDistance": 20.6155281280883,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.46,
+      "stroke": {
+        "color": "#d0ded2",
+        "thickness": 8,
+        "cap": "round",
+        "join": "round"
+      },
+      "parent": "ScarfBand"
+    },
+    {
+      "id": "ScarfTail_01",
+      "type": "polygon",
+      "x": 0.5,
+      "y": -7.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -101.5,
+              "y": -84.5,
+              "cubic": {
+                "rotation": 56.309932474020215,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 28.844410203711917
+              }
+            },
+            {
+              "x": -72.5,
+              "y": 0.5,
+              "cubic": {
+                "rotation": 85.03025927188969,
+                "inRotation": -95.52754015165618,
+                "inDistance": 31.144823004794876,
+                "outDistance": 46.17358552246079
+              }
+            },
+            {
+              "x": 1.5,
+              "y": 103.5,
+              "cubic": {
+                "rotation": 22.380135051959574,
+                "inRotation": -157.47943439710312,
+                "inDistance": 44.384682042344295,
+                "outDistance": 36.76955262170048
+              }
+            },
+            {
+              "x": 101.5,
+              "y": 79.5,
+              "cubic": {
+                "rotation": -52.52382043863863,
+                "inRotation": 127.18470645323312,
+                "inDistance": 36.400549446402586,
+                "outDistance": 37.8021163428716
+              }
+            },
+            {
+              "x": 95.5,
+              "y": -22.5,
+              "cubic": {
+                "rotation": -115.76932762433871,
+                "inRotation": 63.43494882292201,
+                "inDistance": 35.77708763999664,
+                "outDistance": 32.202484376209235
+              }
+            },
+            {
+              "x": 54.5,
+              "y": -103.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 64.3589941756947,
+                "inDistance": 27.730849247724095,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#8bb6b3",
+              "position": 0
+            },
+            {
+              "color": "#689495",
+              "position": 0.45
+            },
+            {
+              "color": "#41696f",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -101.5,
+            "y": -103.5
+          },
+          "end": {
+            "x": 71.05,
+            "y": 103.5
+          }
+        }
+      },
+      "stroke": {
+        "color": "#293848",
+        "thickness": 14,
+        "join": "round"
+      },
+      "parent": "ScarfTail"
+    },
+    {
+      "id": "ScarfTail_02",
+      "type": "polygon",
+      "x": -39,
+      "y": 12,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -35,
+              "y": -73,
+              "cubic": {
+                "rotation": 50.19442890773481,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 31.240998703626623
+              }
+            },
+            {
+              "x": -9,
+              "y": 18,
+              "cubic": {
+                "rotation": 81.2538377374448,
+                "inRotation": -94.08561677997488,
+                "inDistance": 28.0713376952364,
+                "outDistance": 26.305892875931807
+              }
+            },
+            {
+              "x": 35,
+              "y": 73,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -158.6293777306568,
+                "inDistance": 24.698178070456937,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.61,
+      "stroke": {
+        "color": "#bad3ca",
+        "thickness": 11,
+        "cap": "round"
+      },
+      "parent": "ScarfTail"
+    },
+    {
+      "id": "ScarfTail_03",
+      "type": "polygon",
+      "x": 2,
+      "y": 0.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -30,
+              "y": -76.5,
+              "cubic": {
+                "rotation": 63.43494882292201,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 38.01315561749642
+              }
+            },
+            {
+              "x": -5,
+              "y": 28.5,
+              "cubic": {
+                "rotation": 80.53767779197439,
+                "inRotation": -97.59464336859145,
+                "inDistance": 30.26549190084311,
+                "outDistance": 24.331050121192874
+              }
+            },
+            {
+              "x": 30,
+              "y": 76.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -154.65382405805332,
+                "inDistance": 21.02379604162864,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.65,
+      "stroke": {
+        "color": "#3d6970",
+        "thickness": 10,
+        "cap": "round"
+      },
+      "parent": "ScarfTail"
+    },
+    {
+      "id": "ScarfTail_04",
+      "type": "polygon",
+      "x": 53,
+      "y": -11,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -31,
+              "y": -71,
+              "cubic": {
+                "rotation": 62.78388844269253,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 39.35733730830886
+              }
+            },
+            {
+              "x": -3,
+              "y": 30,
+              "cubic": {
+                "rotation": 81.86989764584403,
+                "inRotation": -96.11550356628541,
+                "inDistance": 28.160255680657446,
+                "outDistance": 21.213203435596427
+              }
+            },
+            {
+              "x": 31,
+              "y": 71,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -161.56505117707798,
+                "inDistance": 18.973665961010276,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.62,
+      "stroke": {
+        "color": "#a8c7c0",
+        "thickness": 9,
+        "cap": "round"
+      },
+      "parent": "ScarfTail"
+    },
+    {
+      "id": "ScarfTail_05",
+      "type": "polygon",
+      "x": -14.5,
+      "y": -3,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -71.5,
+              "y": -40,
+              "cubic": {
+                "rotation": -22.479434397103113,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 31.38470965295043
+              }
+            },
+            {
+              "x": 8.5,
+              "y": -54,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -175.42607874009911,
+                "inDistance": 25.079872407968907,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -51.5,
+              "y": -8,
+              "cubic": {
+                "rotation": -24.304549265936718,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 34.014702703389894
+              }
+            },
+            {
+              "x": 38.5,
+              "y": -19,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -168.6900675259798,
+                "inDistance": 25.495097567963924,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -35.5,
+              "y": 24,
+              "cubic": {
+                "rotation": -22.98871680208064,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 35.84689665786984
+              }
+            },
+            {
+              "x": 55.5,
+              "y": 15,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -168.6900675259798,
+                "inDistance": 25.495097567963924,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -19.5,
+              "y": 54,
+              "cubic": {
+                "rotation": -20.772254682045833,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 31.016124838541646
+              }
+            },
+            {
+              "x": 71.5,
+              "y": 48,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -168.31063082456083,
+                "inDistance": 29.61418578992169,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.47,
+      "stroke": {
+        "color": "#d0ded2",
+        "thickness": 7,
+        "cap": "round"
+      },
+      "parent": "ScarfTail"
+    },
+    {
+      "id": "Laptop_01",
+      "type": "polygon",
+      "x": 960,
+      "y": 820,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -170,
+              "y": -136,
+              "cubic": {
+                "rotation": -11.023455963743142,
+                "inRotation": 168.6900675259798,
+                "inDistance": 15.297058540778355,
+                "outDistance": 104.59657950642763
+              }
+            },
+            {
+              "x": 138,
+              "y": -196,
+              "cubic": {
+                "rotation": -12.094757077012103,
+                "inRotation": 168.97654403625685,
+                "inDistance": 104.59657950642763,
+                "outDistance": 14.317821063276352
+              }
+            },
+            {
+              "x": 169,
+              "y": -173,
+              "cubic": {
+                "rotation": 84.18628282066517,
+                "inRotation": -97.59464336859145,
+                "inDistance": 15.132745950421555,
+                "outDistance": 92.14059305696311
+              }
+            },
+            {
+              "x": 197,
+              "y": 102,
+              "cubic": {
+                "rotation": 82.87498365109819,
+                "inRotation": -95.81371717933484,
+                "inDistance": 92.14059305696311,
+                "outDistance": 16.1245154965971
+              }
+            },
+            {
+              "x": 173,
+              "y": 134,
+              "cubic": {
+                "rotation": 168.72550090396916,
+                "inRotation": -10.619655276155134,
+                "inDistance": 16.278820596099706,
+                "outDistance": 105.70661705346976
+              }
+            },
+            {
+              "x": -138,
+              "y": 196,
+              "cubic": {
+                "rotation": 169.9920201985587,
+                "inRotation": -11.274499096030874,
+                "inDistance": 105.70661705346966,
+                "outDistance": 17.26267650163207
+              }
+            },
+            {
+              "x": -171,
+              "y": 171,
+              "cubic": {
+                "rotation": -95.23080717555321,
+                "inRotation": 83.29016319224307,
+                "inDistance": 17.11724276862369,
+                "outDistance": 95.06255250564695
+              }
+            },
+            {
+              "x": -197,
+              "y": -113,
+              "cubic": {
+                "rotation": -99.46232220802563,
+                "inRotation": 84.76919282444682,
+                "inDistance": 95.06255250564695,
+                "outDistance": 12.165525060596437
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#f5e4d5",
+              "position": 0
+            },
+            {
+              "color": "#c6b2a7",
+              "position": 0.45
+            },
+            {
+              "color": "#8c7b7b",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -197,
+            "y": -196
+          },
+          "end": {
+            "x": 197,
+            "y": 196
+          }
+        }
+      },
+      "stroke": {
+        "color": "#6c5b5c",
+        "thickness": 14,
+        "join": "round"
+      },
+      "parent": "Laptop"
+    },
+    {
+      "id": "Laptop_02",
+      "type": "polygon",
+      "x": 961,
+      "y": 806.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -160,
+              "y": -105.5,
+              "cubic": {
+                "rotation": -10.784297867562579,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 99.76193885668242
+              }
+            },
+            {
+              "x": 134,
+              "y": -161.5,
+              "cubic": {
+                "rotation": 84.33271432176083,
+                "inRotation": 169.21570213243743,
+                "inDistance": 99.76193885668242,
+                "outDistance": 87.76230524674149
+              }
+            },
+            {
+              "x": 160,
+              "y": 100.5,
+              "cubic": {
+                "rotation": 168.2784132281402,
+                "inRotation": -95.66728567823918,
+                "inDistance": 87.76230524674149,
+                "outDistance": 100.08718421678395
+              }
+            },
+            {
+              "x": -134,
+              "y": 161.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -11.721586771859814,
+                "inDistance": 100.08718421678395,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#d6c5bc"
+      },
+      "stroke": {
+        "color": "#f9e7d5",
+        "thickness": 8
+      },
+      "parent": "Laptop"
+    },
+    {
+      "id": "Laptop_03",
+      "type": "polygon",
+      "x": 993,
+      "y": 799.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -55,
+              "y": -15.5,
+              "cubic": {
+                "rotation": -90,
+                "inRotation": 90,
+                "inDistance": 29,
+                "outDistance": 15
+              }
+            },
+            {
+              "x": -23,
+              "y": -43.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 16,
+                "outDistance": 12
+              }
+            },
+            {
+              "x": -1,
+              "y": -36.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 180,
+                "inDistance": 5,
+                "outDistance": 7
+              }
+            },
+            {
+              "x": 25,
+              "y": -44.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -175.6012946450045,
+                "inDistance": 13.038404810405298,
+                "outDistance": 16
+              }
+            },
+            {
+              "x": 55,
+              "y": -15.5,
+              "cubic": {
+                "rotation": 90,
+                "inRotation": -90,
+                "inDistance": 16,
+                "outDistance": 28
+              }
+            },
+            {
+              "x": 1,
+              "y": 44.5,
+              "cubic": {
+                "rotation": -175.6012946450045,
+                "inRotation": -6.84277341263094,
+                "inDistance": 25.179356624028344,
+                "outDistance": 26.076809620810597
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.82,
+      "fill": {
+        "color": "#fff0e2"
+      },
+      "parent": "Laptop"
+    },
+    {
+      "id": "Laptop_04",
+      "type": "polygon",
+      "x": 1001.5,
+      "y": 739.5,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {
+              "x": -12.5,
+              "y": 11.5,
+              "cubic": {
+                "rotation": -81.2538377374448,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 13.152946437965904
+              }
+            },
+            {
+              "x": 12.5,
+              "y": -11.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 171.86989764584402,
+                "inDistance": 14.142135623730951,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "opacity": 0.8,
+      "stroke": {
+        "color": "#fff0e2",
+        "thickness": 8,
+        "cap": "round"
+      },
+      "parent": "Laptop"
+    },
+    {
+      "id": "Laptop_05",
+      "type": "polygon",
+      "x": 587,
+      "y": 989.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -243,
+              "y": -47.5,
+              "cubic": {
+                "rotation": -10.68960396842728,
+                "inRotation": 167.0053832080835,
+                "inDistance": 13.341664064126334,
+                "outDistance": 150.952899202956
+              }
+            },
+            {
+              "x": 202,
+              "y": -131.5,
+              "cubic": {
+                "rotation": -8.74616226255521,
+                "inRotation": 169.31039603157274,
+                "inDistance": 150.95289920295588,
+                "outDistance": 13.152946437965904
+              }
+            },
+            {
+              "x": 234,
+              "y": -113.5,
+              "cubic": {
+                "rotation": 76.17794536426827,
+                "inRotation": -118.30075576600639,
+                "inDistance": 14.7648230602334,
+                "outDistance": 43.25248868883476
+              }
+            },
+            {
+              "x": 265,
+              "y": 12.5,
+              "cubic": {
+                "rotation": 75.96375653207353,
+                "inRotation": -103.82205463573175,
+                "inDistance": 43.25248868883476,
+                "outDistance": 16.492422502470642
+              }
+            },
+            {
+              "x": 243,
+              "y": 46.5,
+              "cubic": {
+                "rotation": 169.06618321424426,
+                "inRotation": -14.036243467926477,
+                "inDistance": 16.492422502470642,
+                "outDistance": 149.37834143171114
+              }
+            },
+            {
+              "x": -197,
+              "y": 131.5,
+              "cubic": {
+                "rotation": 166.75948008481282,
+                "inRotation": -10.933816785755752,
+                "inDistance": 149.37834143171128,
+                "outDistance": 17.46424919657298
+              }
+            },
+            {
+              "x": -233,
+              "y": 108.5,
+              "cubic": {
+                "rotation": -103.93168924180301,
+                "inRotation": 76.75948008481281,
+                "inDistance": 17.46424919657298,
+                "outDistance": 44.303247937118314
+              }
+            },
+            {
+              "x": -265,
+              "y": -20.5,
+              "cubic": {
+                "rotation": -104.0362434679265,
+                "inRotation": 76.06831075819699,
+                "inDistance": 44.303247937118314,
+                "outDistance": 12.36931687685298
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "gradient": {
+          "type": "linear",
+          "stops": [
+            {
+              "color": "#f5e4d5",
+              "position": 0
+            },
+            {
+              "color": "#c6b2a7",
+              "position": 0.45
+            },
+            {
+              "color": "#8c7b7b",
+              "position": 1
+            }
+          ],
+          "start": {
+            "x": -265,
+            "y": -131.5
+          },
+          "end": {
+            "x": 265,
+            "y": 131.5
+          }
+        }
+      },
+      "stroke": {
+        "color": "#6c5b5c",
+        "thickness": 14,
+        "join": "round"
+      },
+      "parent": "Laptop"
+    },
+    {
+      "id": "Laptop_06",
+      "type": "polygon",
+      "x": 584,
+      "y": 971.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -224,
+              "y": -13.5,
+              "cubic": {
+                "rotation": -10.16208319400077,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 143.58582412233073
+              }
+            },
+            {
+              "x": 200,
+              "y": -89.5,
+              "cubic": {
+                "rotation": 75.67728002179646,
+                "inRotation": 169.8379168059992,
+                "inDistance": 143.58582412233068,
+                "outDistance": 32.338487561693114
+              }
+            },
+            {
+              "x": 224,
+              "y": 4.5,
+              "cubic": {
+                "rotation": 168.6900675259798,
+                "inRotation": -104.32271997820355,
+                "inDistance": 32.338487561693114,
+                "outDistance": 144.47221955179555
+              }
+            },
+            {
+              "x": -201,
+              "y": 89.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -11.309932474020178,
+                "inDistance": 144.47221955179563,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#423d47"
+      },
+      "stroke": {
+        "color": "#8c7778",
+        "thickness": 8
+      },
+      "parent": "Laptop"
+    },
+    {
+      "id": "Keyboard_01",
+      "type": "polygon",
+      "x": 579.5,
+      "y": 947.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -199.5,
+              "y": 28.5,
+              "cubic": {
+                "rotation": -10.43747535111833,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 12.879786057574462
+              }
+            },
+            {
+              "x": -161.5,
+              "y": 21.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 169.5625246488817,
+                "inDistance": 12.879786057574462,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": -155.5,
+              "y": 35.5,
+              "cubic": {
+                "rotation": 168.4078245897091,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 13.270686158262913
+              }
+            },
+            {
+              "x": -194.5,
+              "y": 43.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -11.59217541029091,
+                "inDistance": 13.270686158262913,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -147.5,
+              "y": 18.5,
+              "cubic": {
+                "rotation": -10.43747535111833,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 12.879786057574462
+              }
+            },
+            {
+              "x": -109.5,
+              "y": 11.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 169.5625246488817,
+                "inDistance": 12.879786057574462,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": -103.5,
+              "y": 25.5,
+              "cubic": {
+                "rotation": 168.4078245897091,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 13.270686158262913
+              }
+            },
+            {
+              "x": -142.5,
+              "y": 33.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -11.59217541029091,
+                "inDistance": 13.270686158262913,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -95.5,
+              "y": 8.5,
+              "cubic": {
+                "rotation": -10.43747535111833,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 12.879786057574462
+              }
+            },
+            {
+              "x": -57.5,
+              "y": 1.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 169.5625246488817,
+                "inDistance": 12.879786057574462,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": -51.5,
+              "y": 15.5,
+              "cubic": {
+                "rotation": 168.4078245897091,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 13.270686158262913
+              }
+            },
+            {
+              "x": -90.5,
+              "y": 23.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -11.59217541029091,
+                "inDistance": 13.270686158262913,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -43.5,
+              "y": -0.5,
+              "cubic": {
+                "rotation": -10.437475351118376,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 12.879786057574407
+              }
+            },
+            {
+              "x": -5.5,
+              "y": -7.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 169.5625246488816,
+                "inDistance": 12.879786057574407,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": 0.5,
+              "y": 6.5,
+              "cubic": {
+                "rotation": 168.4078245897091,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 13.270686158262913
+              }
+            },
+            {
+              "x": -38.5,
+              "y": 14.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -11.59217541029091,
+                "inDistance": 13.270686158262913,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 8.5,
+              "y": -9.5,
+              "cubic": {
+                "rotation": -10.437475351118376,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 12.879786057574407
+              }
+            },
+            {
+              "x": 46.5,
+              "y": -16.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 169.5625246488816,
+                "inDistance": 12.879786057574407,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": 52.5,
+              "y": -2.5,
+              "cubic": {
+                "rotation": 168.4078245897091,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 13.270686158262913
+              }
+            },
+            {
+              "x": 13.5,
+              "y": 5.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -11.59217541029091,
+                "inDistance": 13.270686158262913,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 60.5,
+              "y": -19.5,
+              "cubic": {
+                "rotation": -10.437475351118376,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 12.879786057574407
+              }
+            },
+            {
+              "x": 98.5,
+              "y": -26.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 169.5625246488816,
+                "inDistance": 12.879786057574407,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": 104.5,
+              "y": -12.5,
+              "cubic": {
+                "rotation": 168.4078245897091,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 13.270686158262913
+              }
+            },
+            {
+              "x": 65.5,
+              "y": -4.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -11.59217541029091,
+                "inDistance": 13.270686158262913,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 112.5,
+              "y": -28.5,
+              "cubic": {
+                "rotation": -10.437475351118376,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 12.879786057574407
+              }
+            },
+            {
+              "x": 150.5,
+              "y": -35.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 169.5625246488816,
+                "inDistance": 12.879786057574407,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": 156.5,
+              "y": -21.5,
+              "cubic": {
+                "rotation": 168.4078245897091,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 13.270686158262913
+              }
+            },
+            {
+              "x": 117.5,
+              "y": -13.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -11.59217541029091,
+                "inDistance": 13.270686158262913,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 164.5,
+              "y": -37.5,
+              "cubic": {
+                "rotation": -11.689369175439237,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 9.871395263307194
+              }
+            },
+            {
+              "x": 193.5,
+              "y": -43.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 168.31063082456077,
+                "inDistance": 9.871395263307194,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": 199.5,
+              "y": -29.5,
+              "cubic": {
+                "rotation": 166.42956561483825,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 9.944289260117504
+              }
+            },
+            {
+              "x": 170.5,
+              "y": -22.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -13.570434385161748,
+                "inDistance": 9.944289260117504,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#bcaeaa"
+      },
+      "stroke": {
+        "color": "#544d55",
+        "thickness": 3
+      },
+      "parent": "Keyboard"
+    },
+    {
+      "id": "Keyboard_02",
+      "type": "polygon",
+      "x": 585.5,
+      "y": 969.5,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -195.5,
+              "y": 30.5,
+              "cubic": {
+                "rotation": -11.821488340607269,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 14.64392175765918
+              }
+            },
+            {
+              "x": -152.5,
+              "y": 21.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 168.17851165939274,
+                "inDistance": 14.64392175765918,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": -146.5,
+              "y": 35.5,
+              "cubic": {
+                "rotation": 167.1957339347131,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 15.040685563571332
+              }
+            },
+            {
+              "x": -190.5,
+              "y": 45.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.804266065286876,
+                "inDistance": 15.040685563571332,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -138.5,
+              "y": 18.5,
+              "cubic": {
+                "rotation": -11.821488340607269,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 14.64392175765918
+              }
+            },
+            {
+              "x": -95.5,
+              "y": 9.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 168.17851165939274,
+                "inDistance": 14.64392175765918,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": -89.5,
+              "y": 23.5,
+              "cubic": {
+                "rotation": 167.1957339347131,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 15.040685563571332
+              }
+            },
+            {
+              "x": -133.5,
+              "y": 33.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.804266065286876,
+                "inDistance": 15.040685563571332,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -81.5,
+              "y": 7.5,
+              "cubic": {
+                "rotation": -11.821488340607225,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 14.643921757659236
+              }
+            },
+            {
+              "x": -38.5,
+              "y": -1.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 168.1785116593928,
+                "inDistance": 14.643921757659236,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": -32.5,
+              "y": 12.5,
+              "cubic": {
+                "rotation": 167.1957339347131,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 15.040685563571277
+              }
+            },
+            {
+              "x": -76.5,
+              "y": 22.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.804266065286924,
+                "inDistance": 15.040685563571277,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -24.5,
+              "y": -3.5,
+              "cubic": {
+                "rotation": -11.821488340607225,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 14.643921757659236
+              }
+            },
+            {
+              "x": 18.5,
+              "y": -12.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 168.1785116593928,
+                "inDistance": 14.643921757659236,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": 24.5,
+              "y": 1.5,
+              "cubic": {
+                "rotation": 167.1957339347131,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 15.040685563571277
+              }
+            },
+            {
+              "x": -19.5,
+              "y": 11.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.804266065286924,
+                "inDistance": 15.040685563571277,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 32.5,
+              "y": -14.5,
+              "cubic": {
+                "rotation": -11.821488340607225,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 14.643921757659236
+              }
+            },
+            {
+              "x": 75.5,
+              "y": -23.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 168.1785116593928,
+                "inDistance": 14.643921757659236,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": 81.5,
+              "y": -9.5,
+              "cubic": {
+                "rotation": 167.1957339347131,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 15.040685563571277
+              }
+            },
+            {
+              "x": 37.5,
+              "y": 0.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.804266065286924,
+                "inDistance": 15.040685563571277,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 89.5,
+              "y": -25.5,
+              "cubic": {
+                "rotation": -11.821488340607225,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 14.643921757659236
+              }
+            },
+            {
+              "x": 132.5,
+              "y": -34.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 168.1785116593928,
+                "inDistance": 14.643921757659236,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": 138.5,
+              "y": -20.5,
+              "cubic": {
+                "rotation": 167.1957339347131,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 15.040685563571277
+              }
+            },
+            {
+              "x": 94.5,
+              "y": -10.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.804266065286924,
+                "inDistance": 15.040685563571277,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 146.5,
+              "y": -36.5,
+              "cubic": {
+                "rotation": -11.821488340607225,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 14.643921757659236
+              }
+            },
+            {
+              "x": 189.5,
+              "y": -45.5,
+              "cubic": {
+                "rotation": 66.80140948635164,
+                "inRotation": 168.1785116593928,
+                "inDistance": 14.643921757659236,
+                "outDistance": 5.077182070575904
+              }
+            },
+            {
+              "x": 195.5,
+              "y": -31.5,
+              "cubic": {
+                "rotation": 167.1957339347131,
+                "inRotation": -113.19859051364836,
+                "inDistance": 5.077182070575904,
+                "outDistance": 15.040685563571277
+              }
+            },
+            {
+              "x": 151.5,
+              "y": -21.5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.804266065286924,
+                "inDistance": 15.040685563571277,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#bcaeaa"
+      },
+      "stroke": {
+        "color": "#544d55",
+        "thickness": 3
+      },
+      "parent": "Keyboard"
+    },
+    {
+      "id": "Keyboard_03",
+      "type": "polygon",
+      "x": 595.5,
+      "y": 995,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -187.5,
+              "y": 29,
+              "cubic": {
+                "rotation": -11.309932474020327,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 16.996731711975976
+              }
+            },
+            {
+              "x": -137.5,
+              "y": 19,
+              "cubic": {
+                "rotation": 63.43494882292201,
+                "inRotation": 168.69006752597969,
+                "inDistance": 16.996731711975976,
+                "outDistance": 5.217491947499467
+              }
+            },
+            {
+              "x": -130.5,
+              "y": 33,
+              "cubic": {
+                "rotation": 167.82854179141228,
+                "inRotation": -116.56505117707799,
+                "inDistance": 5.217491947499467,
+                "outDistance": 17.39092994766079
+              }
+            },
+            {
+              "x": -181.5,
+              "y": 44,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.171458208587715,
+                "inDistance": 17.39092994766079,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -121.5,
+              "y": 16,
+              "cubic": {
+                "rotation": -11.309932474020327,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 16.996731711975976
+              }
+            },
+            {
+              "x": -71.5,
+              "y": 6,
+              "cubic": {
+                "rotation": 63.434948822921456,
+                "inRotation": 168.69006752597969,
+                "inDistance": 16.996731711975976,
+                "outDistance": 5.217491947499492
+              }
+            },
+            {
+              "x": -64.5,
+              "y": 20,
+              "cubic": {
+                "rotation": 167.82854179141268,
+                "inRotation": -116.56505117707856,
+                "inDistance": 5.217491947499492,
+                "outDistance": 17.39092994766077
+              }
+            },
+            {
+              "x": -115.5,
+              "y": 31,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.17145820858735,
+                "inDistance": 17.39092994766077,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -55.5,
+              "y": 3,
+              "cubic": {
+                "rotation": -11.309932474020364,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 16.99673171197592
+              }
+            },
+            {
+              "x": -5.5,
+              "y": -7,
+              "cubic": {
+                "rotation": 63.434948822921456,
+                "inRotation": 168.69006752597966,
+                "inDistance": 16.99673171197592,
+                "outDistance": 5.217491947499492
+              }
+            },
+            {
+              "x": 1.5,
+              "y": 7,
+              "cubic": {
+                "rotation": 167.82854179141268,
+                "inRotation": -116.56505117707856,
+                "inDistance": 5.217491947499492,
+                "outDistance": 17.39092994766077
+              }
+            },
+            {
+              "x": -49.5,
+              "y": 18,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.17145820858735,
+                "inDistance": 17.39092994766077,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 10.5,
+              "y": -10,
+              "cubic": {
+                "rotation": -11.309932474020364,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 16.99673171197592
+              }
+            },
+            {
+              "x": 60.5,
+              "y": -20,
+              "cubic": {
+                "rotation": 63.434948822921456,
+                "inRotation": 168.69006752597966,
+                "inDistance": 16.99673171197592,
+                "outDistance": 5.217491947499492
+              }
+            },
+            {
+              "x": 67.5,
+              "y": -6,
+              "cubic": {
+                "rotation": 167.82854179141268,
+                "inRotation": -116.56505117707856,
+                "inDistance": 5.217491947499492,
+                "outDistance": 17.39092994766077
+              }
+            },
+            {
+              "x": 16.5,
+              "y": 5,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.17145820858735,
+                "inDistance": 17.39092994766077,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 76.5,
+              "y": -23,
+              "cubic": {
+                "rotation": -11.309932474020364,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 16.99673171197592
+              }
+            },
+            {
+              "x": 126.5,
+              "y": -33,
+              "cubic": {
+                "rotation": 63.434948822921456,
+                "inRotation": 168.69006752597966,
+                "inDistance": 16.99673171197592,
+                "outDistance": 5.217491947499492
+              }
+            },
+            {
+              "x": 133.5,
+              "y": -19,
+              "cubic": {
+                "rotation": 167.82854179141268,
+                "inRotation": -116.56505117707856,
+                "inDistance": 5.217491947499492,
+                "outDistance": 17.39092994766077
+              }
+            },
+            {
+              "x": 82.5,
+              "y": -8,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.17145820858735,
+                "inDistance": 17.39092994766077,
+                "outDistance": 0
+              }
+            }
+          ]
+        },
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": 142.5,
+              "y": -36,
+              "cubic": {
+                "rotation": -11.888658039627845,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 12.944325225965022
+              }
+            },
+            {
+              "x": 180.5,
+              "y": -44,
+              "cubic": {
+                "rotation": 63.434948822921456,
+                "inRotation": 168.11134196037216,
+                "inDistance": 12.944325225965022,
+                "outDistance": 5.217491947499492
+              }
+            },
+            {
+              "x": 187.5,
+              "y": -30,
+              "cubic": {
+                "rotation": 167.0053832080835,
+                "inRotation": -116.56505117707856,
+                "inDistance": 5.217491947499492,
+                "outDistance": 13.341664064126334
+              }
+            },
+            {
+              "x": 148.5,
+              "y": -21,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": -12.994616791916506,
+                "inDistance": 13.341664064126334,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#bcaeaa"
+      },
+      "stroke": {
+        "color": "#544d55",
+        "thickness": 3
+      },
+      "parent": "Keyboard"
+    },
+    {
+      "id": "Laptop_07",
+      "type": "polygon",
+      "x": 612.5,
+      "y": 1062,
+      "subpaths": [
+        {
+          "closed": true,
+          "points": [
+            {
+              "x": -147.5,
+              "y": 18,
+              "cubic": {
+                "rotation": -11.344468804685569,
+                "inRotation": 0,
+                "inDistance": 0,
+                "outDistance": 108.45224243365784
+              }
+            },
+            {
+              "x": 171.5,
+              "y": -46,
+              "cubic": {
+                "rotation": 16.504361381754798,
+                "inRotation": 168.65553119531444,
+                "inDistance": 108.45224243365784,
+                "outDistance": 9.386751893552471
+              }
+            },
+            {
+              "x": 198.5,
+              "y": -38,
+              "cubic": {
+                "rotation": 23.19859051364819,
+                "inRotation": -163.4956386182452,
+                "inDistance": 9.386751893552471,
+                "outDistance": 7.615773105863909
+              }
+            },
+            {
+              "x": 192.5,
+              "y": -25,
+              "cubic": {
+                "rotation": 168.9922576538301,
+                "inRotation": -15.255118703057775,
+                "inDistance": 11.40175425099138,
+                "outDistance": 123.94712134167894
+              }
+            },
+            {
+              "x": -172.5,
+              "y": 46,
+              "cubic": {
+                "rotation": 168.6900675259798,
+                "inRotation": -11.007742346169895,
+                "inDistance": 123.94712134167894,
+                "outDistance": 15.297058540778355
+              }
+            },
+            {
+              "x": -198.5,
+              "y": 35,
+              "cubic": {
+                "rotation": 0,
+                "inRotation": 104.0362434679265,
+                "inDistance": 8.246211251235321,
+                "outDistance": 0
+              }
+            }
+          ]
+        }
+      ],
+      "fill": {
+        "color": "#e8d9ce"
+      },
+      "stroke": {
+        "color": "#7d6d6b",
+        "thickness": 8
+      },
+      "parent": "Laptop"
+    }
+  ],
+  "animations": [
+    {
+      "name": "idle",
+      "fps": 60,
+      "duration": 480,
+      "loop": "loop",
+      "tracks": [
+        {
+          "target": "BodyRig",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 980
+            },
+            {
+              "frame": 120,
+              "value": 968,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 240,
+              "value": 980,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 360,
+              "value": 968,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 480,
+              "value": 980,
+              "easing": "ease-in-out"
+            }
+          ]
+        },
+        {
+          "target": "HeadPivot",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 100,
+              "value": 1.25,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 220,
+              "value": -0.6,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 360,
+              "value": 0.35,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 480,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "Eyes",
+          "property": "x",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 95,
+              "value": 3,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 215,
+              "value": 0,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 480,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "Eyes",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 95,
+              "value": 4,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 215,
+              "value": 0,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 480,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "ScarfTail",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 110,
+              "value": 1.5,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 220,
+              "value": 0.2,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 350,
+              "value": -1.2,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 480,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "Eyelids",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 119,
+              "value": 0
+            },
+            {
+              "frame": 122,
+              "value": 1
+            },
+            {
+              "frame": 125,
+              "value": 1
+            },
+            {
+              "frame": 129,
+              "value": 0
+            },
+            {
+              "frame": 360,
+              "value": 0
+            },
+            {
+              "frame": 363,
+              "value": 1
+            },
+            {
+              "frame": 366,
+              "value": 1
+            },
+            {
+              "frame": 370,
+              "value": 0
+            },
+            {
+              "frame": 480,
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "studying",
+      "fps": 60,
+      "duration": 360,
+      "loop": "loop",
+      "tracks": [
+        {
+          "target": "BodyRig",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 980
+            },
+            {
+              "frame": 90,
+              "value": 972,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 180,
+              "value": 980,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 270,
+              "value": 972,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 360,
+              "value": 980,
+              "easing": "ease-in-out"
+            }
+          ]
+        },
+        {
+          "target": "HeadPivot",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 75,
+              "value": 0.8,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 170,
+              "value": 0,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 255,
+              "value": -0.65,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 360,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "Eyes",
+          "property": "x",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 82,
+              "value": 4,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 170,
+              "value": 0,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 360,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "Eyes",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 82,
+              "value": 5,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 170,
+              "value": 0,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 360,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "FlipperLeft",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 12,
+              "value": -2.5,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 21,
+              "value": 2,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 33,
+              "value": 0,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 68,
+              "value": -2,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 78,
+              "value": 2.3,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 92,
+              "value": 0
+            },
+            {
+              "frame": 140,
+              "value": -2.6,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 151,
+              "value": 1.8,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 164,
+              "value": 0
+            },
+            {
+              "frame": 220,
+              "value": -2,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 232,
+              "value": 2.2,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 245,
+              "value": 0
+            },
+            {
+              "frame": 300,
+              "value": -2.5,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 312,
+              "value": 1.8,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 325,
+              "value": 0
+            },
+            {
+              "frame": 360,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "FlipperRight",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 18,
+              "value": 2.2,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 29,
+              "value": -1.6,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 40,
+              "value": 0
+            },
+            {
+              "frame": 75,
+              "value": 1.8,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 87,
+              "value": -2.1,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 98,
+              "value": 0
+            },
+            {
+              "frame": 145,
+              "value": 2.4,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 158,
+              "value": -1.9,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 170,
+              "value": 0
+            },
+            {
+              "frame": 225,
+              "value": 2,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 238,
+              "value": -1.8,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 250,
+              "value": 0
+            },
+            {
+              "frame": 305,
+              "value": 2.3,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 318,
+              "value": -1.8,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 330,
+              "value": 0
+            },
+            {
+              "frame": 360,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "ScarfTail",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 85,
+              "value": 0.9,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 175,
+              "value": 0,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 270,
+              "value": -0.7,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 360,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "Eyelids",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 83,
+              "value": 0
+            },
+            {
+              "frame": 86,
+              "value": 1
+            },
+            {
+              "frame": 89,
+              "value": 1
+            },
+            {
+              "frame": 93,
+              "value": 0
+            },
+            {
+              "frame": 260,
+              "value": 0
+            },
+            {
+              "frame": 263,
+              "value": 1
+            },
+            {
+              "frame": 266,
+              "value": 1
+            },
+            {
+              "frame": 270,
+              "value": 0
+            },
+            {
+              "frame": 360,
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "celebrate",
+      "fps": 60,
+      "duration": 96,
+      "loop": "oneShot",
+      "tracks": [
+        {
+          "target": "PipRoot",
+          "property": "y",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 8,
+              "value": 0
+            },
+            {
+              "frame": 18,
+              "value": -60,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 35,
+              "value": -66,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 50,
+              "value": -42,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 59,
+              "value": 0,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 80,
+              "value": 0,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 96,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "BodyRig",
+          "property": "scaleY",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 10,
+              "value": 0.97,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 23,
+              "value": 1.02,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 45,
+              "value": 1,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 56,
+              "value": 0.92,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 66,
+              "value": 1.02,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 96,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "BodyRig",
+          "property": "scaleX",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 10,
+              "value": 1.02,
+              "easing": "ease-in"
+            },
+            {
+              "frame": 23,
+              "value": 0.99,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 45,
+              "value": 1,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 56,
+              "value": 1.04,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 66,
+              "value": 0.99,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 96,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "target": "FlipperLeft",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 17,
+              "value": -3,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 35,
+              "value": 8,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 52,
+              "value": -5,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 72,
+              "value": 2,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 96,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "FlipperRight",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 17,
+              "value": 3,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 35,
+              "value": -8,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 52,
+              "value": 5,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 72,
+              "value": -2,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 96,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "HeadPivot",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 22,
+              "value": -1,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 39,
+              "value": 1.6,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 57,
+              "value": -0.6,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 78,
+              "value": 0.4,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 96,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "ScarfTail",
+          "property": "rotation",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 35,
+              "value": -2.4,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 53,
+              "value": 2,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 74,
+              "value": -0.9,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 96,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "Beak",
+          "property": "scaleY",
+          "keyframes": [
+            {
+              "frame": 0,
+              "value": 1
+            },
+            {
+              "frame": 22,
+              "value": 1.05,
+              "easing": "ease-out"
+            },
+            {
+              "frame": 48,
+              "value": 1,
+              "easing": "ease-in-out"
+            },
+            {
+              "frame": 96,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stateMachine": {
+    "name": "PipModes",
+    "inputs": [
+      {
+        "name": "studying",
+        "type": "bool",
+        "value": false
+      },
+      {
+        "name": "celebrate",
+        "type": "trigger"
+      }
+    ],
+    "states": [
+      {
+        "name": "idle",
+        "animation": "idle"
+      },
+      {
+        "name": "studying",
+        "animation": "studying"
+      },
+      {
+        "name": "celebrating",
+        "animation": "celebrate"
+      }
+    ],
+    "transitions": [
+      {
+        "from": "entry",
+        "to": "idle"
+      },
+      {
+        "from": "idle",
+        "to": "studying",
+        "condition": {
+          "input": "studying",
+          "value": true
+        }
+      },
+      {
+        "from": "studying",
+        "to": "idle",
+        "condition": {
+          "input": "studying",
+          "value": false
+        }
+      },
+      {
+        "from": "any",
+        "to": "celebrating",
+        "condition": {
+          "input": "celebrate"
+        }
+      },
+      {
+        "from": "celebrating",
+        "to": "idle",
+        "exitTimeMs": 1600
+      }
+    ]
+  }
+}

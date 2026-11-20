@@ -8,15 +8,19 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { PipHomeIdle } from './PipHomeIdle';
+import { SeatedPipReactions } from '../character/reactions/SeatedPipReactions';
 import { RoomCharacter } from './RoomCharacter';
 import { playPipChairPerformance } from '../character/pipChairPerformance';
 import type { PenguinCustomization } from '../character/penguinCustomization';
+import { HOME_CANVAS, STUDY_SEAT } from '../home/slots';
 
 type RoomMode = 'personal' | 'study-together';
 type SceneSize = { width: number; height: number };
 const CHARACTER_SCALE = 0.93;
+// The original laptop cel's hip contact, expressed in room coordinates.
+const LAPTOP_CEL_HIPS = { x: .517, y: .64 };
 
-export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, customization, homeIdle = false, ambientMotion = false }: { mode: RoomMode; hidden?: boolean; onSettledChange?: (settled: boolean) => void; customization?: PenguinCustomization; homeIdle?: boolean; ambientMotion?: boolean }) {
+export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, customization, homeIdle = false, ambientMotion = false, roomVisible = true }: { mode: RoomMode; hidden?: boolean; onSettledChange?: (settled: boolean) => void; customization?: PenguinCustomization; homeIdle?: boolean; ambientMotion?: boolean; roomVisible?: boolean }) {
   const reducedMotion = useReducedMotion();
   const [size, setSize] = useState<SceneSize>({ width: 0, height: 0 });
   const [performanceFrame, setPerformanceFrame] = useState<number | null>(null);
@@ -88,19 +92,32 @@ export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, cu
   }));
   const characterScaleStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
 
+  const laptopSeated = mode === 'personal' && homeIdle && (performanceFrame === 13 || reducedMotion) && !hidden;
   return (
     <View pointerEvents="none" onLayout={onLayout} style={[StyleSheet.absoluteFill, styles.overlay, hidden && styles.hidden]}>
+      {laptopSeated && <View style={[styles.seatContact, {
+        left: size.width * STUDY_SEAT.x / HOME_CANVAS.width - size.width * .04,
+        top: size.height * STUDY_SEAT.y / HOME_CANVAS.height + size.height * .033,
+        width: size.width * .12, height: size.height * .012,
+      }]} />}
       {mode === 'personal' && size.width > 0 && (
         <Animated.View style={[styles.walker, { width: characterWidth, height: characterHeight }, walkingStyle]}>
           <Animated.View style={[StyleSheet.absoluteFill, characterScaleStyle]}>
-            <PipHomeIdle enabled={homeIdle && performanceFrame === 13 && !hidden} motion={ambientMotion}>{eyes => <RoomCharacter
+            {laptopSeated
+              ? <View testID="igloo-seated-laptop" style={[styles.studyPose, {
+                  transform: [
+                    { translateX: size.width * (STUDY_SEAT.x / HOME_CANVAS.width - LAPTOP_CEL_HIPS.x) / CHARACTER_SCALE },
+                    { translateY: size.height * (STUDY_SEAT.y / HOME_CANVAS.height - LAPTOP_CEL_HIPS.y) / CHARACTER_SCALE },
+                  ],
+                }]}><SeatedPipReactions enabled={roomVisible} customization={customization} alwaysStudying allowAmbientCoffee={false} /></View>
+              : <PipHomeIdle enabled={homeIdle && performanceFrame === 13 && !hidden} motion={ambientMotion}>{eyes => <RoomCharacter
               walking={false}
               performanceFrame={reducedMotion ? null : performanceFrame}
               reducedMotion={reducedMotion}
               onPerformanceReady={markPerformanceReady}
               customization={customization}
               idleEyes={eyes}
-            />}</PipHomeIdle>
+            />}</PipHomeIdle>}
           </Animated.View>
         </Animated.View>
       )}
@@ -198,7 +215,9 @@ function SeatPenguin({
 
 const styles = StyleSheet.create({
   overlay: { zIndex: 1 },
+  seatContact: { position: 'absolute', borderRadius: 30, backgroundColor: '#60446126' },
   hidden: { opacity: 0 },
+  studyPose: { position: 'absolute', left: '6%', width: '76%', top: '15.5%', height: '68%' },
   walker: { position: 'absolute', left: 0, top: 0, zIndex: 4 },
   seat: { position: 'absolute', zIndex: 2, alignItems: 'center', justifyContent: 'center' },
 });

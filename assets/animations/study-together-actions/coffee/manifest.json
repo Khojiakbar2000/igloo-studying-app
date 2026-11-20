@@ -1,0 +1,14 @@
+{
+  "action": "coffee",
+  "canvas": {
+    "width": 430,
+    "height": 541
+  },
+  "frameCount": 4,
+  "sourceSheet": "source/pose-sheet.png",
+  "scale": 0.7166666666666667,
+  "anchorX": 328.875,
+  "anchorY": 599.25,
+  "baselineY": 527,
+  "durationMs": 2200
+}

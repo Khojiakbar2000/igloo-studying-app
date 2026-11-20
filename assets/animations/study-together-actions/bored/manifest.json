@@ -1,0 +1,14 @@
+{
+  "action": "bored",
+  "canvas": {
+    "width": 430,
+    "height": 541
+  },
+  "frameCount": 4,
+  "sourceSheet": "source/pose-sheet.png",
+  "scale": 0.7131011608623549,
+  "anchorX": 328,
+  "anchorY": 600.5,
+  "baselineY": 527,
+  "durationMs": 2200
+}

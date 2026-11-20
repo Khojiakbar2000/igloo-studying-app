@@ -1,7 +1,7 @@
 export type DailyGoal = { id: string; title: string; date: string; createdAt: number; completedAt: number | null; firstCompletedAt: number | null; deletedAt: number | null };
 export type FocusSpan = { start: number; end: number };
-export type ActiveFocus = { id: string; goalId: string | null; goalTitle: string | null; startedAt: number; runningSince: number | null; spans: FocusSpan[] };
-export type FocusSession = { id: string; goalId: string | null; goalTitle: string | null; startedAt: number; endedAt: number; date: string; focusMs: number; spans: FocusSpan[]; completed: boolean; review: 'pending' | 'finished' | 'working' | 'dismissed' | null };
+export type ActiveFocus = { id: string; goalId: string | null; goalTitle: string | null; startedAt: number; runningSince: number | null; spans: FocusSpan[]; interrupted?: boolean };
+export type FocusSession = { id: string; goalId: string | null; goalTitle: string | null; startedAt: number; endedAt: number; date: string; focusMs: number; spans: FocusSpan[]; completed: boolean; interrupted?: boolean; review: 'pending' | 'finished' | 'working' | 'dismissed' | null };
 export type GoalCelebration = { id: string; kind: 'goal' | 'all'; date: string };
 export type DailyGoalData = { goals: DailyGoal[]; sessions: FocusSession[]; selectedGoalId: string | null; activeFocus: ActiveFocus | null; lastGoalCelebration: GoalCelebration | null; celebratedDates: string[] };
 
@@ -11,9 +11,32 @@ export function localDateKey(now: number | Date = Date.now()) {
   const d = new Date(now);
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
-export function nextLocalDate(date: string) {
+export function shiftLocalDate(date: string, days: number) {
   const [y, m, d] = date.split('-').map(Number);
-  return localDateKey(new Date(y, m - 1, d + 1, 12));
+  return localDateKey(new Date(y, m - 1, d + days, 12));
+}
+export function nextLocalDate(date: string) {
+  return shiftLocalDate(date, 1);
+}
+
+/** Study days are verified by the existing completed-session progression. */
+export function studyStreak(verifiedDays: readonly string[], today: string) {
+  const days = new Set(verifiedDays.filter(date => date <= today));
+  let date = days.has(today) ? today : shiftLocalDate(today, -1);
+  let current = 0;
+  while (days.has(date)) {
+    current++;
+    date = shiftLocalDate(date, -1);
+  }
+  let longest = 0;
+  let consecutive = 0;
+  let previous: string | undefined;
+  for (const day of [...days].sort()) {
+    consecutive = previous && nextLocalDate(previous) === day ? consecutive + 1 : 1;
+    longest = Math.max(longest, consecutive);
+    previous = day;
+  }
+  return { current, longest };
 }
 export function goalDayBounds(date: string) {
   const [y, m, d] = date.split('-').map(Number);

@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, Easing, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle, ClipPath, Defs, G, LinearGradient, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
-import { setAudioModeAsync, useAudioPlayer } from 'expo-audio';
+import { useAudioPlayer } from 'expo-audio';
+import { prepareAudioSession } from '../ambient/audioSession';
 import { usePomodoro } from '../state/PomodoroContext';
 
 const POSES = [
@@ -93,7 +94,7 @@ export function IglooWindowInteraction({ ready, onRunStateChange }: { ready: boo
     if (busy || !ready) return;
     const runId = ++playId.current;
     const isCancelled = () => cancel.current || playId.current !== runId;
-    void setAudioModeAsync({ playsInSilentMode: true, interruptionMode: 'mixWithOthers' });
+    void prepareAudioSession().catch(() => undefined);
     sound('room', true); sound('wind', true);
     onRunStateChange(true);
     cancel.current = false;

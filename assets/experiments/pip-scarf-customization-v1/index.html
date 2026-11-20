@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pip scarf customization experiment</title>
+  <style>
+    :root { color-scheme: light; --ink:#42545d; --muted:#73858a; --card:#fffdf7; --line:#e7ddca; --sea:#42666b; --ice:#e8f0f5; }
+    * { box-sizing:border-box }
+    body { margin:0; min-height:100vh; padding:34px 18px; background:linear-gradient(160deg,#e6eff4,#edf0eb 58%,#e8e8f0); color:var(--ink); font:16px/1.45 ui-rounded,"Avenir Next",system-ui,sans-serif; }
+    main { max-width:920px; margin:auto; }
+    header { text-align:center; margin:0 auto 22px; max-width:720px; }
+    h1 { margin:0 0 8px; font-size:clamp(25px,4vw,36px); letter-spacing:-.03em; }
+    header p { margin:0; color:var(--muted); }
+    .panel { display:grid; grid-template-columns:minmax(280px,1fr) minmax(260px,.88fr); gap:20px; align-items:center; background:var(--card); border:1px solid #f3eee2; border-radius:28px; padding:20px; box-shadow:0 18px 50px #42545d16; }
+    .stage { min-height:500px; display:grid; place-items:center; overflow:hidden; position:relative; border-radius:22px; background:radial-gradient(ellipse at 50% 70%,#fff7e7 0,#f3eddd 35%,#dde9f1 100%); }
+    #pip { width:min(100%,480px); aspect-ratio:1; }
+    .snow { position:absolute; inset:0; pointer-events:none; opacity:.6; background-image:radial-gradient(#fff 1.4px,transparent 1.8px),radial-gradient(#fff 1px,transparent 1.4px); background-size:64px 71px,93px 101px; background-position:8px 12px,39px 49px; }
+    .controls { display:flex; flex-direction:column; gap:17px; }
+    .group { display:grid; gap:9px; }
+    .label { display:flex; justify-content:space-between; gap:8px; align-items:baseline; font-weight:750; }
+    .label small { color:var(--muted); font-weight:500; }
+    .swatches,.actions { display:flex; flex-wrap:wrap; gap:8px; }
+    button,select { font:inherit; color:var(--ink); border:1px solid var(--line); border-radius:14px; background:#fff; min-height:44px; padding:9px 12px; }
+    button { cursor:pointer; transition:transform .14s,box-shadow .14s,border-color .14s; }
+    button:hover { transform:translateY(-1px); box-shadow:0 5px 12px #364c5418; }
+    button[aria-pressed="true"] { border:2px solid var(--sea); background:#eff7f4; box-shadow:inset 0 0 0 1px #fff; }
+    .swatch { display:flex; align-items:center; gap:8px; }
+    .dot { width:19px; height:19px; border-radius:50%; box-shadow:inset 0 0 0 1px #293c4330; }
+    select { width:100%; background:#fff; }
+    input[type=range] { accent-color:var(--sea); width:100%; }
+    .readout { min-height:49px; padding:11px 12px; border-radius:14px; background:#f2f5f1; color:#50666b; font-size:14px; }
+    .readout strong { color:#3c6e5f; }
+    .note { margin:0; font-size:13px; color:var(--muted); }
+    .metrics { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .metric { border-radius:13px; padding:10px; background:#f7f5ee; font-size:13px; }
+    .metric b { display:block; font-size:16px; }
+    footer { margin:18px auto 0; color:var(--muted); font-size:13px; max-width:850px; text-align:center; }
+    @media(max-width:720px) { body{padding:18px 12px}.panel{grid-template-columns:1fr;padding:12px;gap:12px}.stage{min-height:0;aspect-ratio:1}.controls{padding:8px 5px 10px} }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>One Pip, three scarves</h1>
+    <p>Switch colors while the same storybook animation keeps playing.</p>
+  </header>
+  <section class="panel">
+    <div class="stage"><div id="pip" aria-label="Animated Pip preview"></div><div class="snow"></div></div>
+    <div class="controls">
+      <div class="group">
+        <div class="label">Scarf <small>swap live</small></div>
+        <div class="swatches" role="group" aria-label="Scarf color">
+          <button class="swatch" data-scarf="teal" aria-pressed="true"><i class="dot" style="background:#739693"></i>Teal</button>
+          <button class="swatch" data-scarf="red" aria-pressed="false"><i class="dot" style="background:#bf7175"></i>Cozy red</button>
+          <button class="swatch" data-scarf="lavender" aria-pressed="false"><i class="dot" style="background:#9b83b8"></i>Lavender</button>
+        </div>
+      </div>
+      <div class="group">
+        <label class="label" for="action">Animation</label>
+        <select id="action">
+          <option value="pip-cold">Shivering · 8 s loop</option>
+          <option value="blink">Blinking · 4 s loop</option>
+          <option value="wave">Waving · 3 s loop</option>
+          <option value="hopeful-wave">Hopeful wave · 3 s loop</option>
+          <option value="scarf-tuck">Scarf tuck · 3 s loop</option>
+          <option value="curious-look">Curious look · 3 s loop</option>
+          <option value="celebrate">Celebrate · 3 s loop</option>
+        </select>
+      </div>
+      <div class="group">
+        <label class="label" for="speed">Playback speed <small id="speedValue">1×</small></label>
+        <input id="speed" type="range" min="0.35" max="1.5" step="0.05" value="1" />
+      </div>
+      <div class="readout" id="status">Loading Pip's reusable animation…</div>
+      <div class="metrics">
+        <div class="metric"><b>1 character rig</b>Shared across every color</div>
+        <div class="metric"><b id="layerCount">—</b>Image layers in this action</div>
+      </div>
+      <p class="note">Dance is not included here: the only dance asset belongs to the older plush Pip, so it would break the approved storybook design.</p>
+        <p class="note">This browser preview updates the active Lottie scarf image in place. Native Lottie image hot-swapping still needs iPhone/Android verification.</p>
+    </div>
+  </section>
+  <footer>Isolated experiment · existing production and Study Together animations remain untouched.</footer>
+</main>
+<script src="/node_modules/lottie-web/build/player/lottie.js"></script>
+<script>
+(() => {
+  const names = { 'pip-cold':'Shivering', blink:'Blinking', wave:'Waving', 'hopeful-wave':'Hopeful wave', 'scarf-tuck':'Scarf tuck', 'curious-look':'Curious look', celebrate:'Celebrate' };
+  const host = document.getElementById('pip'), status = document.getElementById('status');
+  const colorButtons = [...document.querySelectorAll('[data-scarf]')];
+  let scarf = 'teal', action = 'pip-cold', player = null, scarfImages = [], scarfBaseSrc = null, appliedScarfSrc = null;
+  const cache = new Map();
+  async function loadJSON(name) { if (!cache.has(name)) cache.set(name, fetch(`lottie/${name}.json`).then(r => { if (!r.ok) throw Error('Lottie file could not be loaded'); return r.json(); })); return cache.get(name); }
+  async function scarfData(color) { if (!cache.has(`scarf-${color}`)) cache.set(`scarf-${color}`, fetch(`scarves/scarf-${color}.png`).then(async r => { const b = await r.blob(); return new Promise((resolve,reject)=>{const rd=new FileReader();rd.onload=()=>resolve(rd.result);rd.onerror=reject;rd.readAsDataURL(b)}); })); return cache.get(`scarf-${color}`); }
+  async function preloadScarf(color) {
+    if (!cache.has(`decoded-${color}`)) cache.set(`decoded-${color}`,(async()=>{const src=await scarfData(color);const bitmap=new Image();bitmap.src=src;if(bitmap.decode)await bitmap.decode();else await new Promise((resolve,reject)=>{bitmap.onload=resolve;bitmap.onerror=reject});return src})());
+    return cache.get(`decoded-${color}`);
+  }
+  function findScarfImages() {
+    if (!scarfBaseSrc) return [];
+    return [...host.querySelectorAll('image')].filter(el => el.getAttribute('href') === scarfBaseSrc || el.getAttributeNS('http://www.w3.org/1999/xlink','href') === scarfBaseSrc);
+  }
+  async function applyScarf() {
+    const images = scarfImages.length ? scarfImages : findScarfImages();
+    if (!images.length) return false;
+    const src = await preloadScarf(scarf);
+    for (const image of images) { image.setAttribute('href', src); image.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href',src); }
+    scarfImages = images; appliedScarfSrc = src; return true;
+  }
+  async function play(name) {
+    action = name; scarfImages = [];
+    if (player) { player.destroy(); player = null; }
+    const data = await loadJSON(name);
+    scarfBaseSrc = await preloadScarf(scarf);
+    const scarfAsset=data.assets.find(asset => asset.id === 'pip_scarf');
+    if(scarfAsset)scarfAsset.p=scarfBaseSrc;
+    player = lottie.loadAnimation({ container:host, renderer:'svg', loop:true, autoplay:true, animationData:data, rendererSettings:{ preserveAspectRatio:'xMidYMid meet', progressiveLoad:false } });
+    player.addEventListener('DOMLoaded', async () => {
+      await applyScarf();
+      document.getElementById('layerCount').textContent = `${data.layers.filter(l=>l.ty===2).length} total`;
+      status.innerHTML = `<strong>Playing ${names[name]}.</strong> Scarf swaps update the image in place; the frame counter continues.`;
+      frameCount = 0;
+    });
+    player.addEventListener('enterFrame', e => { frameCount = Math.round(e.currentTime); });
+    player.addEventListener('data_failed', () => { status.textContent='The animation could not load.'; });
+  }
+  for (const button of colorButtons) button.addEventListener('click', async () => {
+    scarf = button.dataset.scarf;
+    colorButtons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+    const before = player?.currentFrame;
+    const ok = await applyScarf();
+    switchAtFrame = before;
+    setTimeout(() => {
+      const after = player?.currentFrame;
+      const continued = before !== undefined && after !== undefined && Math.abs(after-before) > 0.5;
+      status.innerHTML = ok && continued ? `<strong>${button.textContent.trim()} scarf applied.</strong> Playback continued at frame ${Math.round(after)}; the Lottie player was not remounted.` : ok ? '<strong>Scarf image updated.</strong>' : 'Waiting for the scarf layer…';
+    }, 350);
+  });
+  document.getElementById('action').addEventListener('change', e=>play(e.target.value));
+  document.getElementById('speed').addEventListener('input', e=>{const n=Number(e.target.value);document.getElementById('speedValue').textContent=`${n.toFixed(2).replace(/0+$/,'').replace(/\.$/,'')}×`;player?.setSpeed(n)});
+  window.addEventListener('keydown', e=>{ if(e.key==='r'){document.querySelector('[data-scarf="red"]').click()} if(e.key==='l'){document.querySelector('[data-scarf="lavender"]').click()} });
+  window.__pipCustomizationState = () => ({ action, scarf, frame: player?.currentFrame ?? null, playerId: player?.animationID ?? null, hasScarfLayer: scarfImages.length > 0 || findScarfImages().length > 0, layers: host.querySelectorAll('svg image').length, preloadedColors:['teal','red','lavender'].filter(c=>cache.has(`decoded-${c}`)).length });
+  window.__pipCustomizationDebug = () => ({scarfIndices:scarfImages.map(img=>[...host.querySelectorAll('image')].indexOf(img)),matchesApplied:scarfImages.every(img=>img.getAttribute('href')===appliedScarfSrc),appliedHead:appliedScarfSrc?.slice(0,200)});
+  Promise.all(['teal','red','lavender'].map(preloadScarf)).then(()=>play(action)).catch(e=>{status.textContent=e.message;});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "fps": 30,
+  "segments": {
+    "study": [
+      0,
+      107
+    ],
+    "actions": {
+      "drink": [
+        107,
+        171
+      ],
+      "bored": [
+        171,
+        223
+      ],
+      "stretch": [
+        223,
+        279
+      ],
+      "wave": [
+        279,
+        339
+      ],
+      "break": [
+        339,
+        403
+      ],
+      "yawn": [
+        403,
+        463
+      ],
+      "celebrate": [
+        463,
+        523
+      ]
+    },
+    "wake": [
+      523,
+      559
+    ],
+    "reactions": {
+      "excited": [
+        559,
+        586
+      ],
+      "blink": [
+        586,
+        596
+      ],
+      "look": [
+        596,
+        627
+      ],
+      "smile": [
+        627,
+        656
+      ]
+    }
+  },
+  "actionLabels": [
+    "drink",
+    "bored",
+    "stretch",
+    "wave",
+    "break",
+    "yawn",
+    "celebrate"
+  ]
+}

@@ -1,0 +1,97 @@
+diff --git a/App.tsx b/App.tsx
+index 22b7622..dbc2bb0 100644
+--- a/App.tsx
++++ b/App.tsx
+@@ -16,6 +16,7 @@ import { RoomCharacterOverlay } from './src/components/RoomCharacterOverlay';
+ import { OnboardingFlow, type PreviewStage } from './src/onboarding/OnboardingFlow';
+ import { IglooOcclusionPrototype } from './src/scenes/IglooOcclusionPrototype';
+ import { PipChairCompareScene } from './src/scenes/PipChairCompareScene';
++import { VideoAnimationExperiment } from './src/components/VideoAnimationExperiment';
+ import { SynfigShiverCompareScene } from './src/scenes/SynfigShiverCompareScene';
+ import { LottieExperimentPreview } from './src/scenes/LottieExperimentPreview';
+ import { StudyTogetherCharacters } from './src/components/StudyTogetherCharacters';
+@@ -39,6 +40,7 @@ function IglooApp() {
+   const [onboardingComplete, setOnboardingComplete] = useState<boolean | null>(null);
+   const [screen, setScreen] = useState<Screen>('home');
+   const [previewCompleted, setPreviewCompleted] = useState(false);
++  const [videoExperimentOpen, setVideoExperimentOpen] = useState<boolean | null>(null);
+   const [customization, setCustomization] = useState<PenguinCustomization>(DEFAULT_PENGUIN_CUSTOMIZATION);
+   const previewStage: PreviewStage = (() => {
+     if (typeof window === 'undefined') return null;
+@@ -63,6 +65,8 @@ function IglooApp() {
+     && new URLSearchParams(window.location.search).get('preview') === 'pip-synfig-shiver';
+   const showLottieExperiment = typeof window !== 'undefined'
+     && new URLSearchParams(window.location.search).get('preview') === 'lottie-experiment';
++  const showVideoAnimationExperiment = typeof window !== 'undefined'
++    && new URLSearchParams(window.location.search).get('preview') === 'video-animation';
+   const showOnboarding = !onboardingComplete || (previewMode && !previewCompleted);
+   useEffect(() => {
+     AsyncStorage.getItem(ONBOARDING_COMPLETE_KEY).then((complete) => {
+@@ -92,6 +96,7 @@ function IglooApp() {
+   if (showLottieExperiment) return <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right', 'bottom']}><LottieExperimentPreview /></SafeAreaView>;
+   if (showSynfigShiver) return <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right', 'bottom']}><SynfigShiverCompareScene /></SafeAreaView>;
+   if (showPipChairCompare) return <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right', 'bottom']}><PipChairCompareScene /></SafeAreaView>;
++  if ((videoExperimentOpen ?? showVideoAnimationExperiment) && __DEV__) return <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right', 'bottom']}><VideoAnimationExperiment onExit={() => setVideoExperimentOpen(false)} /></SafeAreaView>;
+   if (onboardingComplete === null) return <View style={styles.loading}><Text style={styles.loadingMark}>IGLOO</Text></View>;
+   return <>
+     <StatusBar barStyle="dark-content" backgroundColor={colors.ice} />
+@@ -102,6 +107,7 @@ function IglooApp() {
+           setPreviewCompleted(true);
+         }} />
+       : <MainApp screen={screen} setScreen={setScreen} customization={customization} onCustomizationChange={saveCustomization} />}
++    {__DEV__ && !previewMode && <Pressable accessibilityRole="button" onPress={() => setVideoExperimentOpen(true)} style={{ position: 'absolute', right: 12, top: 58, zIndex: 99, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 16, backgroundColor: '#52777A', opacity: 0.9 }}><Text style={{ color: 'white', fontWeight: '800', fontSize: 10 }}>Playback lab</Text></Pressable>}
+   </>;
+ }
+ 
+diff --git a/package-lock.json b/package-lock.json
+index 6ac2413..6edd4b6 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -16,6 +16,7 @@
+         "expo-asset": "~12.0.14",
+         "expo-audio": "~1.1.1",
+         "expo-status-bar": "~3.0.8",
++        "expo-video": "~3.0.11",
+         "lottie-react-native": "~7.3.1",
+         "lottie-web": "^5.13.0",
+         "react": "19.1.0",
+@@ -4068,6 +4069,17 @@
+         "react-native": "*"
+       }
+     },
++    "node_modules/expo-video": {
++      "version": "3.0.16",
++      "resolved": "https://registry.npmjs.org/expo-video/-/expo-video-3.0.16.tgz",
++      "integrity": "sha512-H1HlxcHGomZItqisGfW3YL/G9BHtNBfVSimDJcLuyxyU87wFnV8loO9tCjuhufkfh/aTa2sW5BYAjLjg9DvnBQ==",
++      "license": "MIT",
++      "peerDependencies": {
++        "expo": "*",
++        "react": "*",
++        "react-native": "*"
++      }
++    },
+     "node_modules/expo/node_modules/@expo/cli": {
+       "version": "54.0.28",
+       "resolved": "https://registry.npmjs.org/@expo/cli/-/cli-54.0.28.tgz",
+diff --git a/package.json b/package.json
+index 7f3d1c0..90efa93 100644
+--- a/package.json
++++ b/package.json
+@@ -9,7 +9,8 @@
+     "android": "expo run:android",
+     "web": "expo start --web",
+     "typecheck": "tsc --noEmit",
+-    "build:web": "expo export --platform web"
++    "build:web": "expo export --platform web",
++    "experiment:video": "sh assets/experiments/video-animation/build-video.sh"
+   },
+   "dependencies": {
+     "@expo/metro-runtime": "~6.1.2",
+@@ -20,6 +21,7 @@
+     "expo-asset": "~12.0.14",
+     "expo-audio": "~1.1.1",
+     "expo-status-bar": "~3.0.8",
++    "expo-video": "~3.0.11",
+     "lottie-react-native": "~7.3.1",
+     "lottie-web": "^5.13.0",
+     "react": "19.1.0",

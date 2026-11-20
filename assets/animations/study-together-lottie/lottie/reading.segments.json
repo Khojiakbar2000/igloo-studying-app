@@ -1,0 +1,52 @@
+{
+  "fps": 30,
+  "segments": {
+    "study": [
+      0,
+      126
+    ],
+    "actions": {
+      "drink": [
+        126,
+        190
+      ],
+      "bored": [
+        190,
+        242
+      ],
+      "stretch": [
+        242,
+        298
+      ],
+      "wave": [
+        298,
+        358
+      ],
+      "break": [
+        358,
+        422
+      ],
+      "yawn": [
+        422,
+        482
+      ],
+      "celebrate": [
+        482,
+        542
+      ]
+    },
+    "wake": [
+      542,
+      578
+    ]
+  },
+  "actionLabels": [
+    "drink",
+    "bored",
+    "stretch",
+    "wave",
+    "break",
+    "yawn",
+    "celebrate"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "complete": true,
+  "result": [
+    {
+      "name": "wave",
+      "totalFrames": 90,
+      "visiblePixels": 117428,
+      "startEqualsEnd": true,
+      "motionVisible": true
+    },
+    {
+      "name": "dance",
+      "totalFrames": 180,
+      "visiblePixels": 117428,
+      "startEqualsEnd": true,
+      "motionVisible": true
+    },
+    {
+      "name": "celebrate",
+      "totalFrames": 90,
+      "visiblePixels": 117428,
+      "startEqualsEnd": true,
+      "motionVisible": true
+    }
+  ]
+}

@@ -6,11 +6,16 @@ import { StudyWindowAnimation } from './StudyWindowAnimation';
 import { StudyWindowView } from './StudyWindowView';
 import { WindowStormOverlay } from './WindowStormOverlay';
 import { RoomBackdrop } from './RoomBackdrop';
+import { StudyLightingLayer } from './StudyLightingLayer';
+import { DEFAULT_LIGHTING, type RoomLighting } from '../home/lighting';
+import { useReducedMotion } from 'react-native-reanimated';
 
-export function StudyRoomEnvironment({ roomId, windowScene }: { roomId: StudyRoomId; windowScene: StudyWindowScene }) {
+export function StudyRoomEnvironment({ roomId, windowScene, lighting = DEFAULT_LIGHTING }: { roomId: StudyRoomId; windowScene: StudyWindowScene; lighting?: RoomLighting }) {
+  const reducedMotion = useReducedMotion();
   return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
     <RoomBackdrop source={studyRoom(roomId).background} label={`${studyRoom(roomId).label} illustrated study room`} />
     {roomId === 'igloo' && (windowScene === 'blizzard' ? <WindowStormOverlay /> : <View style={styles.window}><StudyWindowView scene={windowScene} /></View>)}
+    {roomId === 'igloo' && <StudyLightingLayer lighting={lighting} scene={windowScene} reducedMotion={reducedMotion} />}
     <StudyWindowAnimation key={roomId} source={ROOM_MOTION[roomId]} />
   </View>;
 }

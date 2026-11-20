@@ -1,0 +1,4 @@
+import sharp from 'sharp';import fs from 'node:fs/promises';
+const dir='assets/experiments/pip-lottie-dance';const src=dir+'/source-sheet.png';
+const boxes={body:[0,0,750,1024,.46],leftArm:[800,210,290,360,.4],rightArm:[1200,210,290,360,.4],leftFoot:[840,675,250,220,.46],rightFoot:[1180,675,250,220,.46]};
+const params={};for(const [name,[left,top,width,height,scale]]of Object.entries(boxes)){const {data,info}=await sharp(src).extract({left,top,width,height}).raw().toBuffer({resolveWithObject:true});for(let i=3;i<data.length;i+=4){if(data[i]<180)data[i]=0;else data[i]=Math.round(255*Math.min(1,(data[i]-180)/55));}const out=await sharp(data,{raw:info}).resize({width:Math.round(width*scale)}).png().toBuffer();await fs.writeFile(dir+'/'+name+'.png',out);params[name]=out.toString('base64');}await fs.writeFile(dir+'/params.json',JSON.stringify(params));

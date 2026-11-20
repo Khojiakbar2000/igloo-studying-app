@@ -1,0 +1,90 @@
+{
+  "passes": true,
+  "failures": [],
+  "unchangedMotionLayersAndTiming": true,
+  "scarves": [
+    {
+      "id": "teal",
+      "bytes": 53567
+    },
+    {
+      "id": "red",
+      "bytes": 45206
+    },
+    {
+      "id": "lavender",
+      "bytes": 44958
+    }
+  ],
+  "body": {
+    "bytes": 239029,
+    "format": "png",
+    "width": 304,
+    "height": 500,
+    "space": "srgb",
+    "channels": 4,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "bitsPerSample": 8,
+    "hasProfile": false,
+    "hasAlpha": true,
+    "autoOrient": {
+      "width": 304,
+      "height": 500
+    }
+  },
+  "actions": [
+    {
+      "action": "pip-cold",
+      "durationSeconds": 8,
+      "fps": 30,
+      "sizeBytes": 480379,
+      "imageLayerCount": 7
+    },
+    {
+      "action": "blink",
+      "durationSeconds": 4,
+      "fps": 30,
+      "sizeBytes": 472501,
+      "imageLayerCount": 7
+    },
+    {
+      "action": "wave",
+      "durationSeconds": 3,
+      "fps": 30,
+      "sizeBytes": 441291,
+      "imageLayerCount": 6
+    },
+    {
+      "action": "hopeful-wave",
+      "durationSeconds": 3,
+      "fps": 30,
+      "sizeBytes": 440781,
+      "imageLayerCount": 6
+    },
+    {
+      "action": "scarf-tuck",
+      "durationSeconds": 3,
+      "fps": 30,
+      "sizeBytes": 440782,
+      "imageLayerCount": 6
+    },
+    {
+      "action": "curious-look",
+      "durationSeconds": 3,
+      "fps": 30,
+      "sizeBytes": 440784,
+      "imageLayerCount": 6
+    },
+    {
+      "action": "celebrate",
+      "durationSeconds": 3,
+      "fps": 30,
+      "sizeBytes": 443949,
+      "imageLayerCount": 6
+    }
+  ],
+  "totalAnimationJsonBytes": 3160467,
+  "test": "21 of 21 live browser swaps passed"
+}
