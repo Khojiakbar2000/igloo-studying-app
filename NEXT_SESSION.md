@@ -1,25 +1,25 @@
-# IGLOO continuation note
+# Igloo continuation note
 
-Last updated: 2026-11-14
+## Wardrobe · 2026-11-28
 
-## Current state
+Headwear fittings in `src/wardrobe/fitting.ts` now span Pip’s head and draw the headphone band in front. The direct wardrobe preview saves real equipment by default; `demo=1` enables samples. RoomCharacter preserves equipped headwear at rest. Mobile Chrome verified Equip, three poses, Today, profile, room, and reload for both items. Captures are `/private/tmp/headwear-*.png`. Typecheck and five fitting tests pass. Native rendering remains unverified.
 
-- The working branch is `develop`; the latest world-concept commit is local and ahead of `origin/develop`.
-- My Igloo and Study Together concept screens are wired into `App.tsx` with room art and the `RoomCharacterOverlay`.
-- Pip's chair sequence uses a constant root scale and ImageGen-created contact, settle, and seated-rest poses. Prompt and source art are under `assets/animations/pip-chair-performance/`.
-- The web preview was blank because `RoomCharacter.web.tsx` called `Image.resolveAssetSource`, which React Native Web does not provide. It now preloads the frames with hidden React Native `Image` elements instead.
-- The overlay now sets Pip's initial floor anchor before the preloader finishes, avoiding a clipped character at the top-left during startup.
-- The current local preview is `http://localhost:8085/?preview=igloo-room`. The existing Expo process can disappear between sessions; start it with `npm run web -- --port 8085` and use a free port if 8085 is occupied.
-- `npm run build:web` succeeds after the web-preload fix.
+## Palette and Today · 2026-11-27
 
-## Next work
+App-wide winter tokens live in `src/theme.ts`. Today uses half-scale Pip and a scene progress footer. Typecheck, 50 state tests, and web export passed.
 
-1. Open the local Igloo preview and review Pip's full walk-to-chair sequence at normal speed, including the web preload period.
-2. Improve the walk-to-chair path and chair contact/foot placement if the rendered acting still feels like a pose sequence instead of a natural climb.
-3. Keep Pip's scale constant and use the existing room perspective and floor anchors as references.
-4. Do not claim a polished Rive animation: the added chair beats are raster key poses; the existing Rive rig is still separate.
-5. If multiplayer work resumes, treat Study Together as concept art/local animation only; Supabase multiplayer is not implemented.
+## Onboarding · 2026-11-22
 
-## Git workflow preference
+Pip’s layered animation is implemented in `src/onboarding/OnboardingPip.tsx` and `pipStorybookMotion.ts`. The flow retains authored Lottie story clips. Chrome (390×844) covered all 20 screens, wave, breathing, blinking, celebration, name and goal selection, discovery taps, and reduced motion. Typecheck and both onboarding reminder tests passed. If onboarding resumes, verify native iOS and Android playback.
 
-Only push when the user explicitly asks. For an authorized push, update `develop` first, then merge `develop` into `master`, and push `master`.
+
+
+## Room concepts · 2026-11-14
+
+`App.tsx` wires My Igloo and Study Together concepts through `RoomCharacterOverlay`. The chair sequence uses constant root scale and raster contact, settle, and rest poses under `assets/animations/pip-chair-performance/`. `RoomCharacter.web.tsx` preloads via hidden `Image` elements, and the overlay sets the initial floor anchor before preloading finishes. Web export passed after the preload fix. Supabase multiplayer remains unimplemented.
+
+
+
+## Working tree and Git
+
+Release verified on 2026-11-28 with TypeScript, 55 tests, and web export. Deployment follows develop commit/push, master merge/push, then Vercel production verification. Local agent tooling stays uncommitted.

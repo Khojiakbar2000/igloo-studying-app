@@ -1,8 +1,11 @@
+import { Chevron, IconButton } from '../ui/Controls';
+import { Overlay } from '../ui/Overlay';
+import { colors, type, ui } from '../theme';
 import { useCompanionName, usePrimaryStudyTopic } from '../onboarding/ProfileProvider';
 import { useFurniture } from '../furniture/Furniture';
-import { roomBox } from '../furniture/catalog';
+import { boxStyle, roomBox, type Bounds } from '../furniture/catalog';
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useHomeMotionState } from '../home/useHomeMotion';
@@ -19,7 +22,7 @@ const categoryName: Record<PipLetter['category'], string> = {
 };
 const dateLabel = (time: number) => new Date(time).toLocaleDateString(undefined, { month:'short', day:'numeric', year:'numeric' });
 
-export function PipMailbox({ visible, onOpenTimer, onOpenCoffeeMachine, menuOnly = false }: { menuOnly?: boolean; visible: boolean; onOpenTimer: () => void; onOpenCoffeeMachine: () => void }) {
+export function PipMailbox({ visible, onOpenTimer, onOpenCoffeeMachine, menuOnly = false, bounds }: { menuOnly?: boolean; bounds?: Bounds; visible: boolean; onOpenTimer: () => void; onOpenCoffeeMachine: () => void }) {
   const companion=useCompanionName();
   const studyTopic=usePrimaryStudyTopic();
   const { timer, hydrated, syncPipMessages, updatePipLetter } = usePomodoro();
@@ -124,9 +127,9 @@ export function PipMailbox({ visible, onOpenTimer, onOpenCoffeeMachine, menuOnly
   };
 
   const pressMailbox = useFurniture('mailbox', openMailbox, { disabled: !hydrated, state: unread ? `${unread} unread` : 'No unread letters',
-    bounds: menuOnly ? undefined : roomBox(78, 20, 19, 16) });
+    bounds: menuOnly ? undefined : bounds ?? roomBox(78, 20, 19, 16) });
   return <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
-    {!menuOnly && <Animated.View style={[styles.mailbox, { transform:[{translateY:mailboxMotion.interpolate({inputRange:[0,1],outputRange:[0,-5]})},{rotate:mailboxMotion.interpolate({inputRange:[0,1],outputRange:['0deg','-2deg']})}] }]}>
+    {!menuOnly && <Animated.View style={[styles.mailbox, bounds && { right: undefined, ...boxStyle(bounds) }, { transform:[{translateY:mailboxMotion.interpolate({inputRange:[0,1],outputRange:[0,-5]})},{rotate:mailboxMotion.interpolate({inputRange:[0,1],outputRange:['0deg','-2deg']})}] }]}>
       <Pressable accessibilityRole="button" accessibilityLabel={unread ? `${companion}’s mailbox, ${unread} unread ${unread === 1 ? 'letter' : 'letters'}` : `${companion}’s mailbox, ${letters.length} ${letters.length === 1 ? 'letter' : 'letters'}`}
         accessibilityHint={`Open ${companion}’s handwritten letters`} disabled={!hydrated} onPress={pressMailbox} style={StyleSheet.absoluteFill}>
         <Image source={mailboxArt} resizeMode="contain" style={styles.mailboxArt} />
@@ -134,7 +137,7 @@ export function PipMailbox({ visible, onOpenTimer, onOpenCoffeeMachine, menuOnly
         {unread > 0 && <View style={styles.count}><Text style={styles.countText}>{unread > 9 ? '9+' : unread}</Text></View>}
       </Pressable>
     </Animated.View>}
-    {open && <Modal transparent visible onRequestClose={close} animationType={reduced ? 'none' : 'fade'}>
+    {open && <Overlay transparent visible onRequestClose={close} animationType={reduced ? 'none' : 'fade'}>
       <View style={styles.overlay}>
         <Pressable accessible={false} onPress={close} style={StyleSheet.absoluteFill} />
         <View style={styles.panel} accessibilityViewIsModal>
@@ -144,9 +147,7 @@ export function PipMailbox({ visible, onOpenTimer, onOpenCoffeeMachine, menuOnly
                 <Text style={styles.toolbarText}>‹ All letters{unread > 0 ? ` · ${unread} new` : ''}</Text>
               </Pressable>
             ) : <Text accessibilityRole="header" style={styles.archiveTitle}>{companion}’s letters</Text>}
-            <Pressable accessibilityRole="button" accessibilityLabel="Close mailbox" onPress={close} style={styles.close}>
-              <Text style={styles.closeText}>×</Text>
-            </Pressable>
+            <IconButton label="Close mailbox" onPress={close}><Chevron direction="close" /></IconButton>
           </View>
 
           {selected ? (
@@ -235,7 +236,7 @@ export function PipMailbox({ visible, onOpenTimer, onOpenCoffeeMachine, menuOnly
           </>}
         </View>
       </View>
-    </Modal>}
+    </Overlay>}
   </View>;
 }
 
@@ -246,12 +247,12 @@ const styles = StyleSheet.create({
   newMailDot: { width: 8, height: 8, borderRadius: 5, backgroundColor: '#FFE08B', borderColor: '#FFF0C0', borderWidth: 1.5 },
   count: { position: 'absolute', right: '2%', top: '4%', minWidth: 20, height: 20, paddingHorizontal: 4, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: '#9F3B35', borderWidth: 1, borderColor: '#FFF0D3' },
   countText: { color: '#FFF9E8', fontSize: 11, fontWeight: '800' },
-  overlay: { flex: 1, backgroundColor: 'rgba(28,23,38,.57)', alignItems: 'center', justifyContent: 'center', padding: 16 },
-  panel: { width: '100%', maxWidth: 460, height: 590, maxHeight: '92%', backgroundColor: '#F8EBD8', borderColor: '#BE946D', borderWidth: 1, borderRadius: 18, overflow: 'hidden', shadowColor: '#302233', shadowOpacity: .3, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, elevation: 12 },
+  overlay: { ...ui.shade, backgroundColor: 'transparent' },
+  panel: { ...ui.dialog, height: 590, maxHeight: '92%' },
   toolbar: { minHeight: 60, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, borderBottomWidth: 1, borderBottomColor: '#DFC8AA' },
   toolbarButton: { minHeight: 44, justifyContent: 'center', paddingRight: 8 },
   toolbarText: { color: '#784637', fontSize: 15, fontWeight: '700' },
-  archiveTitle: { color: '#472E29', fontSize: 22, fontFamily: 'serif', fontWeight: '700' },
+  archiveTitle: { ...type.heading, color: colors.ink },
   close: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
   closeText: { color: '#784637', fontSize: 29, lineHeight: 32 },
   reader: { flex: 1, backgroundColor: '#FFF7E9' },
@@ -263,9 +264,9 @@ const styles = StyleSheet.create({
   date: { color: '#705949', fontSize: 13, lineHeight: 18 },
   stamp: { width: 54, height: 58, alignItems: 'center', justifyContent: 'center', backgroundColor: '#F3E0CA', borderWidth: 1, borderStyle: 'dashed', borderColor: '#A77B66', borderRadius: 3, transform: [{ rotate: '7deg' }] },
   stampImage: { width: 42, height: 44 },
-  title: { color: '#472E29', fontFamily: 'serif', fontSize: 28, fontWeight: '700', marginTop: 12, marginBottom: 16 },
-  body: { color: '#49362F', fontFamily: 'serif', fontSize: 19, lineHeight: 29 },
-  signature: { color: '#8D4236', fontFamily: 'serif', fontSize: 19, lineHeight: 26, fontStyle: 'italic', marginTop: 22 },
+  title: { ...type.heading, color: colors.ink, marginTop: 12, marginBottom: 16 },
+  body: { color: '#49362F', fontSize: 19, lineHeight: 29 },
+  signature: { color: '#8D4236', fontSize: 19, lineHeight: 26, fontStyle: 'italic', marginTop: 22 },
   readerFooter: { borderTopWidth: 1, borderTopColor: '#DFC8AA', paddingHorizontal: 16, paddingVertical: 8, alignItems: 'flex-end' },
   save: { minHeight: 44, justifyContent: 'center', paddingHorizontal: 14, borderRadius: 10 },
   saved: { backgroundColor: '#F1D9BC' },

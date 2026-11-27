@@ -1,1 +1,1 @@
-export type WinterLottieProps = { data: object; playing: boolean; loop?: boolean; progress?: number; onFinish?: () => void; onError?: () => void; onLoaded?: () => void };
+export type WinterLottieProps = { data: object; timeline?: string; playing: boolean; loop?: boolean; progress?: number; onFinish?: () => void; onError?: () => void; onLoaded?: () => void };

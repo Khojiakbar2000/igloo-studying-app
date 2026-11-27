@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React, { useEffect, useState } from 'react';
 import { Image, LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import Animated, {
@@ -82,5 +83,5 @@ export function IglooChairJourney({ reducedMotion = false }: { reducedMotion?: b
 const styles = StyleSheet.create({
   actor: { position: 'absolute', left: 0, top: 0, width: 122, height: 136, zIndex: 2, alignItems: 'center', justifyContent: 'center' },
   art: { width: '100%', height: '100%' },
-  groundingShadow: { position: 'absolute', bottom: 4, width: 48, height: 9, borderRadius: 99, backgroundColor: '#3F426B26', zIndex: -1 },
+  groundingShadow: { position: 'absolute', bottom: 4, width: 48, height: 9, borderRadius: 99, backgroundColor: '#293B5026', zIndex: -1 },
 });

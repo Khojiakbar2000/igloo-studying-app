@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
-import Animated from 'react-native-reanimated';
+import Animated, { useReducedMotion } from 'react-native-reanimated';
 import type { RiveRef } from 'rive-react-native';
 import { usePenguinMotion } from './usePenguinMotion';
 import type { CharacterAction, CharacterEmotion } from '../character/CharacterBehaviorController';
@@ -43,37 +43,41 @@ export function Penguin({
 }) {
   const size = compact ? 118 : 232;
   const riveRef = useRef<RiveRef>(null);
-  const motionStyle = usePenguinMotion(hatching, action);
+  const systemReducedMotion = useReducedMotion();
+  const motionEnabled = !reducedMotion && !systemReducedMotion;
+  const motionStyle = usePenguinMotion(hatching, action, motionEnabled);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(!RiveView);
   const happyFired = useRef(false);
 
   useEffect(() => {
-    if (!happy) {
+    if (!happy || !motionEnabled) {
       happyFired.current = false;
       return;
     }
     if (!ready || happyFired.current) return;
     riveRef.current?.fireState('Character', 'happy');
     happyFired.current = true;
-  }, [happy, ready]);
+  }, [happy, motionEnabled, ready]);
 
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel="Say hello to the penguin"
-      onPress={() => { onPress?.(); if (!onPress) riveRef.current?.fireState('Character', 'happy'); }}
+      onPress={() => { onPress?.(); if (!onPress && motionEnabled) riveRef.current?.fireState('Character', 'happy'); }}
       style={[styles.wrap, { width: size, height: size * 1.1 }, style]}
     >
       <Animated.View style={[StyleSheet.absoluteFill, motionStyle]}>
-        {(!ready || failed || action !== 'idle') && <Image source={action === 'idle' ? penguinImage : penguinPoseAssets[emotion]} resizeMode="contain" style={[StyleSheet.absoluteFill, styles.imageFill]} />}
+        {/* Keep the illustration beneath Rive so a delayed/empty first frame
+            never leaves Pip invisible. */}
+        <Image source={action === 'idle' ? penguinImage : penguinPoseAssets[emotion]} resizeMode="contain" style={[StyleSheet.absoluteFill, styles.imageFill]} />
         {RiveView && !failed && action === 'idle' && (
           <RiveView
             ref={riveRef}
             source={penguinRive}
             artboardName="Character"
             stateMachineName="Character"
-            autoplay
+            autoplay={motionEnabled}
             onPlay={() => setReady(true)}
             onError={() => setFailed(true)}
             style={StyleSheet.absoluteFill}
@@ -88,6 +92,6 @@ export function Penguin({
 const styles = StyleSheet.create({
   wrap: { alignItems: 'center', justifyContent: 'center', padding: 0, borderWidth: 0, backgroundColor: 'transparent' },
   imageFill: { width: '100%', height: '100%' },
-  friendClip: { position: 'absolute', right: '24%', top: '15%', width: 15, height: 10, borderRadius: 7, backgroundColor: '#CBB5DA', transform: [{ rotate: '-22deg' }], borderWidth: 1, borderColor: '#A995BE' },
-  clipGleam: { position: 'absolute', top: 2, left: 3, width: 4, height: 2, borderRadius: 2, backgroundColor: '#F9F0FF' },
+  friendClip: { position: 'absolute', right: '24%', top: '15%', width: 15, height: 10, borderRadius: 7, backgroundColor: '#E9B968', transform: [{ rotate: '-22deg' }], borderWidth: 1, borderColor: '#806329' },
+  clipGleam: { position: 'absolute', top: 2, left: 3, width: 4, height: 2, borderRadius: 2, backgroundColor: '#FFF8ED' },
 });

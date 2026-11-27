@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   embedded: { position: 'relative', left: 0, right: 0, bottom: 0, padding: 0, borderWidth: 0, backgroundColor: 'transparent', boxShadow: 'none' },
   choices: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
   button: { flexBasis: '30%', flexGrow: 1, minHeight: 44, paddingHorizontal: 4, paddingVertical: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4, borderRadius: 10, borderWidth: 1, borderBottomWidth: 3, borderColor: '#CAB18C', backgroundColor: '#FFF4DE' },
-  selected: { backgroundColor: colors.tealDark, borderColor: '#31575A' },
+  selected: { backgroundColor: colors.link, borderColor: colors.link },
   buttonText: { color: '#614C38', fontSize: 10, fontWeight: '700', flexShrink: 1 },
   selectedText: { color: colors.snow },
   icon: { fontSize: 14 },

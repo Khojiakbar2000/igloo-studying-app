@@ -10,10 +10,10 @@ import LottiePlayer from './StudyTogetherLottiePlayer';
 import Slider from '@react-native-community/slider';
 import { LIGHTING_LABELS, LIGHTING_PRESETS, LIGHT_SOURCES, type LightSource, type LightingPreset, type RoomLighting } from '../home/lighting';
 
-const closedArt = require('../../assets/environments/study-together/scenery-console-closed.png');
-const lidArt = require('../../assets/environments/study-together/scenery-console-lid.png');
-const glassArt = require('../../assets/environments/study-together/scenery-console-glass.png');
-const baseArt = require('../../assets/environments/study-together/scenery-console-base.png');
+const closedArt = require('../../assets/environments/study-together/scenery-console-closed-warm-nordic.png');
+const lidArt = require('../../assets/environments/study-together/scenery-console-lid-warm-nordic.png');
+const glassArt = require('../../assets/environments/study-together/scenery-console-glass-warm-nordic.png');
+const baseArt = require('../../assets/environments/study-together/scenery-console-base-warm-nordic.png');
 const ignition = require('../../assets/animations/study-together-rooms/console-ignition.json');
 const blizzardThumbnail = studyRoom('igloo').thumbnail;
 type Mode = 'rooms' | 'window' | 'lighting';

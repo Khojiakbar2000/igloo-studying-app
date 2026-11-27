@@ -17,4 +17,4 @@ export function Penguin({ style, compact = false, friend = false, emotion = 'cur
   );
 }
 
-const styles = StyleSheet.create({ wrap: { alignItems: 'center', justifyContent: 'center' }, imageFill: { width: '100%', height: '100%' }, friendClip: { position: 'absolute', right: '24%', top: '15%', width: 15, height: 10, borderRadius: 7, backgroundColor: '#CBB5DA', transform: [{ rotate: '-22deg' }], borderWidth: 1, borderColor: '#A995BE' }, clipGleam: { position: 'absolute', top: 2, left: 3, width: 4, height: 2, borderRadius: 2, backgroundColor: '#F9F0FF' } });
+const styles = StyleSheet.create({ wrap: { alignItems: 'center', justifyContent: 'center' }, imageFill: { width: '100%', height: '100%' }, friendClip: { position: 'absolute', right: '24%', top: '15%', width: 15, height: 10, borderRadius: 7, backgroundColor: '#E9B968', transform: [{ rotate: '-22deg' }], borderWidth: 1, borderColor: '#806329' }, clipGleam: { position: 'absolute', top: 2, left: 3, width: 4, height: 2, borderRadius: 2, backgroundColor: '#FFF8ED' } });

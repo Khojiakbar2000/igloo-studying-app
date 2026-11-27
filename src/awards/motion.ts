@@ -1,3 +1,5 @@
+import type { Bounds } from '../furniture/catalog';
+import { PANORAMA } from '../home/panorama';
 import type { AnimationObject } from 'lottie-react-native';
 import type { AwardId } from './progression';
 
@@ -22,7 +24,7 @@ const image = (sprite: Sprite, end: number, path: Key<Point>[], size: Key<number
 });
 const shine = [1, 0.86, 0.55, 1];
 const frost = [0.76, 0.91, 1, 1];
-const lavender = [0.94, 0.7, 1, 1];
+const winterGold = [0.95, 0.78, 0.43, 1];
 
 function light(name: string, start: number, end: number, size: number, color: number[], path: Key<Point>[], opacity: Key<number>[], rays = false) {
   const vertices = [[0,-size],[size*.2,-size*.2],[size,0],[size*.2,size*.2],[0,size],[-size*.2,size*.2],[-size,0],[-size*.2,-size*.2]];
@@ -58,7 +60,7 @@ export function trophyMotion(id: AwardId) {
     'first-steps': [glint([85,72], 31, 12, shine), glint([143,161], 97, 6, shine)],
     'focus-explorer': [glint([112,47], 30, 12, frost), glint([146,84], 94, 8, frost)],
     'dedicated-learner': [glint([140,117], 62, 13, frost), glint([79,153], 100, 7, shine)],
-    'winter-scholar': [...lamp('Crystal light', [112,120], lavender, 18), glint([125,79], 64, 10, lavender)],
+    'winter-scholar': [...lamp('Crystal light', [112,120], winterGold, 18), glint([125,79], 64, 10, winterGold)],
     'focus-master': [glint([84,68], 27, 8, shine), ...[19,28,37,46,55,64,73,82,91,100,109].map((frame, index) =>
       light('Falling sand', frame, frame+15, 1.45, shine, [[frame,[111.5+index%2,112]],[frame+15,[112,145]]],
         [[frame,0],[frame+3,72],[frame+15,0]]))],
@@ -78,7 +80,7 @@ export function shelfPosition(index: number): Point {
   return [0.22 + index % 4 * 0.173, index < 4 ? 0.56 : 0.88];
 }
 
-export function giftMotion(id: AwardId, slot: number) {
+export function giftMotion(id: AwardId, slot: number, placement?: Bounds) {
   const trophy = art[id];
   const box = art['gift-base'];
   const lid = art['gift-lid'];
@@ -87,15 +89,20 @@ export function giftMotion(id: AwardId, slot: number) {
   const reveal: Point = [314, 744];
   const [x, y] = shelfPosition(Math.max(0, slot));
   const finish: Point = [CABINET.x + CABINET.width*x, CABINET.y + CABINET.height*y - 10];
-  const sparkle = (x: number, y: number, at: number, size: number) => glint([x,y], at, size, shine);
-  return composition('Award reveal', 1024, 1536, end, [trophy, box, lid], [
+  const place = ([x, y]: Point): Point => placement ? [
+    PANORAMA.width * (placement.x + placement.width * (x - CABINET.x) / CABINET.width) / 100,
+    PANORAMA.height * (placement.y + placement.height * (y - CABINET.y) / CABINET.height) / 100,
+  ] : [x, y];
+  const keyframes = (frames: readonly [number, Point][]): [number, Point][] => frames.map(([frame, point]) => [frame, place(point)]);
+  const sparkle = (x: number, y: number, at: number, size: number) => glint(place([x,y]), at, size, shine);
+  return composition('Award reveal', placement ? PANORAMA.width : 1024, placement ? PANORAMA.height : 1536, end, [trophy, box, lid], [
     sparkle(252,708,44,18), sparkle(370,777,50,14), sparkle(358,696,59,10),
     sparkle(finish[0]+14,finish[1]-9,90,13),
-    image(lid, 76, [[0,[floor[0],floor[1]-35]],[15,floor],[36,floor],[52,[216,825]],[76,[200,845]]],
+    image(lid, 76, keyframes([[0,[floor[0],floor[1]-35]],[15,floor],[36,floor],[52,[216,825]],[76,[200,845]]]),
       [[0,27],[15,84],[36,84],[52,84]], [[0,0],[11,100],[51,100],[76,0]], [[0,-8],[17,0],[36,0],[54,34],[76,44]]),
-    image(trophy, end, [[42,floor],[59,reveal],[78,reveal],[99,finish]],
+    image(trophy, end, keyframes([[42,floor],[59,reveal],[78,reveal],[99,finish]]),
       [[42,15],[58,105],[78,103],[99,15]], [[42,0],[52,100],[104,100],[118,0]], [[42,-8],[60,4],[78,0]], 42),
-    image(box, 101, [[0,[floor[0],floor[1]-35]],[15,floor]], [[0,27],[15,84]],
+    image(box, 101, keyframes([[0,[floor[0],floor[1]-35]],[15,floor]]), [[0,27],[15,84]],
       [[0,0],[11,100],[75,100],[101,0]], [[0,-8],[17,0]]),
   ]);
 }

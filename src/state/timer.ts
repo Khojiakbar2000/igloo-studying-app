@@ -3,9 +3,9 @@ import { restoreDiscoveries, type Discoveries } from '../window-surprises/events
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emptyGoalData, localDateKey, makeId, type ActiveFocus, type DailyGoalData, type FocusSession } from './dailyGoals';
 
-import { EMPTY_AWARDS, recordAwards, restoreAwards, type AwardState } from '../awards/progression';
+import { EMPTY_AWARDS, recordAwards, restoreAwards, studyMilestones, type AwardState } from '../awards/progression';
 
-import { UNLIMITED_SNOWFLAKES, createHome, restoreHome, rewardHome, type HomeState } from '../home/state';
+import { UNLIMITED_SNOWFLAKES, createHome, importLegacyAccessories, restoreHome, rewardHome, recordStudyRoomUnlocks, type HomeState } from '../home/state';
 
 const STORAGE_KEY = 'igloo.timer.v1';
 export type TimerMode = 'focus' | 'shortBreak' | 'longBreak';
@@ -33,7 +33,7 @@ export function restoreTimerState(raw: string | null, now = Date.now()): TimerSt
     state.discoveries = restoreDiscoveries(parsed.discoveries);
     state.surpriseSounds = parsed.surpriseSounds === true;
     state.awards = restoreAwards(parsed.awards, state.sessions);
-    state.home = restoreHome(parsed.home, state.sessions.map(s => s.id));
+    state.home = recordStudyRoomUnlocks(restoreHome(parsed.home, state.sessions.map(s => s.id)), studyMilestones(state.sessions).progress.sessions);
     state.celebratedDates = Array.isArray(parsed.celebratedDates) ? parsed.celebratedDates.filter((d: unknown) => typeof d === 'string') : [];
     if (state.activeFocus && (!state.activeFocus.id || !Array.isArray(state.activeFocus.spans))) state.activeFocus = null;
     if (state.status === 'running' && !Number.isFinite(state.endAt)) state.status = 'paused';
@@ -44,7 +44,14 @@ export function restoreTimerState(raw: string | null, now = Date.now()): TimerSt
   } catch { return defaultTimerState; }
 }
 export async function loadTimerState() {
-  return restoreTimerState(await AsyncStorage.getItem(STORAGE_KEY));
+  const state = restoreTimerState(await AsyncStorage.getItem(STORAGE_KEY));
+  if (state.home.wardrobe.legacyAccessoriesImported) return state;
+  const stored = await AsyncStorage.getItem('igloo.pip-customization.v1');
+  let legacy: unknown = null;
+  if (stored) {
+    try { legacy = JSON.parse(stored); } catch { /* The previous preference may be malformed. */ }
+  }
+  return { ...state, home: importLegacyAccessories(state.home, legacy) };
 }
 let writes: Promise<void> = Promise.resolve();
 export function saveTimerState(state: TimerState) {
@@ -94,11 +101,13 @@ export function completeSession(state: TimerState, now = Date.now()): TimerState
       interrupted: active.interrupted, review: goal && focusMs > 0 ? 'pending' : null };
     const sessions = alreadyRecorded ? state.sessions : [...state.sessions, record];
     const awards = !alreadyRecorded && record.completed ? recordAwards(state.awards, sessions) : state.awards;
+    const rewarded = alreadyRecorded ? state.home : { ...rewardHome(state.home, record), garden: growGarden(state.home.garden, record) };
+    const home = !alreadyRecorded && record.completed ? recordStudyRoomUnlocks(rewarded, studyMilestones(sessions).progress.sessions) : rewarded;
     const nextCount = state.completedSessions + (alreadyRecorded ? 0 : 1);
     const mode: TimerMode = nextCount > 0 && nextCount % 4 === 0 ? 'longBreak' : 'shortBreak';
     const durationMs = mode === 'longBreak' ? 15 * 60_000 : 5 * 60_000;
     return { ...state, mode, status: 'idle', durationMs, remainingMs: durationMs, endAt: null, activeFocus: null,
-      home: alreadyRecorded ? state.home : { ...rewardHome(state.home, record), garden: growGarden(state.home.garden, record) },
+      home,
       sessions, awards, focusTotalMs: state.focusTotalMs + (alreadyRecorded ? 0 : focusMs), completedSessions: nextCount };
   }
   const durationMs = state.focusMinutes * 60_000;
@@ -128,6 +137,20 @@ export function setFocusDuration(state: TimerState, minutes: number, preferred =
   const durationMs = focusMinutes * 60_000;
   return { ...state, focusMinutes, durationMs, remainingMs: durationMs, endAt: null };
 }
+export function prepareFocusTimer(state: TimerState): TimerState {
+  if (state.status !== 'idle' || state.mode === 'focus') return state;
+  const durationMs = state.focusMinutes * 60_000;
+  return { ...state, mode: 'focus', durationMs, remainingMs: durationMs, endAt: null, activeFocus: null };
+}
+
+export function iglooConstruction(state: Pick<TimerState, 'focusTotalMs' | 'sessions'>) {
+  // Older snapshots retain their recorded lifetime credit. Tracked early finishes
+  // remain in focus history, while completed sessions advance construction.
+  const unfinished = state.sessions.reduce((total, session) =>
+    total + (session.completed ? 0 : Math.max(0, session.focusMs)), 0);
+  return constructionProgress(Math.max(0, state.focusTotalMs - unfinished));
+}
+
 export const CONSTRUCTION_MILESTONES = [10, 25, 40, 50, 60] as const;
 const constructionTarget = CONSTRUCTION_MILESTONES[CONSTRUCTION_MILESTONES.length - 1];
 export function constructionProgress(focusTotalMs: number) {

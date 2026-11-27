@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React, { useCallback, useRef } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { useRive } from '@rive-app/react-canvas';
@@ -45,5 +46,5 @@ const canvasStyle: React.CSSProperties = { width: '100%', height: '100%', displa
 
 const styles = StyleSheet.create({
   fallback: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center', padding: 24 },
-  message: { textAlign: 'center', color: '#52777A', fontSize: 13, lineHeight: 19 },
+  message: { textAlign: 'center', color: colors.link, fontSize: 13, lineHeight: 19 },
 });

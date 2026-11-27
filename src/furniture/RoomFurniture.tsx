@@ -1,5 +1,10 @@
+import { PANORAMA_BED_PATH } from '../home/panorama';
+import { useCompanionName } from '../onboarding/ProfileProvider';
+import { Chevron, IconButton } from '../ui/Controls';
+import { Overlay } from '../ui/Overlay';
+import { colors, type, ui } from '../theme';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 import { AWARDS, studyMilestones } from '../awards/progression';
 import { usePomodoro } from '../state/PomodoroContext';
@@ -44,12 +49,12 @@ export function Bookshelf({ bounds, secondaryBounds }: { bounds?: Bounds; second
       <FurnitureHotspot id="bookshelf" bounds={bounds} onPress={show} state={status} />
       {secondaryBounds && <FurnitureHotspot id="bookshelf" bounds={secondaryBounds} onPress={show} state={status} registered={false} />}
     </> : <FurnitureLink id="bookshelf" action={show} state={status} />}
-    {open && <Modal transparent visible onRequestClose={() => setOpen(false)}>
+    {open && <Overlay transparent visible onRequestClose={() => setOpen(false)}>
       <View style={styles.shade}>
         <Pressable accessible={false} onPress={() => setOpen(false)} style={StyleSheet.absoluteFill} />
         <View accessibilityViewIsModal style={styles.panel}>
           <View style={styles.header}><Text accessibilityRole="header" style={styles.title}>Study history</Text>
-            <Pressable accessibilityLabel="Close study history" accessibilityRole="button" onPress={() => setOpen(false)} style={styles.button}><Text style={styles.close}>×</Text></Pressable>
+            <IconButton label="Close study history" onPress={() => setOpen(false)}><Chevron direction="close" /></IconButton>
           </View>
           <Text style={styles.summary}>{Math.floor(progress.time / 3_600_000)}h {Math.floor(progress.time / 60_000) % 60}m focused · {status}</Text>
           <ScrollView style={styles.scroll} contentContainerStyle={styles.content}>
@@ -66,7 +71,7 @@ export function Bookshelf({ bounds, secondaryBounds }: { bounds?: Bounds; second
           </ScrollView>
         </View>
       </View>
-    </Modal>}
+    </Overlay>}
   </>;
 }
 
@@ -79,13 +84,14 @@ export function SofaActions({ open, onClose, onSelect, queued, onCancel }: {
   open: boolean; onClose: Action; onSelect: (action: RestAction) => void; queued?: string | null; onCancel?: Action;
 }) {
   const { timer } = usePomodoro();
+  const companion = useCompanionName();
   if (!open) return null;
   const allowed = canPerformFurnitureActivity(timer.mode, timer.status);
   return <View style={styles.restPanel}>
     <View style={styles.header}><Text accessibilityRole="header" style={styles.miniTitle}>Sofa</Text>
-      <Pressable accessibilityLabel="Close sofa actions" accessibilityRole="button" onPress={onClose} style={styles.button}><Text style={styles.close}>×</Text></Pressable>
+      <IconButton label="Close sofa actions" onPress={onClose}><Chevron direction="close" /></IconButton>
     </View>
-    {!allowed && <Text style={styles.note}>Pip will take a breather when the timer allows.</Text>}
+    {!allowed && <Text style={styles.note}>{companion} will take a breather after focus.</Text>}
     <View style={styles.options}>{restOptions.map(({ id, label }) => <Pressable key={id} accessibilityRole="button" onPress={() => onSelect(id)} style={styles.choice}><Text style={styles.heading}>{label}</Text></Pressable>)}</View>
     {queued && <Pressable accessibilityRole="button" onPress={onCancel} style={styles.button}><Text style={styles.note}>Cancel queued {queued}</Text></Pressable>}
   </View>;
@@ -99,7 +105,8 @@ const walk = [
 ];
 const blanket = require('../../assets/animations/study-together-breaks/nap.png');
 
-export function BedPip({ resting, onHome, original }: { resting: boolean; onHome: Action; original: boolean }) {
+export function BedPip({ resting, onHome, original, panoramic = false }: { resting: boolean; onHome: Action; original: boolean; panoramic?: boolean }) {
+  const companion = useCompanionName();
   const reduced = useReducedMotion();
   const progress = useSharedValue(0);
   const breath = useSharedValue(0);
@@ -124,11 +131,18 @@ export function BedPip({ resting, onHome, original }: { resting: boolean; onHome
   const position = useAnimatedStyle(() => {
     // From the chair, follow the clear aisle, then turn left toward the bed.
     const t = progress.value;
+    if (panoramic) {
+      const [start, aisle, bed] = PANORAMA_BED_PATH;
+      const from = t < .5 ? start : aisle;
+      const to = t < .5 ? aisle : bed;
+      const u = t < .5 ? 2 * t : 2 * t - 1;
+      return { left: `${from[0] + (to[0] - from[0]) * u}%`, top: `${from[1] + (to[1] - from[1]) * u}%`, transform: [{ scaleY: 1 + breath.value * .019 }] };
+    }
     const x = t < .49 ? 49 - t * 13 : 42.63 - (t - .49) * (original ? 49 : 53);
     const y = t < .49 ? 49 + t * 51 : 74 + (t - .49) * (original ? 2 : 8);
     return { left: `${x}%`, top: `${y}%`, transform: [{ scaleY: 1 + breath.value * .019 }] };
   });
-  return <Animated.View pointerEvents="none" accessibilityLabel={phase === 'sleep' ? 'Pip asleep under a blanket' : 'Pip walking'} style={[styles.bedPip, position]}>
+  return <Animated.View pointerEvents="none" accessibilityLabel={phase === 'sleep' ? `${companion} asleep under a blanket` : `${companion} walking`} style={[styles.bedPip, panoramic && styles.panoramaBedPip, position]}>
     <Image source={phase === 'sleep' ? blanket : walk[frame]} resizeMode="contain" style={styles.fill} />
     {phase === 'sleep' && <Text style={styles.zzz}>z z z</Text>}
   </Animated.View>;
@@ -156,10 +170,10 @@ export function useFurnitureRest(available: boolean) {
 }
 
 const styles = StyleSheet.create({
-  shade: { flex: 1, backgroundColor: '#251f38a0', justifyContent: 'center', alignItems: 'center', padding: 15 },
-  panel: { width: '100%', maxWidth: 420, maxHeight: '82%', borderRadius: 18, backgroundColor: '#fff3e1', padding: 16 },
+  shade: { ...ui.shade, backgroundColor: 'transparent' },
+  panel: { ...ui.dialog, maxHeight: '82%', padding: 16 },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  title: { fontSize: 28, fontFamily: 'serif', fontWeight: '700', color: '#523646' },
+  title: { ...type.heading, color: colors.ink },
   close: { fontSize: 23, color: '#714836' },
   button: { minWidth: 44, minHeight: 44, justifyContent: 'center', alignItems: 'center' },
   summary: { color: '#78534a', marginBottom: 10 },
@@ -173,9 +187,10 @@ const styles = StyleSheet.create({
   books: { flexDirection: 'row', gap: 2, marginTop: '32%' },
   book: { width: 4, height: 12, borderRadius: 1, borderBottomWidth: 2, borderColor: '#f9d79a' },
   restPanel: { position: 'absolute', zIndex: 17, bottom: '2%', left: '6%', right: '6%', paddingHorizontal: 12, paddingBottom: 11, borderRadius: 16, backgroundColor: '#fae9d0', borderColor: '#be916f', borderWidth: 1 },
-  miniTitle: { color: '#543647', fontFamily: 'serif', fontSize: 20, fontWeight: '700' },
+  miniTitle: { ...type.heading, color: colors.ink },
   options: { flexDirection: 'row', flexWrap: 'wrap', gap: 5 },
   choice: { minHeight: 44, justifyContent: 'center', paddingHorizontal: 8, backgroundColor: '#eed0b1', borderRadius: 9 },
+  panoramaBedPip: { width: '11%', height: '18%' },
   bedPip: { position: 'absolute', zIndex: 8, width: '16%', height: '15%' },
   fill: { width: '100%', height: '100%' },
   zzz: { position: 'absolute', right: 0, top: 0, color: '#cfdefd', fontWeight: '800' },

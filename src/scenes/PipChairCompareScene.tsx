@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React, { useState } from 'react';
 import { Image, ImageBackground, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { RoomCharacter } from '../components/RoomCharacter';
@@ -55,19 +56,19 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: '#EDF3F7' },
   content: { paddingHorizontal: 14, paddingTop: 20, paddingBottom: 28, alignItems: 'center' },
   heading: { width: '100%', maxWidth: 760, marginBottom: 14 },
-  eyebrow: { color: '#527F83', fontSize: 9, fontWeight: '900', letterSpacing: 1.5 },
-  title: { color: '#1E3037', fontSize: 27, lineHeight: 33, fontWeight: '800', marginTop: 5 },
-  subtitle: { color: '#657E89', fontSize: 12, lineHeight: 18, marginTop: 5 },
+  eyebrow: { color: colors.link, fontSize: 9, fontWeight: '900', letterSpacing: 1.5 },
+  title: { color: colors.ink, fontSize: 27, lineHeight: 33, fontWeight: '800', marginTop: 5 },
+  subtitle: { color: colors.link, fontSize: 12, lineHeight: 18, marginTop: 5 },
   columns: { width: '100%', maxWidth: 760, flexDirection: 'row', gap: 10 },
   panel: { flex: 1, minWidth: 0, padding: 8, borderRadius: 18, backgroundColor: '#FFFEFC', borderWidth: 1, borderColor: '#E1E9EA' },
   panelHeading: { minHeight: 40, paddingHorizontal: 3, paddingBottom: 6 },
-  panelTitle: { color: '#416A70', fontSize: 9, fontWeight: '900', letterSpacing: 1.1 },
-  panelSub: { color: '#81949A', fontSize: 9, marginTop: 3 },
+  panelTitle: { color: colors.link, fontSize: 9, fontWeight: '900', letterSpacing: 1.1 },
+  panelSub: { color: colors.muted, fontSize: 9, marginTop: 3 },
   scene: { width: '100%', aspectRatio: 2 / 3, position: 'relative', overflow: 'hidden', borderRadius: 12, backgroundColor: '#DCE8F1' },
   riveSeat: { position: 'absolute', width: '46%', height: '43%', left: '34%', top: '34.5%' },
-  replay: { width: '100%', maxWidth: 360, height: 46, marginTop: 14, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#426C70' },
+  replay: { width: '100%', maxWidth: 360, height: 46, marginTop: 14, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.link },
   replayText: { color: '#FFFFFF', fontSize: 10, fontWeight: '900', letterSpacing: 1.1 },
   note: { width: '100%', maxWidth: 760, marginTop: 13, padding: 13, borderRadius: 15, backgroundColor: '#F8FBFA' },
-  noteTitle: { color: '#3B6569', fontSize: 11, fontWeight: '800' },
-  noteBody: { color: '#6D838C', fontSize: 10, lineHeight: 15, marginTop: 5 },
+  noteTitle: { color: colors.link, fontSize: 11, fontWeight: '800' },
+  noteBody: { color: colors.link, fontSize: 10, lineHeight: 15, marginTop: 5 },
 });

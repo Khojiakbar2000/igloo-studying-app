@@ -26,7 +26,7 @@ export const REWARDS: readonly Reward[] = [
   { id:'gift-painting', name:'Cute penguin painting', rarity:'Common', category:'Decorations', art:'room-9', slot:'wallArt' },
   { id:'gift-cup', name:'Golden coffee cup', rarity:'Rare', category:'Special', art:'room-10', slot:'tabletop' },
   { id:'gift-flowerpot', name:'Crystal flowerpot', rarity:'Epic', category:'Special', art:'room-11', slot:'plant', animated:true },
-  { id:'gift-pet-bed', name:'Magical pet bed', rarity:'Epic', category:'Special', art:'room-12', slot:'petBed' },
+  { id:'gift-pet-bed', name:'Frostlight sage pet bed', rarity:'Epic', category:'Special', art:'room-12', slot:'petBed' },
   { id:'gift-aurora', name:'Aurora window decoration', rarity:'Epic', category:'Special', art:'room-13', slot:'window', animated:true },
   { id:'gift-statue', name:'Legendary glowing penguin statue', rarity:'Legendary', category:'Special', art:'room-14', slot:'plant', animated:true },
 ];

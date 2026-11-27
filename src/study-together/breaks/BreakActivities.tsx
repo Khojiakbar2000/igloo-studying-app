@@ -1,3 +1,7 @@
+import { useCompanionName } from '../../onboarding/ProfileProvider';
+import { Chevron, IconButton } from '../../ui/Controls';
+import { SheetSurface } from '../../ui/Overlay';
+import { colors, radii, type } from '../../theme';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { AnimationObject } from 'lottie-react-native';
@@ -33,19 +37,18 @@ export function BreakActivityStage({ activity, id, onVisible, onFinish }: {
 export function BreakActivityMenu({ enabled, open, onOpenChange, onSelect, drinkReady }: {
   enabled: boolean; open: boolean; onOpenChange: (open: boolean) => void; onSelect: (id: BreakActivity) => void; drinkReady: boolean;
 }) {
+  const companion = useCompanionName();
   if (!enabled) return null;
   return <>
-    <Pressable accessibilityRole="button" accessibilityLabel="Pip’s break activities" accessibilityState={{ expanded: open }}
+    <Pressable accessibilityRole="button" accessibilityLabel={`${companion}’s break activities`} accessibilityState={{ expanded: open }}
       onPress={() => onOpenChange(!open)} style={styles.seat} />
-    {open && <View style={styles.menu} accessibilityLabel="Choose a break activity">
+    {open && <SheetSurface style={styles.menu} accessibilityLabel="Choose a break activity">
       <View style={styles.header}>
         <View>
           <Text style={styles.title}>A little breather</Text>
-          <Text style={styles.hint}>{drinkReady ? 'Pip has a warm drink waiting' : 'What should Pip do?'}</Text>
+          <Text style={styles.hint}>{drinkReady ? `${companion} has a warm drink waiting` : `What should ${companion} do?`}</Text>
         </View>
-        <Pressable onPress={() => onOpenChange(false)} accessibilityLabel="Close break activities" accessibilityRole="button" style={styles.close}>
-          <Text style={styles.closeText}>×</Text>
-        </Pressable>
+        <IconButton label="Close break activities" onPress={() => onOpenChange(false)}><Chevron direction="close" /></IconButton>
       </View>
       <View style={styles.choices}>
         {BREAK_ACTIVITIES.map(({ id, label }) => <Pressable key={id} accessibilityRole="button" accessibilityLabel={label}
@@ -56,7 +59,7 @@ export function BreakActivityMenu({ enabled, open, onOpenChange, onSelect, drink
           <Text style={styles.label}>{label}</Text>
         </Pressable>)}
       </View>
-    </View>}
+    </SheetSurface>}
   </>;
 }
 
@@ -97,18 +100,14 @@ function ActivityIcon({ id }: { id: BreakActivity }) {
 const styles = StyleSheet.create({
   performance: { zIndex: 3 },
   seat: { position: 'absolute', left: '5.6%', top: '48%', width: '22.4%', height: '16%', minWidth: 44, minHeight: 44, zIndex: 7 },
-  menu: { position: 'absolute', bottom: '2%', left: '5%', right: '5%', zIndex: 12,
-    padding: 8, borderRadius: 22, borderWidth: 2, backgroundColor: '#f7e3c3', borderColor: '#c38e58',
-    boxShadow: '0px 5px 11px #48263666' },
+  menu: { position: 'absolute', bottom: '2%', left: '5%', right: '5%', zIndex: 12, padding: 8 },
   header: { paddingLeft: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  title: { color: '#583523', fontWeight: '900', fontSize: 13 },
-  hint: { color: '#865e41', fontSize: 10, marginTop: 1 },
-  close: { width: 44, minHeight: 38, alignItems: 'center', justifyContent: 'center' },
-  closeText: { color: '#714b32', fontSize: 22 },
+  title: { ...type.title, color: colors.ink },
+  hint: { ...type.caption, color: colors.muted, marginTop: 1 },
   choices: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', rowGap: 4 },
   choice: { width: '32%', minHeight: 59, padding: 3, alignItems: 'center', justifyContent: 'center' },
-  medallion: { width: 39, height: 39, borderRadius: 22, justifyContent: 'center', alignItems: 'center',
-    borderWidth: 1.5, borderBottomWidth: 3, backgroundColor: '#f5d5a9', borderColor: '#b77b49' },
+  medallion: { width: 39, height: 39, borderRadius: radii.control, justifyContent: 'center', alignItems: 'center',
+    borderWidth: 1, backgroundColor: colors.ice, borderColor: colors.line },
   readyMedallion: { backgroundColor: '#ffe5a5', borderColor: '#b68339' },
   label: { color: '#623d2a', fontSize: 10, fontWeight: '800', marginTop: 3, textAlign: 'center' },
   pressed: { transform: [{ translateY: 2 }], opacity: 0.83 },

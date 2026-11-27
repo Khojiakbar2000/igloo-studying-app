@@ -1,5 +1,8 @@
+import { Chevron, IconButton } from '../ui/Controls';
+import { Overlay } from '../ui/Overlay';
+import { colors, type, ui } from '../theme';
 import React, { createContext, useCallback, useContext, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 import { useAudioPlayer } from 'expo-audio';
 import { useAmbientSound } from '../ambient/AmbientSoundProvider';
@@ -119,12 +122,12 @@ export function FurnitureDirectory({ onCustomize, renderTrigger, showDebugContro
   return <>
     {renderTrigger ? renderTrigger(() => setOpen(true)) :
       <Pressable accessibilityRole="button" onPress={() => setOpen(true)} style={styles.link}><Text style={styles.linkText}>Explore furniture</Text></Pressable>}
-    {open && <Modal visible transparent onRequestClose={() => setOpen(false)}>
+    {open && <Overlay visible transparent onRequestClose={() => setOpen(false)}>
       <View style={styles.shade}>
         <Pressable accessible={false} onPress={() => setOpen(false)} style={StyleSheet.absoluteFill} />
         <View style={styles.panel} accessibilityViewIsModal>
           <View style={styles.heading}><Text accessibilityRole="header" style={styles.title}>Around the Igloo</Text>
-            <Pressable accessibilityRole="button" accessibilityLabel="Close furniture" onPress={() => setOpen(false)} style={styles.close}><Text style={styles.closeText}>×</Text></Pressable>
+            <IconButton label="Close furniture" onPress={() => setOpen(false)}><Chevron direction="close" /></IconButton>
           </View>
           <ScrollView style={styles.scroll}>
             {entries.map(entry => <Pressable key={entry.id} accessibilityRole="button" accessibilityLabel={`Use ${FURNITURE[entry.id].label}`} disabled={entry.disabled}
@@ -144,7 +147,7 @@ export function FurnitureDirectory({ onCustomize, renderTrigger, showDebugContro
           </ScrollView>
         </View>
       </View>
-    </Modal>}
+    </Overlay>}
   </>;
 }
 
@@ -152,15 +155,15 @@ const styles = StyleSheet.create({
   hotspot: { position: 'absolute', zIndex: 5, minWidth: 35, minHeight: 35 },
   feedback: { position: 'absolute', bottom: '12%', left: '22%', right: '22%', height: 4, borderRadius: 5, backgroundColor: '#ffe1a3' },
   debugLayer: { zIndex: 35 },
-  outline: { position: 'absolute', borderWidth: 1, borderColor: '#b3f7fe', backgroundColor: '#a7f8ff22' },
+  outline: { position: 'absolute', borderWidth: 1, borderColor: colors.iceBlue, backgroundColor: '#A8D8F022' },
   overlap: { backgroundColor: '#ff927a65', borderColor: '#ff765c' },
-  debugLabel: { color: '#fff4e0', backgroundColor: '#37293f', fontSize: 9, alignSelf: 'flex-start' },
+  debugLabel: { color: '#fff4e0', backgroundColor: colors.ink, fontSize: 9, alignSelf: 'flex-start' },
   link: { alignSelf: 'flex-start', minHeight: 44, justifyContent: 'center', paddingHorizontal: 13, borderRadius: 12, backgroundColor: '#f2dec3' },
   linkText: { color: '#6b453f', fontWeight: '800' },
-  shade: { flex: 1, backgroundColor: '#241c36a0', alignItems: 'center', justifyContent: 'center', padding: 16 },
-  panel: { width: '100%', maxWidth: 400, maxHeight: '84%', backgroundColor: '#fff2df', borderRadius: 20, padding: 15, borderWidth: 1, borderColor: '#c1906b' },
+  shade: { ...ui.shade, backgroundColor: 'transparent' },
+  panel: { ...ui.dialog, maxHeight: '84%', padding: 15 },
   heading: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  title: { color: '#503448', fontFamily: 'serif', fontSize: 24, fontWeight: '700' },
+  title: { ...type.heading, color: colors.ink },
   close: { minWidth: 44, minHeight: 44, justifyContent: 'center', alignItems: 'center' },
   closeText: { color: '#6b453f', fontSize: 24 },
   scroll: { flexGrow: 0 },

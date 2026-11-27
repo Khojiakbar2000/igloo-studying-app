@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, AppState, Image, Pressable, ScrollView, StyleSheet, Text, View, type AppStateStatus, type LayoutChangeEvent } from 'react-native';
 import { STUDY_TOGETHER_SCENE } from '../scenes/studyTogetherArtContract';
@@ -226,18 +227,18 @@ function Control({ label, selected, onPress }: { label: string; selected: boolea
 const styles = StyleSheet.create({
   page: { flexGrow: 1, alignItems: 'center', gap: 10, padding: 18, backgroundColor: '#EAF1F8' },
   exit: { width: '100%', maxWidth: 520, marginTop: 8 },
-  exitText: { color: '#52777A', fontSize: 12, fontWeight: '800' },
-  kicker: { width: '100%', maxWidth: 520, marginTop: 12, color: '#67838B', fontSize: 10, fontWeight: '800', letterSpacing: 1.2 },
-  title: { width: '100%', maxWidth: 520, color: '#314750', fontSize: 24, fontWeight: '800' },
+  exitText: { color: colors.link, fontSize: 12, fontWeight: '800' },
+  kicker: { width: '100%', maxWidth: 520, marginTop: 12, color: colors.link, fontSize: 10, fontWeight: '800', letterSpacing: 1.2 },
+  title: { width: '100%', maxWidth: 520, color: colors.link, fontSize: 24, fontWeight: '800' },
   subtitle: { width: '100%', maxWidth: 520, color: '#71818A', fontSize: 12 },
   controls: { width: '100%', maxWidth: 520, flexDirection: 'row', gap: 7 },
   control: { minHeight: 38, flex: 1, paddingHorizontal: 8, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: '#F7F1E6' },
-  controlActive: { backgroundColor: '#52777A' },
-  controlText: { textAlign: 'center', color: '#586F72', fontSize: 10, fontWeight: '800' },
+  controlActive: { backgroundColor: colors.link },
+  controlText: { textAlign: 'center', color: colors.link, fontSize: 10, fontWeight: '800' },
   controlTextActive: { color: '#FFFDF8' },
   slowToggle: { minHeight: 34, width: '100%', maxWidth: 520, justifyContent: 'center', alignItems: 'center', borderRadius: 10, backgroundColor: '#F4F7F8' },
-  slowToggleActive: { backgroundColor: '#E5EEEC' },
-  slowText: { fontSize: 10, color: '#60777A', fontWeight: '700' },
+  slowToggleActive: { backgroundColor: colors.ice },
+  slowText: { fontSize: 10, color: colors.link, fontWeight: '700' },
   stageFrame: { width: '100%', maxWidth: 420, borderRadius: 20, padding: 10, backgroundColor: '#FFFCF5' },
   stage: { position: 'relative', width: '100%', aspectRatio: STUDY_TOGETHER_SCENE.artboard.width / STUDY_TOGETHER_SCENE.artboard.height, overflow: 'hidden', borderRadius: 12, backgroundColor: '#EAF1F8' },
   positioned: { position: 'absolute' },
@@ -245,7 +246,7 @@ const styles = StyleSheet.create({
   actorImage: { position: 'absolute', left: 0, top: 0, width: '100%', height: '100%' },
   tapTarget: { position: 'absolute', zIndex: 7, backgroundColor: 'transparent' },
   readout: { width: '100%', maxWidth: 520, borderRadius: 17, padding: 13, backgroundColor: '#FFFCF5', gap: 6 },
-  status: { color: '#465E62', fontSize: 12, fontWeight: '800', lineHeight: 17 },
-  metric: { color: '#5D7478', fontSize: 10 },
+  status: { color: colors.link, fontSize: 12, fontWeight: '800', lineHeight: 17 },
+  metric: { color: colors.link, fontSize: 10 },
   note: { color: '#71818A', fontSize: 10, lineHeight: 15, marginTop: 3 },
 });

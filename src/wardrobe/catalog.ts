@@ -16,6 +16,7 @@ export type EquipmentDefinition = Omit<EquipmentDefinitionData, 'attachment'> & 
 export type WardrobeProduct = Omit<WardrobeProductData, 'thumbnail'> & { thumbnail: ImageSourcePropType };
 
 const ART: Record<WardrobeAssetId, ImageSourcePropType> = {
+  headphones: require('../../assets/wardrobe/items/cozy-headphones.png'),
   giftHat: require('../../assets/environments/igloo/gifts/hat-fit.png'),
   giftBackpack: require('../../assets/environments/igloo/gifts/backpack-fit.png'),
   giftHatThumb: require('../../assets/environments/igloo/gifts/wear-1.webp'),
@@ -23,13 +24,13 @@ const ART: Record<WardrobeAssetId, ImageSourcePropType> = {
   crown: require('../../assets/wardrobe/items/crown-body-layer-v2.png'),
   crownThumb: require('../../assets/wardrobe/items/crown-art.png'),
   glasses: require('../../assets/wardrobe/items/glasses-body-layer-v2.png'),
-  glassesThumb: require('../../assets/wardrobe/items/round-glasses-art.png'),
+  glassesThumb: require('../../assets/wardrobe/items/round-glasses-thumb.png'),
   helmet: require('../../assets/wardrobe/items/knight-helmet-body-layer-v2.png'),
   helmetThumb: require('../../assets/wardrobe/items/knight-helmet-art.png'),
   chest: require('../../assets/wardrobe/items/knight-chest-body-layer-v2.png'),
   knightThumb: require('../../assets/wardrobe/items/knight-storybook-thumb.png'),
   winterExplorerThumb: require('../../assets/wardrobe/items/winter-explorer-thumb.png'),
-  wizardThumb: require('../../assets/wardrobe/items/wizard-thumb.png'),
+  wizardThumb: require('../../assets/wardrobe/items/wizard-thumb-sage-nordic.png'),
   royalThumb: require('../../assets/wardrobe/items/royal-thumb.png'),
   scholarThumb: require('../../assets/wardrobe/items/scholar-thumb.png'),
   cape: require('../../assets/wardrobe/items/knight-cape-body-layer.png'),
@@ -45,9 +46,12 @@ const ART: Record<WardrobeAssetId, ImageSourcePropType> = {
   rightArmV2: require('../../assets/wardrobe/items/knight-right-arm-layer-v2.png'),
   leftFootV2: require('../../assets/wardrobe/items/knight-left-foot-layer-v2.png'),
   rightFootV2: require('../../assets/wardrobe/items/knight-right-foot-layer-v2.png'),
+  scarfTealThumb: require('../../assets/wardrobe/items/scarf-teal-thumb.png'),
   scarfTeal: require('../../assets/wardrobe/items/scarves/scarf-teal.png'),
+  scarfBerryThumb: require('../../assets/wardrobe/items/scarf-berry-thumb.png'),
   scarfBerry: require('../../assets/wardrobe/items/scarves/scarf-red.png'),
-  scarfLavender: require('../../assets/wardrobe/items/scarves/scarf-lavender.png'),
+  scarfLavenderThumb: require('../../assets/wardrobe/items/scarf-sage-nordic-thumb.png'),
+  scarfLavender: require('../../assets/wardrobe/items/scarves/scarf-sage-nordic.png'),
 };
 
 export { WARDROBE_CATEGORIES };

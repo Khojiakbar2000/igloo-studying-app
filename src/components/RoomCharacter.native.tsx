@@ -1,3 +1,6 @@
+import type { WardrobeLayout } from '../home/state';
+import { ChairEquipment } from '../wardrobe/ChairEquipment';
+import { chairArt, performanceFrames } from '../wardrobe/chairArt';
 import React, { useEffect, useRef, useState } from 'react';
 import { Image, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import type { RiveRef } from 'rive-react-native';
@@ -13,15 +16,7 @@ import Animated, {
 
 const seatedRive = require('../../assets/animations/igloo-penguin-seated.riv');
 const seatedImage = require('../../assets/characters/penguin/poses/seated.png');
-const performanceFrames = [
-  require('../../assets/animations/pip-chair-performance/frames/pip-chair_00.png'), require('../../assets/animations/pip-chair-performance/frames/pip-chair_01.png'),
-  require('../../assets/animations/pip-chair-performance/frames/pip-chair_02.png'), require('../../assets/animations/pip-chair-performance/frames/pip-chair_03.png'),
-  require('../../assets/animations/pip-chair-performance/frames/pip-chair_04.png'), require('../../assets/animations/pip-chair-performance/frames/pip-chair_05.png'),
-  require('../../assets/animations/pip-chair-performance/frames/pip-chair_06.png'), require('../../assets/animations/pip-chair-performance/frames/pip-chair_07.png'),
-  require('../../assets/animations/pip-chair-performance/frames/pip-chair_08.png'), require('../../assets/animations/pip-chair-performance/frames/pip-chair_09.png'),
-  require('../../assets/animations/pip-chair-performance/frames/pip-chair_10.png'), require('../../assets/animations/pip-chair-performance/frames/pip-chair-contact-v2.png'),
-  require('../../assets/animations/pip-chair-performance/frames/pip-chair-settle-v2.png'), require('../../assets/animations/pip-chair-performance/frames/pip-chair-rest-v2.png'),
-];
+
 const walkFrames = [
   require('../../assets/animations/igloo-penguin-walk/frame-01.png'),
   require('../../assets/animations/igloo-penguin-walk/frame-02.png'),
@@ -38,6 +33,7 @@ try {
 
 export function RoomCharacter({
   idleEyes,
+  equipped,
   walking = false,
   performanceFrame = null,
   celebrate = false,
@@ -46,6 +42,7 @@ export function RoomCharacter({
   style,
 }: {
   idleEyes?: React.ReactNode;
+  equipped?: WardrobeLayout;
   walking?: boolean;
   performanceFrame?: number | null;
   celebrate?: boolean;
@@ -70,13 +67,13 @@ export function RoomCharacter({
     if (!onPerformanceReady) return;
     let active = true;
     const sources = performanceFrames
-      .map((frame) => Image.resolveAssetSource(frame)?.uri)
+      .map((_, index) => Image.resolveAssetSource(chairArt(index, equipped?.neck))?.uri)
       .filter((uri): uri is string => Boolean(uri));
     Promise.allSettled(sources.map((uri) => Image.prefetch(uri))).then(() => {
       if (active) onPerformanceReady();
     });
     return () => { active = false; };
-  }, [onPerformanceReady]);
+  }, [onPerformanceReady, equipped?.neck]);
 
   useEffect(() => {
     if (walking || performanceFrame !== null || reducedMotion) {
@@ -130,14 +127,14 @@ export function RoomCharacter({
   return (
     <View accessibilityLabel={performanceDescription} style={[styles.character, style]}>
       <Animated.View style={[StyleSheet.absoluteFill, idleStyle]}>
-        {performanceFrame !== null && !reducedMotion
-          ? <Image source={performanceFrames[performanceFrame]} resizeMode="contain" style={styles.imageFill} />
+        {performanceFrame !== null || (!walking && !!equipped?.head) || (reducedMotion && equipped)
+          ? <ChairEquipment frame={reducedMotion ? 13 : performanceFrame ?? 13} equipped={equipped ?? {}} eyes={idleEyes} />
           : walking && !reducedMotion
           ? <Image source={walkFrames[walkFrame]} resizeMode="contain" style={styles.imageFill} />
           : (reducedMotion || riveFailed || !RiveView || !riveReady)
             ? <Image source={seatedImage} resizeMode="contain" style={styles.imageFill} />
             : null}
-        {RiveView && !riveFailed && !reducedMotion && !walking && (
+        {RiveView && !riveFailed && !reducedMotion && !walking && performanceFrame === null && (
           <RiveView
             ref={riveRef}
             source={seatedRive}
@@ -150,7 +147,6 @@ export function RoomCharacter({
           />
         )}
       </Animated.View>
-      {idleEyes}
     </View>
   );
 }

@@ -1,10 +1,11 @@
+import { constructionStageLabels } from '../home/winter/construction';
+import { Button, IconButton, ScreenHeader } from '../ui/Controls';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import Animated, { FadeIn, useReducedMotion } from 'react-native-reanimated';
+import Animated, { Easing, FadeIn, interpolate, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 import { AWARDS, milestoneText, studyMilestones, type Award } from '../awards/progression';
 import { awardSprites } from '../awards/LivingAwards';
-import type { PenguinCustomization } from '../character/penguinCustomization';
 import { Igloo } from '../components/SceneArt';
 import { GIFT_ART } from '../gifts/art';
 import { rewardById } from '../gifts/catalog';
@@ -13,32 +14,33 @@ import type { WardrobeLayout } from '../home/state';
 import { useHomeMotionState } from '../home/useHomeMotion';
 import { companionName } from '../onboarding/profile';
 import { useStudyProfile } from '../onboarding/ProfileProvider';
-import { shiftLocalDate, studyStreak } from '../state/dailyGoals';
+import { recordedFocusSpans, shiftLocalDate, studyStreak, type FocusSpan } from '../state/dailyGoals';
 import { usePomodoro } from '../state/PomodoroContext';
-import { CONSTRUCTION_MILESTONES, constructionProgress } from '../state/timer';
+import { CONSTRUCTION_MILESTONES, iglooConstruction } from '../state/timer';
 import { PipWardrobePreview } from '../wardrobe/PipWardrobePreview';
 import { ProfileIcon } from './ProfileIcon';
 import { ProfileSettings, type SettingsPage } from './ProfileSettings';
 import { duration, journalDate, journalWeek, STREAK_MILESTONES } from './studyJournal';
 import { palette, styles as s } from './profileStyles';
+import { colors, motion } from '../theme';
 
 const snowyArt = require('../../assets/environments/arctic/arctic-twilight-mobile.jpg');
 const standing = require('../../assets/animations/pip/storybook/character/standing-fallback.png');
 const iglooArt = require('../../assets/animations/pip/winter/construction/igloo-complete.png');
 const snowflakeArt = awardSprites['focus-explorer'];
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const buildStages = ['Breaking ground', 'The first snow blocks', 'A sturdy foundation', 'The walls are rising', 'The dome is taking shape', 'Home, sweet home'];
 const constructionFinish = CONSTRUCTION_MILESTONES[CONSTRUCTION_MILESTONES.length - 1];
 
 type Routes = {
-  onWardrobe: () => void; onAccessories: () => void; onIgloo: () => void; onHelp: () => void;
+  onWardrobe: () => void; onIgloo: () => void; onHelp: () => void;
   onPreviewOnboarding?: () => void;
 };
 
-export function StudyProfileScreen({ customization, ...routes }: Routes & { customization: PenguinCustomization }) {
+export function StudyProfileScreen(routes: Routes) {
   const { profile } = useStudyProfile();
   const { timer, today, hydrated } = usePomodoro();
   const study = useMemo(() => studyMilestones(timer.sessions), [timer.sessions]);
+  const activity = useMemo(() => recordedFocusSpans(timer, Date.now(), timer.endAt), [timer.sessions, timer.activeFocus, timer.endAt, timer.remainingMs]);
   const streak = useMemo(() => studyStreak(study.verifiedDays, today), [study, today]);
   const [settings, setSettings] = useState<SettingsPage | null>(null);
   const [openedFromMenu, setOpenedFromMenu] = useState(false);
@@ -48,39 +50,33 @@ export function StudyProfileScreen({ customization, ...routes }: Routes & { cust
     setSettings(page);
   };
   const companion = companionName(profile);
-  const equipped = timer.home.wardrobe.equipped;
-  const outfit = useMemo<WardrobeLayout>(() => ({
-    ...equipped,
-    neck: equipped.neck === 'scarf-teal' && customization.scarf !== 'teal'
-      ? customization.scarf === 'berry' ? 'scarf-berry' : 'scarf-lavender' : equipped.neck,
-    face: equipped.face ?? (customization.glasses ? 'round-glasses' : undefined),
-  }), [customization, equipped]);
+  const outfit = timer.home.wardrobe.equipped;
 
   return <View style={s.screen}>
     <ScrollView style={s.scroll} contentContainerStyle={s.content}
       showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" pointerEvents={settings ? 'none' : 'auto'}
       aria-hidden={settings !== null} accessibilityElementsHidden={settings !== null} importantForAccessibility={settings ? 'no-hide-descendants' : 'auto'}
       onScroll={event => setPortraitVisible(event.nativeEvent.contentOffset.y < 225)} scrollEventThrottle={100}>
-      <ProfileHero outfit={outfit} headphones={customization.headphones} companion={companion}
-        name={profile.userName.trim() || 'You'} streak={streak.current} active={!settings && portraitVisible}
-        onSettings={() => openSettings('menu')} />
+      <ScreenHeader title="You" style={{ paddingHorizontal: 0 }} actions={<IconButton label="Profile settings" onPress={() => openSettings('menu')}>
+        <ProfileIcon name="settings" size={22} color={palette.accent} />
+      </IconButton>} />
+      <ProfileHero outfit={outfit} companion={companion}
+        name={profile.userName.trim() || 'You'} active={!settings && portraitVisible} />
       {hydrated && <>
         <StudyOverview focused={timer.focusTotalMs} completed={study.progress.sessions} streak={streak} />
-        <WeeklyActivity today={today} spans={study.verifiedSpans} target={profile.target} />
+        <WeeklyActivity today={today} spans={activity} target={profile.target} />
         <StreakCalendar today={today} verifiedDays={study.verifiedDays} streak={streak} />
-        <IglooProgress focusMs={timer.focusTotalMs} study={study.progress} onOpen={routes.onIgloo} />
+        <IglooProgress study={study.progress} onOpen={routes.onIgloo} />
         <Achievements study={study.progress} />
       </>}
       <View style={[s.card, s.wardrobeCard]}>
         <View style={s.wardrobeCopy}>
           <Text style={s.eyebrow}>WARDROBE</Text>
           <Text accessibilityRole="header" style={s.sectionTitle}>Customize {companion}</Text>
-          <Pressable accessibilityRole="button" onPress={routes.onWardrobe} style={({ pressed }) => [s.primary, pressed && s.pressed]}>
-            <Text style={s.primaryText}>Open Wardrobe</Text><ProfileIcon name="next" size={15} color={palette.cream} />
-          </Pressable>
+          <Button label="Open Wardrobe" onPress={routes.onWardrobe} style={{ alignSelf: 'flex-start', marginTop: 8 }} />
         </View>
         <View pointerEvents="none" style={s.wardrobeArt}>
-          <Portrait outfit={outfit} headphones={customization.headphones} size={176} />
+          <Portrait outfit={outfit} size={176} />
         </View>
       </View>
       <View style={[s.card, s.preferenceCard]}>
@@ -95,8 +91,8 @@ export function StudyProfileScreen({ customization, ...routes }: Routes & { cust
   </View>;
 }
 
-function ProfileHero({ name, companion, streak, outfit, headphones, active, onSettings }: {
-  name: string; companion: string; streak: number; outfit: WardrobeLayout; headphones: boolean; active: boolean; onSettings: () => void;
+function ProfileHero({ name, companion, outfit, active }: {
+  name: string; companion: string; outfit: WardrobeLayout; active: boolean;
 }) {
   const { motion } = useHomeMotionState(active);
   const [hello, setHello] = useState(false);
@@ -111,49 +107,41 @@ function ProfileHero({ name, companion, streak, outfit, headphones, active, onSe
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <Svg width="100%" height="100%">
         <Defs><LinearGradient id="journal-dusk" x1="0%" y1="30%" x2="100%" y2="75%">
-          <Stop offset="0" stopColor="#2e2550" stopOpacity=".96" />
-          <Stop offset=".48" stopColor="#3e3764" stopOpacity=".82" />
-          <Stop offset="1" stopColor="#696db0" stopOpacity=".13" />
+          <Stop offset="0" stopColor={colors.link} stopOpacity=".94" />
+          <Stop offset=".55" stopColor={colors.blue} stopOpacity=".78" />
+          <Stop offset="1" stopColor="#E9B968" stopOpacity=".18" />
         </LinearGradient></Defs>
         <Rect width="100%" height="100%" fill="url(#journal-dusk)" />
       </Svg>
     </View>
     <View style={s.heroCopy} pointerEvents="none">
-      <Text style={s.heroEyebrow}>YOUR LITTLE WORLD</Text>
-      <Text accessibilityRole="header" style={s.heroTitle}>{name} &amp; {companion}</Text>
-      <Text style={s.heroLine}>Growing a little every day.</Text>
-      <View style={s.heroStreak}><ProfileIcon name="snow" size={14} color="#ffd98a" />
-        <Text style={s.heroStreakText}>{streak}-day streak</Text>
-      </View>
+      <Text style={s.heroEyebrow}>STUDY JOURNAL</Text>
+      <Text style={s.heroTitle}>{name} &amp; {companion}</Text>
     </View>
     <Pressable accessibilityRole="button" accessibilityLabel={`Say hello to ${companion}`} onPress={() => setHello(true)} style={s.heroPortrait}>
       <View pointerEvents="none" style={s.heroPortraitArt}>
-        <Portrait outfit={outfit} headphones={headphones} size={239} motion={motion} waving={hello && motion} onFinish={endHello} />
+        <Portrait outfit={outfit} size={239} motion={motion} waving={hello && motion} onFinish={endHello} />
       </View>
-      {hello && <View pointerEvents="none" style={s.hello}><ProfileIcon name="heart" size={13} color="#984b74" /><Text accessibilityLiveRegion="polite" style={s.helloText}>Hello!</Text></View>}
-    </Pressable>
-    <Pressable accessibilityRole="button" accessibilityLabel="Profile settings" onPress={onSettings}
-      style={({ pressed }) => [s.heroSettings, pressed && s.pressed]}>
-      <ProfileIcon name="settings" size={20} color={palette.cream} />
+      {hello && <View pointerEvents="none" style={s.hello}><ProfileIcon name="heart" size={13} color="#A85F48" /><Text accessibilityLiveRegion="polite" style={s.helloText}>Hello!</Text></View>}
     </Pressable>
   </View>;
 }
 
-function Portrait({ outfit, headphones, size, motion = false, waving = false, onFinish }: {
-  outfit: WardrobeLayout; headphones: boolean; size: number; motion?: boolean; waving?: boolean; onFinish?: () => void;
+function Portrait({ outfit, size, motion = false, waving = false, onFinish }: {
+  outfit: WardrobeLayout; size: number; motion?: boolean; waving?: boolean; onFinish?: () => void;
 }) {
   const [ready, setReady] = useState(false);
   const loaded = useCallback(() => setReady(true), []);
   return <View style={{ width: size, height: size }}>
     {!ready && <Image accessible={false} source={standing} style={StyleSheet.absoluteFill} resizeMode="contain" />}
-    <PipWardrobePreview equipped={outfit} headphones={headphones} action={waving ? 'wave' : 'idle'} motion={motion}
+    <PipWardrobePreview equipped={outfit} action={waving ? 'wave' : 'idle'} motion={motion}
       onReady={loaded} onFinish={waving ? onFinish : undefined} />
   </View>;
 }
 
 function StudyOverview({ focused, completed, streak }: { focused: number; completed: number; streak: ReturnType<typeof studyStreak> }) {
   const values = [
-    { label: 'Total focused', value: duration(focused), icon: 'clock', tone: s.meterViolet },
+    { label: 'Total focused', value: duration(focused), icon: 'clock', tone: s.meterSage },
     { label: 'Completed sessions', value: String(completed), icon: 'sessions', tone: s.meterBlue },
     { label: 'Current streak', value: `${streak.current} ${streak.current === 1 ? 'day' : 'days'}`, icon: 'snow', tone: s.meterIce },
     { label: 'Longest streak', value: `${streak.longest} ${streak.longest === 1 ? 'day' : 'days'}`, icon: 'star', tone: s.meterGold },
@@ -169,7 +157,7 @@ function StudyOverview({ focused, completed, streak }: { focused: number; comple
   </View>;
 }
 
-function WeeklyActivity({ today, target, spans }: { today: string; target: number; spans: ReturnType<typeof studyMilestones>['verifiedSpans'] }) {
+function WeeklyActivity({ today, target, spans }: { today: string; target: number; spans: FocusSpan[] }) {
   const [previous, setPrevious] = useState(false);
   const { width } = useWindowDimensions();
   const reducedMotion = useReducedMotion();
@@ -194,7 +182,7 @@ function WeeklyActivity({ today, target, spans }: { today: string; target: numbe
     <Animated.View key={String(previous)} entering={reducedMotion ? undefined : FadeIn.duration(180)} style={s.barChart}>
       <View pointerEvents="none" style={[s.goalLine, { bottom: `${(goal / ceiling) * 100}%` }]} />
       {week.map(({ date, focusMs }, index) => <View key={date} accessible accessibilityLabel={`${days[index]}, ${duration(focusMs)}${date === today ? ', today' : ''}`} style={s.barColumn}>
-        <View style={[s.barFill, { height: focusMs ? `${Math.max(4, focusMs / ceiling * 100)}%` : 3 }, date === today && s.todayBar]} />
+        <WeeklyBar height={focusMs ? Math.max(4, focusMs / ceiling * 100) * 0.66 : 3} delay={index * 38} active={date === today} />
       </View>)}
     </Animated.View>
     <View style={s.barLabels} importantForAccessibility="no-hide-descendants" accessibilityElementsHidden>
@@ -204,6 +192,16 @@ function WeeklyActivity({ today, target, spans }: { today: string; target: numbe
     </View>
     {total === 0 && <Text style={s.emptyWeek}>Your first little adventure starts today!</Text>}
   </View>;
+}
+
+function WeeklyBar({ height, delay, active }: { height: number; delay: number; active: boolean }) {
+  const reducedMotion = useReducedMotion();
+  const progress = useSharedValue(reducedMotion ? 1 : 0);
+  useEffect(() => {
+    progress.value = reducedMotion ? 1 : withDelay(delay, withTiming(1, { duration: motion.progress, easing: Easing.out(Easing.cubic) }));
+  }, [delay, progress, reducedMotion]);
+  const animatedStyle = useAnimatedStyle(() => ({ height: Math.max(3, interpolate(progress.value, [0, 1], [0, height])) }));
+  return <Animated.View style={[s.barFill, active && s.todayBar, animatedStyle]} />;
 }
 
 function StreakCalendar({ today, verifiedDays, streak }: { today: string; verifiedDays: readonly string[]; streak: ReturnType<typeof studyStreak> }) {
@@ -237,9 +235,9 @@ function StreakCalendar({ today, verifiedDays, streak }: { today: string; verifi
   </View>;
 }
 
-function IglooProgress({ focusMs, study, onOpen }: { focusMs: number; study: ReturnType<typeof studyMilestones>['progress']; onOpen: () => void }) {
+function IglooProgress({ study, onOpen }: { study: ReturnType<typeof studyMilestones>['progress']; onOpen: () => void }) {
   const { timer } = usePomodoro();
-  const { minutes, progress, stage, nextMilestone } = constructionProgress(focusMs);
+  const { minutes, progress, stage, nextMilestone } = iglooConstruction(timer);
   const gift = GIFTS.find(item => !timer.home.gifts[item.id] && study[item.metric] >= item.target) ?? GIFTS.find(item => !timer.home.gifts[item.id]);
   const claim = gift && nextReward(gift, timer.home.owned, timer.home.wardrobe.owned);
   const reward = claim && 'rewardId' in claim ? rewardById(claim.rewardId) : undefined;
@@ -249,7 +247,7 @@ function IglooProgress({ focusMs, study, onOpen }: { focusMs: number; study: Ret
     <View style={s.iglooTop}>
       <View style={s.headingCopy}>
         <Text accessibilityRole="header" style={s.sectionTitle}>Your Igloo</Text>
-        <Text style={s.iglooStage}>{buildStages[stage]}</Text>
+        <Text style={s.iglooStage}>{constructionStageLabels[stage]}</Text>
         <Text style={s.subtle}>{nextMilestone === null ? `${Math.floor(minutes)} focus minutes · Built` : `${Math.floor(minutes)} / ${nextMilestone} focus minutes to next stage`}</Text>
       </View>
       {stage === 0 || nextMilestone === null

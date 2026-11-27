@@ -1,6 +1,9 @@
+import { Chevron, IconButton, Segmented } from '../ui/Controls';
+import { Overlay } from '../ui/Overlay';
+import { colors, type, ui } from '../theme';
 import { useCompanionName } from '../onboarding/ProfileProvider';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInUp } from 'react-native-reanimated';
 import type { AnimationObject } from 'lottie-react-native';
 import { usePomodoro } from '../state/PomodoroContext';
@@ -8,7 +11,7 @@ import { useHomeMotionState } from '../home/useHomeMotion';
 import { usePipReactions } from '../character/reactions/PipReactionsProvider';
 import { StudyRoomPerformance } from '../components/StudyRoomPerformance';
 import { useFurniture } from '../furniture/Furniture';
-import { boxStyle, roomBox } from '../furniture/catalog';
+import { boxStyle, roomBox, type Bounds } from '../furniture/catalog';
 import { IGLOO_FURNITURE } from '../study-together/iglooLayout';
 import { gardenMotion } from '../garden/motion';
 import { BODIES, GIFT_ART, LIDS, PLATFORM } from './art';
@@ -53,8 +56,8 @@ export function GiftDecorAnimation({ id, active }: { id: string; active: boolean
 const belongsTo = (reward: Reward, home: ReturnType<typeof usePomodoro>['timer']['home']) =>
   reward.wardrobe ? home.wardrobe.owned.includes(reward.wardrobe) : home.owned.includes(reward.id);
 
-export function MysteryGifts({ visible, shared = false, menuOnly = false, onPlaced }: {
-  visible: boolean; shared?: boolean; menuOnly?: boolean; onPlaced?: () => void;
+export function MysteryGifts({ visible, shared = false, menuOnly = false, onPlaced, placement }: {
+  visible: boolean; placement?: Bounds; shared?: boolean; menuOnly?: boolean; onPlaced?: () => void;
 }) {
   const companion=useCompanionName();
   const { timer, hydrated, claimGift, savedGifts, storageError, retrySave, equipFurniture, equipWardrobeItem, arrangeHome } = usePomodoro();
@@ -76,7 +79,7 @@ export function MysteryGifts({ visible, shared = false, menuOnly = false, onPlac
   const next = pending[0];
   const activeStudy = timer.mode === 'focus' && timer.status === 'running';
   const allowed = active && !activeStudy && timer.status !== 'paused';
-  const bounds = shared ? IGLOO_FURNITURE.gifts : roomBox(49, 83, 16, 11);
+  const bounds = placement ?? (shared ? IGLOO_FURNITURE.gifts : roomBox(49, 83, 16, 11));
   const opening = useMemo(() => reveal ? JSON.parse(JSON.stringify(animationData[RARITIES.indexOf(reveal.rarity)])) as AnimationObject : null, [reveal]);
   const show = useFurniture('gifts', () => {
     setTab(next || waiting ? 'gifts' : 'collection');
@@ -155,17 +158,17 @@ export function MysteryGifts({ visible, shared = false, menuOnly = false, onPlac
         <View pointerEvents="none" style={styles.badge}><Text style={styles.badgeText}>{pending.length}</Text></View>
       </>}
     </Pressable>}
-    {open && <Modal transparent visible animationType={reduced ? 'none' : 'fade'} onRequestClose={close}>
+    {open && <Overlay transparent visible animationType={reduced ? 'none' : 'fade'} onRequestClose={close}>
       <View style={styles.shade}>
         <Pressable accessible={false} onPress={close} style={StyleSheet.absoluteFill} />
         <View accessibilityViewIsModal style={styles.panel}>
           <View style={styles.header}>
             <Text accessibilityRole="header" style={styles.title}>Mystery Gifts</Text>
-            <Pressable accessibilityRole="button" accessibilityLabel="Close Mystery Gifts" onPress={close} style={styles.close}><Text style={styles.closeText}>×</Text></Pressable>
+            <IconButton label="Close Mystery Gifts" onPress={close}><Chevron direction="close" /></IconButton>
           </View>
           {!reveal && <View style={styles.tabs}>
-            <Button label={pending.length ? `Gifts (${pending.length})` : 'Gifts'} onPress={() => { setTab('gifts'); setSelected(null); }} selected={tab === 'gifts'} />
-            <Button label="Collection" onPress={() => { setTab('collection'); setSelected(null); }} selected={tab === 'collection'} />
+            <Segmented label="Gift collection" value={tab} onChange={nextTab => { setTab(nextTab); setSelected(null); }}
+              options={[{ id: 'gifts', label: pending.length ? `Gifts (${pending.length})` : 'Gifts' }, { id: 'collection', label: 'Collection' }]} />
           </View>}
           <ScrollView style={styles.scroll} contentContainerStyle={styles.content}>
             {reveal ? <>
@@ -243,7 +246,7 @@ export function MysteryGifts({ visible, shared = false, menuOnly = false, onPlac
           </ScrollView>
         </View>
       </View>
-    </Modal>}
+    </Overlay>}
   </>;
 }
 
@@ -267,34 +270,34 @@ const styles = StyleSheet.create({
   waitingGlow: { position:'absolute', left:'15%', right:'15%', top:'20%', bottom:'17%', opacity:.22, borderRadius:30 },
   badge: { position:'absolute', top:0, right:0, borderRadius:12, minWidth:19, height:19, backgroundColor:'#8d473d', alignItems:'center', justifyContent:'center' },
   badgeText:{ color:'#fff1d5', fontSize:11, fontWeight:'800' },
-  shade:{ flex:1, backgroundColor:'#21182dae', alignItems:'center', justifyContent:'center', padding:14 },
-  panel:{ width:'100%', maxWidth:455, height:660, maxHeight:'91%', borderRadius:23, borderWidth:1, borderColor:'#c3976a', overflow:'hidden', backgroundColor:'#fff1df' },
+  shade:{ ...ui.shade, backgroundColor: 'transparent' },
+  panel:{ ...ui.dialog, height:660, maxHeight:'91%' },
   header:{ flexDirection:'row', justifyContent:'space-between', alignItems:'center', paddingLeft:20, paddingRight:10, paddingTop:5 },
-  title:{ color:'#52334a', fontSize:28, fontFamily:'serif', fontWeight:'700' },
+  title:{ ...type.heading, color: colors.ink },
   close:{ width:44, height:44, alignItems:'center', justifyContent:'center' },
   closeText:{ color:'#7f5140', fontSize:29 },
-  tabs:{ flexDirection:'row', gap:7, paddingHorizontal:14, paddingVertical:7 },
+  tabs:{ paddingHorizontal:14, paddingVertical:7 },
   scroll:{ flex:1 }, content:{ padding:16, gap:10 },
-  stage:{ position:'relative', height:250, borderRadius:19, overflow:'hidden', backgroundColor:'#332744', alignItems:'center', justifyContent:'center' },
+  stage:{ position:'relative', height:250, borderRadius:19, overflow:'hidden', backgroundColor:colors.link, alignItems:'center', justifyContent:'center' },
   heroPlatform:{ position:'absolute', width:'76%', height:'90%', bottom:'-14%' },
   heroBox:{ position:'absolute', width:'48%', height:'57%', left:'21%', bottom:'29%' },
   heroArt:{ width:'61%', height:'60%', position:'absolute', top:'10%' }, openChest:{ position:'absolute', bottom:'4%', width:'37%', height:'36%', opacity:.9 }, fill:{ width:'100%', height:'100%' },
-  displayGlow:{ position:'absolute', width:178, height:178, borderRadius:100, opacity:.27, backgroundColor:'#b88cc1' },
+  displayGlow:{ position:'absolute', width:178, height:178, borderRadius:100, opacity:.27, backgroundColor:'#E9B968' },
   kicker:{ color:'#885147', fontSize:11, fontWeight:'800', letterSpacing:1, textTransform:'uppercase' },
-  rewardTitle:{ color:'#4f3446', fontFamily:'serif', fontWeight:'700', fontSize:24 },
+  rewardTitle:{ ...type.heading, color: colors.ink },
   copy:{ color:'#553e45', fontSize:14, lineHeight:20 },
   rule:{ color:'#755a56', fontSize:12, lineHeight:17 },
   milestones:{ borderTopWidth:1, borderColor:'#ead2b7' },
   milestone:{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:6, borderBottomWidth:1, borderColor:'#ead2b7', paddingVertical:8 },
-  button:{ minHeight:44, borderRadius:10, paddingHorizontal:12, justifyContent:'center', alignItems:'center', backgroundColor:'#f0dbc3' },
-  buttonText:{ color:'#634451', fontWeight:'700', fontSize:13 },
-  primary:{ backgroundColor:'#794556' }, primaryText:{ color:'#fff1da' }, pressed:{ opacity:.75 }, disabled:{ opacity:.55 },
+  button:{ ...ui.control, ...ui.secondary },
+  buttonText:{ ...type.label, color:colors.ink },
+  primary:{ ...ui.primary }, primaryText:{ color:colors.primaryInk }, pressed:{ opacity:.75 }, disabled:{ opacity:.55 },
   filters:{ flexDirection:'row', flexWrap:'wrap', gap:6 },
   detail:{ gap:7, padding:12, borderRadius:14, backgroundColor:'#f3e1cc' },
   detailArt:{ width:'100%', height:135 }, grid:{ flexDirection:'row', flexWrap:'wrap', gap:6 },
   tile:{ width:'48%', borderWidth:1, borderColor:'#e7cbb0', borderRadius:12, backgroundColor:'#fae9d5', padding:7, gap:5 },
-  selected:{ borderColor:'#9a5b68', backgroundColor:'#f6dbca' },
+  selected:{ borderColor:colors.link, backgroundColor:'#f6dbca' },
   tileArt:{ width:'100%', height:78 }, locked:{ opacity:.42 },
-  tileName:{ color:'#513846', fontSize:13, fontWeight:'800' }, tileRarity:{ color:'#755856', fontSize:11 },
+  tileName:{ color:colors.ink, fontSize:13, fontWeight:'800' }, tileRarity:{ color:'#755856', fontSize:11 },
   debug:{ borderTopWidth:1, borderColor:'#e7cbb0', paddingTop:8, gap:6 },
 });

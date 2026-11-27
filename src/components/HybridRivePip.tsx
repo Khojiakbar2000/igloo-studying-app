@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -8,5 +9,5 @@ export function HybridRivePip({ onError }: { active: boolean; onReady: () => voi
 
 const styles = StyleSheet.create({
   fallback: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
-  message: { textAlign: 'center', color: '#52777A', fontSize: 12 },
+  message: { textAlign: 'center', color: colors.link, fontSize: 12 },
 });

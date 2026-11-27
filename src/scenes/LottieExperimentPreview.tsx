@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -10,6 +11,6 @@ export function LottieExperimentPreview() {
 
 const styles = StyleSheet.create({
   page: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#eaf5f7', padding: 24, gap: 8 },
-  title: { color: '#18383d', fontSize: 22, fontWeight: '700', textAlign: 'center' },
-  note: { maxWidth: 440, color: '#708589', fontSize: 13, lineHeight: 20, textAlign: 'center' },
+  title: { color: colors.ink, fontSize: 22, fontWeight: '700', textAlign: 'center' },
+  note: { maxWidth: 440, color: colors.link, fontSize: 13, lineHeight: 20, textAlign: 'center' },
 });

@@ -119,6 +119,29 @@ test('unlimited Snowflakes survive purchases in both shops and a save reload', a
  assert.ok(restored.home.owned.includes('desk-walnut'));
  assert.ok(restored.home.wardrobe.owned.includes('royal-crown'));
 });
+
+test('Boutique try-on matches purchased and equipped outfits through costume changes', () => {
+ const { wardrobeProductData } = load('../wardrobe/model.ts');
+ const knight = wardrobeProductData('knight-set');
+ const glasses = wardrobeProductData('round-glasses');
+ const scarf = wardrobeProductData('scarf-berry');
+ let current = { ...home.createHome(), snowflakes: 500 };
+ for (const product of [glasses, knight, scarf]) {
+  const before = current.wardrobe.equipped;
+  const preview = home.outfitWithProduct(before, product);
+  current = home.purchaseWardrobe(current, product.id);
+  assert.notEqual(current.wardrobe.equipped, before);
+  assert.deepEqual(current.wardrobe.equipped, preview);
+  assert.equal(current.wardrobe.equipped.face, 'round-glasses');
+ }
+ assert.equal(current.wardrobe.equipped.skin, undefined);
+ current = home.equipWardrobe(current, knight.id);
+ assert.equal(current.wardrobe.equipped.skin, 'knight-storybook');
+ assert.equal(current.wardrobe.equipped.neck, undefined);
+ assert.equal(current.wardrobe.equipped.face, 'round-glasses');
+ const restored = home.restoreHome(JSON.parse(JSON.stringify(current)), []);
+ assert.deepEqual(restored.wardrobe.equipped, current.wardrobe.equipped);
+});
 test('ownership, affordability, fixed slots and optional removals are enforced', () => {
  let h=home.createHome(); assert.equal(home.purchaseHome(h,'skylight'),h);assert.equal(home.equipHome(h,'desk-sage'),h);
  assert.equal(home.purchaseHome(h,'missing'),h);assert.equal(home.removeHome(h,'bed'),h);
@@ -145,15 +168,37 @@ test('saved arrangements, undo and original-room fallback survive reload indepen
  const restored=timer.restoreTimerState(JSON.stringify({...fresh(),home:h}),now());
  assert.equal(restored.home.originalRoom,true);assert.equal(restored.home.equipped.ceiling,'skylight');assert.equal(restored.home.saved.ceiling,'skylight');
 });
-test('the complete catalog has transparent assets aligned to each fixed slot', async () => {
- const sharp=require('sharp'),catalog=load('../home/catalog.ts'),{HOME_SLOTS}=load('../home/slots.ts');
+test('restoring an older home without arrangements supplies the furnished room and respects saved removals', () => {
+ const oldHome = home.restoreHome({ snowflakes: 120 }, []);
+ assert.equal(oldHome.equipped.sofa, 'sofa-cream');
+ assert.equal(oldHome.saved.bookshelf, 'shelf-oak');
+ const edited = home.arrangeHomeState(home.removeHome(oldHome, 'sofa'), 'save');
+ const restored = home.restoreHome(JSON.parse(JSON.stringify(edited)), []);
+ assert.equal(restored.equipped.sofa, undefined);
+ assert.equal(restored.saved.sofa, undefined);
+ assert.equal(restored.snowflakes, 120);
+});
+test('every furniture silhouette fits its panorama slot without stretching or clipping', async () => {
+ const sharp=require('sharp'),catalog=load('../home/catalog.ts');
+ const { PANORAMA, PANORAMA_SLOTS, fittedSprite } = load('../home/panorama.ts');
+ const footprints = require('../../assets/home-customization/panorama/footprints.json');
  const HOME_CATALOG = catalog.HOME_CATALOG.filter(item => !item.giftOnly);
  assert.equal(HOME_CATALOG.length,25);assert.equal(new Set(HOME_CATALOG.map(i=>i.id)).size,25);
  for(const [category,count]of Object.entries({Beds:3,Sofas:3,Desks:3,Rugs:3,Lighting:3,Windows:2,Ceiling:1,Shelves:2,Decor:5}))assert.equal(HOME_CATALOG.filter(i=>i.category===category).length,count);
  for(const item of HOME_CATALOG){
-  const box=HOME_SLOTS[item.slot],meta=await sharp(path.join(__dirname,'../../assets/home-customization/items',item.id+'.png')).metadata();
-  assert.equal(meta.hasAlpha,true,item.id);assert.equal(meta.width,box.width*2,item.id);assert.equal(meta.height,box.height*2,item.id);
-  assert.ok(box.x>=0&&box.y>=0&&box.x+box.width<=1024&&box.y+box.height<=1536,item.id);
+  const box=PANORAMA_SLOTS[item.slot],meta=await sharp(path.join(__dirname,'../../assets/home-customization/items',item.id+'.png')).metadata();
+  const footprint = footprints[item.id];
+  assert.ok(footprint, item.id);
+  const [canvasWidth, canvasHeight, left, top, right, bottom] = footprint;
+  assert.deepEqual([meta.hasAlpha, meta.width, meta.height], [true, canvasWidth, canvasHeight], item.id);
+  assert.ok(box.x>=0&&box.y>=0&&box.x+box.width<=PANORAMA.width&&box.y+box.height<=PANORAMA.height,item.id);
+  const frame = fittedSprite(box, footprint);
+  const scale = frame.width / canvasWidth;
+  const tolerance = 0.001;
+  assert.ok(Math.abs(frame.height / canvasHeight - scale) < tolerance, item.id);
+  assert.ok(frame.x + left * scale >= box.x - tolerance && frame.x + right * scale <= box.x + box.width + tolerance, item.id);
+  assert.ok(frame.y + top * scale >= box.y - tolerance, item.id);
+  assert.ok(Math.abs(frame.y + bottom * scale - box.y - box.height) < tolerance, item.id);
  }
 });
 
@@ -589,4 +634,64 @@ test('first-day streak dates reflect completed active spans and not merely openi
  const complete=timer.reconcileTimer(running,running.endAt);
  assert.deepEqual(milestones(complete.sessions).verifiedDays,[day]);
  assert.deepEqual(milestones([ {...complete.sessions[0],spans:[]} ]).verifiedDays,[]);
+});
+
+test('returning from an idle break restores the shared focus preference without starting a session', () => {
+ const initial = { ...fresh(), mode: 'shortBreak', durationMs: 300_000, remainingMs: 300_000, focusMinutes: 45 };
+ const prepared = timer.prepareFocusTimer(initial);
+ assert.equal(prepared.mode, 'focus');
+ assert.equal(prepared.status, 'idle');
+ assert.equal(prepared.remainingMs, 45 * 60_000);
+ assert.equal(prepared.activeFocus, null);
+ assert.equal(timer.prepareFocusTimer({ ...initial, status: 'running' }).mode, 'shortBreak');
+});
+
+test('early finish remains in activity, while completed focus grows the igloo and earns rewards', () => {
+ const start = now();
+ const legacy = { ...fresh(), focusTotalMs: 10 * 60_000 };
+ let current = timer.startTimer(legacy, start);
+ current = timer.finishTimer(current, start + 8 * 60_000);
+ assert.equal(timer.iglooConstruction(current).minutes, 10);
+ assert.equal(current.home.snowflakes, 0);
+ assert.equal(goals.dailySummary(current, goals.localDateKey(start)).focusMs, 8 * 60_000);
+ current = timer.startTimer(timer.prepareFocusTimer(current), start + 9 * 60_000);
+ current = timer.reconcileTimer(current, current.endAt);
+ assert.equal(timer.iglooConstruction(current).minutes, 35);
+ assert.equal(current.home.snowflakes, 25);
+ assert.equal(goals.dailySummary(current, goals.localDateKey(start)).focusMs, 33 * 60_000);
+});
+
+test('study worlds unlock at completed focus milestones and persist through storage', async () => {
+ const initial = fresh();
+ assert.equal(home.switchStudyRoom(initial.home, 'bedroom', 2), initial.home);
+ let state = initial;
+ for (let index = 0; index < 2; index++) {
+  state = timer.startFocusTimer(state, 20, now() + index * 3_600_000);
+  state = timer.reconcileTimer(state, state.endAt);
+ }
+ state = timer.startFocusTimer(state, 20, now() + 2 * 3_600_000);
+ const early = timer.finishTimer(state, state.endAt - 60_000);
+ assert.equal(home.roomUnlocked(early.home, 'bedroom', 0), false);
+ state = timer.reconcileTimer(state, state.endAt);
+ assert.equal(home.roomUnlocked(state.home, 'bedroom', 0), true);
+ assert.equal(home.roomUnlocked(state.home, 'library', 0), false);
+
+ let room = home.switchStudyRoom({...state.home, snowflakes:300}, 'bedroom', 3);
+ room = home.purchaseHome(room, 'desk-walnut');
+ room = home.arrangeHomeState(room, 'save');
+ room = home.switchStudyRoom(room, 'igloo', 3);
+ assert.equal(room.equipped.desk, 'desk-oak');
+ assert.equal(room.saved.desk, 'desk-oak');
+ assert.ok(room.owned.includes('desk-walnut'));
+ room = home.switchStudyRoom(room, 'bedroom', 3);
+ assert.equal(room.equipped.desk, 'desk-walnut');
+ assert.equal(room.saved.desk, 'desk-walnut');
+ assert.equal(room.previous.desk, 'desk-oak');
+ assert.deepEqual(room.wardrobe, state.home.wardrobe);
+
+ await timer.saveTimerState({...state, home:room});
+ const restored = await timer.loadTimerState();
+ assert.equal(restored.home.activeRoom, 'bedroom');
+ assert.equal(restored.home.equipped.desk, 'desk-walnut');
+ assert.equal(restored.home.roomLayouts.igloo.equipped.desk, 'desk-oak');
 });

@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, Easing, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle, ClipPath, Defs, G, LinearGradient, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
@@ -217,7 +218,7 @@ function WindowArtwork({ stormOpacity, flakeDrift, sashAngle, open }: { stormOpa
         <Circle cx="48" cy="45" r="1.5" fill="#FFF4D9" /><Circle cx="124" cy="39" r="1.2" fill="#FFF4D9" /><Circle cx="84" cy="30" r="1" fill="#FFF4D9" />
         <Path d="M18 108 Q42 85 65 103 T112 99 T165 108 L165 168 L18 168Z" fill="#AFC5D1" opacity=".88" />
         <Path d="M18 120 Q47 102 76 117 T134 111 L168 168 L18 168Z" fill="#E9F0EC" />
-        <Path d="M44 116 L54 81 L65 116 M54 88 L39 101 M55 95 L70 107 M119 116 L129 76 L142 116 M129 87 L113 102 M130 95 L148 108" fill="none" stroke="#5C6E76" strokeWidth="5" strokeLinejoin="round" />
+        <Path d="M44 116 L54 81 L65 116 M54 88 L39 101 M55 95 L70 107 M119 116 L129 76 L142 116 M129 87 L113 102 M130 95 L148 108" fill="none" stroke={colors.link} strokeWidth="5" strokeLinejoin="round" />
       </G>
       <Circle cx="90" cy="84" r="66" fill="none" stroke="url(#iglooFrost)" strokeWidth="3" opacity=".8" />
     </Svg>

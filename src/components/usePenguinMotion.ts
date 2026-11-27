@@ -10,8 +10,9 @@ import {
 
 /** Story actions move the character root with eased anticipation and settle.
  * Rive owns its authored idle; reduced motion keeps the same pose without travel. */
-export function usePenguinMotion(hatch = false, action = 'idle') {
-  const reducedMotion = useReducedMotion();
+export function usePenguinMotion(hatch = false, action = 'idle', motionAllowed = true) {
+  const systemReducedMotion = useReducedMotion();
+  const reducedMotion = systemReducedMotion || !motionAllowed;
   const hatchLift = useSharedValue(hatch ? 86 : 0);
   const hatchTilt = useSharedValue(0);
   const squashX = useSharedValue(1);
@@ -35,7 +36,20 @@ export function usePenguinMotion(hatch = false, action = 'idle') {
       squashY.value = 1;
     }
 
-    if (action === 'approach' || action === 'discover' || action === 'reach') {
+    if (action === 'wave') {
+      hatchTilt.value = withSequence(
+        withTiming(0, { duration: 1 }),
+        withTiming(-1.6, { duration: 150, easing: Easing.out(Easing.cubic) }),
+        withTiming(1.3, { duration: 190, easing: Easing.inOut(Easing.cubic) }),
+        withTiming(-1, { duration: 170, easing: Easing.inOut(Easing.cubic) }),
+        withTiming(0, { duration: 210, easing: Easing.out(Easing.cubic) }),
+      );
+      hatchLift.value = withSequence(
+        withTiming(-1, { duration: 160, easing: Easing.out(Easing.cubic) }),
+        withTiming(0, { duration: 240, easing: Easing.out(Easing.cubic) }),
+        withTiming(0, { duration: 320 }),
+      );
+    } else if (action === 'approach' || action === 'discover' || action === 'reach') {
       const distance = action === 'approach' ? 26 : action === 'discover' ? 22 : 10;
       travelX.value = withSequence(
         withTiming(-3, { duration: 100, easing: Easing.out(Easing.quad) }),

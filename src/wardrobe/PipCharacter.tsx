@@ -1,46 +1,44 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Image, StyleSheet, View, type ImageSourcePropType, type StyleProp, type ViewStyle } from 'react-native';
-import type { CharacterAction, CharacterSkinId, PipPose } from './model';
+import type { AnimationObject } from 'lottie-react-native';
+import type { CharacterAction } from './model';
 import type { WardrobeLayout } from '../home/state';
-import { costumeAction } from './costumes';
+import { WinterLottie } from '../home/winter/WinterLottie';
+import { ChairEquipment } from './ChairEquipment';
+import { fitStudy } from './lottieEquipment';
 import { PipWardrobePreview } from './PipWardrobePreview';
 
-const POSE_FALLBACK: Record<PipPose, ImageSourcePropType> = {
-  standing: require('../../assets/animations/pip/storybook/character/standing-fallback.png'),
-  sitting: require('../../assets/characters/penguin/poses/seated.png'),
-  walking: require('../../assets/animations/igloo-penguin-walk/frame-01.png'),
-  sleeping: require('../../assets/characters/penguin/poses/sleepy.png'),
+export type FittingPose = 'standing' | 'sitting' | 'laptop';
+export type FittingAction = CharacterAction | 'blink' | 'look' | 'stretch';
+const typing: AnimationObject = require('../../assets/animations/study-together-lottie/lottie/typing.json');
+const { segments } = require('../../assets/animations/study-together-lottie/lottie/typing.segments.json');
+const laptopActions: Partial<Record<FittingAction, [number, number]>> = {
+  idle: segments.study,
+  wave: segments.actions.wave,
+  blink: segments.reactions.blink,
+  look: segments.reactions.look,
+  stretch: segments.actions.stretch,
+  celebrate: segments.actions.celebrate,
 };
 
-export function PipCharacter({
-  pose = 'standing',
-  animation = 'idle',
-  costumeId,
-  equipment,
-  conceptImage,
-  style,
-}: {
-  pose?: PipPose;
-  animation?: CharacterAction;
-  costumeId?: CharacterSkinId;
-  equipment?: WardrobeLayout;
-  conceptImage?: ImageSourcePropType;
-  style?: StyleProp<ViewStyle>;
+export function PipCharacter({ pose, animation, equipment, conceptImage, style, motion }: {
+  pose: FittingPose; animation: FittingAction; equipment: WardrobeLayout;
+  conceptImage?: ImageSourcePropType; style?: StyleProp<ViewStyle>; motion: boolean;
 }) {
-  const equipped = equipment ?? (costumeId ? { skin: costumeId } : {});
-  const hasVariant = Boolean(costumeAction(costumeId, pose, animation));
-  if (pose === 'standing' && (!costumeId || hasVariant || conceptImage)) {
-    return <PipWardrobePreview equipped={equipped} action={animation} pose={pose} conceptImage={conceptImage} style={style} />;
-  }
-  if (pose === 'standing' && costumeId) {
-    // Keep the requested action animated with default Pip art when a costume
-    // has no matching action variant. Never stretch another costume pose.
-    const { skin: _unavailableSkin, ...compatibleEquipment } = equipped;
-    return <PipWardrobePreview equipped={compatibleEquipment} action={animation} pose="standing" style={style} />;
-  }
-  return <View accessibilityLabel={`Pip ${pose} (default pose fallback)`} style={[styles.fallback, style]}>
-    <Image source={POSE_FALLBACK[pose]} resizeMode="contain" style={StyleSheet.absoluteFill} />
+  if (pose === 'standing') return <PipWardrobePreview equipped={equipment} action={animation === 'blink' || animation === 'look' || animation === 'stretch' ? 'idle' : animation} conceptImage={conceptImage} style={style} motion={motion} />;
+  return <View testID="pip-wardrobe-preview" style={[styles.stage, style]}>
+    {conceptImage ? <Image source={conceptImage} resizeMode="contain" style={[StyleSheet.absoluteFill, { width: '100%', height: '100%' }]} /> :
+      pose === 'sitting' ? <ChairEquipment frame={13} equipped={equipment} /> :
+        <StudyPreview outfit={equipment} motion={motion} action={animation} />}
   </View>;
 }
 
-const styles = StyleSheet.create({ fallback: { width: '100%', height: '100%', position: 'relative' } });
+function StudyPreview({ outfit, motion, action }: { outfit: WardrobeLayout; motion: boolean; action: FittingAction }) {
+  const source = useMemo(() => {
+    const [ip, op] = laptopActions[action] ?? segments.study;
+    return fitStudy({ ...typing, ip, op, layers: typing.layers.filter((layer) => layer.ip < op && layer.op > ip) }, outfit);
+  }, [action, outfit]);
+  return <WinterLottie data={source} timeline={'laptop-' + action} playing={motion} progress={motion ? undefined : 0} />;
+}
+
+const styles = StyleSheet.create({ stage: { aspectRatio: 1, position: 'relative' } });
