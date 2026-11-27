@@ -6,7 +6,7 @@ export const PLANTS = [
   { name: 'Crystal Rose', hours: 5, color: '#83c5ff' },
   { name: 'Glowing Mushroom', hours: 10, color: '#a1eaf3' },
   { name: 'Mini Pine Tree', hours: 20, color: '#d6ebc2' },
-  { name: 'Moonlight Lily', hours: 40, color: '#d5b2ff' },
+  { name: 'Moonlight Lily', hours: 40, color: '#E9B968' },
   { name: 'Star Blossom', hours: 75, color: '#ffe294' },
 ] as const;
 export const STAGES = ['Seed', 'Sprout', 'Young plant', 'Flowering', 'Fully grown'];

@@ -1,6 +1,7 @@
 import { Image, Platform } from 'react-native';
 import { Asset } from 'expo-asset';
-import { HOME_ART, HOME_FOUNDATION } from './art';
+import { HOME_ART } from './art';
+import { PANORAMA_FIXTURES, PANORAMA_SHELL } from './panoramaArt';
 
 const loaded = new Set<string>();
 const pending = new Map<string, Promise<void>>();
@@ -32,7 +33,8 @@ function preloadOne(key: string, source: number): Promise<void> {
 export function preloadHome(itemIds: readonly string[] = []): Promise<void> {
  const ids = [...new Set(itemIds)].filter((id) => Boolean(HOME_ART[id]));
  return Promise.all([
-  preloadOne('foundation', HOME_FOUNDATION),
+  preloadOne('panorama-shell', PANORAMA_SHELL),
+  ...Object.entries(PANORAMA_FIXTURES).map(([id, art]) => preloadOne(id, art)),
   ...ids.map((id) => preloadOne(id, HOME_ART[id])),
  ]).then(() => undefined);
 }

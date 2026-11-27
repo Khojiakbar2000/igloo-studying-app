@@ -1,3 +1,5 @@
+import { boxStyle } from '../furniture/catalog';
+import { PANORAMA, PANORAMA_CHAIR_CONTACT, PANORAMA_PROPS, panoramaBounds } from '../home/panorama';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import Animated, {
@@ -11,16 +13,28 @@ import { PipHomeIdle } from './PipHomeIdle';
 import { SeatedPipReactions } from '../character/reactions/SeatedPipReactions';
 import { RoomCharacter } from './RoomCharacter';
 import { playPipChairPerformance } from '../character/pipChairPerformance';
-import type { PenguinCustomization } from '../character/penguinCustomization';
+import type { WardrobeLayout } from '../home/state';
 import { HOME_CANVAS, STUDY_SEAT } from '../home/slots';
 
 type RoomMode = 'personal' | 'study-together';
 type SceneSize = { width: number; height: number };
 const CHARACTER_SCALE = 0.93;
+const PANORAMA_CHARACTER_HEIGHT = 0.31;
 // The original laptop cel's hip contact, expressed in room coordinates.
 const LAPTOP_CEL_HIPS = { x: .517, y: .64 };
 
-export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, customization, homeIdle = false, ambientMotion = false, roomVisible = true }: { mode: RoomMode; hidden?: boolean; onSettledChange?: (settled: boolean) => void; customization?: PenguinCustomization; homeIdle?: boolean; ambientMotion?: boolean; roomVisible?: boolean }) {
+const laptopBox = PANORAMA_PROPS.laptopPip;
+// The seated chair cel paints 398 of 560 rows, and the laptop cel paints 440 of 541.
+const seatedHeight = PANORAMA.height * PANORAMA_CHARACTER_HEIGHT * CHARACTER_SCALE * 398 / 560;
+const laptopScale = seatedHeight / (laptopBox.height * 440 / 541);
+const panoramaLaptopStyle = boxStyle(panoramaBounds({
+  x: PANORAMA_CHAIR_CONTACT.x + (laptopBox.x - PANORAMA_CHAIR_CONTACT.x) * laptopScale,
+  y: PANORAMA_CHAIR_CONTACT.y + (laptopBox.y - PANORAMA_CHAIR_CONTACT.y) * laptopScale,
+  width: laptopBox.width * laptopScale,
+  height: laptopBox.height * laptopScale,
+}));
+
+export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, equipped, homeIdle = false, panoramic = false, ambientMotion = false, roomVisible = true }: { mode: RoomMode; hidden?: boolean; onSettledChange?: (settled: boolean) => void; equipped?: WardrobeLayout; homeIdle?: boolean; panoramic?: boolean; ambientMotion?: boolean; roomVisible?: boolean }) {
   const reducedMotion = useReducedMotion();
   const [size, setSize] = useState<SceneSize>({ width: 0, height: 0 });
   const [performanceFrame, setPerformanceFrame] = useState<number | null>(null);
@@ -30,8 +44,8 @@ export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, cu
   const x = useSharedValue(0);
   const y = useSharedValue(0);
   const scale = useSharedValue(CHARACTER_SCALE);
-  const characterWidth = size.width * 0.46;
-  const characterHeight = size.height * 0.43;
+  const characterHeight = size.height * (panoramic ? PANORAMA_CHARACTER_HEIGHT : .43);
+  const characterWidth = panoramic ? characterHeight * 480 / 560 : size.width * .46;
 
   const onLayout = (event: LayoutChangeEvent) => {
     const { width, height } = event.nativeEvent.layout;
@@ -48,8 +62,15 @@ export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, cu
       [0.51, 0.55], [0.52, 0.535], [0.55, 0.535],
       [0.57, 0.56], [0.57, 0.56], [0.57, 0.56], [0.57, 0.56],
     ] as const;
-    const chairX = size.width * 0.57;
-    const chairY = size.height * 0.56;
+    const chairX = size.width * (panoramic ? PANORAMA_CHAIR_CONTACT.x / PANORAMA.width : .57);
+    const chairY = panoramic
+      ? size.height * PANORAMA_CHAIR_CONTACT.y / PANORAMA.height - characterHeight * .15
+      : size.height * .56;
+    const placeFrame = (frame: number) => {
+      const [px, py] = path[frame];
+      x.value = panoramic ? chairX + size.width * (px - .57) * .63 : size.width * px;
+      y.value = panoramic ? chairY + size.height * (.56 - py) * .73 : size.height * py;
+    };
 
     if (reducedMotion) {
       x.value = chairX;
@@ -60,16 +81,14 @@ export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, cu
       return;
     }
 
-    x.value = size.width * path[0][0];
-    y.value = size.height * path[0][1];
+    placeFrame(0);
     scale.value = CHARACTER_SCALE;
     if (!performanceReady) return;
     cancelPerformance.current?.();
     cancelPerformance.current = playPipChairPerformance(
       (frame) => {
         setPerformanceFrame(frame);
-        x.value = size.width * path[frame][0];
-        y.value = size.height * path[frame][1];
+        placeFrame(frame);
         scale.value = CHARACTER_SCALE;
       },
       () => {
@@ -82,7 +101,7 @@ export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, cu
       cancelPerformance.current?.();
       cancelPerformance.current = null;
     };
-  }, [mode, reducedMotion, performanceReady, size, x, y, scale, onSettledChange]);
+  }, [mode, panoramic, reducedMotion, performanceReady, size, characterHeight, x, y, scale, onSettledChange]);
 
   const walkingStyle = useAnimatedStyle(() => ({
     transform: [
@@ -94,13 +113,16 @@ export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, cu
 
   const laptopSeated = mode === 'personal' && homeIdle && (performanceFrame === 13 || reducedMotion) && !hidden;
   return (
-    <View pointerEvents="none" onLayout={onLayout} style={[StyleSheet.absoluteFill, styles.overlay, hidden && styles.hidden]}>
-      {laptopSeated && <View style={[styles.seatContact, {
+    <View pointerEvents="none" onLayout={onLayout} style={[StyleSheet.absoluteFill, styles.overlay, panoramic && styles.panoramaOverlay, hidden && styles.hidden]}>
+      {laptopSeated && panoramic && <View testID="igloo-seated-laptop" style={[styles.panoramaSeat, panoramaLaptopStyle]}>
+        <SeatedPipReactions enabled={roomVisible} equipped={equipped} alwaysStudying allowAmbientCoffee={false} />
+      </View>}
+      {laptopSeated && !panoramic && <View style={[styles.seatContact, {
         left: size.width * STUDY_SEAT.x / HOME_CANVAS.width - size.width * .04,
         top: size.height * STUDY_SEAT.y / HOME_CANVAS.height + size.height * .033,
         width: size.width * .12, height: size.height * .012,
       }]} />}
-      {mode === 'personal' && size.width > 0 && (
+      {mode === 'personal' && size.width > 0 && !(laptopSeated && panoramic) && (
         <Animated.View style={[styles.walker, { width: characterWidth, height: characterHeight }, walkingStyle]}>
           <Animated.View style={[StyleSheet.absoluteFill, characterScaleStyle]}>
             {laptopSeated
@@ -109,13 +131,13 @@ export function RoomCharacterOverlay({ mode, hidden = false, onSettledChange, cu
                     { translateX: size.width * (STUDY_SEAT.x / HOME_CANVAS.width - LAPTOP_CEL_HIPS.x) / CHARACTER_SCALE },
                     { translateY: size.height * (STUDY_SEAT.y / HOME_CANVAS.height - LAPTOP_CEL_HIPS.y) / CHARACTER_SCALE },
                   ],
-                }]}><SeatedPipReactions enabled={roomVisible} customization={customization} alwaysStudying allowAmbientCoffee={false} /></View>
+                }]}><SeatedPipReactions enabled={roomVisible} equipped={equipped} alwaysStudying allowAmbientCoffee={false} /></View>
               : <PipHomeIdle enabled={homeIdle && performanceFrame === 13 && !hidden} motion={ambientMotion}>{eyes => <RoomCharacter
               walking={false}
               performanceFrame={reducedMotion ? null : performanceFrame}
               reducedMotion={reducedMotion}
               onPerformanceReady={markPerformanceReady}
-              customization={customization}
+              equipped={equipped}
               idleEyes={eyes}
             />}</PipHomeIdle>}
           </Animated.View>
@@ -215,6 +237,8 @@ function SeatPenguin({
 
 const styles = StyleSheet.create({
   overlay: { zIndex: 1 },
+  panoramaOverlay: { zIndex: 5 },
+  panoramaSeat: { position: 'absolute' },
   seatContact: { position: 'absolute', borderRadius: 30, backgroundColor: '#60446126' },
   hidden: { opacity: 0 },
   studyPose: { position: 'absolute', left: '6%', width: '76%', top: '15.5%', height: '68%' },

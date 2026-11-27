@@ -1,3 +1,6 @@
+import { Chevron, IconButton } from '../../ui/Controls';
+import { SheetSurface } from '../../ui/Overlay';
+import { colors, radii, type } from '../../theme';
 import { useFurniture } from '../../furniture/Furniture';
 import { pixelBox } from '../../furniture/catalog';
 import { usePomodoro } from '../../state/PomodoroContext';
@@ -13,7 +16,7 @@ import { BREW_MS, DRINKS, findDrink, type DrinkId } from './order';
 import { COFFEE_STATION, IGLOO_COFFEE_OFFSET } from '../iglooLayout';
 import type { useCoffeeOrder } from './useCoffeeOrder';
 
-const machineArt = require('../../../assets/environments/study-together/coffee/machine.png');
+const machineArt = require('../../../assets/environments/study-together/coffee/machine-warm-nordic.png');
 const cups = {
   coffee: require('../../../assets/environments/study-together/coffee/coffee.png'),
   cocoa: require('../../../assets/environments/study-together/coffee/cocoa.png'),
@@ -74,13 +77,13 @@ function withDrink(source: Template, drink: DrinkId, igloo: boolean, serving = f
   };
 }
 
-export function coffeeStatus(coffee: Controller) {
+export function coffeeStatus(coffee: Controller, companion = 'Pip') {
   const order = coffee.order;
-  if (!order) return coffee.enjoyed ? `Pip enjoyed ${findDrink(coffee.enjoyed).label.toLowerCase()}.` : null;
+  if (!order) return coffee.enjoyed ? `${companion} enjoyed ${findDrink(coffee.enjoyed).label.toLowerCase()}.` : null;
   const name = findDrink(order.drink).label;
   if (order.phase === 'brewing') return `Preparing ${name}…`;
-  if (order.phase === 'serving') return `Pip is collecting ${name.toLowerCase()}.`;
-  return coffee.eligible ? `${name} is ready for Pip.` : `${name} is ready. Pip will collect it at break time.`;
+  if (order.phase === 'serving') return `${companion} is collecting ${name.toLowerCase()}.`;
+  return coffee.eligible ? `${name} is ready for ${companion}.` : `${name} is ready. ${companion} will collect it at break time.`;
 }
 
 export function CoffeeMachine({ coffee, igloo, menuOpen, onMenuChange, onPerformanceVisibility }: {
@@ -178,12 +181,10 @@ export function CoffeeMachine({ coffee, igloo, menuOpen, onMenuChange, onPerform
       onLoaded={onServiceLoaded} onFinish={endService} testID="coffee-service" />}
     {!order && enjoyed && <StillCup drink={enjoyed} x={108} y={947} />}
 
-    {menuOpen && !order && <View accessibilityLabel="Choose a hot drink" style={styles.menu}>
+    {menuOpen && !order && <SheetSurface accessibilityLabel="Choose a hot drink" style={styles.menu}>
       <View style={styles.menuTop}>
         <Text style={styles.menuTitle}>Hot drinks</Text>
-        <Pressable accessibilityRole="button" accessibilityLabel="Close drink menu" onPress={() => onMenuChange(false)} style={styles.close}>
-          <Text style={styles.closeText}>×</Text>
-        </Pressable>
+        <IconButton label="Close drink menu" onPress={() => onMenuChange(false)}><Chevron direction="close" /></IconButton>
       </View>
       <View style={styles.keys}>
         {DRINKS.map(({ id, label }) => <Pressable key={id} accessibilityRole="button" accessibilityLabel={label}
@@ -192,7 +193,7 @@ export function CoffeeMachine({ coffee, igloo, menuOpen, onMenuChange, onPerform
           <Text style={styles.keyLabel}>{label}</Text>
         </Pressable>)}
       </View>
-    </View>}
+    </SheetSurface>}
   </>;
 }
 
@@ -209,17 +210,13 @@ const styles = StyleSheet.create({
   lamp: { position: 'absolute', left: '47.5%', top: '27%', width: '5%', aspectRatio: 1, borderRadius: 8, backgroundColor: 'rgba(255,228,143,0.65)' },
   cup: { position: 'absolute', zIndex: 9 },
   performance: { zIndex: 9 },
-  menu: { position: 'absolute', zIndex: 12, left: '5%', right: '5%', bottom: '1.5%', padding: 4, paddingHorizontal: 6,
-    borderRadius: 12, backgroundColor: '#7b482c', borderWidth: 2, borderColor: '#d6a366', borderBottomColor: '#503022',
-    boxShadow: '0px 4px 10px #36213275' },
-  menuTop: { height: 20, paddingLeft: 4, justifyContent: 'center' },
-  menuTitle: { color: '#ffe5b1', fontSize: 11, fontWeight: '800' },
-  close: { position: 'absolute', right: 0, top: -9, width: 44, height: 39, alignItems: 'flex-end', paddingRight: 3, justifyContent: 'center' },
-  closeText: { color: '#ffe5b1', fontSize: 20, lineHeight: 22 },
+  menu: { position: 'absolute', zIndex: 12, left: '5%', right: '5%', bottom: '1.5%', padding: 8 },
+  menuTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 },
+  menuTitle: { ...type.title, color: colors.ink },
   keys: { flexDirection: 'row', gap: 3 },
   key: { flex: 1, minWidth: 0, minHeight: 51, alignItems: 'center', justifyContent: 'center', padding: 2,
-    backgroundColor: '#f7dfb9', borderColor: '#dbad75', borderRadius: 6, borderWidth: 1, borderBottomWidth: 2 },
+    backgroundColor: colors.ice, borderColor: colors.line, borderRadius: radii.control, borderWidth: 1 },
   cupIcon: { height: 24, width: 30 },
-  keyLabel: { color: '#5c3322', textAlign: 'center', fontSize: 9, fontWeight: '800', lineHeight: 10 },
+  keyLabel: { color: colors.ink, textAlign: 'center', fontSize: 11, fontWeight: '700', lineHeight: 14 },
   pressed: { transform: [{ translateY: 1 }], opacity: 0.84 },
 });

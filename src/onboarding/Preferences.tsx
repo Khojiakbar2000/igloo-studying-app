@@ -1,3 +1,5 @@
+import { Button } from '../ui/Controls';
+import { colors, type, ui } from '../theme';
 import React, { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { localDateKey } from '../state/dailyGoals';
@@ -8,10 +10,7 @@ import { useStudyProfile } from './ProfileProvider';
 import { usePomodoro } from '../state/PomodoroContext';
 
 export function StoryButton({ label, onPress, quiet, disabled }: { label: string; onPress: () => void; quiet?: boolean; disabled?: boolean }) {
-  return <Pressable accessibilityRole="button" disabled={disabled} accessibilityState={{ disabled }} onPress={onPress}
-    style={({ pressed }) => [styles.button, quiet && styles.quiet, pressed && styles.pressed, disabled && styles.disabled]}>
-    <Text style={[styles.buttonText, quiet && styles.dark]}>{label}</Text>
-  </Pressable>;
+  return <Button label={label} onPress={onPress} disabled={disabled} variant={quiet ? 'secondary' : 'primary'} />;
 }
 export function Choice({ label, description, image, checked, onPress }: { label:string; description?:string; image?:number; checked:boolean; onPress:()=>void }) {
   return <Pressable accessibilityRole="button" accessibilityState={{ selected:checked }} accessibilityLabel={label} onPress={onPress}
@@ -56,7 +55,7 @@ export function PlanEditor({ draft, change, showTarget = true }: { draft:Profile
       return <View key={date} style={styles.planRow}>
         <Text style={styles.day}>{dayLabel}</Text>
         <TextInput accessibilityLabel={`${dayLabel} activity`} value={plan[index]} onChangeText={value => change({plan:plan.map((task,i)=>i===index?value:task)})}
-          maxLength={120} placeholder="Rest day" placeholderTextColor="#766986" style={styles.input} />
+          maxLength={120} placeholder="Rest day" placeholderTextColor={colors.link} style={styles.input} />
       </View>;
     })}
   </View>;
@@ -89,7 +88,7 @@ export function ReminderPicker({ value, onUpdate, onEnabled, preview = false, on
       description={toClock({hour,minute:0,enabled:false})} checked={!custom&&time===toClock({hour,minute:0,enabled:false})} onPress={()=>choose(hour)} />)}
       <Choice label="Custom time" checked={custom} onPress={()=>setCustom(true)} />
     </View>
-    {custom && <TextInput accessibilityLabel="Custom reminder time" placeholder="HH:MM" placeholderTextColor="#766986" value={time}
+    {custom && <TextInput accessibilityLabel="Custom reminder time" placeholder="HH:MM" placeholderTextColor={colors.link} value={time}
       style={styles.input} onChangeText={setTime} autoCorrect={false} maxLength={5} />}
     <StoryButton disabled={busy} label={busy?'Saving…':value.enabled?'Update reminder':'Remind me!'} onPress={()=>void enable()} />
     {value.enabled && <StoryButton disabled={busy} quiet label="Turn off reminders" onPress={()=>{
@@ -119,12 +118,12 @@ export function StudyPlanSettings() {
 }
 const styles=StyleSheet.create({
   stack:{gap:9}, grid:{flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between',gap:7},
-  button:{minHeight:50,backgroundColor:'#3C5A66',justifyContent:'center',alignItems:'center',borderRadius:16,borderBottomWidth:3,borderColor:'#314d58',paddingHorizontal:13},
-  quiet:{backgroundColor:'#f0f8fa',borderColor:'#d4e6eb',borderBottomWidth:1},
-  buttonText:{color:'#fff4e1',fontSize:15,fontWeight:'800',textAlign:'center'},dark:{color:'#3c616e'},
+  button:{minHeight:50,backgroundColor:colors.link,justifyContent:'center',alignItems:'center',borderRadius:16,borderBottomWidth:3,borderColor:colors.primaryPressed,paddingHorizontal:13},
+  quiet:{backgroundColor:colors.cream,borderColor:colors.line,borderBottomWidth:1},
+  buttonText:{color:colors.cream,fontSize:15,fontWeight:'800',textAlign:'center'},dark:{color:colors.link},
   pressed:{opacity:.76,transform:[{translateY:1}]},disabled:{opacity:.52},
-  choice:{flexBasis:'47.8%',flexGrow:1,minHeight:54,flexDirection:'row',alignItems:'center',gap:6,borderRadius:14,borderWidth:1,borderColor:'#DCEBF0',backgroundColor:'#F9FDFE',paddingHorizontal:9,paddingVertical:7},
-  checked:{borderColor:'#86B4B8',backgroundColor:'#E5F3F4'},choiceContent:{flex:1},icon:{width:27,height:29},
-  label:{fontSize:14,lineHeight:19,fontWeight:'800',color:'#314E58'},detail:{fontSize:12,lineHeight:18,color:'#615575'},check:{color:'#69408c',fontWeight:'800'},
-  planRow:{gap:4},day:{fontSize:12,fontWeight:'800',color:'#655477'},input:{fontSize:15,backgroundColor:'#f9f7ff',color:'#463654',minHeight:46,borderWidth:1,borderColor:'#d9d4ea',borderRadius:12,paddingHorizontal:11,paddingVertical:8},
+  choice:{flexBasis:'47.8%',flexGrow:1,minHeight:54,flexDirection:'row',alignItems:'center',gap:6,borderRadius:14,borderWidth:1,borderColor:colors.line,backgroundColor:colors.cream,paddingHorizontal:9,paddingVertical:7},
+  checked:{...ui.selected},choiceContent:{flex:1},icon:{width:27,height:29},
+  label:{...type.label,color:colors.ink},detail:{...type.caption,color:colors.muted},check:{color:colors.link,fontWeight:'800'},
+  planRow:{gap:4},day:{fontSize:12,fontWeight:'800',color:colors.ink},input:{...ui.field,paddingVertical:8},
 });

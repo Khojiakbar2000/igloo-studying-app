@@ -1,5 +1,8 @@
+import { Chevron, IconButton } from '../ui/Controls';
+import { Overlay } from '../ui/Overlay';
+import { colors, type, ui } from '../theme';
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useAudioPlayer } from 'expo-audio';
 import Svg, { Defs, Ellipse, RadialGradient, Stop } from 'react-native-svg';
 import { useAmbientSound } from '../ambient/AmbientSoundProvider';
@@ -181,12 +184,12 @@ function DiscoveryJournal({scene,onClose}:{scene:StudyWindowScene|null;onClose:(
  const [detail,setDetail]=useState<Surprise|null>(null);
  const entries=SURPRISES.filter(event=>event.scene===selection);
  const date=detail?timer.discoveries[detail.id]:undefined;
- return <Modal visible transparent animationType="none" onRequestClose={onClose}>
+ return <Overlay visible transparent animationType="none" onRequestClose={onClose}>
    <View style={styles.shade}><View accessibilityViewIsModal style={styles.sheet}>
      <ScrollView contentContainerStyle={styles.content}>
        <View style={styles.header}><View><Text style={styles.title}>Window journal</Text>
          <Text style={styles.caption}>{Object.keys(timer.discoveries).length} / {SURPRISES.length} discovered</Text></View>
-         <Pressable accessibilityLabel="Close window journal" accessibilityRole="button" onPress={onClose} style={styles.chip}><Text style={styles.ink}>×</Text></Pressable>
+         <IconButton label="Close window journal" onPress={onClose}><Chevron direction="close" /></IconButton>
        </View>
        <View style={styles.row}>{STUDY_WINDOW_SCENES.map(item=><Pressable key={item.id} accessibilityRole="button" accessibilityState={{selected:item.id===selection}} style={[styles.chip,item.id===selection&&styles.selected]} onPress={()=>{setSelection(item.id);setDetail(null);}}><Text style={styles.ink}>{item.label}</Text></Pressable>)}</View>
        <View style={styles.grid}>{entries.map(event=>{
@@ -204,7 +207,7 @@ function DiscoveryJournal({scene,onClose}:{scene:StudyWindowScene|null;onClose:(
        </Pressable>
      </ScrollView>
    </View></View>
- </Modal>;
+ </Overlay>;
 }
 
 export function WindowJournalButton({onPress}:{onPress:()=>void}) {
@@ -228,10 +231,10 @@ const styles=StyleSheet.create({
  still:{position:'absolute',width:'39%',height:'57%',left:'30.5%',top:'26%'},
  invisible:{opacity:0},
  hit:{position:'absolute',left:'4%',right:'4%',top:'21%',bottom:'3%'},
- shade:{flex:1,alignItems:'center',justifyContent:'center',padding:16,backgroundColor:'#28204091'},
- sheet:{width:'100%',maxWidth:440,maxHeight:'91%',borderRadius:22,borderWidth:2,borderColor:'#bb8960',backgroundColor:'#fff0d5',overflow:'hidden'},
+ shade:{ ...ui.shade, backgroundColor: 'transparent' },
+ sheet:{ ...ui.dialog, maxHeight:'91%' },
  content:{padding:14,gap:12},header:{flexDirection:'row',alignItems:'center',justifyContent:'space-between'},
- title:{fontSize:24,color:'#57392e',fontWeight:'900'},caption:{fontSize:12,color:'#755340'},
+ title:{ ...type.heading, color: colors.ink },caption:{fontSize:12,color:'#755340'},
  row:{flexDirection:'row',flexWrap:'wrap',gap:6},
  chip:{minHeight:44,paddingHorizontal:10,borderRadius:16,backgroundColor:'#f4dfbe',justifyContent:'center'},
  selected:{backgroundColor:'#e9c995'},ink:{color:'#593a2d',fontWeight:'800',fontSize:12},

@@ -1,6 +1,9 @@
 import React from 'react';
 import Svg, { Circle, Ellipse, Line, Path, Rect } from 'react-native-svg';
+import Animated, { Easing, useAnimatedProps, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
 import { colors } from '../theme';
+
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 export function Egg({ size = 156, cracks = 0 }: { size?: number; cracks?: number }) {
   return (
@@ -32,13 +35,19 @@ export function Igloo({ stage = 0, width = 170 }: { stage?: number; width?: numb
   );
 }
 
-export function TimerRing({ progress, size = 70 }: { progress: number; size?: number }) {
+export function TimerRing({ progress, size = 70, color = colors.blue }: { progress: number; size?: number; color?: string }) {
   const circumference = 2 * Math.PI * 29;
-  const dash = Math.max(0, Math.min(1, progress)) * circumference;
+  const reducedMotion = useReducedMotion();
+  const progressValue = useSharedValue(Math.max(0, Math.min(1, progress)));
+  React.useEffect(() => {
+    const next = Math.max(0, Math.min(1, progress));
+    progressValue.value = reducedMotion ? next : withTiming(next, { duration: 480, easing: Easing.out(Easing.cubic) });
+  }, [progress, progressValue, reducedMotion]);
+  const animatedProps = useAnimatedProps(() => ({ strokeDashoffset: circumference * (1 - progressValue.value) }));
   return (
     <Svg width={size} height={size} viewBox="0 0 70 70">
       <Circle cx="35" cy="35" r="29" fill="none" stroke="#DDECF3" strokeWidth="5" />
-      <Circle cx="35" cy="35" r="29" fill="none" stroke={colors.teal} strokeWidth="5" strokeLinecap="round" strokeDasharray={`${dash} ${circumference}`} transform="rotate(-90 35 35)" />
+      <AnimatedCircle cx="35" cy="35" r="29" fill="none" stroke={color} strokeWidth="5" strokeLinecap="round" strokeDasharray={`${circumference} ${circumference}`} animatedProps={animatedProps} transform="rotate(-90 35 35)" />
     </Svg>
   );
 }

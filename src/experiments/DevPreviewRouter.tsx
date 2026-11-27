@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React, { useState, type ReactNode } from 'react';
 import { Pressable, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -27,6 +28,6 @@ export function DevPreviewRouter({ children }: { children: ReactNode }) {
   const hasPreview = preview !== null;
   return <>
     {children}
-    {!hasPreview && <Pressable accessibilityRole="button" onPress={() => setVideoOpen(true)} style={{ position: 'absolute', right: 12, top: 58, zIndex: 99, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 16, backgroundColor: '#52777A', opacity: 0.9 }}><Text style={{ color: 'white', fontWeight: '800', fontSize: 10 }}>Playback lab</Text></Pressable>}
+    {!hasPreview && <Pressable accessibilityRole="button" onPress={() => setVideoOpen(true)} style={{ position: 'absolute', right: 12, top: 58, zIndex: 99, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 16, backgroundColor: colors.link, opacity: 0.9 }}><Text style={{ color: 'white', fontWeight: '800', fontSize: 10 }}>Playback lab</Text></Pressable>}
   </>;
 }

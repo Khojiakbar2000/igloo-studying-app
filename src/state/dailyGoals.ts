@@ -94,9 +94,17 @@ export function focusInDay(spans: FocusSpan[], date: string) {
   const [start, end] = goalDayBounds(date);
   return spans.reduce((sum, span) => sum + Math.max(0, Math.min(span.end, end) - Math.max(span.start, start)), 0);
 }
+export function recordedFocusSpans(state: DailyGoalData, now = Date.now(), runningEndAt: number | null = null) {
+  const spans = state.sessions.flatMap(session => session.spans);
+  if (state.activeFocus) {
+    const { spans: closed, runningSince } = state.activeFocus;
+    spans.push(...closed);
+    if (runningSince !== null) spans.push({ start: runningSince, end: Math.max(runningSince, Math.min(now, runningEndAt ?? now)) });
+  }
+  return spans;
+}
+
 export function dailySummary(state: DailyGoalData, date: string, now = Date.now(), runningEndAt: number | null = null) {
-  const active = state.activeFocus;
-  const spans = active ? [...active.spans, ...(active.runningSince !== null ? [{ start: active.runningSince, end: Math.max(active.runningSince, Math.min(now, runningEndAt ?? now)) }] : [])] : [];
   const goals = goalsOn(state, date);
-  return { focusMs: state.sessions.reduce((sum, s) => sum + focusInDay(s.spans, date), 0) + focusInDay(spans, date), sessions: state.sessions.filter((s) => s.date === date && s.completed).length, goalsCompleted: goals.filter((g) => g.completedAt).length, goalsTotal: goals.length };
+  return { focusMs: focusInDay(recordedFocusSpans(state, now, runningEndAt), date), sessions: state.sessions.filter((s) => s.date === date && s.completed).length, goalsCompleted: goals.filter((g) => g.completedAt).length, goalsTotal: goals.length };
 }

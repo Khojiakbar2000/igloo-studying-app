@@ -1,32 +1,16 @@
-import { GIFT_ART } from '../../gifts/art';
 import { usePomodoro } from '../../state/PomodoroContext';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import type { AnimationObject } from 'lottie-react-native';
 import LottiePlayer, { type LottiePlayerHandle } from '../../components/StudyTogetherLottiePlayer';
-import { PipAccessoryLayer } from '../../components/PipAccessoryLayer';
+import { fitStudy } from '../../wardrobe/lottieEquipment';
+import type { WardrobeLayout } from '../../home/state';
 import { useHomeMotionState } from '../../home/useHomeMotion';
-import type { PenguinCustomization } from '../penguinCustomization';
 import { usePipReactions } from './PipReactionsProvider';
 import { nextFocusReaction, nextPipClip, REACTION_LABELS, type PipClip, type PipReaction } from './pipReactions';
 
 const tealSource: AnimationObject = require('../../../assets/animations/study-together-lottie/lottie/typing.json');
 const { segments } = require('../../../assets/animations/study-together-lottie/lottie/typing.segments.json');
-const berryCels: Record<string, string> = require('../../../assets/environments/igloo/gifts/berry-study-cels.json');
-const berrySource: AnimationObject = {
-  ...tealSource,
-  // Draw dyed material above its matching original cel. All transforms and
-  // timings remain on the original animation grid.
-  assets: [...(tealSource.assets ?? []), ...(tealSource.assets ?? []).flatMap(item => berryCels[item.id]
-    ? [{ ...item, id: `berry-${item.id}`, p: berryCels[item.id] }] : [])],
-  layers: tealSource.layers.flatMap((item, index) => {
-    const image = item as typeof item & { refId?: string };
-    return image.refId && berryCels[image.refId]
-      ? [{ ...image, ind: tealSource.layers.length + index + 1, refId: `berry-${image.refId}` }, item]
-      : [item];
-  }),
-};
-const fallbackBerry = require('../../../assets/animations/pip-customization/study-together/scarves/berry/frame-00.png');
 const fallback = require('../../../assets/animations/pip-sofa-study/frames/pip-typing_00.png');
 type Range = [number, number];
 
@@ -52,21 +36,21 @@ const isHold = (clip: PipClip) => clip === 'idle' || clip === 'rest-hold';
 
 type Props = {
   enabled?: boolean;
-  customization?: PenguinCustomization;
+  equipped?: WardrobeLayout;
   onAvailable?: () => void;
   allowAmbientCoffee?: boolean;
   alwaysStudying?: boolean;
 };
 
 export function SeatedPipReactions(props: Props) {
-  const red = props.customization?.scarf === 'berry';
-  return <SeatedAnimation key={red ? 'berry' : 'teal'} {...props} red={red} />;
+  const { timer } = usePomodoro();
+  const outfit = props.equipped ?? timer.home.wardrobe.equipped;
+  const source = useMemo(() => fitStudy(tealSource, outfit), [outfit]);
+  // A new composition must initialize its segment playback from its own load event.
+  return <SeatedAnimation key={JSON.stringify(outfit)} {...props} source={source} />;
 }
 
-function SeatedAnimation({ enabled = true, customization, onAvailable, allowAmbientCoffee = true, alwaysStudying = false, red }: Props & { red: boolean }) {
-  const source = red ? berrySource : tealSource;
-  const { timer } = usePomodoro();
-  const outfit = timer.home.wardrobe.equipped;
+function SeatedAnimation({ enabled = true, onAvailable, allowAmbientCoffee = true, alwaysStudying = false, source }: Props & { source: AnimationObject }) {
   const state = usePipReactions();
   const { motion, reduced } = useHomeMotionState(enabled);
   const player = useRef<LottiePlayerHandle>(null);
@@ -183,18 +167,10 @@ function SeatedAnimation({ enabled = true, customization, onAvailable, allowAmbi
   }, []);
 
   const staticFrame = clips[!alwaysStudying && state.phase === 'rest' ? 'rest-hold' : 'idle'][0];
-  return <View pointerEvents="none" accessibilityLabel={red ? "Pip wearing a red scarf" : "Pip"} style={StyleSheet.absoluteFill}>
-    {outfit.back === 'gift-backpack' && <Image accessible={false} source={GIFT_ART['wear-3']} resizeMode="contain"
-      style={{ position:'absolute', left:'4%', top:'48%', width:'31%', height:'34%' }} />}
-    {(!ready || failed) && <Image source={red ? fallbackBerry : fallback} resizeMode="contain" style={StyleSheet.absoluteFill} />}
+  return <View pointerEvents="none" accessibilityLabel="Pip seated with a laptop" testID="pip-laptop-outfit" style={StyleSheet.absoluteFill}>
+    {(!ready || failed) && <Image source={fallback} resizeMode="contain" style={StyleSheet.absoluteFill} />}
     {!failed && <LottiePlayer ref={player} source={source} style={StyleSheet.absoluteFill}
       progress={reduced ? staticFrame / source.op : undefined}
       onLoaded={() => setReady(true)} onFailure={() => setFailed(true)} onFinish={complete} />}
-    {outfit.head === 'gift-hat' && <Image accessibilityLabel="Pip wearing a blue knitted hat" source={GIFT_ART['wear-1']} resizeMode="contain"
-      style={{ position:'absolute', left:'21%', top:'-2%', width:'58%', height:'34%' }} />}
-    {outfit.head === 'royal-crown' && <Image accessibilityLabel="Pip wearing a golden crown" source={GIFT_ART['wear-4']} resizeMode="contain"
-      style={{ position:'absolute', left:'29%', top:'6%', width:'44%', height:'20%' }} />}
-    {customization?.glasses && <PipAccessoryLayer kind="glasses" />}
-    {customization?.headphones && <PipAccessoryLayer kind="headphones" />}
   </View>;
 }

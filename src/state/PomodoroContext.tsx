@@ -1,3 +1,4 @@
+import { studyMilestones } from '../awards/progression';
 import { addPlanToGoals } from '../onboarding/profile';
 import type { GiftId, GiftState } from '../gifts/progression';
 import { changeGarden, type GardenAction } from '../garden/progression';
@@ -6,10 +7,10 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useR
 import { changeAward, type AwardAction, type AwardId } from '../awards/progression';
 import { changePet, type PetAction } from '../pets/pets';
 import { AppState } from 'react-native';
-import { defaultTimerState, loadTimerState, reconcileTimer, saveTimerState, startTimer, pauseTimer, finishTimer, startFocusTimer, setFocusDuration, type TimerState } from './timer';
+import { defaultTimerState, loadTimerState, reconcileTimer, saveTimerState, startTimer, pauseTimer, finishTimer, startFocusTimer, prepareFocusTimer, setFocusDuration, type TimerState } from './timer';
 import { addDailyGoal, editDailyGoal, completeDailyGoal, deleteDailyGoal, moveGoalToTomorrow, moveGoalToToday, reviewGoalSession, localDateKey } from './dailyGoals';
 
-import { claimMysteryGift, moveHomeDecoration, equipHome, purchaseHome, removeHome, arrangeHomeState, purchaseWardrobe, equipWardrobe, removeWardrobeEquipment, removeWardrobeSkin, saveWardrobeOutfit, equipWardrobeOutfit, deleteWardrobeOutfit, type HomeState } from '../home/state';
+import { switchStudyRoom, type StudyRoomId, claimMysteryGift, moveHomeDecoration, equipHome, purchaseHome, removeHome, arrangeHomeState, purchaseWardrobe, equipWardrobe, removeWardrobeEquipment, removeWardrobeSkin, saveWardrobeOutfit, equipWardrobeOutfit, deleteWardrobeOutfit, type HomeState } from '../home/state';
 import type { AtmospherePreference } from '../home/atmosphere';
 import { presetLighting, type LightSource, type LightingPreset } from '../home/lighting';
 import type { HomeSlot } from '../home/slots';
@@ -30,11 +31,11 @@ type PomodoroApi = {
   setAtmosphere: (value: AtmospherePreference) => void; setSnowfall: (value: boolean) => void;
   setLightingPreset: (value: LightingPreset) => void; setLightingBrightness: (value: number) => void; toggleRoomLight: (value: LightSource) => void;
   syncPipMessages: (kind: 'visit' | 'activity', userName: string, rainyScene?: boolean, studyTopic?: string) => void; updatePipLetter: (id: string, action: string) => void;
-  buyFurniture: (id: string) => void; equipFurniture: (id: string) => void; removeFurniture: (slot: HomeSlot) => void; arrangeHome: (action: 'save' | 'restore' | 'undo' | 'fallback' | 'default') => void;
+  buyFurniture: (id: string) => void; equipFurniture: (id: string) => void; removeFurniture: (slot: HomeSlot) => void; arrangeHome: (action: 'save' | 'restore' | 'undo' | 'fallback' | 'default') => void; selectStudyRoom: (id: StudyRoomId) => void;
   buyWardrobeItem: (id: string) => void; equipWardrobeItem: (id: string) => void; removeWardrobeSlot: (slot: EquipmentSlot) => void; removeWardrobeSkin: () => void;
   saveWardrobeLook: (name: string) => void; equipWardrobeLook: (id: string) => void; deleteWardrobeLook: (id: string) => void;
   timer: TimerState; hydrated: boolean; today: string; storageError: boolean; retrySave: () => void;
-  start: () => void; pause: () => void; finish: () => void; setFocusMinutes: (minutes: number, preferred?: boolean) => void; startFocus: (minutes?: number) => void;
+  start: () => void; pause: () => void; finish: () => void; prepareFocus: () => void; setFocusMinutes: (minutes: number, preferred?: boolean) => void; startFocus: (minutes?: number) => void;
   addGoal: (title: string) => void; editGoal: (id: string, title: string) => void; deleteGoal: (id: string) => void;
   completeGoal: (id: string, completed: boolean) => void; moveGoal: (id: string, target?: 'today' | 'tomorrow') => void;
   selectGoal: (id: string | null) => void; reviewSession: (id: string, finished: boolean) => void;
@@ -87,6 +88,7 @@ export function PomodoroProvider({ children }: { children: React.ReactNode }) {
   }), [update]);
   const start = useCallback(() => update((s) => startTimer(s)), [update]);
   const pause = useCallback(() => update((s) => pauseTimer(s)), [update]);
+  const prepareFocus = useCallback(() => update(prepareFocusTimer), [update]);
   const finish = useCallback(() => update((s) => finishTimer(s)), [update]);
   const setFocusMinutes = useCallback((minutes: number, preferred?: boolean) => update((s) => setFocusDuration(s, minutes, preferred)), [update]);
   const startFocus = useCallback((minutes?: number) => update((s) => startFocusTimer(s, minutes)), [update]);
@@ -122,6 +124,10 @@ export function PomodoroProvider({ children }: { children: React.ReactNode }) {
   const equipFurniture = useCallback((id: string) => changeHome(h => equipHome(h, id)), [changeHome]);
   const removeFurniture = useCallback((slot: HomeSlot) => changeHome(h => removeHome(h, slot)), [changeHome]);
   const arrangeHome = useCallback((action: 'save' | 'restore' | 'undo' | 'fallback' | 'default') => changeHome(h => arrangeHomeState(h, action)), [changeHome]);
+  const selectStudyRoom = useCallback((id: StudyRoomId) => update(state => {
+    const home = switchStudyRoom(state.home, id, studyMilestones(state.sessions).progress.sessions);
+    return home === state.home ? state : {...state, home};
+  }), [update]);
   const buyWardrobeItem = useCallback((id: string) => changeHome(h => purchaseWardrobe(h, id)), [changeHome]);
   const equipWardrobeItem = useCallback((id: string) => changeHome(h => equipWardrobe(h, id)), [changeHome]);
   const removeWardrobeSlot = useCallback((slot: EquipmentSlot) => changeHome(h => removeWardrobeEquipment(h, slot)), [changeHome]);
@@ -147,7 +153,7 @@ export function PomodoroProvider({ children }: { children: React.ReactNode }) {
     const garden = changeGarden(state.home.garden, action, state.sessions);
     return garden === state.home.garden ? state : { ...state, home: { ...state.home, garden } };
   }), [update]);
-  const value = useMemo(() => ({ importStudyPlan, claimGift, savedGifts, moveDecoration, setFurnitureSounds, updateGarden, discoverSurprise, setSurpriseSounds, updatePet, arrangeAward, setAtmosphere, setSnowfall, setLightingPreset, setLightingBrightness, toggleRoomLight, syncPipMessages, updatePipLetter, buyFurniture, equipFurniture, removeFurniture, arrangeHome, buyWardrobeItem, equipWardrobeItem, removeWardrobeSlot, removeWardrobeSkin: clearWardrobeSkin, saveWardrobeLook, equipWardrobeLook, deleteWardrobeLook, timer, hydrated, today, storageError, retrySave, start, pause, finish, setFocusMinutes, startFocus, addGoal, editGoal, deleteGoal, completeGoal, moveGoal, selectGoal, reviewSession }), [importStudyPlan, claimGift, savedGifts, moveDecoration, setFurnitureSounds, updateGarden, discoverSurprise, setSurpriseSounds, updatePet, arrangeAward, setAtmosphere, setSnowfall, setLightingPreset, setLightingBrightness, toggleRoomLight, syncPipMessages, updatePipLetter, buyFurniture, equipFurniture, removeFurniture, arrangeHome, buyWardrobeItem, equipWardrobeItem, removeWardrobeSlot, clearWardrobeSkin, saveWardrobeLook, equipWardrobeLook, deleteWardrobeLook, timer, hydrated, today, storageError, retrySave, start, pause, finish, setFocusMinutes, startFocus, addGoal, editGoal, deleteGoal, completeGoal, moveGoal, selectGoal, reviewSession]);
+  const value = useMemo(() => ({ importStudyPlan, claimGift, savedGifts, moveDecoration, setFurnitureSounds, updateGarden, discoverSurprise, setSurpriseSounds, updatePet, arrangeAward, setAtmosphere, setSnowfall, setLightingPreset, setLightingBrightness, toggleRoomLight, syncPipMessages, updatePipLetter, buyFurniture, equipFurniture, removeFurniture, arrangeHome, selectStudyRoom, buyWardrobeItem, equipWardrobeItem, removeWardrobeSlot, removeWardrobeSkin: clearWardrobeSkin, saveWardrobeLook, equipWardrobeLook, deleteWardrobeLook, timer, hydrated, today, storageError, retrySave, start, pause, finish, prepareFocus, setFocusMinutes, startFocus, addGoal, editGoal, deleteGoal, completeGoal, moveGoal, selectGoal, reviewSession }), [importStudyPlan, claimGift, savedGifts, moveDecoration, setFurnitureSounds, updateGarden, discoverSurprise, setSurpriseSounds, updatePet, arrangeAward, setAtmosphere, setSnowfall, setLightingPreset, setLightingBrightness, toggleRoomLight, syncPipMessages, updatePipLetter, buyFurniture, equipFurniture, removeFurniture, arrangeHome, selectStudyRoom, buyWardrobeItem, equipWardrobeItem, removeWardrobeSlot, clearWardrobeSkin, saveWardrobeLook, equipWardrobeLook, deleteWardrobeLook, timer, hydrated, today, storageError, retrySave, start, pause, finish, prepareFocus, setFocusMinutes, startFocus, addGoal, editGoal, deleteGoal, completeGoal, moveGoal, selectGoal, reviewSession]);
   return <PomodoroContext.Provider value={value}>{children}</PomodoroContext.Provider>;
 }
 export function usePomodoro() {

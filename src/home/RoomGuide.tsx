@@ -1,6 +1,8 @@
+import { Button, Chevron, IconButton } from '../ui/Controls';
+import { colors, space, type, ui } from '../theme';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, useReducedMotion } from 'react-native-reanimated';
 import { useFurnitureController } from '../furniture/Furniture';
 import { boxStyle, FURNITURE, type Bounds, type FurnitureId } from '../furniture/catalog';
@@ -10,7 +12,7 @@ type Target = FurnitureId | 'decorate' | 'light';
 type Step = { target: Target; line: string };
 const chapters: { title: string; steps: Step[] }[] = [
   { title: 'Get comfortable', steps: [
-    { target: 'desk', line: 'This is where we study together! Tap the desk to open the timer. Choose a length and press Start Focus when you’re ready.' },
+    { target: 'desk', line: 'Tap the study desk to open the timer. Choose a length and press Start focus when you’re ready.' },
     { target: 'window', line: 'Want a different view? Tap the window and pick your scenery!' },
     { target: 'wardrobe', line: 'You can dress me up! I love cozy outfits!' },
   ] },
@@ -37,8 +39,9 @@ const storageKey = 'igloo.room-guide.v1';
 let latest: Progress | undefined;
 let writes = Promise.resolve();
 
-export function useRoomGuide({ ready, focusing, sessions, tip, directory }: {
-  ready: boolean; focusing: boolean; sessions: number; tip?: { id: string; line: string }[]; directory: React.ReactNode;
+export function useRoomGuide({ ready, snowyIgloo, focusing, sessions, tip, directory, openFurniture }: {
+  ready: boolean; snowyIgloo: boolean; focusing: boolean; sessions: number;
+  tip?: { id: string; line: string }[]; directory: React.ReactNode; openFurniture?: () => void;
 }) {
   const furniture = useFurnitureController();
   const { requestRestReaction } = usePipReactions();
@@ -73,20 +76,24 @@ export function useRoomGuide({ ready, focusing, sessions, tip, directory }: {
 
   const active = progress?.active;
   const step = active && !progress?.paused ? chapters[active.chapter]?.steps[active.step] : undefined;
-  const available = ready && !!progress && !focusing;
+  const canHighlight = ready && !focusing && !help;
+  const available = ready && snowyIgloo && !!progress && !focusing;
+  const following = available && !help && !!step;
   const entries = furniture?.entries ?? [];
   const find = (target: Target) => entries.find(entry => !entry.disabled &&
     (target === 'light' ? entry.id === 'lamp' || entry.id === 'lantern' : entry.id === target));
   const targetEntry = step && find(step.target);
-  const show = available && showObjects;
-  const hint = available && !progress?.invited && !progress?.discovered.includes('desk') && !step && !show ? find('desk') : undefined;
-  const bounds = show ? entries.filter(entry => !entry.disabled && entry.bounds).map(entry => entry.bounds!) :
-    available && (targetEntry?.bounds || hint?.bounds) ? [(targetEntry?.bounds ?? hint?.bounds)!] : [];
+  const show = canHighlight && showObjects;
+  const hint = available && !help && !progress?.invited && !progress?.discovered.includes('desk') && !step ? find('desk') : undefined;
+  const highlighted = following ? targetEntry : hint;
+  const highlights = show && snowyIgloo
+    ? entries.flatMap(entry => !entry.disabled && entry.bounds ? [{ bounds: entry.bounds }] : [])
+    : highlighted?.bounds ? [{ bounds: highlighted.bounds, label: FURNITURE[highlighted.id].label }] : [];
 
   const onActivation = useRef<(id: FurnitureId | 'decorate') => void>(() => undefined);
   onActivation.current = id => {
     const current = latest;
-    if (!current || !ready) return;
+    if (!current || !ready || !snowyIgloo) return;
     const isTarget = step && (step.target === id || (step.target === 'light' && (id === 'lamp' || id === 'lantern')));
     if (current.discovered.includes(id) && (!isTarget || !available)) return;
     update(state => {
@@ -111,9 +118,13 @@ export function useRoomGuide({ ready, focusing, sessions, tip, directory }: {
   }, [inviting, requestRestReaction]);
   useEffect(() => {
     if (!showObjects) return;
+    if (!ready || focusing) {
+      setShowObjects(false);
+      return;
+    }
     const timeout = setTimeout(() => setShowObjects(false), 4500);
     return () => clearTimeout(timeout);
-  }, [showObjects]);
+  }, [showObjects, ready, focusing, snowyIgloo]);
 
   const offer = progress?.invited && !progress.skipped && !active
     ? [1, 2].find(chapter => sessions >= chapter && !progress.completed.includes(chapter) &&
@@ -121,12 +132,13 @@ export function useRoomGuide({ ready, focusing, sessions, tip, directory }: {
   const start = (chapter: number) => {
     setFinished(false);
     setHelp(false);
+    setShowObjects(false);
     update(state => ({ ...state, invited: true, paused: false, active: { chapter, step: 0 } }));
     requestRestReaction('look');
   };
   const dismiss = (id: string) => update(state => ({ ...state, dismissed: [...state.dismissed, id] }));
-  const action = (label: string, press: () => void) =>
-    <Pressable key={label} accessibilityRole="button" onPress={press} style={styles.action}><Text style={styles.actionText}>{label}</Text></Pressable>;
+  const action = (label: string, press: () => void, primary = false) =>
+    <Button key={label} label={label} onPress={press} variant={primary ? 'primary' : 'secondary'} />;
   const showTip = available && !active && !inviting && offer === undefined
     ? tip?.find(item => !progress?.dismissed.includes(item.id)) : undefined;
   const line = available && (inviting ? 'Welcome home! 🐧 Want me to show you around?'
@@ -134,6 +146,7 @@ export function useRoomGuide({ ready, focusing, sessions, tip, directory }: {
     : offer !== undefined ? 'Want to see a little more of our Igloo?' : showTip?.line ?? ''));
   const panel = <>
     {help && <View style={styles.bubble}>
+      <View style={styles.helpHeading}><Text style={styles.helpTitle}>Igloo help</Text><IconButton label="Close Igloo help" onPress={() => setHelp(false)}><Chevron direction="close" /></IconButton></View>
       {available && <>
         {action('Continue room tour', () => {
           if (active) {
@@ -142,20 +155,24 @@ export function useRoomGuide({ ready, focusing, sessions, tip, directory }: {
           } else start(offer ?? Math.max(0, chapters.findIndex((_, i) => !progress!.completed.includes(i) && i <= sessions)));
         })}
         {action('Replay tutorial', () => setExplanation('chapters'))}
-        {action('Show interactive objects', () => { setShowObjects(true); setHelp(false); })}
       </>}
-      {action('How studying works', () => setExplanation('Tap the desk, pick a duration and press Start Focus. You can pause or resume from the timer.'))}
+      {ready && !focusing && action('Show interactive objects', () => { setShowObjects(true); setHelp(false); })}
+      {action('How studying works', () => setExplanation('Tap the desk, pick a duration and press Start focus. You can pause or resume from the timer.'))}
       {action('How rewards work', () => setExplanation('Completed focus sessions earn Snowflakes and count toward awards and gifts. Check the gift chest when a reward is ready.'))}
       {directory}
       {explanation === 'chapters' ? available && chapters.map((chapter, i) => action(chapter.title, () => start(i))) : !!explanation && <Text style={styles.line}>{explanation}</Text>}
     </View>}
     {!help && !!line && <View style={styles.bubble} accessibilityLiveRegion="polite">
+      {step && active && <Text style={styles.step}>{chapters[active.chapter].title} · {active.step + 1} of {chapters[active.chapter].steps.length}</Text>}
       <Text style={styles.line}>{line}</Text>
       <View style={styles.actions}>
-        {inviting && <>{action('Show me!', () => start(0))}{action('I’ll explore myself', () => update(state => ({ ...state, invited: true, skipped: true })))}</>}
+        {inviting && <>{action('Show me!', () => start(0), true)}{action('I’ll explore myself', () => update(state => ({ ...state, invited: true, skipped: true })))}</>}
         {step && <>
-          {targetEntry && !targetEntry.bounds && action('Open ' + FURNITURE[targetEntry.id].label, targetEntry.activate)}
-          {step.target === 'decorate' && <Text style={styles.line}>Tap Decorate above the room.</Text>}
+          {targetEntry && !targetEntry.bounds && action('Open ' + FURNITURE[targetEntry.id].label, targetEntry.activate, true)}
+          {step.target === 'decorate' && openFurniture && action('Open furniture', () => {
+            onActivation.current('decorate');
+            openFurniture();
+          }, true)}
           {action('Pause tour', () => update(state => ({ ...state, paused: true })))}
         </>}
         {!step && finished && action('Lovely!', () => setFinished(false))}
@@ -164,37 +181,50 @@ export function useRoomGuide({ ready, focusing, sessions, tip, directory }: {
       </View>
     </View>}
   </>;
-  return { panel, bounds, following: available && !!step, target: available ? targetEntry?.bounds : undefined,
-    decorating: available && step?.target === 'decorate', wardrobe: available && step?.target === 'wardrobe',
+  return { panel: help || line ? panel : null, highlights, following, target: following && !show ? targetEntry?.bounds : undefined,
+    decorating: following && step?.target === 'decorate', wardrobe: following && step?.target === 'wardrobe',
     onDecorate: () => onActivation.current('decorate'), onWardrobe: () => onActivation.current('wardrobe'),
-    toggleHelp: () => { setHelp(value => !value); setExplanation(''); }, helpOpen: help, reduced };
+    toggleHelp: () => { setHelp(value => !value); setShowObjects(false); setExplanation(''); },
+    helpOpen: help, showingObjects: show, reduced };
 }
 
-export function RoomGuideHighlights({ bounds, reduced, dim }: { bounds: Bounds[]; reduced: boolean | null; dim: boolean }) {
-  const target = dim && bounds.length === 1 ? bounds[0] : undefined;
+export function RoomGuideHighlights({ highlights, reduced, dim = false }: {
+  highlights: { bounds: Bounds; label?: string; labelInside?: boolean }[]; reduced: boolean; dim?: boolean;
+}) {
+  if (!highlights.length) return null;
+  const target = dim && highlights.length === 1 ? highlights[0].bounds : undefined;
   const shade = target ? [
     { x: 0, y: 0, width: 100, height: target.y },
     { x: 0, y: target.y, width: target.x, height: target.height },
     { x: target.x + target.width, y: target.y, width: 100 - target.x - target.width, height: target.height },
     { x: 0, y: target.y + target.height, width: 100, height: 100 - target.y - target.height },
   ] : [];
-  return <View pointerEvents="none" style={styles.highlights}>
+  return <View testID="room-guide-highlights" pointerEvents="none" aria-hidden importantForAccessibility="no-hide-descendants" style={styles.highlights}>
     {shade.map((box, i) => <View key={i} style={[styles.dim, boxStyle(box)]} />)}
-    {bounds.map((box, i) => <Animated.View key={JSON.stringify(box)} entering={reduced ? undefined : FadeIn.duration(320)}
-      style={[styles.glow, boxStyle(box)]}>
-      {i === 0 && <Text style={styles.sparkle}>✦</Text>}
-    </Animated.View>)}
+    {highlights.map(({ bounds }, i) => <Animated.View key={i} entering={reduced ? undefined : FadeIn.duration(220)}
+      style={[styles.glow, boxStyle(bounds)]} />)}
+    {highlights.map(({ bounds, label, labelInside }) => label && <View key={label} style={[styles.markerAnchor, boxStyle(bounds)]}>
+      <View style={[styles.marker, labelInside ? styles.markerInside : styles.markerAbove, bounds.x >= 75 && styles.markerRight]}>
+        <Text numberOfLines={1} style={styles.markerText}>{label}</Text>
+      </View>
+    </View>)}
   </View>;
 }
 
 const styles = StyleSheet.create({
-  bubble: { backgroundColor: '#fff3df', borderRadius: 16, borderWidth: 1, borderColor: '#c89d73', padding: 10, maxWidth: 320, gap: 4 },
-  line: { color: '#513b4b', fontSize: 13, lineHeight: 18 },
-  actions: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 4 },
-  action: { minHeight: 40, justifyContent: 'center', paddingHorizontal: 8, borderRadius: 10, backgroundColor: '#f5dec0' },
-  actionText: { color: '#563c49', fontWeight: '800', fontSize: 12 },
+  bubble: { ...ui.card, padding: space.md, gap: space.xs },
+  helpHeading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  helpTitle: { ...type.title, color: colors.ink },
+  line: { ...type.body, color: colors.ink },
+  step: { ...type.caption, color: colors.goldInk },
+  actions: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: space.xs },
   highlights: { ...StyleSheet.absoluteFillObject, zIndex: 40 },
-  dim: { position: 'absolute', backgroundColor: '#29223c20' },
-  glow: { position: 'absolute', borderWidth: 2, borderRadius: 10, borderColor: '#ffe2a0', backgroundColor: '#ffdc8822', shadowColor: '#ffd184', shadowRadius: 10, shadowOpacity: .8, shadowOffset: { width: 0, height: 0 } },
-  sparkle: { color: '#fff0b2', alignSelf: 'flex-end', fontSize: 21 },
+  dim: { position: 'absolute', backgroundColor: '#29223c30' },
+  glow: { position: 'absolute', borderWidth: 2, borderRadius: 10, borderColor: colors.gold, backgroundColor: '#e9b96822' },
+  markerAnchor: { position: 'absolute' },
+  marker: { position: 'absolute', left: 0, borderRadius: 8, paddingHorizontal: space.sm, paddingVertical: 3, backgroundColor: colors.goldWash },
+  markerAbove: { bottom: '100%' },
+  markerInside: { bottom: 4, left: 4 },
+  markerRight: { left: undefined, right: 0 },
+  markerText: { ...type.caption, color: colors.ink },
 });

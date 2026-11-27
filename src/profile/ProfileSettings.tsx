@@ -1,3 +1,5 @@
+import { colors } from '../theme';
+import { Chevron, IconButton, ScreenHeader } from '../ui/Controls';
 import React, { useEffect, useRef, useState } from 'react';
 import { BackHandler, Pressable, ScrollView, Switch, Text, TextInput, View } from 'react-native';
 import { useAmbientSound } from '../ambient/AmbientSoundProvider';
@@ -18,11 +20,11 @@ export type SettingsPage = keyof typeof titles;
 
 type Props = {
   page: SettingsPage; setPage: (page: SettingsPage) => void; onBack: () => void;
-  onWardrobe: () => void; onAccessories: () => void; onIgloo: () => void; onHelp: () => void;
+  onWardrobe: () => void; onIgloo: () => void; onHelp: () => void;
   onPreviewOnboarding?: () => void; openedFromMenu: boolean;
 };
 
-export function ProfileSettings({ page, setPage, onBack, onWardrobe, onAccessories, onIgloo, onHelp, onPreviewOnboarding, openedFromMenu }: Props) {
+export function ProfileSettings({ page, setPage, onBack, onWardrobe, onIgloo, onHelp, onPreviewOnboarding, openedFromMenu }: Props) {
   const { profile, update, error } = useStudyProfile();
   const { timer, setFocusMinutes, setSnowfall, setFurnitureSounds } = usePomodoro();
   const ambient = useAmbientSound();
@@ -45,13 +47,11 @@ export function ProfileSettings({ page, setPage, onBack, onWardrobe, onAccessori
   const time = [profile.reminder.hour, profile.reminder.minute].map(value => String(value).padStart(2, '0')).join(':');
 
   return <ScrollView key={page} style={s.settingsOverlay} contentContainerStyle={s.content} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-    <View style={s.settingsHeading}>
-      <Pressable ref={backButton} accessibilityRole="button" accessibilityLabel={backToDashboard ? 'Back to You' : 'Back to settings'}
-        onPress={back} disabled={reminderBusy && page === 'reminders'} style={({ pressed }) => [s.backButton, pressed && s.pressed]}>
-        <ProfileIcon name="back" />
-      </Pressable>
-      <Text accessibilityRole="header" style={s.settingsTitle}>{titles[page]}</Text>
-    </View>
+    <ScreenHeader title={titles[page]} style={{ paddingHorizontal: 0 }} leading={
+      <IconButton ref={backButton} label={backToDashboard ? 'Back to You' : 'Back to settings'} onPress={back}
+        disabled={reminderBusy && page === 'reminders'}><Chevron direction="back" /></IconButton>
+    } />
+
 
     {page === 'menu' && <>
       <SettingGroup title="Study" rows={[
@@ -64,7 +64,6 @@ export function ProfileSettings({ page, setPage, onBack, onWardrobe, onAccessori
       <SettingGroup title="Personalization" rows={[
         ['Penguin name', companionName(profile), open('penguin')],
         ['Wardrobe', undefined, onWardrobe],
-        ['Scarves, glasses & headphones', undefined, onAccessories],
         ['Room preferences', undefined, open('room')],
       ]} />
       <SettingGroup title="Account" rows={[
@@ -153,6 +152,6 @@ function NameInput({ label, value, onSave }: { label: string; value: string; onS
 function RoomSwitch({ label, value, onChange }: { label: string; value: boolean; onChange: (value: boolean) => void }) {
   return <View style={s.settingRow}>
     <Text style={[s.settingLabel, s.headingCopy]}>{label}</Text>
-    <Switch accessibilityLabel={label} value={value} onValueChange={onChange} trackColor={{ false: '#b5a8c8', true: '#8c72b5' }} />
+    <Switch {...{ activeThumbColor: colors.paper }} thumbColor={colors.paper} accessibilityLabel={label} value={value} onValueChange={onChange} trackColor={{ false: colors.line, true: colors.link }} />
   </View>;
 }

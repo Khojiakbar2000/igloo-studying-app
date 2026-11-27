@@ -1,5 +1,7 @@
+import { Overlay } from '../ui/Overlay';
+import { colors, type, ui } from '../theme';
 import React, { useMemo, useState } from 'react';
-import { Image, Modal, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { studyMilestones } from '../awards/progression';
 import { dailySummary, localDateKey, studyStreak } from '../state/dailyGoals';
 import { usePomodoro } from '../state/PomodoroContext';
@@ -24,7 +26,7 @@ export function FirstStudyDay({ enabled, onExplore }: { enabled: boolean; onExpl
   const weeks = Array.from({length:7},(_,index)=>new Date(year,month-1,day-6+index,12));
   const focused = Math.floor(dailySummary(timer, today).focusMs / 60_000);
   const { current: streak } = studyStreak(verifiedDays, today);
-  return <Modal transparent visible animationType={reduced?'none':'fade'} onRequestClose={()=>update({firstDaySeen:true})}>
+  return <Overlay transparent visible animationType={reduced?'none':'fade'} onRequestClose={()=>update({firstDaySeen:true})}>
     <View style={styles.shade}>
       <View accessibilityViewIsModal style={styles.panel}>
         {widget ? <>
@@ -57,17 +59,17 @@ export function FirstStudyDay({ enabled, onExplore }: { enabled: boolean; onExpl
         </>}
       </View>
     </View>
-  </Modal>;
+  </Overlay>;
 }
 const styles=StyleSheet.create({
-  shade:{flex:1,backgroundColor:'#27213ea0',alignItems:'center',justifyContent:'center',padding:15},
-  panel:{width:'100%',maxWidth:430,backgroundColor:'#fff6ed',borderRadius:23,borderColor:'#e7c7af',borderWidth:1,padding:14,gap:10},
-  title:{fontFamily:'serif',color:'#763e6c',fontWeight:'800',fontSize:30,textAlign:'center'},
-  subtitle:{color:'#634f68',fontSize:15,textAlign:'center'},
-  widget:{flexDirection:'row',alignItems:'center',backgroundColor:'#ede4f7',borderRadius:17,padding:8,gap:7},
-  widgetArt:{width:84,height:98},widgetDetails:{flex:1,gap:4},widgetName:{color:'#5b3f73',fontWeight:'900',fontSize:17},
-  widgetProgress:{color:'#523e64',fontSize:13},
+  shade:{ ...ui.shade, backgroundColor: 'transparent' },
+  panel:{ ...ui.dialog, padding:14, gap:10 },
+  title:{ ...type.heading, color: colors.ink, textAlign:'center' },
+  subtitle:{color:colors.ink,fontSize:15,textAlign:'center'},
+  widget:{flexDirection:'row',alignItems:'center',backgroundColor:colors.ice,borderRadius:17,padding:8,gap:7},
+  widgetArt:{width:84,height:98},widgetDetails:{flex:1,gap:4},widgetName:{color:colors.ink,fontWeight:'900',fontSize:17},
+  widgetProgress:{color:colors.link,fontSize:13},
   calendar:{flexDirection:'row',justifyContent:'space-between',gap:3},
-  day:{flex:1,alignItems:'center',paddingVertical:7,backgroundColor:'#f1e6f4',borderRadius:8},done:{backgroundColor:'#f4d395'},
-  dayText:{color:'#574468',fontSize:10,fontWeight:'700'},dateText:{color:'#63405f',fontSize:14,fontWeight:'800',marginTop:3},
+  day:{flex:1,alignItems:'center',paddingVertical:7,backgroundColor:colors.ice,borderRadius:8},done:{backgroundColor:colors.gold},
+  dayText:{color:colors.ink,fontSize:10,fontWeight:'700'},dateText:{color:colors.ink,fontSize:14,fontWeight:'800',marginTop:3},
 });

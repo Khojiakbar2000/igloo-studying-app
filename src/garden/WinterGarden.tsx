@@ -1,9 +1,12 @@
+import { Chevron, IconButton } from '../ui/Controls';
+import { Overlay } from '../ui/Overlay';
+import { colors, type, ui } from '../theme';
 import { useCompanionName } from '../onboarding/ProfileProvider';
 import { useFurniture } from '../furniture/Furniture';
-import { boxStyle, roomBox } from '../furniture/catalog';
+import { boxStyle, roomBox, type Bounds } from '../furniture/catalog';
 import { IGLOO_FURNITURE } from '../study-together/iglooLayout';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import type { AnimationObject } from 'lottie-react-native';
 import { usePomodoro } from '../state/PomodoroContext';
@@ -36,8 +39,8 @@ const ornaments = ['', '', '◈', '🏮'];
 const pots = ['#a96d52', '#598097', '#777990', '#97623e'];
 type Effect = 'water' | 'sparkle' | 'butterfly' | 'snow';
 
-export function WinterGarden({ visible, shared = false, original = false, busy = false, menuOnly = false }: {
-  visible: boolean; menuOnly?: boolean; shared?: boolean; original?: boolean; busy?: boolean;
+export function WinterGarden({ visible, shared = false, original = false, busy = false, menuOnly = false, bounds }: {
+  visible: boolean; bounds?: Bounds; menuOnly?: boolean; shared?: boolean; original?: boolean; busy?: boolean;
 }) {
   const companion=useCompanionName();
   const { timer, hydrated, updateGarden } = usePomodoro();
@@ -131,23 +134,23 @@ export function WinterGarden({ visible, shared = false, original = false, busy =
   const close = () => { setOpen(false); setEffect(null); setMoving(false); setNotice(''); };
   const openGarden = useFurniture('garden', () => { setSlot(unseen >= 0 ? unseen : garden.active ?? 0); setOpen(true); }, {
     disabled: !hydrated || !visible, state: unseen >= 0 ? 'New growth' : open ? 'Open' : 'Ready',
-    bounds: menuOnly ? undefined : shared ? IGLOO_FURNITURE.garden : original ? roomBox(79, 64, 19, 11) : roomBox(78, 57, 19, 11),
+    bounds: menuOnly ? undefined : bounds ?? (shared ? IGLOO_FURNITURE.garden : original ? roomBox(79, 64, 19, 11) : roomBox(78, 57, 19, 11)),
   });
   const next = THRESHOLDS[growth];
   return <>
     {!menuOnly && <Pressable accessibilityRole="button" accessibilityLabel={unseen >= 0 ? 'Winter Garden, new growth' : 'Open Winter Garden'}
       disabled={!hydrated || !visible} onPress={openGarden}
-      style={[styles.trigger, shared ? boxStyle(IGLOO_FURNITURE.garden) : original ? styles.original : styles.personal]}>
+      style={[styles.trigger, bounds ? boxStyle(bounds) : shared ? boxStyle(IGLOO_FURNITURE.garden) : original ? styles.original : styles.personal]}>
       <Image source={bench} style={styles.fill} resizeMode="contain" />
       {unseen >= 0 && <View pointerEvents="none" style={styles.badge}><Text style={styles.badgeText}>✦</Text></View>}
     </Pressable>}
-    {open && <Modal visible transparent animationType={reduced ? 'none' : 'fade'} onRequestClose={close}>
+    {open && <Overlay visible transparent animationType={reduced ? 'none' : 'fade'} onRequestClose={close}>
       <View style={styles.shade}>
         <Pressable accessible={false} style={StyleSheet.absoluteFill} onPress={close} />
         <View accessibilityViewIsModal style={styles.panel}>
           <View style={styles.header}>
             <View><Text style={styles.kicker}>{companion}’s greenhouse</Text><Text accessibilityRole="header" style={styles.title}>Winter Garden</Text></View>
-            <Pressable accessibilityRole="button" accessibilityLabel="Close garden" onPress={close} style={styles.close}><Text style={styles.closeText}>×</Text></Pressable>
+            <IconButton label="Close garden" onPress={close}><Chevron direction="close" /></IconButton>
           </View>
           <ScrollView style={styles.scroll} contentContainerStyle={styles.content}>
             <View style={styles.greenhouse}>
@@ -213,7 +216,7 @@ export function WinterGarden({ visible, shared = false, original = false, busy =
           </ScrollView>
         </View>
       </View>
-    </Modal>}
+    </Overlay>}
   </>;
 }
 
@@ -228,11 +231,11 @@ const styles = StyleSheet.create({
   fill: { width: '100%', height: '100%' },
   badge: { position: 'absolute', top: 0, right: 0, borderRadius: 14, width: 22, height: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: '#82523d' },
   badgeText: { color: '#fff2bc' },
-  shade: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#211d35aa', padding: 14 },
-  panel: { width: '100%', maxWidth: 486, maxHeight: '93%', height: 720, borderRadius: 22, backgroundColor: '#fcf1e2', borderWidth: 1, borderColor: '#b78562', overflow: 'hidden' },
+  shade: { ...ui.shade, backgroundColor: 'transparent' },
+  panel: { ...ui.dialog, maxHeight: '93%', height: 720 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 19, paddingVertical: 12 },
   kicker: { fontSize: 10, color: '#855745', fontWeight: '800', letterSpacing: 2 },
-  title: { color: '#422e33', fontFamily: 'serif', fontWeight: '700', fontSize: 29 },
+  title: { ...type.heading, color: colors.ink },
   close: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
   closeText: { color: '#6a453a', fontSize: 29 },
   scroll: { flex: 1 }, content: { paddingHorizontal: 16, paddingBottom: 20, gap: 11 },
@@ -250,7 +253,7 @@ const styles = StyleSheet.create({
   heroPot: { position: 'absolute', top: 82, left: 34, width: 42, height: 19, borderTopWidth: 4, borderTopColor: '#fff1bd88', borderBottomLeftRadius: 10, borderBottomRightRadius: 10 },
   ornament: { position: 'absolute', bottom: 6, right: 8, color: '#f0d7ff' },
   can: { position: 'absolute', top: 1, right: 4 },
-  plantInfo: { flex: 1, gap: 4 }, name: { color: '#493039', fontFamily: 'serif', fontSize: 21, fontWeight: '700' },
+  plantInfo: { flex: 1, gap: 4 }, name: { color: '#493039', fontSize: 21, fontWeight: '700' },
   track: { height: 6, borderRadius: 8, backgroundColor: '#ead8cc', overflow: 'hidden', marginVertical: 4 },
   bar: { height: '100%', backgroundColor: '#866290' },
   note: { color: '#705247', fontSize: 13, lineHeight: 18 },

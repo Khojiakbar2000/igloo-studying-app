@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React, { useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -43,5 +44,5 @@ export function RiveAnimationPreview({
 
 const styles = StyleSheet.create({
   fallback: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center', padding: 24 },
-  message: { textAlign: 'center', color: '#52777A', fontSize: 13, lineHeight: 19 },
+  message: { textAlign: 'center', color: colors.link, fontSize: 13, lineHeight: 19 },
 });

@@ -4,8 +4,6 @@ import type { AnimationObject } from 'lottie-react-native';
 import StudyTogetherLottiePlayer, { type LottiePlayerHandle } from './StudyTogetherLottiePlayer';
 import Reanimated, { useAnimatedStyle, useSharedValue, withSequence, withTiming, useReducedMotion } from 'react-native-reanimated';
 import { STUDY_TOGETHER_SCENE } from '../scenes/studyTogetherArtContract';
-import type { PenguinCustomization } from '../character/penguinCustomization';
-import { PipAccessoryLayer } from './PipAccessoryLayer';
 import { WindowStormOverlay } from './WindowStormOverlay';
 import { StudyWindowView } from './StudyWindowView';
 import { WINDOW_OPENING, type StudyWindowScene } from '../scenes/studyWindowScenes';
@@ -17,9 +15,9 @@ import { useHomeMotion } from '../home/useHomeMotion';
 import type { PenguinAction } from '../study-together/penguinAnimation';
 import { DEFAULT_LIGHTING, type RoomLighting } from '../home/lighting';
 
-const room = require('../../assets/environments/igloo/study-together-layers/room-floor-background-clean.png');
-const stormRoom = require('../../assets/environments/igloo/study-together-layers/room-floor-background-blizzard.jpg');
-const sofa = require('../../assets/environments/igloo/study-together-layers/sofa.png');
+const room = require('../../assets/environments/igloo/study-together-layers/room-floor-background-warm-nordic.jpg');
+const stormRoom = require('../../assets/environments/igloo/study-together-layers/room-floor-background-warm-nordic.jpg');
+const sofa = require('../../assets/environments/igloo/study-together-layers/sofa-warm-nordic.png');
 
 type ActorId = 'typing' | 'reading' | 'writing' | 'headphones';
 type GuestClip = 'study' | 'bored' | 'drink' | 'stretch' | 'wave' | 'yawn';
@@ -102,8 +100,8 @@ const StaticOrGuest = memo(function StaticOrGuest({ actor, active, reduced, anim
     onFinish={cancelled => { if (!cancelled) playNext(); }} />;
 });
 
-export function StudyTogetherLottieCharacters({ customization = { scarf: 'teal', glasses: false, headphones: false }, windowStorm = false, windowScene, roomId, reactToPomodoro = false, coffeePerformance = false, coffeeReserved = false, onPipAvailable, breakStage, cushionPulse = 0, lighting = DEFAULT_LIGHTING }: {
-  customization?: PenguinCustomization; windowStorm?: boolean; windowScene?: StudyWindowScene;
+export function StudyTogetherLottieCharacters({ windowStorm = false, windowScene, roomId, reactToPomodoro = false, coffeePerformance = false, coffeeReserved = false, onPipAvailable, breakStage, cushionPulse = 0, lighting = DEFAULT_LIGHTING }: {
+  windowStorm?: boolean; windowScene?: StudyWindowScene;
   roomId?: StudyRoomId; reactToPomodoro?: boolean; coffeePerformance?: boolean; coffeeReserved?: boolean; onPipAvailable?: () => void; breakStage?: React.ReactNode; cushionPulse?: number;
   lighting?: RoomLighting;
 }) {
@@ -135,17 +133,12 @@ export function StudyTogetherLottieCharacters({ customization = { scarf: 'teal',
     <Reanimated.Image accessibilityLabel="Fluffy study sofa" source={sofa} resizeMode="stretch" style={[styles.positioned, styles.sofaLayer, bounds(STUDY_TOGETHER_SCENE.sofa), cushionStyle]} />
     {breakStage}
     {ACTORS.map(id => <View key={id} testID={reactToPomodoro ? `study-seat-${id}` : undefined} style={[styles.positioned, styles.characterLayer, bounds(actorAssets[id].seat), id === 'typing' && coffeePerformance && styles.behindPerformance]}>
-      {id === 'typing' && reactToPomodoro
-        ? <SeatedPipReactions allowAmbientCoffee={false} enabled={scale > 0 && !coffeeReserved} customization={customization} onAvailable={onPipAvailable} />
-        : <StaticOrGuest actor={actorAssets[id]} active={active} reduced={reducedMotion} animate={id !== 'typing'} />}
-      {id === 'typing' && !reactToPomodoro && (customization.glasses || customization.headphones) &&
-        <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.accessoryLayer]}>
-          {customization.glasses && <PipAccessoryLayer kind="glasses" />}
-          {customization.headphones && <PipAccessoryLayer kind="headphones" />}
-        </View>}
+      {id === 'typing'
+        ? <SeatedPipReactions alwaysStudying={!reactToPomodoro} allowAmbientCoffee={false} enabled={scale > 0 && !coffeeReserved} onAvailable={onPipAvailable} />
+        : <StaticOrGuest actor={actorAssets[id]} active={active} reduced={reducedMotion} animate />}
     </View>)}
     {roomId === 'igloo' && (lighting.sources.lamp || lighting.sources.lantern || lighting.sources.fireplace || lighting.sources.fairy) && <View pointerEvents="none" style={[styles.positioned, styles.characterLight, bounds(actorAssets.typing.seat)]}>
-      <Svg width="100%" height="100%" viewBox="0 0 100 100"><Defs><RadialGradient id="pip-room-light"><Stop offset="0" stopColor={lighting.preset === 'magical' ? '#B6A1FF' : lighting.sources.fireplace && !lighting.sources.lamp && !lighting.sources.lantern ? '#FF9B4D' : '#FFD890'} stopOpacity={.15 * lighting.brightness}/><Stop offset="1" stopColor="#FFD890" stopOpacity="0"/></RadialGradient></Defs><Circle cx="50" cy="50" r="48" fill="url(#pip-room-light)" /></Svg>
+      <Svg width="100%" height="100%" viewBox="0 0 100 100"><Defs><RadialGradient id="pip-room-light"><Stop offset="0" stopColor={lighting.preset === 'magical' ? '#E9B968' : lighting.sources.fireplace && !lighting.sources.lamp && !lighting.sources.lantern ? '#FF9B4D' : '#FFD890'} stopOpacity={.15 * lighting.brightness}/><Stop offset="1" stopColor="#FFD890" stopOpacity="0"/></RadialGradient></Defs><Circle cx="50" cy="50" r="48" fill="url(#pip-room-light)" /></Svg>
     </View>}
   </View>;
 }
@@ -155,7 +148,6 @@ const styles = StyleSheet.create({
   positioned: { position: 'absolute' },
   sofaLayer: { zIndex: 2 },
   characterLayer: { zIndex: 3 },
-  accessoryLayer: { zIndex: 4 },
   characterLight: { zIndex: 5, opacity: 1 },
   behindPerformance: { opacity: 0 },
 });

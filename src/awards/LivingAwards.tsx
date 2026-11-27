@@ -1,7 +1,10 @@
+import { Chevron, IconButton } from '../ui/Controls';
+import { Overlay } from '../ui/Overlay';
+import { colors, type, ui } from '../theme';
 import { useFurniture } from '../furniture/Furniture';
-import { pixelBox } from '../furniture/catalog';
+import { boxStyle, pixelBox, type Bounds } from '../furniture/catalog';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { usePipReactions } from '../character/reactions/PipReactionsProvider';
 import { StudyRoomPerformance } from '../components/StudyRoomPerformance';
 import { useHomeMotionState } from '../home/useHomeMotion';
@@ -21,7 +24,7 @@ export const awardSprites: Record<AwardId, number> = {
   'deep-focus': require('../../assets/environments/igloo/awards/deep-focus.png'),
 };
 
-export function LivingAwards({ visible, settled, menuOnly = false }: { visible: boolean; settled: boolean; menuOnly?: boolean }) {
+export function LivingAwards({ visible, settled, menuOnly = false, placement }: { visible: boolean; settled: boolean; menuOnly?: boolean; placement?: Bounds }) {
   const { timer, hydrated, arrangeAward } = usePomodoro();
   const { cue, requestRestReaction } = usePipReactions();
   const { active, motion, reduced } = useHomeMotionState(visible);
@@ -74,17 +77,17 @@ export function LivingAwards({ visible, settled, menuOnly = false }: { visible: 
   }, [arrangeAward, showing]);
 
   const openCabinet = useFurniture('awards', () => { setPresentation(null); setRevealed(false); setOpen(true); }, {
-    disabled: !hydrated || !visible, state: open ? 'Open' : 'Closed', bounds: menuOnly ? undefined : pixelBox(CABINET),
+    disabled: !hydrated || !visible, state: open ? 'Open' : 'Closed', bounds: menuOnly ? undefined : placement ?? pixelBox(CABINET),
   });
   return <>
     {!menuOnly && <Pressable accessibilityRole="button" accessibilityLabel="Living Awards cabinet"
       accessibilityHint="Inspect your study trophies" testID="living-awards-cabinet" disabled={!hydrated}
-      onPress={openCabinet} style={styles.cabinetInRoom}>
+      onPress={openCabinet} style={[styles.cabinetInRoom, placement && boxStyle(placement)]}>
       <CabinetItems ids={displayed} state={awards} />
       {pending && !showing && <View pointerEvents="none" style={styles.readyLight} />}
     </Pressable>}
     {showing && <AwardGift key={showing} id={showing} slot={displayed.indexOf(showing)}
-      motion={motion} reduced={reduced} onReveal={reveal} onFinish={finish} />}
+      motion={motion} reduced={reduced} placement={placement} onReveal={reveal} onFinish={finish} />}
     {showing && (revealed || reduced) && <View pointerEvents="none" style={styles.announcement}>
       <Text style={styles.announcementText} accessibilityLiveRegion="polite">{findAward(showing).name} earned</Text>
     </View>}
@@ -93,10 +96,10 @@ export function LivingAwards({ visible, settled, menuOnly = false }: { visible: 
   </>;
 }
 
-function AwardGift({ id, slot, motion, reduced, onReveal, onFinish }: {
-  id: AwardId; slot: number; motion: boolean; reduced: boolean; onReveal: () => void; onFinish: () => void;
+function AwardGift({ id, slot, motion, reduced, onReveal, onFinish, placement }: {
+  id: AwardId; slot: number; motion: boolean; reduced: boolean; placement?: Bounds; onReveal: () => void; onFinish: () => void;
 }) {
-  const source = useMemo(() => giftMotion(id, slot), [id, slot]);
+  const source = useMemo(() => giftMotion(id, slot, placement), [id, slot, placement?.x, placement?.y, placement?.width, placement?.height]);
   const [started, setStarted] = useState(false);
   const markStarted = useCallback(() => setStarted(true), []);
   useEffect(() => {
@@ -108,7 +111,7 @@ function AwardGift({ id, slot, motion, reduced, onReveal, onFinish }: {
     const timer = setTimeout(onReveal, GIFT_REVEAL_MS);
     return () => clearTimeout(timer);
   }, [motion, onFinish, onReveal, reduced, started]);
-  if (reduced) return <View pointerEvents="none" style={styles.stillGift}>
+  if (reduced) return <View pointerEvents="none" style={[styles.stillGift, placement && { left: `${placement.x + placement.width / 2}%`, top: '57%', width: '8%', height: '12%' }]}>
     <Image source={awardSprites[id]} style={styles.fill} resizeMode="contain" />
   </View>;
   return <StudyRoomPerformance source={source} motion={motion} onLoaded={markStarted}
@@ -159,7 +162,7 @@ function AwardCollection({ state, sessions, motion, onArrange, onClose }: {
     <Pressable accessibilityRole="button" disabled={disabled} accessibilityState={{ disabled }} onPress={() => onArrange(selected, command)}
       style={[styles.action, disabled && styles.disabled]}><Text style={styles.actionText}>{label}</Text></Pressable>;
 
-  return <Modal transparent animationType={motion ? 'fade' : 'none'} onRequestClose={onClose} visible>
+  return <Overlay transparent animationType={motion ? 'fade' : 'none'} onRequestClose={onClose} visible>
     <View style={styles.modal}>
       <Pressable accessible={false} onPress={onClose} style={StyleSheet.absoluteFill} />
       <View style={styles.collection} accessibilityViewIsModal>
@@ -167,9 +170,7 @@ function AwardCollection({ state, sessions, motion, onArrange, onClose }: {
           <View style={styles.header}>
             <View><Text style={styles.eyebrow}>{state.order.length} of {AWARDS.length} earned</Text>
               <Text accessibilityRole="header" style={styles.title}>Living Awards</Text></View>
-            <Pressable accessibilityRole="button" accessibilityLabel="Close Living Awards" onPress={onClose} style={styles.close}>
-              <Text style={styles.closeText}>×</Text>
-            </Pressable>
+            <IconButton label="Close Living Awards" onPress={onClose}><Chevron direction="close" /></IconButton>
           </View>
           <View style={styles.cabinetClose}>
             <CabinetItems ids={ids} state={state} selected={selected} onChoose={setSelected} />
@@ -202,7 +203,7 @@ function AwardCollection({ state, sessions, motion, onArrange, onClose }: {
         </ScrollView>
       </View>
     </View>
-  </Modal>;
+  </Overlay>;
 }
 
 const styles = StyleSheet.create({
@@ -221,12 +222,12 @@ const styles = StyleSheet.create({
   stillGift: { position: 'absolute', left: '22%', top: '45%', width: '16%', height: '16%', zIndex: 5 },
   announcement: { position: 'absolute', top: '32%', left: '10%', right: '10%', zIndex: 6, alignItems: 'center' },
   announcementText: { color: '#4f3026', fontSize: 13, fontWeight: '800', backgroundColor: '#fff1d2', borderRadius: 14, paddingVertical: 7, paddingHorizontal: 10, overflow: 'hidden' },
-  modal: { flex: 1, padding: 16, justifyContent: 'center', alignItems: 'center', backgroundColor: '#29334a88' },
-  collection: { width: '100%', maxWidth: 450, maxHeight: '88%', borderRadius: 24, backgroundColor: '#fff3dd', borderWidth: 2, borderColor: '#bd8e62', overflow: 'hidden' },
+  modal: { ...ui.shade, backgroundColor: 'transparent' },
+  collection: { ...ui.dialog, maxHeight: '88%' },
   content: { padding: 15, gap: 12 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingLeft: 3 },
   eyebrow: { color: '#865231', fontSize: 10, fontWeight: '800', letterSpacing: 0.8, textTransform: 'uppercase' },
-  title: { color: '#4d2f28', fontSize: 26, fontWeight: '900' },
+  title: { ...type.heading, color: colors.ink },
   close: { width: 44, height: 44, borderRadius: 22, backgroundColor: '#f1debc', alignItems: 'center', justifyContent: 'center' },
   closeText: { color: '#744629', fontSize: 25 },
   detail: { flexDirection: 'row', alignItems: 'center', columnGap: 10 },

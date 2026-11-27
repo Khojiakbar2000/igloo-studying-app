@@ -1,3 +1,4 @@
+import { colors } from '../theme';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { usePipReactions } from '../character/reactions/PipReactionsProvider';
@@ -32,12 +33,12 @@ function Control({ label, selected, onPress }: { label: string; selected: boolea
 
 const styles = StyleSheet.create({
   panel: { width: '100%', marginTop: 12, padding: 13, borderRadius: 18, backgroundColor: 'rgba(255,253,248,0.91)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.85)', gap: 9 },
-  title: { color: '#44636e', fontSize: 11, fontWeight: '900' },
-  status: { color: '#354e57', fontSize: 12, fontWeight: '800' },
-  last: { color: '#4b6973', fontSize: 11 },
+  title: { color: colors.link, fontSize: 11, fontWeight: '900' },
+  status: { color: colors.link, fontSize: 12, fontWeight: '800' },
+  last: { color: colors.link, fontSize: 11 },
   controls: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
   control: { minHeight: 44, paddingHorizontal: 11, borderRadius: 12, backgroundColor: '#eef4f2', alignItems: 'center', justifyContent: 'center' },
-  controlSelected: { backgroundColor: '#52777a' },
-  controlText: { color: '#4b6973', fontSize: 11, fontWeight: '800' },
+  controlSelected: { backgroundColor: colors.link },
+  controlText: { color: colors.link, fontSize: 11, fontWeight: '800' },
   controlTextSelected: { color: '#fffdf7' },
 });

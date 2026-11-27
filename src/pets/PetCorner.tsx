@@ -1,9 +1,15 @@
+import { PANORAMA_PROPS, PANORAMA_SLOTS, panoramaBounds } from '../home/panorama';
+import { PANORAMA_FIXTURES } from '../home/panoramaArt';
+import { PanoramaSprite } from '../home/PanoramaSprite';
+import { Chevron, IconButton } from '../ui/Controls';
+import { Overlay } from '../ui/Overlay';
+import { colors, type, ui } from '../theme';
 import { GIFT_ART } from '../gifts/art';
 import { useFurniture } from '../furniture/Furniture';
 import { boxStyle, roomBox } from '../furniture/catalog';
 import { IGLOO_FURNITURE } from '../study-together/iglooLayout';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, Image, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Animated, Easing, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { studyMilestones } from '../awards/progression';
 import { usePipReactions } from '../character/reactions/PipReactionsProvider';
 import { StudyRoomPerformance } from '../components/StudyRoomPerformance';
@@ -20,20 +26,21 @@ const art = {
 };
 const bowl = require('../../assets/animations/igloo-pets/bowl.png');
 const toy = require('../../assets/animations/study-together-breaks/toy.png');
-const corner = require('../../assets/animations/igloo-pets/corner.png');
+const corner = require('../../assets/animations/igloo-pets/corner-warm-nordic.png');
 type Point = [number, number];
-type Layout = { bed:Point; aisle:Point; browse:Point; pip:Point; window:Point; bowl:Point; corner:Point; garden?:Point; gardenPath?:Point[] };
-const layouts:Record<'studyIgloo'|'shared'|'personal'|'original',Layout> = {
+type Layout = { widthRatio?: number; bed:Point; aisle:Point; browse:Point; pip:Point; window:Point; bowl:Point; corner:Point; garden?:Point; gardenPath?:Point[] };
+const layouts:Record<'studyIgloo'|'shared'|'personal'|'original'|'panorama',Layout> = {
  studyIgloo:{garden:[.215,.905],gardenPath:[[.60,.92],[.46,.92],[.22,.82]],corner:[.835,.97],bed:[.795,.96],aisle:[.60,.92],browse:[.59,.845],pip:[.235,.735],window:[.285,.72],bowl:[.916,.962]},
  shared:{garden:[.25,.965],corner:[.50,.965],bed:[.465,.946],aisle:[.285,.915],browse:[.255,.835],pip:[.24,.735],window:[.10,.76],bowl:[.535,.937]},
+ panorama:{widthRatio:.082,corner:[.885,.88],bed:[.862,.864],aisle:[.781,.87],browse:[.787,.765],pip:[.49,.701],window:[.57,.53],bowl:[.937,.871],garden:[.94,.613]},
  personal:{corner:[.23,.60],bed:[.22,.60],aisle:[.28,.60],browse:[.31,.56],pip:[.40,.57],window:[.37,.51],bowl:[.29,.63]},
  original:{corner:[.20,.90],bed:[.17,.89],aisle:[.31,.89],browse:[.39,.87],pip:[.43,.80],window:[.43,.68],bowl:[.27,.90]},
 };
 const actions = [['Pet','happy'],['Play','play'],['Feed','feed'],['Nap','sleep'],['Follow Pip','follow']] as const;
 const percent=(value:number)=>`${value*100}%` as const;
 
-export function PetCorner({ room, visible=true, pipBusy=false, pipMoving=false }: {
- room:keyof typeof layouts; visible?:boolean; pipBusy?:boolean; pipMoving?:boolean;
+export function PetCorner({ room, visible=true, pipBusy=false, pipMoving=false, previewBed }: {
+ room:keyof typeof layouts; visible?:boolean; pipBusy?:boolean; pipMoving?:boolean; previewBed?:string;
 }) {
  const {timer,hydrated}=usePomodoro();
  const [show,setShow]=useState(false);
@@ -41,7 +48,8 @@ export function PetCorner({ room, visible=true, pipBusy=false, pipMoving=false }
  const [ask,setAsk]=useState(0);
  const [size,setSize]=useState({width:0,height:0});
  const layout=layouts[room];
- const bounds = room === 'studyIgloo' ? IGLOO_FURNITURE.pets : roomBox((layout.corner[0]-.10)*100,(layout.corner[1]-.095)*100,20,13);
+ const customBed = (room==='personal'||room==='original'||room==='panorama') && (previewBed ?? timer.home.equipped.petBed)==='gift-pet-bed';
+ const bounds = room === 'studyIgloo' ? IGLOO_FURNITURE.pets : room === 'panorama' ? panoramaBounds(PANORAMA_SLOTS.petBed) : roomBox((layout.corner[0]-.10)*100,(layout.corner[1]-.095)*100,20,13);
  const pet=timer.home.pets.active;
  const openPets=useFurniture('pets',()=>{
    if (pet && timer.status !== 'paused' && !(timer.mode === 'focus' && timer.status === 'running')) setAsk(value => value + 1);
@@ -50,9 +58,14 @@ export function PetCorner({ room, visible=true, pipBusy=false, pipMoving=false }
    bounds});
 
  return <View pointerEvents="box-none" style={[StyleSheet.absoluteFill, room==='studyIgloo' && actionMenuVisible && s.aboveFurniture]} onLayout={({nativeEvent:{layout:{width,height}}})=>setSize(value=>value.width===width&&value.height===height?value:{width,height})}>
+   {room==='panorama' && customBed && <>
+     <PanoramaSprite id="gift-pet-bed" source={GIFT_ART['room-12']} box={PANORAMA_SLOTS.petBed} z={0} shadow />
+     <PanoramaSprite id="petToy" source={PANORAMA_FIXTURES.petToy} box={PANORAMA_PROPS.petToy} z={1} />
+     <PanoramaSprite id="petBowl" source={PANORAMA_FIXTURES.petBowl} box={PANORAMA_PROPS.petBowl} z={1} />
+   </>}
    <Pressable accessibilityLabel="Pet adoption" accessibilityRole="button" disabled={!hydrated} accessibilityHint="Adopt or change your companion"
      onPress={openPets} style={[s.corner,room==='studyIgloo'&&s.studyIglooCorner,boxStyle(bounds)]}>
-     <Image source={(room==='personal'||room==='original') && timer.home.equipped.petBed==='gift-pet-bed' ? GIFT_ART['room-12'] : corner} style={s.fill} resizeMode="contain" />
+     {!(room==='panorama' && customBed) && <Image source={customBed ? GIFT_ART['room-12'] : corner} style={s.fill} resizeMode="contain" />}
    </Pressable>
    {pet&&size.width>0&&size.height>0&&<RoomPet key={pet+'-'+room} id={pet} layout={layout} size={size} visible={visible&&!show} pipBusy={pipBusy} pipMoving={pipMoving} request={ask} onChangePet={()=>setShow(true)} onMenuVisibility={setActionMenuVisible} />}
    {show&&<Adoption onClose={()=>setShow(false)} />}
@@ -90,7 +103,7 @@ function RoomPet({ id, layout, size, visible, pipBusy, pipMoving, request, onCha
    lastRequest.current=request;
    if(allowed)setMenu(true);
  },[request,allowed]);
- const width=Math.max(43,size.width*.142);
+ const width=Math.max(43,size.width*(layout.widthRatio ?? .142));
  useEffect(()=>{
    onMenuVisibility(menu);
    return ()=>onMenuVisibility(false);
@@ -246,10 +259,10 @@ function Adoption({onClose}:{onClose:()=>void}) {
  const pet=petInfo(selected);
  const adopted=pets.adopted.includes(selected);
  const unlocked=adopted||petUnlocked(selected,progress);
- return <Modal visible transparent animationType={motion?'fade':'none'} onRequestClose={onClose}>
+ return <Overlay visible transparent animationType={motion?'fade':'none'} onRequestClose={onClose}>
    <View style={s.shade}><View style={s.sheet} accessibilityViewIsModal>
      <ScrollView contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
-       <View style={s.header}><Text style={s.title}>Igloo companions</Text><Pressable accessibilityRole="button" accessibilityLabel="Close pet adoption" onPress={onClose} style={s.button}><Text style={s.buttonText}>×</Text></Pressable></View>
+       <View style={s.header}><Text style={s.title}>Igloo companions</Text><IconButton label="Close pet adoption" onPress={onClose}><Chevron direction="close" /></IconButton></View>
        <View style={s.row}>{PETS.map(item=><Pressable key={item.id} accessibilityRole="button" accessibilityLabel={item.name}
          accessibilityState={{selected:selected===item.id}} style={[s.option,selected===item.id&&s.selected]}
          onPress={()=>{setSelected(item.id);setName(pets.names[item.id]??'');setPreview('idle');}}>
@@ -266,7 +279,7 @@ function Adoption({onClose}:{onClose:()=>void}) {
        </>:<Text style={s.description}>{Math.floor(progress/360000)/10} / {pet.unlockHours} hours in completed focus sessions</Text>}
      </ScrollView>
    </View></View>
- </Modal>;
+ </Overlay>;
 }
 
 const s=StyleSheet.create({
@@ -274,8 +287,8 @@ const s=StyleSheet.create({
  aboveFurniture:{zIndex:14}, studyIglooCorner:{minHeight:0},
  actor:{position:'absolute',zIndex:7}, prop:{position:'absolute',zIndex:6,width:'7%',alignItems:'center'}, propArt:{width:'100%',aspectRatio:1.15},shadow:{position:'absolute',bottom:'7%',width:'61%',left:'19.5%',height:'10%',borderRadius:30,backgroundColor:'#36234e30'},
  menu:{position:'absolute',bottom:'13%',left:'5%',right:'5%',zIndex:14,borderRadius:18,backgroundColor:'#fff0d5',borderWidth:1,borderColor:'#be9063',padding:12,gap:8},
- shade:{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#29223b8c',padding:16}, sheet:{width:'100%',maxWidth:440,maxHeight:'90%',backgroundColor:'#fff0d5',borderColor:'#bb8960',borderWidth:2,borderRadius:24,overflow:'hidden'},
- content:{padding:16,gap:10}, header:{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}, title:{fontSize:19,fontWeight:'900',color:'#5a3829'},
+ shade:{ ...ui.shade, backgroundColor: 'transparent' }, sheet:{ ...ui.dialog, maxHeight:'90%' },
+ content:{padding:16,gap:10}, header:{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}, title:{ ...type.heading, color: colors.ink },
  row:{flexDirection:'row',flexWrap:'wrap',gap:6}, button:{minHeight:44,paddingHorizontal:10,justifyContent:'center',backgroundColor:'#f2dcba',borderRadius:20},buttonText:{color:'#63402c',fontSize:12,fontWeight:'800',textTransform:'capitalize'},
  option:{flex:1,minWidth:64,alignItems:'center',padding:4,borderRadius:13,backgroundColor:'#f6e5c9'},selected:{backgroundColor:'#eed0a2'},thumb:{width:'100%',height:49},optionText:{fontSize:10,color:'#684532',textAlign:'center',fontWeight:'700'},
  preview:{width:130,height:122,alignSelf:'center',backgroundColor:'#f9e5c1',borderRadius:24},description:{color:'#6d503e',fontSize:13,textAlign:'center'},
